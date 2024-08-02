@@ -13,6 +13,7 @@
     "codegen-watch": "graphql-codegen --watch"
   },
   "dependencies": {
+    "@beequant/ui": "workspace:^",
     "@hookform/resolvers": "^3.9.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
