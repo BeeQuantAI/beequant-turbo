@@ -1,7 +1,6 @@
 {
   "name": "@beequant/ui",
   "version": "0.1.0",
-  "private": true,
   "sideEffects": [
     "**/*.css",
     "**/index.mjs"

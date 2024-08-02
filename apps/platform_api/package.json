@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "Api server for BeeQuant Core",
   "author": "Chris Wang",
-  "private": true,
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",

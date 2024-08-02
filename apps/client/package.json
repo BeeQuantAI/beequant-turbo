@@ -1,7 +1,6 @@
 {
   "name": "@beequant/client",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "dev": "yarn dev-codegen & yarn dev-next",
     "dev-codegen": "graphql-codegen --watch",
