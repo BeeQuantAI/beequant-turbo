@@ -1156,16 +1156,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@beequant/turbo@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@beequant/turbo@workspace:."
-  dependencies:
-    prettier: "npm:^3.2.5"
-    turbo: "npm:^2.0.11"
-    typescript: "npm:^5.4.5"
-  languageName: unknown
-  linkType: soft
-
 "@beequant/ui@workspace:^, @beequant/ui@workspace:packages/ui":
   version: 0.0.0-use.local
   resolution: "@beequant/ui@workspace:packages/ui"
@@ -5315,6 +5305,16 @@ __metadata:
   checksum: 10c0/b969467087ed7a01ff905a1c6a0c45014ec586248a448ea08370c8ed8bb314bda16a870ca23e0961d7d23bdce1a04c76fa70a9d680be814fa9ac7d8fc61870a3
   languageName: node
   linkType: hard
+
+"beequant-turbo@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "beequant-turbo@workspace:."
+  dependencies:
+    prettier: "npm:^3.2.5"
+    turbo: "npm:^2.0.11"
+    typescript: "npm:^5.4.5"
+  languageName: unknown
+  linkType: soft
 
 "binary-extensions@npm:^2.0.0":
   version: 2.3.0
