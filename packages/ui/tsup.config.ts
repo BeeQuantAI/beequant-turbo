@@ -1,7 +1,8 @@
-import { defineConfig } from "tsup";
 import { exec } from "child_process";
+import { defineConfig } from "tsup";
+
 export default defineConfig({
-  entry: ["src/index.tsx"],
+  entry: ["src/index.ts"],
   splitting: false,
   clean: true,
   format: ["esm"],
