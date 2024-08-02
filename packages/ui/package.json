@@ -1,15 +1,8 @@
 {
   "name": "@beequant/ui",
   "version": "0.1.0",
-  "sideEffects": [
-    "**/*.css",
-    "**/index.mjs"
-  ],
-  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./dist",
-    "./tailwind.config": "./tailwind.config.js",
-    "./styles.css": "./dist/index.css"
+    ".": "./src/index.ts"
   },
   "scripts": {
     "dev": "yarn tsup --watch",
