@@ -1,0 +1,31 @@
+name: Uat to Prod Boris
+permissions:
+  contents: read
+  id-token: write
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Confirm version to deploy to prod'
+        required: true
+        default: ''
+jobs:
+  sync-image-to-prod-ecr:
+    environment: prod
+    runs-on: ubuntu-latest
+    steps:
+      - name: configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          audience: sts.amazonaws.com
+          aws-region: ap-southeast-2
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN_BORIS }}
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+      - name: pull latest image from uat ecr
+        run: docker pull ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY_UAT_BORIS }}:${{ inputs.version }}
+      - name: retag and push image to prod ecr
+        run: |
+          docker tag ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY_UAT_BORIS }}:${{ inputs.version }} ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY_PROD_BORIS }}:${{ inputs.version }}-uat-tested
+          docker push ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY_PROD_BORIS }}:${{ inputs.version }}-uat-tested

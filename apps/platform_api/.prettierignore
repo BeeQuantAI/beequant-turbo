@@ -1,0 +1,8 @@
+# Uncomment the '*' to bypass Prettier checks. 
+# By default, keep the '*' commented out to activate prettier formating.
+# *
+
+# Ignore artifacts:
+ public
+ coverage
+ README.md

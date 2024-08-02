@@ -1,11 +1,12 @@
 {
-  "name": "beequant-turbo",
+  "name": "@beequant/turbo",
   "private": true,
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "dev-client-server": "yarn turbo run dev --filter=@beequant/client --filter=@beequant/server"
   },
   "devDependencies": {
     "prettier": "^3.2.5",

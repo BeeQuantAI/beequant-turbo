@@ -1,0 +1,35 @@
+name: Uat Deploy Boris
+permissions:
+  contents: read
+  id-token: write
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Confirm version to deploy to uat'
+        required: true
+        default: ''
+jobs:
+  rerun-CI-worlflow:
+    uses: ./.github/workflows/CI.yml
+  push-image-to-ecr:
+    environment: uat
+    name: build and push image
+    runs-on: ubuntu-latest
+    needs: rerun-CI-worlflow
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+      - name: configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          audience: sts.amazonaws.com
+          aws-region: ap-southeast-2
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN_BORIS }}
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+      - name: Build, tag, and push image to Amazon ECR
+        run: |
+          docker build -t ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY_UAT_BORIS }}:${{ inputs.version }} .
+          docker push ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY_UAT_BORIS }}:${{ inputs.version }}
