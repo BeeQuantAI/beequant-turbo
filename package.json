@@ -2,11 +2,10 @@
   "name": "beequant-turbo",
   "private": true,
   "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "dev-client-server": "yarn turbo run dev --filter=@beequant/client --filter=@beequant/server"
+    "build": "./scripts/turbo.sh build",
+    "dev": "./scripts/turbo.sh dev",
+    "lint": "./scripts/turbo.sh lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "prettier": "^3.2.5",
