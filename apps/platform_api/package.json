@@ -1,14 +1,15 @@
 {
-  "name": "@beequant/server",
+  "name": "@beequant/platform-api",
   "version": "0.0.1",
   "description": "Api server for BeeQuant Core",
   "author": "Chris Wang",
   "license": "UNLICENSED",
   "scripts": {
+    "predev": "docker compose up -d",
     "build": "nest build",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
-    "dev": "nest start",
+    "dev": "yarn predev && nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
