@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "types": ["vite/client", "jest", "react", "react-dom", "node"],
+    "skipLibCheck": true,
+    "baseUrl": "src",
+    "paths": {
+      "@/styles/*": ["styles/*"],
+      "@/config/*": ["config/*"],
+      "@/shared/*": ["shared/*"],
+      "@/graphql/*": ["graphql/*"],
+      "@/utils/*": ["shared/utils/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/constants/*": ["shared/constants/*"],
+      "@/containers/*": ["containers/*"],
+      "@/routes/*": ["routes/*"],
+      "@/components/*": ["shared/components/*"]
+    },
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve",
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    /* Migration */
+    "esModuleInterop": true,
+    // "jsx": "preserve",
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": ["./src", "./dist/types/**/*.ts", "./next-env.d.ts"],
+  "exclude": ["./node_modules"]
+}

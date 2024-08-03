@@ -18,5 +18,11 @@ docker compose up -d
 # create server env in apps/platform-api
 
 cd ../../
-yarn dev-client-server
+yarn dev client
 ```
+
+## What workspaces do we have here?
+
+- client: the new platform app
+- platform-app: the old platform app
+- platform-api: the backend
