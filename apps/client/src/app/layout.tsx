@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@src/module/system";
+import { ThemeSwitcher } from "@src/module/system";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -18,7 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeSwitcher />
+        {children}
       </body>
     </html>
   );

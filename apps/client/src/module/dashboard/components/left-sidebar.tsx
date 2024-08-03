@@ -2,20 +2,19 @@
 "use client";
 
 import { Icon } from "@src/module/common";
-import { useThemeStore } from "@src/module/system/theme-store";
 import Link from "next/link";
 // import SidebarSubmenu from "./sidebar-submenu";
 // import routes from "@/helper/sidebar-routes";
+import { useUser } from "@src/module/auth/user-store";
 import { usePathname } from "next/navigation";
 import { routes } from "../helper/sidebar-routes";
 import SidebarSubmenu from "./sidebar-submenu";
-import { useUser } from "@src/module/auth/user-store";
 
 interface LeftSidebarProps {}
 
 function LeftSidebar(props: LeftSidebarProps) {
   const pathname = usePathname();
-  const theme = useThemeStore((s) => s.theme);
+  const theme = "dark";
   const user = useUser((s) => s.user);
   const close = () => {
     const leftSidebarDrawer = document.getElementById("left-sidebar-drawer");
