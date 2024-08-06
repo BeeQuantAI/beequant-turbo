@@ -34,7 +34,7 @@ export function ControlledTextInput<TFieldValues extends object>({
           {!!leftElement && leftElement}
         </span>
         <input
-          className="focus:border-primary-400 flex-1 border border-slate-200 bg-transparent px-2 py-1 placeholder:text-xs focus:outline-none dark:border-neutral-700 dark:text-neutral-50"
+          className="focus:border-primary-400 dark:focus:border-primary-400 flex-1 border border-slate-200 bg-transparent px-2 py-1 placeholder:text-xs focus:outline-none dark:border-neutral-700 dark:text-neutral-50"
           placeholder={label ? label : props.placeholder}
           {...props}
           {...field}
@@ -74,14 +74,14 @@ export function ControlledPasswordInput<TFieldValues extends object>({
         </span>
         <input
           type={showPassword ? "text" : "password"}
-          className="focus:border-primary-400 flex-1 border border-slate-200 bg-transparent px-2 py-1 placeholder:text-xs focus:outline-none dark:border-neutral-700 dark:text-neutral-50"
+          className="focus:border-primary-400 dark:focus:border-primary-400 flex-1 border border-slate-200 bg-transparent px-2 py-1 placeholder:text-xs focus:outline-none dark:border-neutral-700 dark:text-neutral-50"
           placeholder={label ? label : props.placeholder}
           {...props}
           {...field}
         />
         {showPassword ? (
           <button
-            className="bg-primary-400 border-primary-400 border p-2"
+            className="bg-primary-400 border-primary-400 border p-2 text-neutral-50"
             type="button"
             onClick={() => toggleShowPassword()}
           >
@@ -89,7 +89,7 @@ export function ControlledPasswordInput<TFieldValues extends object>({
           </button>
         ) : (
           <button
-            className="bg-primary-400 border-primary-400 border p-2"
+            className="bg-primary-400 border-primary-400 border p-2 text-neutral-50"
             type="button"
             onClick={() => toggleShowPassword()}
           >
