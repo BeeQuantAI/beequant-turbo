@@ -7,22 +7,22 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-primary-400",
-        secondary: "bg-transparent",
+        default: [
+          "bg-primary-400 text-neutral-50",
+          "before:transition-width before:transition-height before:bg-primary-500 hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:duration-500 before:ease-in-out hover:before:-z-50",
+        ],
+        outline: [
+          "text-primary-300 bg-transparent",
+          "before:transition-width before:transition-height before:bg-primary-500 hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:duration-500 before:ease-in-out hover:text-white hover:before:-z-50",
+        ],
       },
       size: {
         medium: "w-400 px-6 py-2.5",
       },
-      animation: {
-        "growing-bubble-tl-primary":
-          "before:transition-width before:transition-height before:bg-primary-500 hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:duration-500 before:ease-in-out hover:before:-z-50",
-        "growing-bubble-tl-secondary":
-          "before:transition-width before:transition-height before:bg-primary-500 hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:duration-500 before:ease-in-out hover:text-white hover:before:-z-50",
-      },
-      textColor: {
-        white: "text-neutral-50",
-        blue: "text-primary-300",
-      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "medium",
     },
   },
 );
@@ -35,9 +35,7 @@ type Props = {
 export function Button({
   children,
   variant,
-  animation,
   size,
-  textColor,
   type = "button",
   ...props
 }: Props) {
@@ -46,8 +44,6 @@ export function Button({
       className={buttonVariants({
         variant,
         size,
-        animation,
-        textColor,
       })}
       type={type}
       {...props}

@@ -9,6 +9,7 @@ import {
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { register, RegisterPayload } from "./auth-service";
+import { FormHeader } from "./form-header";
 import { AuthRoute } from "./route";
 
 type FormSchema = z.infer<typeof formSchema>;
@@ -56,7 +57,12 @@ export function RegisterForm() {
   });
 
   return (
-    <form className="card card-body bg-neutral max-w-lg" onSubmit={onSubmit}>
+    <form
+      className="flex max-w-lg flex-col gap-5 bg-slate-50 px-16 py-12 dark:bg-neutral-900"
+      onSubmit={onSubmit}
+    >
+      <FormHeader />
+
       {errors.root && <span className="text-error">{errors.root.message}</span>}
 
       <ControlledTextInput
@@ -105,10 +111,15 @@ export function RegisterForm() {
         disabled
       />
 
-      <Button>Sign Up</Button>
-      <AuthRoute.Login.Link className="btn btn-outline">
-        Sign In
-      </AuthRoute.Login.Link>
+      <Button type="submit" variant="default">
+        Sign Up
+      </Button>
+      <span className="text-center text-sm text-neutral-500">
+        {"Already have an account? "}
+        <AuthRoute.Login.Link className="text-primary-400 hover:text-primary-500">
+          Sign In
+        </AuthRoute.Login.Link>
+      </span>
     </form>
   );
 }

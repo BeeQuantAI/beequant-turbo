@@ -49,7 +49,7 @@ export function LoginForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="flex flex-col gap-5 bg-slate-50 px-16 py-12 dark:bg-neutral-900"
+      className="flex max-w-lg flex-col gap-5 bg-slate-50 px-16 py-12 dark:bg-neutral-900"
     >
       <FormHeader />
 
@@ -80,23 +80,12 @@ export function LoginForm() {
         <Checkbox label="Remember me" />
       </div>
 
-      <Button
-        type="submit"
-        variant="primary"
-        textColor="white"
-        animation="growing-bubble-tl-primary"
-        size="medium"
-      >
+      <Button type="submit" variant="default" size="medium">
         Sign In
       </Button>
 
       <AuthRoute.Register.Link>
-        <Button
-          variant="secondary"
-          textColor="blue"
-          size="medium"
-          animation="growing-bubble-tl-secondary"
-        >
+        <Button variant="outline" size="medium">
           Create Account
         </Button>
       </AuthRoute.Register.Link>
