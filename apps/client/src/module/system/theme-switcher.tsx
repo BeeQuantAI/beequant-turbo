@@ -113,27 +113,36 @@ function useTheme() {
   return { theme, setTheme };
 }
 
+export function ThemeToggle() {
+  const { theme, setTheme } = useTheme();
+
+  return (
+    <button
+      className="hover:border-primary-500 hover:text-primary-500 border-primary-400 text-primary-400 rounded-md border-2 p-1 transition-colors dark:border-slate-300 dark:text-slate-300 dark:hover:border-slate-100 dark:hover:text-slate-100"
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+    >
+      {theme === "dark" ? (
+        <GoMoon className="h-6 w-6" />
+      ) : (
+        <GoSun className="h-6 w-6" />
+      )}
+    </button>
+  );
+}
+
 export function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
 
   const { label } = themes.find((x) => x.value === theme) || themes[0];
 
-  console.log({ theme });
-
   return (
     <div className="flex items-center justify-between">
-      <label
-        htmlFor="theme"
-        className="text-slate-700 font-normal dark:text-slate-400"
-      >
-        Switch theme
-      </label>
-      <div className="relative flex items-center ring-1 ring-slate-900/10 rounded-lg shadow-sm p-2 text-slate-700 font-semibold dark:bg-slate-600 dark:ring-0 dark:highlight-white/5 dark:text-slate-200">
-        <GoSun className="w-6 h-6 mr-2 dark:hidden" />
+      <div className="dark:highlight-white/5 relative flex items-center rounded-lg p-2 font-semibold text-slate-700 shadow-sm ring-1 ring-slate-900/10 dark:bg-slate-600 dark:text-slate-200 dark:ring-0">
+        <GoSun className="mr-2 h-6 w-6 dark:hidden" />
         <svg
           viewBox="0 0 24 24"
           fill="none"
-          className="w-6 h-6 mr-2 hidden dark:block"
+          className="mr-2 hidden h-6 w-6 dark:block"
         >
           <path
             fillRule="evenodd"
@@ -153,7 +162,7 @@ export function ThemeSwitcher() {
           />
         </svg>
         {label}
-        <svg className="w-6 h-6 ml-2 text-slate-400" fill="none">
+        <svg className="ml-2 h-6 w-6 text-slate-400" fill="none">
           <path
             d="m15 11-3 3-3-3"
             stroke="currentColor"
@@ -166,7 +175,7 @@ export function ThemeSwitcher() {
           id="theme"
           value={theme}
           onChange={(e) => setTheme(e.target.value as Theme)}
-          className="absolute appearance-none inset-0 w-full h-full opacity-0"
+          className="absolute inset-0 h-full w-full appearance-none opacity-0"
         >
           {themes.map(({ value, label }) => (
             <option key={value} value={value}>

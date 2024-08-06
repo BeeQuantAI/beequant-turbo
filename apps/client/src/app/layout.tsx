@@ -1,5 +1,5 @@
 "use client";
-import { ThemeSwitcher } from "@src/module/system";
+import { ThemeToggle } from "@src/module/system";
 import "./globals.css";
 
 export default function RootLayout({
@@ -25,9 +25,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-slate-100 font-sans dark:bg-neutral-950">
-        <span className="absolute left-0 top-0">
-          <ThemeSwitcher />
+      <body className="bg-slate-200 font-sans dark:bg-neutral-950">
+        <span className="absolute right-2 top-2">
+          <ThemeToggle />
         </span>
         {children}
       </body>
