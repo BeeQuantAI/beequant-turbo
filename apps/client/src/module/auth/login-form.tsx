@@ -49,7 +49,7 @@ export function LoginForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="flex flex-col gap-8 bg-slate-100 px-16 py-12 dark:bg-neutral-900"
+      className="flex flex-col gap-5 bg-slate-100 px-16 py-12 dark:bg-neutral-900"
     >
       <FormHeader />
 
@@ -87,7 +87,7 @@ export function LoginForm() {
         animation="growing-bubble-tl-primary"
         size="medium"
       >
-        Login
+        Sign In
       </Button>
 
       <AuthRoute.Register.Link>

@@ -3,7 +3,7 @@ import React from "react";
 
 export interface ButtonVariants extends VariantProps<typeof buttonVariants> {}
 const buttonVariants = cva(
-  "border-primary-400 relative overflow-hidden rounded border text-xs transition-all duration-500",
+  "border-primary-400 relative overflow-hidden rounded border text-sm transition-all duration-500",
   {
     variants: {
       variant: {
@@ -11,7 +11,7 @@ const buttonVariants = cva(
         secondary: "bg-transparent",
       },
       size: {
-        medium: "w-400 mb-5 px-6 py-2.5",
+        medium: "w-400 px-6 py-2.5",
       },
       animation: {
         "growing-bubble-tl-primary":

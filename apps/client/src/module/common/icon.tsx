@@ -1,15 +1,17 @@
 import type { IconBaseProps } from "react-icons";
-import { GoEye, GoEyeClosed, GoKey, GoPerson } from "react-icons/go";
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { BsPerson } from "react-icons/bs";
+import { FaKey } from "react-icons/fa";
+import { GoEye, GoEyeClosed } from "react-icons/go";
 import {
-  MdSunny,
   MdModeNight,
   MdOutlineKeyboardArrowDown,
   MdOutlineKeyboardArrowUp,
+  MdSunny,
 } from "react-icons/md";
 const icons = {
-  person: GoPerson,
-  key: GoKey,
+  person: BsPerson,
+  key: FaKey,
   "eye-open": GoEye,
   "eye-closed": GoEyeClosed,
   menu: AiOutlineMenu,

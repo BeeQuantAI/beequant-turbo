@@ -28,13 +28,13 @@ export function ControlledTextInput<TFieldValues extends object>({
 
   return (
     <label className="space-y-2">
-      <span className="text-sm dark:text-neutral-500">{label}</span>
-      <div className="flex items-center border border-neutral-700">
-        <span className="bg-neutral-700 p-2">
+      <span className="text-xs dark:text-neutral-200">{label}</span>
+      <div className="flex items-center">
+        <span className="border border-neutral-700 bg-neutral-700 p-2 text-neutral-400">
           {!!leftElement && leftElement}
         </span>
         <input
-          className="flex-1 bg-transparent px-2 py-1 placeholder:text-xs focus:outline-none"
+          className="focus:border-primary-400 flex-1 border border-neutral-700 bg-transparent px-2 py-1 transition-colors placeholder:text-xs focus:outline-none dark:text-neutral-50"
           placeholder={label ? label : props.placeholder}
           {...props}
           {...field}
@@ -67,21 +67,21 @@ export function ControlledPasswordInput<TFieldValues extends object>({
 
   return (
     <label className="space-y-2">
-      <span className="text-sm dark:text-neutral-500">{label}</span>
-      <div className="flex items-center border border-neutral-700">
-        <span className="bg-neutral-700 p-2">
+      <span className="text-xs dark:text-neutral-200">{label}</span>
+      <div className="flex items-center">
+        <span className="border border-neutral-700 bg-neutral-700 p-2 text-neutral-400">
           <Icon icon="key" />
         </span>
         <input
           type={showPassword ? "text" : "password"}
-          className="flex-1 bg-transparent px-2 py-1 placeholder:text-xs focus:outline-none"
+          className="focus:border-primary-400 flex-1 border border-neutral-700 bg-transparent px-2 py-1 transition-colors placeholder:text-xs focus:outline-none dark:text-neutral-50"
           placeholder={label ? label : props.placeholder}
           {...props}
           {...field}
         />
         {showPassword ? (
           <button
-            className="bg-primary-400 p-2"
+            className="bg-primary-400 border-primary-400 border p-2"
             type="button"
             onClick={() => toggleShowPassword()}
           >
@@ -89,7 +89,7 @@ export function ControlledPasswordInput<TFieldValues extends object>({
           </button>
         ) : (
           <button
-            className="bg-primary-400 p-2"
+            className="bg-primary-400 border-primary-400 border p-2"
             type="button"
             onClick={() => toggleShowPassword()}
           >
