@@ -28,10 +28,17 @@ export function ControlledTextInput<TFieldValues extends object>({
 
   return (
     <label className="space-y-2">
-      <span>{label}</span>
-      <div className="input input-bordered flex items-center gap-2">
-        {!!leftElement && leftElement}
-        <input className="grow" {...props} {...field} />
+      <span className="text-sm dark:text-neutral-500">{label}</span>
+      <div className="flex items-center border border-neutral-700">
+        <span className="bg-neutral-700 p-2">
+          {!!leftElement && leftElement}
+        </span>
+        <input
+          className="flex-1 bg-transparent px-2 py-1 placeholder:text-xs focus:outline-none"
+          placeholder={label ? label : props.placeholder}
+          {...props}
+          {...field}
+        />
         {!!rightElement && rightElement}
       </div>
 
@@ -60,21 +67,32 @@ export function ControlledPasswordInput<TFieldValues extends object>({
 
   return (
     <label className="space-y-2">
-      <span>{label}</span>
-      <div className="input input-bordered flex items-center gap-2">
-        <Icon icon="key" />
+      <span className="text-sm dark:text-neutral-500">{label}</span>
+      <div className="flex items-center border border-neutral-700">
+        <span className="bg-neutral-700 p-2">
+          <Icon icon="key" />
+        </span>
         <input
           type={showPassword ? "text" : "password"}
-          className="grow"
+          className="flex-1 bg-transparent px-2 py-1 placeholder:text-xs focus:outline-none"
+          placeholder={label ? label : props.placeholder}
           {...props}
           {...field}
         />
         {showPassword ? (
-          <button type="button" onClick={() => toggleShowPassword()}>
+          <button
+            className="bg-primary-400 p-2"
+            type="button"
+            onClick={() => toggleShowPassword()}
+          >
             <Icon icon="eye-open" />
           </button>
         ) : (
-          <button type="button" onClick={() => toggleShowPassword()}>
+          <button
+            className="bg-primary-400 p-2"
+            type="button"
+            onClick={() => toggleShowPassword()}
+          >
             <Icon icon="eye-closed" />
           </button>
         )}

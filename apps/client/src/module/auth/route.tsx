@@ -44,4 +44,5 @@ const ForgetPassword = {
 export const AuthRoute = {
   Login,
   Register,
+  ForgetPassword,
 };

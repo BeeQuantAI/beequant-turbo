@@ -31,7 +31,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>
+      <body className="bg-neutral-50 dark:bg-neutral-950">
         <ThemeSwitcher />
         {children}
       </body>
