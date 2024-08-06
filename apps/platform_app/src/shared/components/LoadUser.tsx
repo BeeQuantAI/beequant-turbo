@@ -5,7 +5,7 @@ import Loading from './Loading';
 const LoadUser = ({ children }: IPropChild) => {
   const { loading } = useLoadUser();
 
-  return !loading ? <Loading /> : children;
+  return loading ? <Loading /> : children;
 };
 
 export default connect(LoadUser);
