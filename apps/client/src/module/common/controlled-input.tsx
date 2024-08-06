@@ -27,14 +27,14 @@ export function ControlledTextInput<TFieldValues extends object>({
   });
 
   return (
-    <label className="space-y-2">
-      <span className="text-xs dark:text-neutral-200">{label}</span>
+    <label className="space-y-2 text-neutral-500 transition-colors dark:text-neutral-400">
+      <span className="text-xs">{label}</span>
       <div className="flex items-center">
-        <span className="border border-neutral-700 bg-neutral-700 p-2 text-neutral-400">
+        <span className="border border-slate-200 bg-slate-200 p-2 dark:border-neutral-700 dark:bg-neutral-700">
           {!!leftElement && leftElement}
         </span>
         <input
-          className="focus:border-primary-400 flex-1 border border-neutral-700 bg-transparent px-2 py-1 transition-colors placeholder:text-xs focus:outline-none dark:text-neutral-50"
+          className="focus:border-primary-400 flex-1 border border-slate-200 bg-transparent px-2 py-1 placeholder:text-xs focus:outline-none dark:border-neutral-700 dark:text-neutral-50"
           placeholder={label ? label : props.placeholder}
           {...props}
           {...field}
@@ -66,15 +66,15 @@ export function ControlledPasswordInput<TFieldValues extends object>({
   });
 
   return (
-    <label className="space-y-2">
-      <span className="text-xs dark:text-neutral-200">{label}</span>
+    <label className="space-y-2 text-neutral-500 transition-colors dark:text-neutral-400">
+      <span className="text-xs">{label}</span>
       <div className="flex items-center">
-        <span className="border border-neutral-700 bg-neutral-700 p-2 text-neutral-400">
+        <span className="border border-slate-200 bg-slate-200 p-2 dark:border-neutral-700 dark:bg-neutral-700">
           <Icon icon="key" />
         </span>
         <input
           type={showPassword ? "text" : "password"}
-          className="focus:border-primary-400 flex-1 border border-neutral-700 bg-transparent px-2 py-1 transition-colors placeholder:text-xs focus:outline-none dark:text-neutral-50"
+          className="focus:border-primary-400 flex-1 border border-slate-200 bg-transparent px-2 py-1 placeholder:text-xs focus:outline-none dark:border-neutral-700 dark:text-neutral-50"
           placeholder={label ? label : props.placeholder}
           {...props}
           {...field}

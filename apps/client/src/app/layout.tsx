@@ -25,8 +25,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-neutral-50 font-sans dark:bg-neutral-950">
-        <ThemeSwitcher />
+      <body className="bg-slate-100 font-sans dark:bg-neutral-950">
+        <span className="absolute left-0 top-0">
+          <ThemeSwitcher />
+        </span>
         {children}
       </body>
     </html>
