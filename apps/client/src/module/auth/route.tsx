@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 type RouteLinkProps = {
   children: React.ReactNode;
   className?: string;
@@ -9,9 +11,9 @@ const Login = {
   },
   Path: "/login" as const,
   Link: ({ children, className }: RouteLinkProps) => (
-    <a href={Login.Path} className={className}>
+    <Link href={Login.Path} className={className}>
       {children}
-    </a>
+    </Link>
   ),
 };
 
@@ -21,9 +23,21 @@ const Register = {
   },
   Path: "/register" as const,
   Link: ({ children, className }: RouteLinkProps) => (
-    <a href={Register.Path} className={className}>
+    <Link href={Register.Path} className={className}>
       {children}
-    </a>
+    </Link>
+  ),
+};
+
+const ForgetPassword = {
+  Metadata: {
+    title: "Forgot Password | BeeQuant",
+  },
+  Path: "/forgot-password" as const,
+  Link: ({ children, className }: RouteLinkProps) => (
+    <Link href={ForgetPassword.Path} className={className}>
+      {children}
+    </Link>
   ),
 };
 

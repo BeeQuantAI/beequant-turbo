@@ -1,5 +1,5 @@
 {
-  "name": "platform_app",
+  "name": "@beequant/platform-app",
   "author": "Chris Wang",
   "private": true,
   "version": "0.0.1",

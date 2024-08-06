@@ -1,6 +1,8 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
+  Button,
+  Checkbox,
   ControlledPasswordInput,
   ControlledTextInput,
   Icon,
@@ -9,6 +11,7 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { login, LoginPayload } from "./auth-service";
+import { AuthRoute } from "./route";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -44,10 +47,10 @@ export function LoginForm() {
   });
 
   return (
-    <div className="card mx-auto w-full max-w-5xl shadow-slate-500 dark:shadow-sky-400  shadow-2xl min-h-96 py-4 flex justify-center items-center">
-      <div className=" mx-auto h-full">
-        <h2 className="text-2xl font-semibold mb-2 text-center">Login</h2>
-        <form onSubmit={onSubmit}>
+    <div className="card mx-auto flex min-h-96 w-full max-w-5xl items-center justify-center py-4 shadow-2xl shadow-slate-500 dark:shadow-sky-400">
+      <div className="mx-auto h-full">
+        <h2 className="mb-2 text-center text-2xl font-semibold">Login</h2>
+        <form onSubmit={onSubmit} className="flex flex-col">
           {errors.root && (
             <span className="text-error">{errors.root.message}</span>
           )}
@@ -67,27 +70,36 @@ export function LoginForm() {
             />
           </div>
 
-          <div className="text-right text-primary">
+          <div className="text-primary text-right">
             <Link href="/forgot-password">
-              <span className="text-sm  inline-block  hover:text-primary hover:underline hover:cursor-pointer transition duration-200">
+              <span className="hover:text-primary inline-block text-sm transition duration-200 hover:cursor-pointer hover:underline">
                 Forgot Password?
               </span>
             </Link>
           </div>
 
-          {/* <ErrorText styleClass="mt-8">{errorMessage}</ErrorText> */}
-          <button type="submit" className={"btn mt-2 w-full btn-primary"}>
-            Login
-          </button>
+          <Checkbox label="Remember me" />
 
-          <div className="text-center mt-4">
-            Don&apos;t have an account yet?{" "}
-            <Link href="/register">
-              <span className="  inline-block  hover:text-primary hover:underline hover:cursor-pointer transition duration-200">
-                Register
-              </span>
-            </Link>
-          </div>
+          <Button
+            type="submit"
+            variant="primary"
+            textColor="white"
+            animation="growing-bubble-tl-primary"
+            size="medium"
+          >
+            Login
+          </Button>
+
+          <AuthRoute.Register.Link>
+            <Button
+              variant="secondary"
+              textColor="blue"
+              size="medium"
+              animation="growing-bubble-tl-secondary"
+            >
+              Create Account
+            </Button>
+          </AuthRoute.Register.Link>
         </form>
       </div>
     </div>
