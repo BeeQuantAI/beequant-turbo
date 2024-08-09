@@ -15,8 +15,19 @@ const buttonVariants = cva(
           "text-primary-300 bg-transparent",
           "before:transition-width before:transition-height before:bg-primary-500 hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:duration-500 before:ease-in-out hover:text-white hover:before:-z-50",
         ],
+        facebook:[
+          "bg-primary-700",
+          "border-transparent",
+          "before:transition-width before:transition-height before:bg-white before:opacity-65 hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:duration-500 before:ease-in-out hover:text-cover-layout-primary hover:bg-cover-layout-primary hover:before:-z-50",
+        ],
+        google:[
+          "bg-red-primary",
+          "border-none",
+          "before:transition-width before:transition-height before:bg-white before:opacity-65 hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:duration-500 before:ease-in-out hover:text-cover-layout-primary hover:bg-cover-layout-primary hover:before:-z-50",
+        ]
       },
       size: {
+        small:"size-[38px]",
         medium: "w-400 px-6 py-2.5",
       },
     },
