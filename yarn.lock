@@ -1232,9 +1232,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@beequant/platform-app@workspace:apps/platform_app":
+"@beequant/platform_app@workspace:apps/platform_app":
   version: 0.0.0-use.local
-  resolution: "@beequant/platform-app@workspace:apps/platform_app"
+  resolution: "@beequant/platform_app@workspace:apps/platform_app"
   dependencies:
     "@apollo/client": "npm:^3.8.6"
     "@apollo/server": "npm:^4.9.5"
@@ -1243,6 +1243,7 @@ __metadata:
     "@graphql-codegen/client-preset": "npm:^4.3.0"
     "@graphql-tools/mock": "npm:^9.0.0"
     "@graphql-tools/schema": "npm:^10.0.0"
+    "@hookform/resolvers": "npm:^3.9.0"
     "@parcel/watcher": "npm:^2.4.1"
     "@testing-library/jest-dom": "npm:^6.4.2"
     "@testing-library/react": "npm:^15.0.5"
@@ -1312,6 +1313,7 @@ __metadata:
     vite: "npm:^4.4.5"
     vite-plugin-eslint: "npm:^1.8.1"
     yarn: "npm:^1.22.19"
+    zod: "npm:^3.23.8"
   languageName: unknown
   linkType: soft
 

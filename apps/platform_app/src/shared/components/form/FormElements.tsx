@@ -46,6 +46,18 @@ export const FormGroupDescription = styled.span`
   margin-top: 2px;
 `;
 
+export const FormGroupLabelDescription = styled.span`
+  display: block;
+  width: 100%;
+  color: ${colorAccent};
+  margin-left: 140px;
+  margin-bottom: 4px;
+
+  @media screen and (max-width: 480px) {
+    margin-left: 90px;
+  }
+`;
+
 export const FormGroupIcon = styled.div`
   padding: 6px;
   height: 32px;

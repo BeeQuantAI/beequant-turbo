@@ -1,18 +1,18 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useForm, FormProvider } from 'react-hook-form';
-import { Alert } from 'react-bootstrap';
-import Link from 'next/link';
+import { USER_LOGIN } from '@/graphql/auth';
+import { useSearchParams } from '@/hooks/useSearchParams';
 import { AccountButton, LoginForm } from '@/shared/components/account/AccountElements';
 import { AUTH_TOKEN, EMAIL, REMEMBER_ME } from '@/shared/constants/storage';
-import { useRouter } from 'next/navigation';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import { useMutation } from '@apollo/client';
-import { USER_LOGIN } from '@/graphql/auth';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { Alert } from 'react-bootstrap';
+import { FormProvider, useForm } from 'react-hook-form';
 import LoginFormGroup from './LoginFormGroup';
 
-type loginData = { email: string; password: string; remember_me: boolean };
+type LoginData = { email: string; password: string; remember_me: boolean };
 
 const FormLayout = () => {
   const methods = useForm({
@@ -37,7 +37,7 @@ const FormLayout = () => {
   const originUrl = useSearchParams().get('orgUrl');
   const [login] = useMutation(USER_LOGIN);
 
-  const onSubmit = async (data: loginData) => {
+  const onSubmit = async (data: LoginData) => {
     const result = await login({
       variables: data,
     });

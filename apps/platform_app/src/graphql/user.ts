@@ -1,4 +1,4 @@
-import { gql } from './codegen/';
+import { gql } from './codegen';
 
 export const GET_USER = gql(`
   query getUserInfo {

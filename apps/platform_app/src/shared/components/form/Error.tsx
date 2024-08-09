@@ -3,7 +3,7 @@ import { colorDarkRed, colorVeryLightRed } from '@/styles/palette';
 import { right } from '@/styles/directions';
 
 type ErrorProps = {
-  error: string;
+  error?: string;
   $top?: boolean;
 };
 
