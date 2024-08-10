@@ -1,4 +1,4 @@
-import { SidebarToggleButton } from "./sidebar";
+import { SidebarToggleButton } from "../sidebar/sidebar";
 
 export function Header() {
   return (

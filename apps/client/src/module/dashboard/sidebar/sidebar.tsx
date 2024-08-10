@@ -3,12 +3,14 @@ import { Icon } from "@src/module/common";
 import { useToggle } from "@src/utils";
 import clsx from "clsx";
 import { useEffect } from "react";
+import { useSidebar } from "./sidebar-data";
 import { SidebarMenu } from "./sidebar-menu";
 
 const toggleButtonId = "sidebar-toggle";
 
 export function SidebarContainer() {
   const [showSidebar, toggleSidebar] = useToggle(false);
+  const { menu } = useSidebar();
 
   useEffect(() => {
     const handleSidebarToggle = () => toggleSidebar();
@@ -32,7 +34,7 @@ export function SidebarContainer() {
         "top-header absolute bottom-0 bg-slate-50 py-4 dark:bg-slate-900",
       )}
     >
-      <SidebarMenu />
+      <SidebarMenu menu={menu} />
     </div>
   );
 }

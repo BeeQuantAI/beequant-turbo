@@ -1,86 +1,11 @@
 "use client";
 import { Icon, Icons } from "@src/module/common";
-import { useTheme } from "@src/module/system";
 import clsx from "clsx";
 
-export function SidebarMenu() {
-  const { setTheme } = useTheme();
-  const menu: SidebarMenuItemProps[] = [
-    {
-      type: "button",
-      icon: "home",
-      label: "Dashboard",
-      onClick: () => console.log("Navigate to Dashboard"),
-    },
-    { type: "divider" },
-    {
-      type: "accordion",
-      icon: "bots",
-      label: "Bots",
-      options: [
-        {
-          label: "Profile",
-          onClick: () => console.log("Navigate to Profile"),
-        },
-        {
-          label: "Account",
-          onClick: () => console.log("Navigate to Account"),
-        },
-      ],
-    },
-    {
-      type: "accordion",
-      icon: "crypto",
-      label: "Cryptoeconomy",
-      options: [
-        {
-          label: "Prices",
-          onClick: () => console.log("Navigate to Prices"),
-        },
-      ],
-    },
-    { type: "divider" },
-    {
-      type: "accordion",
-      icon: "theme",
-      label: "Theme",
-      options: [
-        {
-          label: "Light Theme",
-          onClick: () => setTheme("light"),
-        },
-        {
-          label: "Dark Theme",
-          onClick: () => setTheme("dark"),
-        },
-      ],
-    },
-    {
-      type: "accordion",
-      icon: "account",
-      label: "Account",
-      options: [
-        {
-          label: "Profile",
-          onClick: () => console.log("Navigate to Profile"),
-        },
-        {
-          label: "Account",
-          onClick: () => console.log("Navigate to Account"),
-        },
-      ],
-    },
-    {
-      type: "divider",
-    },
-    {
-      type: "button",
-      icon: "exit",
-      label: "Logout",
-      onClick: () => console.log("Logout"),
-    },
-  ];
-
+type Props = {
+  menu: SidebarMenuItem[];
+};
+export function SidebarMenu({ menu }: Props) {
   return (
     <menu>
       {menu.map((item, index) => (
@@ -90,7 +15,7 @@ export function SidebarMenu() {
   );
 }
 
-type SidebarMenuItemProps =
+export type SidebarMenuItem =
   | {
       type: "button";
       icon: Icons;
@@ -101,7 +26,7 @@ type SidebarMenuItemProps =
   | {
       type: "divider";
     };
-function SidebarMenuItem(props: SidebarMenuItemProps) {
+function SidebarMenuItem(props: SidebarMenuItem) {
   if (props.type === "button") {
     return (
       <button
