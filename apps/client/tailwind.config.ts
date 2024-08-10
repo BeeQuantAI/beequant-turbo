@@ -19,9 +19,15 @@ const config: Config = {
       width: {
         "btn-w-cover": "255%",
         "400": "400px",
+        sidebar: "256px",
       },
       height: {
+        header: "64px",
         "btn-h-cover": "500%",
+      },
+      spacing: {
+        header: "64px",
+        sidebar: "256px",
       },
       animation: {
         "growing-bubble-tl-primary":

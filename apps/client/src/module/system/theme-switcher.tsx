@@ -53,7 +53,7 @@ function update() {
   });
 }
 
-function useTheme() {
+export function useTheme() {
   const { theme, setTheme } = useThemeSetting();
   const initial = useRef(true);
 
