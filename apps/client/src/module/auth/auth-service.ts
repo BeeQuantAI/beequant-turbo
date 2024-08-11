@@ -47,3 +47,10 @@ export function useLogout() {
   };
   return { revokeTokensAndClear };
 }
+
+export async function logout() {
+  const cookieStore = cookies();
+  cookieStore.delete("token");
+
+  redirect(AuthRoute.Login.Path);
+}

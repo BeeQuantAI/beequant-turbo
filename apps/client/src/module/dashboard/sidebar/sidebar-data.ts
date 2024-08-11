@@ -1,4 +1,5 @@
 "use client";
+import { logout } from "@src/module/auth";
 import { useTheme } from "@src/module/system";
 import { SidebarMenuItem } from "./sidebar-menu";
 
@@ -6,6 +7,8 @@ export function useSidebar() {
   const bots = useBotsMenu();
   const cryptoeconomy = useCryptoEconomyMenu();
   const theme = useThemeMenu();
+  const account = useAccount();
+  const logout = useLogout();
 
   const menu: SidebarMenuItem[] = [
     {
@@ -19,30 +22,9 @@ export function useSidebar() {
     cryptoeconomy,
     { type: "divider" },
     theme,
-    {
-      type: "accordion",
-      icon: "account",
-      label: "Account",
-      options: [
-        {
-          label: "Profile",
-          onClick: () => console.log("Navigate to Profile"),
-        },
-        {
-          label: "Account",
-          onClick: () => console.log("Navigate to Account"),
-        },
-      ],
-    },
-    {
-      type: "divider",
-    },
-    {
-      type: "button",
-      icon: "exit",
-      label: "Logout",
-      onClick: () => console.log("Logout"),
-    },
+    account,
+    { type: "divider" },
+    logout,
   ];
 
   return { menu };
@@ -97,5 +79,32 @@ function useThemeMenu(): SidebarMenuItem {
         onClick: () => setTheme("dark"),
       },
     ],
+  };
+}
+
+function useAccount(): SidebarMenuItem {
+  return {
+    type: "accordion",
+    icon: "account",
+    label: "Account",
+    options: [
+      {
+        label: "Profile",
+        onClick: () => console.log("Navigate to Profile"),
+      },
+      {
+        label: "Account",
+        onClick: () => console.log("Navigate to Account"),
+      },
+    ],
+  };
+}
+
+function useLogout(): SidebarMenuItem {
+  return {
+    type: "button",
+    icon: "exit",
+    label: "Logout",
+    onClick: () => logout(),
   };
 }
