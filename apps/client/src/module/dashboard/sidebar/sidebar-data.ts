@@ -1,9 +1,12 @@
 "use client";
 import { logout } from "@src/module/auth";
 import { useTheme } from "@src/module/system";
+import { useRouter } from "next/navigation";
+import { DashboardRoute } from "../route";
 import { SidebarMenuItem } from "./sidebar-menu";
 
 export function useSidebar() {
+  const router = useRouter();
   const bots = useBotsMenu();
   const cryptoeconomy = useCryptoEconomyMenu();
   const theme = useThemeMenu();
@@ -15,7 +18,7 @@ export function useSidebar() {
       type: "button",
       icon: "home",
       label: "Dashboard",
-      onClick: () => console.log("Navigate to Dashboard"),
+      onClick: () => router.push(DashboardRoute.Root.Path),
     },
     { type: "divider" },
     bots,

@@ -1,4 +1,7 @@
 import { Profile } from "@src/module/dashboard";
+import { DashboardRoute } from "@src/module/dashboard/route";
+
+export const metadata = DashboardRoute.Root.Metadata;
 
 export default function Page() {
   return (
