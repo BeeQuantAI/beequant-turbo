@@ -12,12 +12,13 @@ import {
   MdOutlineKeyboardArrowUp,
   MdSunny,
 } from "react-icons/md";
+import { PiPlaceholder } from "react-icons/pi";
 
 const genericIcons = {
   "arrow-down": MdOutlineKeyboardArrowDown,
   "arrow-up": MdOutlineKeyboardArrowUp,
   close: AiOutlineClose,
-
+  placholder: PiPlaceholder,
   dayTime: MdSunny,
   nightTime: MdModeNight,
 };

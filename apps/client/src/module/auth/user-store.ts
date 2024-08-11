@@ -5,6 +5,7 @@ import { getUserInfo } from "./auth-service";
 type User = {
   id: string;
   displayName?: string;
+  avatar?: string;
 };
 const initialState = {
   user: null as User | null,
@@ -20,12 +21,14 @@ export const useUser = create(
     //     console.dir(error);
     //   };
     // },
-  })
+  }),
 );
 
 export const fetchUserInfo = async () => {
   const { id, displayName } = await getUserInfo();
-  useUser.setState(() => ({ user: { id, displayName } }));
+
+  const avatar = "https://picsum.photos/300"; // fakeing one for now
+  useUser.setState(() => ({ user: { id, displayName, avatar } }));
 };
 
 export const clearUser = () => {

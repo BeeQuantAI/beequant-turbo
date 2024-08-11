@@ -22,6 +22,7 @@ const config: Config = {
         sidebar: "256px",
       },
       height: {
+        inherit: "inherit",
         header: "64px",
         "btn-h-cover": "500%",
       },
@@ -34,6 +35,13 @@ const config: Config = {
           "before:transition-width before:transition-height before:bg-primary-500 hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:duration-500 before:ease-in-out hover:before:-z-50",
         "growing-bubble-tl-secondary":
           "before:transition-width before:transition-height before:bg-primary-500 hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:duration-500 before:ease-in-out hover:text-white hover:before:-z-50",
+        dropdown: "dropdown 0.3s ease-in-out infinite",
+      },
+      keyframes: {
+        dropdown: {
+          from: { "grid-template-rows": "0fr" },
+          to: { "grid-template-rows": "1fr" },
+        },
       },
     },
   },
