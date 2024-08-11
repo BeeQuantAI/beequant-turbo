@@ -15,7 +15,7 @@ export function DashboardLayout({ children }: Props) {
       <main
         className={clsx(
           "top-header absolute bottom-0 right-0 overflow-y-scroll transition-[left] duration-300",
-          "peer-data-[status=expanded]/sidebar:left-sidebar peer-data-[status=collapsed]/sidebar:left-16",
+          "peer-data-[status=expanded]/sidebar:md:left-sidebar left-0 -z-10 peer-data-[status=collapsed]/sidebar:md:left-16",
         )}
       >
         {children}
