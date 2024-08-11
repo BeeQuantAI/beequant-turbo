@@ -1,4 +1,5 @@
 import { SidebarContainer } from "@src/module/dashboard";
+import clsx from "clsx";
 import React from "react";
 import { Header } from "./components/header";
 
@@ -11,7 +12,12 @@ export function DashboardLayout({ children }: Props) {
       <Header />
       <SidebarContainer />
 
-      <main className="peer-data-[show-sidebar=true]:left-sidebar top-header absolute bottom-0 right-0 transition-[left] duration-300 peer-data-[show-sidebar=false]:left-16">
+      <main
+        className={clsx(
+          "top-header absolute bottom-0 right-0 overflow-y-scroll transition-[left] duration-300",
+          "peer-data-[status=expanded]/sidebar:left-sidebar peer-data-[status=collapsed]/sidebar:left-16",
+        )}
+      >
         {children}
       </main>
     </div>
