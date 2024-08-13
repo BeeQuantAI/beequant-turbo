@@ -30,7 +30,7 @@ export function SidebarContainer() {
     <div
       data-status={showSidebar ? "expanded" : "collapsed"}
       className={clsx(
-        "top-header peer/sidebar group/container absolute bottom-0 overflow-hidden bg-slate-50 py-4 transition-[width] md:overflow-visible dark:bg-primary-300 dark:text-white",
+        "top-header peer/sidebar group/container dark:bg-primary-300 absolute bottom-0 overflow-hidden bg-slate-50 py-4 transition-[width] md:overflow-visible dark:text-white",
         "data-[status=expanded]:w-sidebar w-0 duration-300 data-[status=collapsed]:w-0 data-[status=collapsed]:md:w-16",
       )}
     >
@@ -43,9 +43,9 @@ export function SidebarToggleButton() {
   return (
     <button
       id={toggleButtonId}
-      className="flex aspect-square w-16 items-center justify-center overflow-x-hidden bg-slate-50 dark:bg-primary-300 dark:hover:bg-primary-200"
+      className="dark:bg-primary-300 dark:hover:bg-primary-200 flex aspect-square w-16 items-center justify-center overflow-x-hidden bg-slate-50"
     >
-      <Icon icon="menu" className="text-white"/>
+      <Icon icon="menu" className="dark:text-neutral-50" />
     </button>
   );
 }

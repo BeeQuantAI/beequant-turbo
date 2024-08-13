@@ -58,7 +58,7 @@ export function RegisterForm() {
 
   return (
     <form
-      className="flex flex-col gap-5 bg-slate-50 px-[60px] py-[50px] max-w-[520px] dark:bg-primary-300"
+      className="dark:bg-primary-300 flex max-w-[520px] flex-col gap-5 bg-slate-50 px-[60px] py-[50px]"
       onSubmit={onSubmit}
     >
       <FormHeader />
@@ -98,12 +98,12 @@ export function RegisterForm() {
         leftElement={<Icon icon="person" />}
         disabled
       />
-      <div className="mt-5 mb-5">
+      <div className="mb-5 mt-5">
         <Button type="submit" variant="default">
           Sign Up
         </Button>
       </div>
-      <span className="text-center text-sm text-white !text-[13px]">
+      <span className="text-center text-[13px] text-white">
         {"Already have an account? "}
         <AuthRoute.Login.Link className="text-accent-250 hover:text-accent-400">
           Sign In
