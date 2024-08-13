@@ -8,12 +8,12 @@ const socialButtonVariants = cva(
     variants: {
       variant: {
         facebook:[
-          "bg-primary-700",
-          "before:transition-width before:transition-height before:bg-white before:opacity-65 hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:duration-500 before:ease-in-out hover:text-cover-layout-primary hover:bg-cover-layout-primary hover:before:-z-50",
+          "bg-[#4766a4]",
+          "before:transition-width before:transition-height before:bg-white before:opacity-65 hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:duration-500 before:ease-in-out hover:text-[#787985] hover:bg-[#787985] hover:before:-z-50",
         ],
         google:[
-          "bg-red-primary",
-          "before:transition-width before:transition-height before:bg-white before:opacity-65 hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:duration-500 before:ease-in-out hover:text-cover-layout-primary hover:bg-cover-layout-primary hover:before:-z-50",
+          "bg-[#c74d4d]",
+          "before:transition-width before:transition-height before:bg-white before:opacity-65 hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:duration-500 before:ease-in-out hover:text-[#787985] hover:bg-[#787985] hover:before:-z-50",
         ]
       },
     },
