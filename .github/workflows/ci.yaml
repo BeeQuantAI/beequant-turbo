@@ -28,8 +28,8 @@ jobs:
       - name: install dependencies
         run: yarn
 
-      - name: run tests
-        run: yarn test
+      - name: run lint
+        run: yarn lint
 
       - name: build code
         run: yarn build

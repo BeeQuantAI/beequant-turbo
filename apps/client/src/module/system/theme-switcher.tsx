@@ -64,7 +64,7 @@ export function useTheme() {
     } else {
       setTheme("system");
     }
-  }, []);
+  }, [setTheme]);
 
   useLayoutEffect(() => {
     if (theme === "system") {
@@ -108,7 +108,7 @@ export function useTheme() {
 
       window.removeEventListener("storage", onStorage);
     };
-  }, []);
+  }, [setTheme]);
 
   return { theme, setTheme };
 }
