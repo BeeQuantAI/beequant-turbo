@@ -49,13 +49,13 @@ export function LoginForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="flex max-w-lg flex-col gap-5 bg-slate-50 px-16 py-12 dark:bg-primary-800"
+      className="flex max-w-400 flex-col gap-5 bg-slate-50 px-[60px] py-[50px] dark:bg-primary-800"
     >
       <FormHeader />
 
       {errors.root && <span className="text-error">{errors.root.message}</span>}
 
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 dark:!text-white">
         <ControlledTextInput
           label="Email"
           name="email"
@@ -91,7 +91,7 @@ export function LoginForm() {
       </AuthRoute.Register.Link>
 
       <div className="flex justify-center content-center mt-[35px] mb-5 text-white relative w-[400px] h-[20.797px]">
-        <p className="before:absolute before:left-0 before:top-2.5 before:w-24 before:h-px before:bg-white after:absolute after:right-0 after:top-2.5 after:w-24 after:h-px after:bg-white">Or Easily Using</p>
+        <p className="before:absolute before:left-0 before:top-2.5 before:w-24 before:h-px before:bg-white after:absolute after:right-0 after:top-2.5 after:w-24 after:h-px after:bg-white text-[13px]">Or Easily Using</p>
       </div>
       <div className="flex space-x-3 justify-center content-center relative text-white">
         <Button size="small" variant="facebook">
