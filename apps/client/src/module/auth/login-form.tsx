@@ -14,10 +14,20 @@ import { FormHeader } from "./form-header";
 import { AuthRoute } from "./route";
 import { SocialButton } from "../common/socialButton";
 
+type LoginForm = z.infer<typeof formSchema>;
+// source of truth for this login form <= this is the law, is the king, is the absolute authority for this form - K总
 const formSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
+  remeber: z.string(),
 });
+
+// Need this to enforce default value to match the LoginForm schema, because if you do it in the `useForm` hook, it turns it into a `Partial<LoginForm>` type.
+const defaultValues = {
+  email: "",
+  password: "",
+  remeber: "",
+} satisfies LoginForm; // Satifies make sure this object you are making can satisfy the LoginForm schema.
 
 export function LoginForm() {
   const {
@@ -25,11 +35,8 @@ export function LoginForm() {
     control,
     formState: { errors },
     setError,
-  } = useForm({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
+  } = useForm<LoginForm>({
+    defaultValues,
     resolver: zodResolver(formSchema),
   });
 

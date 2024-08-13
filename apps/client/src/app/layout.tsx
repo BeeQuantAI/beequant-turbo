@@ -1,4 +1,3 @@
-"use client";
 import { ThemeToggle } from "@src/module/system";
 import "./globals.css";
 

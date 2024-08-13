@@ -53,7 +53,7 @@ function update() {
   });
 }
 
-function useTheme() {
+export function useTheme() {
   const { theme, setTheme } = useThemeSetting();
   const initial = useRef(true);
 
@@ -64,7 +64,7 @@ function useTheme() {
     } else {
       setTheme("system");
     }
-  }, []);
+  }, [setTheme]);
 
   useLayoutEffect(() => {
     if (theme === "system") {
@@ -108,7 +108,7 @@ function useTheme() {
 
       window.removeEventListener("storage", onStorage);
     };
-  }, []);
+  }, [setTheme]);
 
   return { theme, setTheme };
 }

@@ -1,15 +1,13 @@
+import { GqlAuthGuard } from '@/common/guards/auth.guard';
+import { ExecutionContext } from '@nestjs/common';
+import { GqlExecutionContext } from '@nestjs/graphql';
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserResolver } from './user.resolver';
 import { UserService } from './user.service';
-import { GqlAuthGuard } from '@/common/guards/auth.guard';
-import { ExecutionContext, INestApplication } from '@nestjs/common';
-import { GqlExecutionContext } from '@nestjs/graphql';
-import { JwtService } from '@nestjs/jwt';
 
 describe('UserResolver', () => {
   let resolver: UserResolver;
   let userService: UserService;
-  let app: INestApplication;
 
   const mockUserService = {
     find: jest.fn((id: string) => ({
