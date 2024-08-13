@@ -16,7 +16,7 @@ const config: Config = {
         primary: { 300: "#70bbfd", 400: "#82b9f7", 500: "#3ea3fc" ,600:"#2a2a31",700:"#4766a4",800:"#232329"},
         "gary-layout-primary": "rgb(96, 95, 123)",
         "cover-layout-primary":"#787985",
-        "red-primary":"#C74D4D"
+        "red-primary":"#C74D4D",
       },
       width: {
         "btn-w-cover": "255%",
