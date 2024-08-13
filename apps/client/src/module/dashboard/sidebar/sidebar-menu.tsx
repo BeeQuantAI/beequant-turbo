@@ -32,7 +32,7 @@ function SidebarMenuItem(props: SidebarMenuItem) {
       <button
         className={clsx(
           "group/button relative my-2 flex h-9 w-full items-center gap-2 border-l-4 px-4 py-2 text-left text-sm transition-colors duration-300",
-          "hover:border-primary-400 border-transparent bg-slate-50 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800",
+          "hover:border-primary-400 border-transparent bg-slate-50 hover:bg-slate-200 dark:bg-primary-300 dark:hover:bg-primary-200",
         )}
         onClick={props.onClick}
       >
@@ -83,7 +83,7 @@ function SidebarAccordion(props: SidebarAccordionProps) {
       <button
         className={clsx(
           "relative flex h-9 w-full items-center gap-2 border-l-4 px-4 py-2 text-left text-sm transition-colors duration-300",
-          "group-hover/accordion:border-primary-400 border-transparent bg-slate-50 group-hover/accordion:bg-slate-200 dark:bg-slate-900 group-hover/accordion:dark:bg-slate-800",
+          "group-hover/accordion:border-primary-400 border-transparent bg-slate-50 group-hover/accordion:bg-slate-200 dark:bg-primary-300 group-hover/accordion:dark:bg-primary-200",
         )}
       >
         <span>
@@ -109,7 +109,7 @@ function SidebarAccordion(props: SidebarAccordionProps) {
       <div
         className={clsx(
           "group-data-[status=collapsed]/container:absolute group-data-[status=collapsed]/container:left-full group-data-[status=collapsed]/container:w-48",
-          "grid bg-slate-100 transition-[grid-template-rows_padding] duration-300 dark:bg-slate-800",
+          "grid bg-slate-100 transition-[grid-template-rows_padding] duration-300 dark:bg-primary-300",
           "group-data-hover/accordion:py-2 grid-rows-[0fr] py-0 group-hover/accordion:grid-rows-[1fr]",
         )}
       >
@@ -120,7 +120,7 @@ function SidebarAccordion(props: SidebarAccordionProps) {
                 onClick={o.onClick}
                 className={clsx(
                   "h-9 w-full border-l-4 px-4 py-2 text-left text-sm transition-colors",
-                  "hover:border-primary-400 border-transparent bg-slate-200 hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-900",
+                  "hover:border-primary-400 border-transparent bg-slate-200 hover:bg-slate-50 dark:bg-primary-300 dark:hover:bg-primary-350",
                 )}
               >
                 {o.label}
