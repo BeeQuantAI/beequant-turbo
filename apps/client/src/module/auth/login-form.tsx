@@ -65,7 +65,7 @@ export function LoginForm() {
       <div className="flex flex-col gap-5">
         <ControlledTextInput
           label="Email"
-          name="password"
+          name="email"
           control={control}
           leftElement={<Icon icon="person" />}
           autoComplete="username"

@@ -1,10 +1,7 @@
-import { Profile } from "@src/module/dashboard/profile";
+import { DashboardRoute } from "@src/module/dashboard/route";
+
+export const metadata = DashboardRoute.Root.Metadata;
 
 export default function Page() {
-  return (
-    <div>
-      Yeaaahh dashboard
-      <Profile />
-    </div>
-  );
+  return <div className="ring-1">Yeaaahh dashboard</div>;
 }

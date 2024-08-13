@@ -44,8 +44,6 @@ import { AuthModule } from './modules/auth/auth.module';
     ExchangeKeyModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-  ],
+  providers: [AppService],
 })
 export class AppModule {}

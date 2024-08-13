@@ -90,3 +90,10 @@ export async function getUserInfo() {
 
   return getUserInfo;
 }
+
+export async function logout() {
+  const cookieStore = cookies();
+  cookieStore.delete("token");
+
+  redirect(AuthRoute.Login.Path);
+}
