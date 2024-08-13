@@ -49,7 +49,7 @@ export function LoginForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="flex max-w-lg flex-col gap-5 bg-slate-50 px-16 py-12 dark:bg-neutral-900"
+      className="flex max-w-lg flex-col gap-5 bg-slate-50 px-16 py-12 dark:bg-primary-800"
     >
       <FormHeader />
 

@@ -16,12 +16,6 @@
   }
 }
 
-@layer base{
-  body{
-    font-size:13px;
-  }
-}
-
 /* body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

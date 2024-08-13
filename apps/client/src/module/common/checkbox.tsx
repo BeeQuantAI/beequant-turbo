@@ -72,7 +72,7 @@ export function Checkbox({
         </svg>
       </div>
       {label && (
-        <span className="group-hover:!text-primary-300 text-neutral-500 transition-colors dark:text-neutral-400 cursor-pointer">
+        <span className="group-hover:!text-primary-300 text-neutral-500 transition-colors dark:text-neutral-400 cursor-pointer !text-[13px]">
           {label}
         </span>
       )}

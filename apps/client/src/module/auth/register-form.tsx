@@ -58,7 +58,7 @@ export function RegisterForm() {
 
   return (
     <form
-      className="flex max-w-lg flex-col gap-5 bg-slate-50 px-16 py-12 dark:bg-neutral-900"
+      className="flex flex-col gap-5 bg-slate-50 px-[60px] py-[50px] max-w-[520px] dark:bg-primary-800"
       onSubmit={onSubmit}
     >
       <FormHeader />
@@ -77,18 +77,6 @@ export function RegisterForm() {
         control={control}
         leftElement={<Icon icon="person" />}
         autoComplete="email"
-      />
-      <ControlledTextInput
-        label="Mobile (Not Allowed By Backend???)"
-        name="mobile"
-        control={control}
-        leftElement={<Icon icon="person" />}
-      />
-      <ControlledTextInput
-        label="Real Name (Not in Figma But Requested In CreateUserInput Schema, And Then Not Allowed By Backend???)"
-        name="realName"
-        control={control}
-        leftElement={<Icon icon="person" />}
       />
       <ControlledPasswordInput
         label="Password"
@@ -110,10 +98,11 @@ export function RegisterForm() {
         leftElement={<Icon icon="person" />}
         disabled
       />
-
-      <Button type="submit" variant="default">
-        Sign Up
-      </Button>
+      <div className="mt-5 mb-5">
+        <Button type="submit" variant="default">
+          Sign Up
+        </Button>
+      </div>
       <span className="text-center text-sm text-neutral-500">
         {"Already have an account? "}
         <AuthRoute.Login.Link className="text-primary-400 hover:text-primary-500">
