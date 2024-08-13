@@ -3,7 +3,7 @@ import { SidebarToggleButton } from "../sidebar/sidebar";
 
 export function Header() {
   return (
-    <header className="h-header z-10 flex items-center bg-slate-50 shadow-md dark:bg-slate-900">
+    <header className="h-header z-10 flex items-center bg-slate-50 shadow-md dark:bg-primary-300">
       <SidebarToggleButton />
 
       <div className="px-2">Logo</div>
