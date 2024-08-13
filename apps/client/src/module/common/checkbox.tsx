@@ -5,11 +5,11 @@ export interface CheckboxVariants
   extends VariantProps<typeof checkboxVariants> {}
 
 const checkboxVariants = cva(
-  "group-hover:border-primary-300 peer size-[18px] cursor-pointer appearance-none rounded border border-solid bg-transparent transition-all focus:outline-none focus:ring-0 focus:ring-offset-0",
+  "group-hover:border-accent-400 peer size-[18px] cursor-pointer appearance-none rounded border border-solid bg-transparent transition-all focus:outline-none focus:ring-0 focus:ring-offset-0",
   {
     variants: {
       variant: {
-        primary: "border-gary-layout-primary",
+        primary: "border-[#605F7B]",
       },
       size: {
         small: "text-sm",
@@ -22,19 +22,7 @@ const checkboxVariants = cva(
   },
 );
 
-const svgVariants = cva(
-  "size-4 cursor-pointer opacity-0 transition-opacity peer-checked:opacity-100",
-  {
-    variants: {
-      variant: {
-        primary: "border-primary-300",
-      },
-    },
-    defaultVariants: {
-      variant: "primary",
-    },
-  },
-);
+const svgVariants = cva("size-4 cursor-pointer opacity-0 transition-opacity peer-checked:opacity-100");
 
 type CheckboxProps = {
   label?: React.ReactNode;
@@ -57,7 +45,7 @@ export function Checkbox({
           {...props}
         />
         <svg
-          className={svgVariants({ variant })}
+          className={svgVariants()}
           fill="#70bbfd"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +60,7 @@ export function Checkbox({
         </svg>
       </div>
       {label && (
-        <span className="group-hover:!text-primary-300 text-neutral-500 transition-colors dark:text-neutral-400 cursor-pointer !text-[13px]">
+        <span className="group-hover:text-accent-250 transition-colors dark:text-neutral-400 cursor-pointer !text-[13px]">
           {label}
         </span>
       )}

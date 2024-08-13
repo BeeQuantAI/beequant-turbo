@@ -49,13 +49,13 @@ export function LoginForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="flex max-w-400 flex-col gap-5 bg-slate-50 px-[60px] py-[50px] dark:bg-primary-800"
+      className="flex max-w-400 flex-col gap-5 bg-slate-50 px-[60px] py-[50px] dark:bg-primary-300"
     >
       <FormHeader />
 
       {errors.root && <span className="text-error">{errors.root.message}</span>}
 
-      <div className="flex flex-col gap-5 dark:!text-white">
+      <div className="flex flex-col gap-5">
         <ControlledTextInput
           label="Email"
           name="email"
@@ -72,7 +72,7 @@ export function LoginForm() {
             autoComplete="current-password"
           />
 
-          <AuthRoute.ForgetPassword.Link className="text-primary-400 hover:text-primary-500 float-right text-xs transition-colors">
+          <AuthRoute.ForgetPassword.Link className="text-accent-250 hover:text-accent-400 float-right text-xs transition-colors">
             Forgot Password?
           </AuthRoute.ForgetPassword.Link>
         </div>
