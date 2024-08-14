@@ -17,6 +17,19 @@ const Root = {
   ),
 };
 
+const Profile = {
+  Metadata: {
+    title: "Profile | BeeQuant",
+  },
+  Path: "/dashboard/profile" as const,
+  Link: ({ children, className }: RouteLinkProps) => (
+    <Link href={Profile.Path} className={className}>
+      {children}
+    </Link>
+  ),
+};
+
 export const DashboardRoute = {
   Root,
+  Profile,
 };

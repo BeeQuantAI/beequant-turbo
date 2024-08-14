@@ -1,12 +1,15 @@
 "use client";
 import { useToggle } from "@src/utils";
 import clsx from "clsx";
-import { logout } from "../auth";
-import { useUser } from "../auth/user-store";
-import { Icon, Icons } from "../common";
+import { useRouter } from "next/navigation";
+import { logout } from "../../auth";
+import { useUser } from "../../auth/user-store";
+import { Icon, Icons } from "../../common";
+import { DashboardRoute } from "../route";
 
-export function Profile() {
+export function AccountMenu() {
   const user = useUser((s) => s.user);
+  const router = useRouter();
   const [showDropdown, toggelShowDropdown] = useToggle(false);
 
   const handleLogout = () => logout();
@@ -41,9 +44,9 @@ export function Profile() {
       >
         <div className="overflow-hidden">
           <MenuItem
-            icon="placholder"
-            label="Placholder"
-            onClick={() => console.log("haha")}
+            icon="person"
+            label="Profile"
+            onClick={() => router.push(DashboardRoute.Profile.Path)}
           />
           <MenuItem
             icon="placholder"

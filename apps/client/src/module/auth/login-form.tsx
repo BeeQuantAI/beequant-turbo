@@ -49,7 +49,6 @@ export function LoginForm() {
   }
 
   const onSubmit = handleSubmit((data) => {
-    console.log("wtf", data);
     action(data);
   });
 
