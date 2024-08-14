@@ -28,7 +28,7 @@ export function ControlledTextInput<TFieldValues extends object>({
 
   return (
     <label className="space-y-2 text-neutral-500 transition-colors dark:text-neutral-400">
-      <span className="text-xs">{label}</span>
+      <span className="text-[13px]">{label}</span>
       <div className="flex items-center">
         <span className="border border-slate-200 bg-slate-200 p-2 dark:border-neutral-700 dark:bg-neutral-700">
           {!!leftElement && leftElement}
@@ -67,7 +67,7 @@ export function ControlledPasswordInput<TFieldValues extends object>({
 
   return (
     <label className="space-y-2 text-neutral-500 transition-colors dark:text-neutral-400">
-      <span className="text-xs">{label}</span>
+      <span className="text-[13px]">{label}</span>
       <div className="flex items-center">
         <span className="border border-slate-200 bg-slate-200 p-2 dark:border-neutral-700 dark:bg-neutral-700">
           <Icon icon="key" />
@@ -81,7 +81,7 @@ export function ControlledPasswordInput<TFieldValues extends object>({
         />
         {showPassword ? (
           <button
-            className="bg-primary-400 border-primary-400 border p-2 text-neutral-50"
+            className="bg-accent-400 border-accent-400 border p-2 text-neutral-50"
             type="button"
             onClick={() => toggleShowPassword()}
           >
@@ -89,7 +89,7 @@ export function ControlledPasswordInput<TFieldValues extends object>({
           </button>
         ) : (
           <button
-            className="bg-primary-400 border-primary-400 border p-2 text-neutral-50"
+            className="bg-accent-400 border-accent-400 border p-2 text-neutral-50"
             type="button"
             onClick={() => toggleShowPassword()}
           >

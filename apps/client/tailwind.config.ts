@@ -1,4 +1,31 @@
 import type { Config } from "tailwindcss";
+const primary = {
+  50: "#F4F4F4",
+  100: "#CACACC",
+  200: "#A0A0A3",
+  300: "#77777A",
+  400: "#4D4D52",
+  500: "#2a2a31",
+  600: "#232329",
+  700: "#161619",
+  800: "#0F0F12",
+  900: "#09090A",
+  950: "#020202",
+};
+
+const accent = {
+  50: "#F5FAFF",
+  100: "#D0E9FF",
+  200: "#ABD8FF",
+  300: "#86C6FE",
+  400: "#70bbfd",
+  500: "#3EA3FC",
+  600: "#3484CB",
+  700: "#29659A",
+  800: "#1D466A",
+  900: "#11273B",
+  950: "#04080C",
+};
 
 const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
@@ -13,8 +40,10 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        primary: { 300: "#70bbfd", 400: "#82b9f7", 500: "#3ea3fc" },
-        "gary-layout-primary": "rgb(96, 95, 123)",
+        primary,
+        accent,
+        // Note that our main bg color is primary-500:#2a2a31, form color is primary-600:#232329
+        // button light color: accent-400:"#70bbfd", darker: accent-500:"#3ea3fc"
       },
       width: {
         "btn-w-cover": "255%",

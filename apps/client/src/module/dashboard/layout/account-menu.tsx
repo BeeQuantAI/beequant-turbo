@@ -17,7 +17,7 @@ export function AccountMenu() {
   return (
     <div className="h-inherit relative">
       <button
-        className="h-inherit flex items-center gap-2 px-4 py-3 hover:bg-slate-700"
+        className="h-inherit hover:bg-accent-50 dark:hover:bg-primary-500 flex items-center gap-2 px-4 py-3 transition-colors duration-300"
         onClick={() => toggelShowDropdown()}
       >
         {!!user && (
@@ -38,7 +38,7 @@ export function AccountMenu() {
 
       <menu
         className={clsx(
-          "absolute right-0 top-full grid w-60 bg-slate-900 transition-[grid-template-rows_padding] duration-300",
+          "bg-primary-50 dark:bg-primary-500 absolute right-0 top-full grid w-60 transition-[grid-template-rows_padding] duration-300",
           showDropdown ? "grid-rows-[1fr] py-2" : "grid-rows-[0fr] py-0",
         )}
       >
@@ -75,8 +75,8 @@ function MenuItem(props: MenuItemProps) {
   return (
     <button
       className={clsx(
-        "group/button relative flex h-9 w-full items-center gap-2 border-l-4 px-4 py-2 text-left text-sm transition-colors duration-300",
-        "hover:border-primary-400 border-transparent bg-slate-50 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800",
+        "group/button relative flex h-9 w-full items-center gap-2 border-l-2 px-4 py-2 text-left text-sm transition-colors duration-300",
+        "hover:border-accent-400 bg-primary-50 hover:bg-accent-50 dark:bg-primary-500 dark:hover:bg-primary-400 border-transparent",
       )}
       onClick={props.onClick}
     >

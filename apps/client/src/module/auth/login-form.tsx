@@ -7,8 +7,10 @@ import {
   ControlledTextInput,
   Icon,
 } from "@src/module/common";
+import clsx from "clsx";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { SocialButton } from "../common/social-button";
 import { login, LoginPayload } from "./auth-service";
 import { FormHeader } from "./form-header";
 import { AuthRoute } from "./route";
@@ -55,7 +57,7 @@ export function LoginForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="flex max-w-lg flex-col gap-5 bg-slate-50 px-16 py-12 dark:bg-neutral-900"
+      className="max-w-400 dark:bg-primary-600 flex flex-col gap-5 bg-slate-50 px-[60px] py-[50px]"
     >
       <FormHeader />
 
@@ -78,12 +80,12 @@ export function LoginForm() {
             autoComplete="current-password"
           />
 
-          <AuthRoute.ForgetPassword.Link className="text-primary-400 hover:text-primary-500 float-right text-xs transition-colors">
+          <AuthRoute.ForgetPassword.Link className="text-accent-250 hover:text-accent-400 float-right text-xs transition-colors">
             Forgot Password?
           </AuthRoute.ForgetPassword.Link>
         </div>
 
-        <Checkbox label="Remember me" />
+        <Checkbox className="self-start" label="Remember me" />
       </div>
 
       <Button type="submit" variant="default" size="medium">
@@ -95,6 +97,22 @@ export function LoginForm() {
           Create Account
         </Button>
       </AuthRoute.Register.Link>
+
+      <div className="relative mb-5 mt-[35px] flex h-[20.797px] w-[400px] content-center justify-center text-white">
+        <p
+          className={clsx(
+            "text-[13px] before:absolute before:left-0 before:top-2.5 before:h-px before:w-28 before:bg-white",
+            "after:absolute after:right-0 after:top-2.5 after:h-px after:w-28 after:bg-white",
+          )}
+        >
+          Or Easily Using
+        </p>
+      </div>
+
+      <div className="relative flex content-center justify-center space-x-3 text-white">
+        <SocialButton social="facebook" />
+        <SocialButton social="google" />
+      </div>
     </form>
   );
 }
