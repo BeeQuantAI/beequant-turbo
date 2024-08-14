@@ -85,7 +85,7 @@ export function LoginForm() {
           </AuthRoute.ForgetPassword.Link>
         </div>
 
-        <Checkbox label="Remember me" />
+        <Checkbox className="self-start" label="Remember me" />
       </div>
 
       <Button type="submit" variant="default" size="medium">
