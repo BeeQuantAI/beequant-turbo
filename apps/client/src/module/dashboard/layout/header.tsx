@@ -1,5 +1,5 @@
-import { Profile } from "../profile";
-import { SidebarToggleButton } from "../sidebar/sidebar";
+import { AccountMenu } from "./account-menu";
+import { SidebarToggleButton } from "./sidebar";
 
 export function Header() {
   return (
@@ -9,7 +9,7 @@ export function Header() {
       <div className="px-2">Logo</div>
 
       <div className="ml-auto h-full px-4">
-        <Profile />
+        <AccountMenu />
       </div>
     </header>
   );

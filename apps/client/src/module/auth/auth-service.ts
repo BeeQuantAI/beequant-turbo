@@ -40,6 +40,7 @@ export async function login(payload: LoginPayload) {
       redirect("/dashboard");
 
     case 10003:
+    default:
       return {
         error: login.message,
       };

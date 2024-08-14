@@ -1,3 +1,2 @@
-export * from "./dashboard-layout";
-export * from "./profile";
-export * from "./sidebar/sidebar";
+export * from "./layout/dashboard-layout";
+export * from "./route";
