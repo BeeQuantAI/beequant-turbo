@@ -7,13 +7,13 @@ import {
   ControlledTextInput,
   Icon,
 } from "@src/module/common";
+import clsx from "clsx";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { SocialButton } from "../common/social-button";
 import { login, LoginPayload } from "./auth-service";
 import { FormHeader } from "./form-header";
 import { AuthRoute } from "./route";
-import { SocialButton } from "../common/socialButton";
-import clsx from "clsx";
 
 type LoginForm = z.infer<typeof formSchema>;
 // source of truth for this login form <= this is the law, is the king, is the absolute authority for this form - K总
