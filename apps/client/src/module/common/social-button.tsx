@@ -55,23 +55,16 @@ const socialButtonSvgs = {
 
 type Props = {
   social: keyof typeof socialButtonSvgs;
-} & React.ButtonHTMLAttributes<HTMLButtonElement> &
-  SocialButtonVariants;
+  children: React.ReactNode;
+};
 
-export function SocialButton({
-  children,
-  variant,
-  social,
-  type = "button",
-  ...props
-}: Props) {
+export function SocialButton({ children, social, ...props }: Props) {
   return (
     <button
       className={socialButtonVariants({
         variant: social,
       })}
-      type={type}
-      {...props}
+      type="button"
     >
       {socialButtonSvgs[social]}
     </button>
