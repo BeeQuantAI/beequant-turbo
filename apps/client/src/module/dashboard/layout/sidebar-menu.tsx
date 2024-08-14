@@ -99,7 +99,7 @@ function SidebarAccordion(props: SidebarAccordionProps) {
             "absolute left-full h-9 overflow-hidden py-2 transition-[width_padding_color_background-color] duration-300",
             "w-0 group-hover/accordion:w-48 group-hover/accordion:px-6",
             "group-hover/accordion:dark:text-primary-50 text-transparent group-hover/accordion:text-neutral-950",
-            "bg-primary-50 group-hover/accordion:bg-primary-200 dark:bg-primary-500 group-hover/accordion:dark:bg-primary-400",
+            "bg-primary-50 group-hover/accordion:bg-accent-50 dark:bg-primary-500 group-hover/accordion:dark:bg-primary-400",
           )}
         >
           {props.label}
