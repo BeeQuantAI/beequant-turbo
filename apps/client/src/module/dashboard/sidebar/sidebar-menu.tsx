@@ -48,7 +48,7 @@ function SidebarMenuItem(props: SidebarMenuItem) {
             "group-data-[status=expanded]/container:hidden",
             "absolute left-full h-9 overflow-hidden py-2 transition-[width_padding_color] duration-300",
             "w-0 group-hover/button:w-48 group-hover/button:px-6",
-            "group-hover/button:bg-primary-200 group-hover/button:dark:bg-primary-800 group-hover/button:dark:text-primary-50 text-transparent group-hover/button:text-neutral-950",
+            "group-hover/button:bg-primary-200 group-hover/button:dark:bg-primary-400 group-hover/button:dark:text-primary-50 text-transparent group-hover/button:text-neutral-950",
           )}
         >
           {props.label}
@@ -99,7 +99,7 @@ function SidebarAccordion(props: SidebarAccordionProps) {
             "absolute left-full h-9 overflow-hidden py-2 transition-[width_padding_color_background-color] duration-300",
             "w-0 group-hover/accordion:w-48 group-hover/accordion:px-6",
             "group-hover/accordion:dark:text-primary-50 text-transparent group-hover/accordion:text-neutral-950",
-            "bg-primary-50 group-hover/accordion:bg-primary-200 dark:bg-primary-800 group-hover/accordion:dark:bg-primary-800",
+            "bg-primary-50 group-hover/accordion:bg-primary-200 dark:bg-primary-500 group-hover/accordion:dark:bg-primary-400",
           )}
         >
           {props.label}
