@@ -49,7 +49,7 @@ export function Checkbox({
   ...props
 }: CheckboxProps) {
   return (
-    <label className="group flex items-center gap-2">
+    <label className="group flex items-center gap-2 w-[119.27px] h-[20px]">
       <div className="relative flex items-center">
         <input
           className={checkboxVariants({ variant })}
@@ -72,7 +72,7 @@ export function Checkbox({
         </svg>
       </div>
       {label && (
-        <span className="hover:text-primary-300 text-neutral-500 transition-colors dark:text-neutral-400">
+        <span className="group-hover:!text-primary-300 text-neutral-500 transition-colors dark:text-neutral-400 cursor-pointer">
           {label}
         </span>
       )}
