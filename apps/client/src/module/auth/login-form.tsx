@@ -58,7 +58,7 @@ export function LoginForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="max-w-400 dark:bg-primary-300 flex flex-col gap-5 bg-slate-50 px-[60px] py-[50px]"
+      className="max-w-400 dark:bg-primary-600 flex flex-col gap-5 bg-slate-50 px-[60px] py-[50px]"
     >
       <FormHeader />
 

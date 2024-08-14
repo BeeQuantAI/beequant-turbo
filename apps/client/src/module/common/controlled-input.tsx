@@ -81,7 +81,7 @@ export function ControlledPasswordInput<TFieldValues extends object>({
         />
         {showPassword ? (
           <button
-            className="bg-accent-250 border-accent-250 border p-2 text-neutral-50"
+            className="bg-accent-400 border-accent-400 border p-2 text-neutral-50"
             type="button"
             onClick={() => toggleShowPassword()}
           >
@@ -89,7 +89,7 @@ export function ControlledPasswordInput<TFieldValues extends object>({
           </button>
         ) : (
           <button
-            className="bg-accent-250 border-accent-250 border p-2 text-neutral-50"
+            className="bg-accent-400 border-accent-400 border p-2 text-neutral-50"
             type="button"
             onClick={() => toggleShowPassword()}
           >

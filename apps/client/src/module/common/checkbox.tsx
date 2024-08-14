@@ -22,7 +22,9 @@ const checkboxVariants = cva(
   },
 );
 
-const svgVariants = cva("size-4 cursor-pointer opacity-0 transition-opacity peer-checked:opacity-100");
+const svgVariants = cva(
+  "size-4 cursor-pointer opacity-0 transition-opacity peer-checked:opacity-100",
+);
 
 type CheckboxProps = {
   label?: React.ReactNode;
@@ -37,7 +39,7 @@ export function Checkbox({
   ...props
 }: CheckboxProps) {
   return (
-    <label className="group flex items-center gap-2 w-[119.27px] h-[20px]">
+    <label className="group flex h-[20px] w-[119.27px] items-center gap-2">
       <div className="relative flex items-center">
         <input
           className={checkboxVariants({ variant })}
@@ -60,7 +62,7 @@ export function Checkbox({
         </svg>
       </div>
       {label && (
-        <span className="group-hover:text-accent-250 transition-colors dark:text-neutral-400 cursor-pointer !text-[13px]">
+        <span className="group-hover:text-accent-400 cursor-pointer text-[13px] transition-colors dark:text-neutral-400">
           {label}
         </span>
       )}

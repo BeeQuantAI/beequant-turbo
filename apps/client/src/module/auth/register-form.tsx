@@ -58,7 +58,7 @@ export function RegisterForm() {
 
   return (
     <form
-      className="dark:bg-primary-300 flex max-w-[520px] flex-col gap-5 bg-slate-50 px-[60px] py-[50px]"
+      className="dark:bg-primary-600 flex max-w-[520px] flex-col gap-5 bg-slate-50 px-[60px] py-[50px]"
       onSubmit={onSubmit}
     >
       <FormHeader />
