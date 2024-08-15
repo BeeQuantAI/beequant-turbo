@@ -20,7 +20,11 @@ export function AuthFormContainer(props: Props) {
         </span>
       </div>
 
-      {props.error && <span className="text-error">{props.error}</span>}
+      {props.error && (
+        <span className="bg-error-300 text-error-900 text-error rounded-md px-5 py-3 text-sm">
+          {props.error}
+        </span>
+      )}
 
       {props.children}
     </form>
