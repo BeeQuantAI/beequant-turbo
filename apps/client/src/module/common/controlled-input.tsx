@@ -70,6 +70,7 @@ export function ControlledPasswordInput<TFieldValues extends object>({
     <ControlledTextInput
       name={name}
       control={control}
+      type={showPassword ? "text" : "password"}
       leftElement={<Icon icon="key" className="text-primary-300" />}
       rightElement={
         showPassword ? (
