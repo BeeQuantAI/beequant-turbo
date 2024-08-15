@@ -11,8 +11,8 @@ import clsx from "clsx";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { SocialButton } from "../common/social-button";
+import { AuthFormContainer } from "./auth-form-container";
 import { login, LoginPayload } from "./auth-service";
-import { FormHeader } from "./form-header";
 import { AuthRoute } from "./route";
 
 type LoginForm = z.infer<typeof formSchema>;
@@ -55,14 +55,7 @@ export function LoginForm() {
   });
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className="max-w-400 dark:bg-primary-900 bg-primary-50 flex flex-col gap-5 px-[60px] py-[50px]"
-    >
-      <FormHeader />
-
-      {errors.root && <span className="text-error">{errors.root.message}</span>}
-
+    <AuthFormContainer onSubmit={onSubmit} error={errors.root?.message}>
       <div className="flex flex-col gap-5">
         <ControlledTextInput
           label="Email"
@@ -113,6 +106,6 @@ export function LoginForm() {
         <SocialButton social="facebook" />
         <SocialButton social="google" />
       </div>
-    </form>
+    </AuthFormContainer>
   );
 }
