@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import color from "tailwindcss/colors";
+
 const primary = {
   50: "#F4F4F4",
   100: "#CACACC",
