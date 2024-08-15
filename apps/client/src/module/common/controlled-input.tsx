@@ -34,7 +34,7 @@ export function ControlledTextInput<TFieldValues extends object>({
           {!!leftElement && leftElement}
         </span>
         <input
-          className="focus:shadow-accent-400 shadow-primary-100 shadow-inset flex-1 bg-transparent px-2 py-1 text-xs transition-[box-shadow] duration-300 placeholder:text-xs focus:outline-none"
+          className="focus:shadow-accent-400 dark:focus:shadow-accent-400 shadow-primary-100 dark:shadow-primary-700 shadow-inset flex-1 bg-transparent px-2 py-1 text-xs transition-[box-shadow] duration-300 placeholder:text-xs focus:outline-none"
           placeholder={label ? label : props.placeholder}
           {...props}
           {...field}
@@ -74,7 +74,7 @@ export function ControlledPasswordInput<TFieldValues extends object>({
         </span>
         <input
           type={showPassword ? "text" : "password"}
-          className="focus:shadow-accent-400 shadow-primary-100 shadow-inset flex-1 bg-transparent px-2 py-1 text-xs transition-[box-shadow] duration-300 placeholder:text-xs focus:outline-none dark:shadow-neutral-700"
+          className="focus:shadow-accent-400 dark:focus:shadow-accent-400 shadow-primary-100 shadow-inset dark:shadow-primary-700 flex-1 bg-transparent px-2 py-1 text-xs transition-[box-shadow] duration-300 placeholder:text-xs focus:outline-none"
           placeholder={label ? label : props.placeholder}
           {...props}
           {...field}
