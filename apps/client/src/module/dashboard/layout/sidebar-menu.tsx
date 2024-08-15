@@ -32,7 +32,7 @@ function SidebarMenuItem(props: SidebarMenuItem) {
       <button
         className={clsx(
           "group/button relative flex h-9 w-full items-center gap-2 border-l-2 px-4 py-2 text-left text-sm transition-colors duration-300",
-          "hover:border-accent-500 dark:bg-primary-600 dark:hover:bg-primary-400 bg-primary-50 hover:bg-accent-50 border-transparent",
+          "hover:border-accent-500 dark:bg-primary-900 dark:hover:bg-primary-700 bg-primary-50 hover:bg-accent-50 border-transparent",
         )}
         onClick={props.onClick}
       >
@@ -48,7 +48,7 @@ function SidebarMenuItem(props: SidebarMenuItem) {
             "group-data-[status=expanded]/container:hidden",
             "absolute left-full h-9 overflow-hidden py-2 transition-[width_padding_color] duration-300",
             "w-0 group-hover/button:w-48 group-hover/button:px-6",
-            "group-hover/button:bg-primary-200 group-hover/button:dark:bg-primary-400 group-hover/button:dark:text-primary-50 text-transparent group-hover/button:text-neutral-950",
+            "group-hover/button:bg-accent-50 group-hover/button:dark:bg-primary-700 dark:bg-primary-700",
           )}
         >
           {props.label}
@@ -83,7 +83,7 @@ function SidebarAccordion(props: SidebarAccordionProps) {
       <button
         className={clsx(
           "relative flex h-9 w-full items-center gap-2 border-l-2 px-4 py-2 text-left text-sm transition-colors duration-300",
-          "group-hover/accordion:border-accent-500 dark:bg-primary-600 group-hover/accordion:dark:bg-primary-400 bg-primary-50 group-hover/accordion:bg-accent-50 border-transparent",
+          "group-hover/accordion:border-accent-500 dark:bg-primary-900 group-hover/accordion:dark:bg-primary-700 bg-primary-50 group-hover/accordion:bg-accent-50 border-transparent",
         )}
       >
         <span>
@@ -99,7 +99,7 @@ function SidebarAccordion(props: SidebarAccordionProps) {
             "absolute left-full h-9 overflow-hidden py-2 transition-[width_padding_color_background-color] duration-300",
             "w-0 group-hover/accordion:w-48 group-hover/accordion:px-6",
             "group-hover/accordion:dark:text-primary-50 text-transparent group-hover/accordion:text-neutral-950",
-            "bg-primary-50 group-hover/accordion:bg-accent-50 dark:bg-primary-500 group-hover/accordion:dark:bg-primary-400",
+            "bg-primary-50 group-hover/accordion:bg-accent-50 dark:bg-primary-700 group-hover/accordion:dark:bg-primary-700",
           )}
         >
           {props.label}
@@ -109,18 +109,18 @@ function SidebarAccordion(props: SidebarAccordionProps) {
       <div
         className={clsx(
           "group-data-[status=collapsed]/container:absolute group-data-[status=collapsed]/container:left-full group-data-[status=collapsed]/container:w-48",
-          "dark:bg-primary-600 bg-primary-100 grid transition-[grid-template-rows_padding] duration-300",
+          "dark:bg-primary-900 bg-primary-100 grid transition-[grid-template-rows_padding] duration-300",
           "group-data-hover/accordion:py-2 grid-rows-[0fr] py-0 group-hover/accordion:grid-rows-[1fr]",
         )}
       >
-        <ul className="dark:bg-primary-400 bg-accent-50 overflow-hidden py-0 transition-[padding] duration-300 group-hover/accordion:py-2">
+        <ul className="dark:bg-primary-700 bg-accent-50 overflow-hidden py-0 transition-[padding] duration-300 group-hover/accordion:py-2">
           {props.options.map((o, i) => (
             <li key={o.label + i}>
               <button
                 onClick={o.onClick}
                 className={clsx(
                   "h-9 w-full border-l-2 px-4 py-2 text-left text-sm transition-colors duration-300",
-                  "hover:border-accent-500 dark:bg-primary-400 dark:hover:bg-primary-600 bg-accent-50 hover:bg-primary-50 border-transparent",
+                  "hover:border-accent-500 dark:bg-primary-700 dark:hover:bg-primary-900 bg-accent-50 hover:bg-primary-50 border-transparent",
                 )}
               >
                 {o.label}

@@ -6,6 +6,7 @@ import { FaEarthAsia } from "react-icons/fa6";
 import { GoEye, GoEyeClosed, GoHome } from "react-icons/go";
 import { IoDiamondOutline, IoLogOutOutline } from "react-icons/io5";
 import {
+  MdCheck,
   MdInsertChart,
   MdModeNight,
   MdOutlineKeyboardArrowDown,
@@ -19,6 +20,7 @@ const genericIcons = {
   "arrow-up": MdOutlineKeyboardArrowUp,
   close: AiOutlineClose,
   placholder: PiPlaceholder,
+  check: MdCheck,
   dayTime: MdSunny,
   nightTime: MdModeNight,
 };

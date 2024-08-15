@@ -8,8 +8,8 @@ import {
 } from "@src/module/common";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { AuthFormContainer } from "./auth-form-container";
 import { register, RegisterPayload } from "./auth-service";
-import { FormHeader } from "./form-header";
 import { AuthRoute } from "./route";
 
 type FormSchema = z.infer<typeof formSchema>;
@@ -57,14 +57,7 @@ export function RegisterForm() {
   });
 
   return (
-    <form
-      className="dark:bg-primary-600 bg-primary-50 flex max-w-[520px] flex-col gap-5 px-[60px] py-[50px]"
-      onSubmit={onSubmit}
-    >
-      <FormHeader />
-
-      {errors.root && <span className="text-error">{errors.root.message}</span>}
-
+    <AuthFormContainer onSubmit={onSubmit} error={errors.root?.message}>
       <ControlledTextInput
         label="Display Name (optional)"
         name="displayName"
@@ -98,17 +91,17 @@ export function RegisterForm() {
         leftElement={<Icon icon="person" />}
         disabled
       />
-      <div className="mb-5 mt-5">
-        <Button type="submit" variant="default">
-          Sign Up
-        </Button>
-      </div>
-      <span className="text-primary-50 text-center text-[13px]">
+
+      <Button type="submit" className="my-5">
+        Sign Up
+      </Button>
+
+      <span className="text-center text-[13px]">
         {"Already have an account? "}
-        <AuthRoute.Login.Link className="text-accent-400 hover:text-accent-500">
+        <AuthRoute.Login.Link className="text-accent-400 hover:text-accent-400">
           Sign In
         </AuthRoute.Login.Link>
       </span>
-    </form>
+    </AuthFormContainer>
   );
 }

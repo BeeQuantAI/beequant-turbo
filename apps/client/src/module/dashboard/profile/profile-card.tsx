@@ -4,7 +4,7 @@ import { useUser } from "@src/module/auth/user-store";
 export function ProfileCard() {
   const user = useUser((s) => s.user);
   return (
-    <div className="flex flex-col items-center gap-4 rounded-md bg-slate-50 p-4 shadow-md md:p-8 dark:bg-slate-900">
+    <div className="bg-primary-50 dark:bg-primary-900 flex flex-col items-center gap-4 rounded-md p-4 shadow-md md:p-8">
       {!user && "Loading..."}
       {!!user && (
         <>

@@ -1,4 +1,6 @@
-import type { Config } from "tailwindcss";
+/** @type {import('tailwindcss').Config} */
+import color from "tailwindcss/colors";
+
 const primary = {
   50: "#F4F4F4",
   100: "#CACACC",
@@ -27,12 +29,20 @@ const accent = {
   950: "#04080C",
 };
 
-const config: Config = {
-  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+module.exports = {
+  content: ["./src/**/*.tsx"],
   theme: {
     extend: {
       fontFamily: {
         sans: ["'Roboto', sans-serif"],
+      },
+      textColor: {
+        primary: {
+          100: "#dddddd",
+          300: "#999999",
+          700: "#646777",
+          900: "#555555",
+        },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -40,14 +50,31 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        primary,
-        accent,
-        // Note that our main bg color is primary-500:#2a2a31, form color is primary-600:#232329
-        // button light color: accent-400:"#70bbfd", darker: accent-500:"#3ea3fc"
+        primary: {
+          ...color.zinc,
+          50: "#FFFFFF",
+          100: "#F2F4F7",
+          800: "#2a2a31",
+          900: "#232329",
+        },
+        accent: {
+          50: "#F5FAFF",
+          100: "#D0E9FF",
+          200: "#ABD8FF",
+          300: "#87c3f7",
+          400: "#57abf4",
+          500: "#70bbfd",
+          600: "#40a4fc",
+        },
+        error: color.red,
+      },
+      boxShadow: {
+        inset: "inset 0 0 0 1px",
+        "inset-2": "inset 0 0 0 2px",
       },
       width: {
         "btn-w-cover": "255%",
-        "400": "400px",
+        400: "400px",
         sidebar: "256px",
       },
       height: {
@@ -76,4 +103,3 @@ const config: Config = {
   },
   darkMode: "class",
 };
-export default config;
