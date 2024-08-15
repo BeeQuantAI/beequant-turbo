@@ -2,6 +2,7 @@
   "name": "beequant-turbo",
   "private": true,
   "scripts": {
+    "start": "./scripts/turbo.sh start",
     "build": "./scripts/turbo.sh build",
     "dev": "./scripts/turbo.sh dev",
     "lint": "./scripts/turbo.sh lint",
@@ -15,7 +16,7 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "yarn@4.3.1",
+  "packageManager": "yarn@1.22.22",
   "workspaces": [
     "apps/*",
     "packages/*"
