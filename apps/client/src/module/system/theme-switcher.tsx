@@ -118,7 +118,7 @@ export function ThemeToggle() {
 
   return (
     <button
-      className="hover:border-primary-500 hover:text-primary-500 border-primary-400 text-primary-400 rounded-md border-2 p-1 transition-colors dark:border-slate-300 dark:text-slate-300 dark:hover:border-slate-100 dark:hover:text-slate-100"
+      className="hover:border-accent-600 hover:text-accent-600 border-accent-600 text-accent-600 dark:border-primary-100 dark:text-primary-100 dark:hover:border-primary-100 dark:hover:text-primary-100 rounded-md border-2 p-1 transition-colors duration-300"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
       {theme === "dark" ? (

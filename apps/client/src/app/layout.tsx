@@ -1,4 +1,3 @@
-import { ThemeToggle } from "@src/module/system";
 import "./globals.css";
 
 export default function RootLayout({
@@ -25,9 +24,6 @@ export default function RootLayout({
         />
       </head>
       <body className="dark:bg-primary-800 text-primary-700 bg-primary-100 dark:text-primary-100 font-sans antialiased transition-colors">
-        <span className="fixed right-2 top-2">
-          <ThemeToggle />
-        </span>
         {children}
       </body>
     </html>
