@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+/** @type {import('tailwindcss').Config} */
 const primary = {
   50: "#F4F4F4",
   100: "#CACACC",
@@ -27,8 +27,8 @@ const accent = {
   950: "#04080C",
 };
 
-const config: Config = {
-  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+module.exports = {
+  content: ["./src/**/*.tsx"],
   theme: {
     extend: {
       fontFamily: {
@@ -47,7 +47,7 @@ const config: Config = {
       },
       width: {
         "btn-w-cover": "255%",
-        "400": "400px",
+        400: "400px",
         sidebar: "256px",
       },
       height: {
@@ -76,4 +76,3 @@ const config: Config = {
   },
   darkMode: "class",
 };
-export default config;

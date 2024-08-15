@@ -12,13 +12,12 @@
     "codegen-watch": "graphql-codegen --watch"
   },
   "dependencies": {
-    "@beequant/ui": "workspace:^",
     "@hookform/resolvers": "^3.9.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "graphql": "^16.9.0",
     "graphql-request": "^7.1.0",
-    "next": "14.2.5",
+    "next": "14.1.4",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "react": "^18",
@@ -37,6 +36,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.20",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8",
