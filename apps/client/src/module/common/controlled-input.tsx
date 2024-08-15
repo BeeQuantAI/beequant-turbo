@@ -27,14 +27,14 @@ export function ControlledTextInput<TFieldValues extends object>({
   });
 
   return (
-    <label className="space-y-2 text-neutral-500 transition-colors dark:text-neutral-400">
+    <label className="space-y-1 transition-colors">
       <span className="text-[13px]">{label}</span>
-      <div className="flex items-center">
-        <span className="border border-slate-200 bg-slate-200 p-2 dark:border-neutral-700 dark:bg-neutral-700">
+      <div className="flex items-stretch">
+        <span className="bg-primary-100 text-primary-300 p-2 dark:bg-neutral-700">
           {!!leftElement && leftElement}
         </span>
         <input
-          className="focus:border-primary-400 dark:focus:border-primary-400 flex-1 border border-slate-200 bg-transparent px-2 py-1 placeholder:text-xs focus:outline-none dark:border-neutral-700 dark:text-neutral-50"
+          className="focus:shadow-accent-400 shadow-primary-100 shadow-inset flex-1 bg-transparent px-2 py-1 text-xs transition-[box-shadow] duration-300 placeholder:text-xs focus:outline-none"
           placeholder={label ? label : props.placeholder}
           {...props}
           {...field}
@@ -66,22 +66,22 @@ export function ControlledPasswordInput<TFieldValues extends object>({
   });
 
   return (
-    <label className="space-y-2 text-neutral-500 transition-colors dark:text-neutral-400">
+    <label className="space-y-1 transition-colors">
       <span className="text-[13px]">{label}</span>
-      <div className="flex items-center">
-        <span className="border border-slate-200 bg-slate-200 p-2 dark:border-neutral-700 dark:bg-neutral-700">
-          <Icon icon="key" />
+      <div className="flex items-stretch">
+        <span className="bg-primary-100 p-2 dark:bg-neutral-700">
+          <Icon icon="key" className="text-primary-300" />
         </span>
         <input
           type={showPassword ? "text" : "password"}
-          className="focus:border-primary-400 dark:focus:border-primary-400 flex-1 border border-slate-200 bg-transparent px-2 py-1 placeholder:text-xs focus:outline-none dark:border-neutral-700 dark:text-neutral-50"
+          className="focus:shadow-accent-400 shadow-primary-100 shadow-inset flex-1 bg-transparent px-2 py-1 text-xs transition-[box-shadow] duration-300 placeholder:text-xs focus:outline-none dark:shadow-neutral-700"
           placeholder={label ? label : props.placeholder}
           {...props}
           {...field}
         />
         {showPassword ? (
           <button
-            className="bg-accent-400 border-accent-400 border p-2 text-neutral-50"
+            className="bg-accent-400 text-primary-50 p-2"
             type="button"
             onClick={() => toggleShowPassword()}
           >
@@ -89,7 +89,7 @@ export function ControlledPasswordInput<TFieldValues extends object>({
           </button>
         ) : (
           <button
-            className="bg-accent-400 border-accent-400 border p-2 text-neutral-50"
+            className="bg-accent-400 text-primary-50 p-2"
             type="button"
             onClick={() => toggleShowPassword()}
           >

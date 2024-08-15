@@ -8,7 +8,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: [
-          "bg-accent-400 text-neutral-50",
+          "bg-[#70bbfd] text-neutral-50",
           "before:transition-width before:transition-height before:bg-accent-500 hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:duration-500 before:ease-in-out hover:before:-z-50",
         ],
         outline: [
