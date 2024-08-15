@@ -40,6 +40,7 @@ export function Checkbox({
   ...props
 }: CheckboxProps) {
   return (
+
     <label className={clsx("group flex items-center gap-2", props.className)}>
       <div className="relative flex items-center">
         <input
@@ -64,6 +65,7 @@ export function Checkbox({
       </div>
       {label && (
         <span className="group-hover:text-accent-400 cursor-pointer text-[13px] transition-colors dark:text-neutral-400">
+
           {label}
         </span>
       )}
