@@ -47,7 +47,7 @@ export function ControlledTextInput<TFieldValues extends object>({
         {error?.message && (
           <span
             className={clsx(
-              "text-error-700 bg-error-300 absolute bottom-[calc(100%+4px)] right-0 rounded-md px-2 py-1 text-[10px]",
+              "text-error-900 bg-error-300 absolute bottom-[calc(100%+4px)] right-0 rounded-md px-2 py-1 text-[10px]",
               "after:bg-error-300 after:absolute after:-bottom-1 after:right-4 after:h-2 after:w-2 after:rotate-45",
             )}
           >
