@@ -65,7 +65,7 @@ export async function register(input: RegisterPayload) {
   switch (register.code) {
     case 200:
       // I don't [ads-friendly-content] know if this data is valid or not so screw it
-      redirect(AuthRoute.Login.Path);
+      await redirect(AuthRoute.RegisterSuccessed.Path);
 
     case 10004:
     case 10005:

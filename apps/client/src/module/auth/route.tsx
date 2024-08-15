@@ -41,8 +41,21 @@ const ForgetPassword = {
   ),
 };
 
+const RegisterSuccessed = {
+  Metadata: {
+    title: "Register Successed | BeeQuant",
+  },
+  Path: "/register-successed" as const,
+  Link: ({ children, className }: RouteLinkProps) => (
+    <Link href={RegisterSuccessed.Path} className={className}>
+      {children}
+    </Link>
+  ),
+};
+
 export const AuthRoute = {
   Login,
   Register,
   ForgetPassword,
+  RegisterSuccessed,
 };

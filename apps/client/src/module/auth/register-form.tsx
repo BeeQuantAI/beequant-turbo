@@ -43,7 +43,7 @@ export function RegisterForm() {
   });
 
   async function action(payload: RegisterPayload) {
-    const res = await register(payload);
+    const res = (await register(payload)) || {};
 
     if (res.error) {
       setError("root", { message: res.error });
@@ -58,7 +58,7 @@ export function RegisterForm() {
 
   return (
     <form
-      className="dark:bg-primary-600 flex max-w-[520px] flex-col gap-5 bg-slate-50 px-[60px] py-[50px]"
+      className="dark:bg-primary-600 bg-primary-50 flex max-w-[520px] flex-col gap-5 px-[60px] py-[50px]"
       onSubmit={onSubmit}
     >
       <FormHeader />
@@ -103,9 +103,9 @@ export function RegisterForm() {
           Sign Up
         </Button>
       </div>
-      <span className="text-center text-[13px] text-white">
+      <span className="text-primary-50 text-center text-[13px]">
         {"Already have an account? "}
-        <AuthRoute.Login.Link className="text-accent-250 hover:text-accent-400">
+        <AuthRoute.Login.Link className="text-accent-400 hover:text-accent-500">
           Sign In
         </AuthRoute.Login.Link>
       </span>

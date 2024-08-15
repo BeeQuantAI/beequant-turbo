@@ -58,7 +58,7 @@ export function LoginForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="max-w-400 dark:bg-primary-600 flex flex-col gap-5 bg-slate-50 px-[60px] py-[50px]"
+      className="max-w-400 dark:bg-primary-600 bg-primary-50 flex flex-col gap-5 px-[60px] py-[50px]"
     >
       <FormHeader />
 
@@ -81,7 +81,7 @@ export function LoginForm() {
             autoComplete="current-password"
           />
 
-          <AuthRoute.ForgetPassword.Link className="text-accent-250 hover:text-accent-400 float-right text-xs transition-colors">
+          <AuthRoute.ForgetPassword.Link className="text-accent-400 hover:text-accent-500 float-right text-xs transition-colors">
             Forgot Password?
           </AuthRoute.ForgetPassword.Link>
         </div>
@@ -99,18 +99,18 @@ export function LoginForm() {
         </Button>
       </AuthRoute.Register.Link>
 
-      <div className="relative mb-5 mt-[35px] flex h-[20.797px] w-[400px] content-center justify-center text-white">
+      <div className="dark:text-primary-50 relative mb-5 mt-[35px] flex h-[20.797px] w-[400px] content-center justify-center">
         <p
           className={clsx(
-            "text-[13px] before:absolute before:left-0 before:top-2.5 before:h-px before:w-28 before:bg-white",
-            "after:absolute after:right-0 after:top-2.5 after:h-px after:w-28 after:bg-white",
+            "before:bg-primary-500 dark:before:bg-primary-50 text-[13px] before:absolute before:left-0 before:top-2.5 before:h-px before:w-28",
+            "after:bg-primary-500 dark:after:bg-primary-50 after:absolute after:right-0 after:top-2.5 after:h-px after:w-28",
           )}
         >
           Or Easily Using
         </p>
       </div>
 
-      <div className="relative flex content-center justify-center space-x-3 text-white">
+      <div className="text-primary-50 relative flex content-center justify-center space-x-3">
         <SocialButton social="facebook" />
         <SocialButton social="google" />
       </div>
