@@ -1,4 +1,5 @@
 import { useToggle } from "@src/utils";
+import clsx from "clsx";
 import React, { InputHTMLAttributes } from "react";
 import { Control, FieldPath, useController } from "react-hook-form";
 import { Icon } from "./icon";
@@ -27,12 +28,14 @@ export function ControlledTextInput<TFieldValues extends object>({
   });
 
   return (
-    <label className="space-y-1 transition-colors">
+    <label className="space-y-1">
       <span className="text-[13px]">{label}</span>
-      <div className="flex items-stretch">
-        <span className="bg-primary-100 text-primary-300 p-2 dark:bg-neutral-700">
-          {!!leftElement && leftElement}
-        </span>
+      <div className="relative flex items-stretch">
+        {!!leftElement && (
+          <span className="bg-primary-100 text-primary-300 p-2 transition-colors duration-300 dark:bg-neutral-700">
+            {leftElement}
+          </span>
+        )}
         <input
           className="focus:shadow-accent-400 dark:focus:shadow-accent-400 shadow-primary-100 dark:shadow-primary-700 shadow-inset flex-1 bg-transparent px-2 py-1 text-xs transition-[box-shadow] duration-300 placeholder:text-xs focus:outline-none"
           placeholder={label ? label : props.placeholder}
@@ -40,46 +43,36 @@ export function ControlledTextInput<TFieldValues extends object>({
           {...field}
         />
         {!!rightElement && rightElement}
-      </div>
 
-      {error && <span className="text-error">{error.message}</span>}
+        {error?.message && (
+          <span
+            className={clsx(
+              "text-error-700 bg-error-300 absolute bottom-[calc(100%+4px)] right-0 rounded-md px-2 py-1 text-[10px]",
+              "after:bg-error-300 after:absolute after:-bottom-1 after:right-4 after:h-2 after:w-2 after:rotate-45",
+            )}
+          >
+            {error.message}
+          </span>
+        )}
+      </div>
     </label>
   );
 }
 
 export function ControlledPasswordInput<TFieldValues extends object>({
-  label,
   name,
   control,
-  leftElement,
-  rightElement,
   ...props
-}: ControlledInputProps<TFieldValues>) {
+}: Omit<ControlledInputProps<TFieldValues>, "leftElement" | "rightElement">) {
   const [showPassword, toggleShowPassword] = useToggle(false);
 
-  const {
-    field,
-    fieldState: { error },
-  } = useController({
-    name,
-    control,
-  });
-
   return (
-    <label className="space-y-1 transition-colors">
-      <span className="text-[13px]">{label}</span>
-      <div className="flex items-stretch">
-        <span className="bg-primary-100 p-2 dark:bg-neutral-700">
-          <Icon icon="key" className="text-primary-300" />
-        </span>
-        <input
-          type={showPassword ? "text" : "password"}
-          className="focus:shadow-accent-400 dark:focus:shadow-accent-400 shadow-primary-100 shadow-inset dark:shadow-primary-700 flex-1 bg-transparent px-2 py-1 text-xs transition-[box-shadow] duration-300 placeholder:text-xs focus:outline-none"
-          placeholder={label ? label : props.placeholder}
-          {...props}
-          {...field}
-        />
-        {showPassword ? (
+    <ControlledTextInput
+      name={name}
+      control={control}
+      leftElement={<Icon icon="key" className="text-primary-300" />}
+      rightElement={
+        showPassword ? (
           <button
             className="bg-accent-400 text-primary-50 p-2"
             type="button"
@@ -95,10 +88,9 @@ export function ControlledPasswordInput<TFieldValues extends object>({
           >
             <Icon icon="eye-closed" />
           </button>
-        )}
-      </div>
-
-      {error && <span className="text-error">{error.message}</span>}
-    </label>
+        )
+      }
+      {...props}
+    />
   );
 }

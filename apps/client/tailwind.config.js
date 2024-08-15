@@ -63,6 +63,7 @@ module.exports = {
           500: "#70bbfd",
           600: "#40a4fc",
         },
+        error: color.red,
       },
       boxShadow: {
         inset: "inset 0 0 0 1px",
