@@ -1,4 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority";
+import clsx from "clsx";
 import React from "react";
 
 export interface CheckboxVariants
@@ -39,7 +40,7 @@ export function Checkbox({
   ...props
 }: CheckboxProps) {
   return (
-    <label className="group flex h-[20px] w-[119.27px] items-center gap-2">
+    <label className={clsx("group flex items-center gap-2", props.className)}>
       <div className="relative flex items-center">
         <input
           className={checkboxVariants({ variant })}

@@ -1,5 +1,4 @@
 import { cva, type VariantProps } from "class-variance-authority";
-import React from "react";
 
 export interface SocialButtonVariants
   extends VariantProps<typeof socialButtonVariants> {}
@@ -55,23 +54,14 @@ const socialButtonSvgs = {
 
 type Props = {
   social: keyof typeof socialButtonSvgs;
-} & React.ButtonHTMLAttributes<HTMLButtonElement> &
-  SocialButtonVariants;
-
-export function SocialButton({
-  children,
-  variant,
-  social,
-  type = "button",
-  ...props
-}: Props) {
+};
+export function SocialButton({ social }: Props) {
   return (
     <button
       className={socialButtonVariants({
         variant: social,
       })}
-      type={type}
-      {...props}
+      type="button"
     >
       {socialButtonSvgs[social]}
     </button>
