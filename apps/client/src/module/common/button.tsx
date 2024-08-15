@@ -17,7 +17,7 @@ const buttonVariants = cva(
         ],
       },
       size: {
-        medium: "w-400 px-6 py-2.5",
+        medium: "px-6 py-2.5",
       },
     },
     defaultVariants: {
@@ -33,6 +33,7 @@ type Props = {
   ButtonVariants;
 
 export function Button({
+  className,
   children,
   variant,
   size,
@@ -44,6 +45,7 @@ export function Button({
       className={buttonVariants({
         variant,
         size,
+        className,
       })}
       type={type}
       {...props}

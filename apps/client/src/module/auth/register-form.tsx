@@ -91,11 +91,11 @@ export function RegisterForm() {
         leftElement={<Icon icon="person" />}
         disabled
       />
-      <div className="mb-5 mt-5">
-        <Button type="submit" variant="default">
-          Sign Up
-        </Button>
-      </div>
+
+      <Button type="submit" className="my-5">
+        Sign Up
+      </Button>
+
       <span className="text-center text-[13px]">
         {"Already have an account? "}
         <AuthRoute.Login.Link className="text-accent-400 hover:text-accent-400">

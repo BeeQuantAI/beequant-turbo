@@ -8,6 +8,7 @@ import {
   Icon,
 } from "@src/module/common";
 import clsx from "clsx";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { SocialButton } from "../common/social-button";
@@ -31,6 +32,7 @@ const defaultValues = {
 } satisfies LoginForm; // Satifies make sure this object you are making can satisfy the LoginForm schema.
 
 export function LoginForm() {
+  const router = useRouter();
   const {
     handleSubmit,
     control,
@@ -81,15 +83,14 @@ export function LoginForm() {
         </div>
       </div>
 
-      <Button type="submit" variant="default" size="medium">
-        Sign In
-      </Button>
+      <Button type="submit">Sign In</Button>
 
-      <AuthRoute.Register.Link>
-        <Button variant="outline" size="medium">
-          Create Account
-        </Button>
-      </AuthRoute.Register.Link>
+      <Button
+        variant="outline"
+        onClick={() => router.push(AuthRoute.Register.Path)}
+      >
+        Create Account
+      </Button>
 
       <div className="relative mt-8 flex w-full content-center justify-center">
         <p
