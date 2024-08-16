@@ -43,7 +43,7 @@ export function RegisterForm() {
   });
 
   async function action(payload: RegisterPayload) {
-    const res = (await register(payload)) || {};
+    const res = await register(payload);
 
     if (res?.error) {
       setError("root", { message: res.error });
