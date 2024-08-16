@@ -24,7 +24,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="dark:bg-primary-500 text-primary-400 bg-primary-50 dark:text-primary-50 font-sans">
+      <body className="dark:bg-primary-800 text-primary-700 bg-primary-100 dark:text-primary-100 font-sans antialiased transition-colors">
         <span className="fixed right-2 top-2">
           <ThemeToggle />
         </span>

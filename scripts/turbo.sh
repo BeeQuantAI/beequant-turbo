@@ -21,6 +21,22 @@ if [ -n "$CMD" ]; then
     fi
     ;;
 
+  "start")
+    if [ -n "$FILTER" ]; then
+      case $FILTER in
+      "client")
+        yarn turbo run start --filter=$NAMESPACE/client --filter=$NAMESPACE/platform-api
+        ;;
+
+      *)
+        yarn turbo run start --filter=$NAMESPACE/$FILTER
+        ;;
+      esac
+    else
+      yarn turbo run start
+    fi
+    ;;
+
   "ci")
     yarn turbo run lint --force
     yarn turbo run type-check --force

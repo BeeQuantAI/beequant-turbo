@@ -1,4 +1,4 @@
-import { AuthRoute, RegisterForm } from "@src/module/auth";
+import { AuthRoute, RegisterForm } from "../../../module/auth";
 
 export const metadata = AuthRoute.Register.Metadata;
 
