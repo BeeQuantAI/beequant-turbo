@@ -49,16 +49,6 @@ module.exports = {
       fontFamily: {
         sans: ["'Roboto', sans-serif"],
       },
-      fontSize: {
-        xs: ["11px", "15px"],
-        sm: ["12px", "16px"],
-        base: ["13px", "1.6"],
-        md: ["14px", "1.5"],
-        lg: ["20px", "32px"],
-        xl: ["24px", "32px"],
-        "2xl": ["28px", "normal"],
-        "3xl": ["30px", "24px"],
-      },
       textColor: {
         primary: {
           100: "#dddddd",
