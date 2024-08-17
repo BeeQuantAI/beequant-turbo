@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { useRouter } from "next/navigation";
 import { logout } from "../../auth";
 import { useUser } from "../../auth/user-store";
-import { Icon, Icons } from "../../common";
+import { LinearIcon, LinearIcons } from "../../common";
 import { DashboardRoute } from "../route";
 
 export function AccountMenu() {
@@ -15,9 +15,9 @@ export function AccountMenu() {
   const handleLogout = () => logout();
 
   return (
-    <div className="h-inherit relative">
+    <div className="h-inherit relative ml-auto mr-[30px]">
       <button
-        className="h-inherit hover:bg-accent-50 dark:hover:bg-primary-500 flex items-center gap-2 px-4 py-3 transition-colors duration-300"
+        className="dark:hover:bg-primary-500 flex h-full items-center px-[15px] py-3 transition-colors duration-300 hover:bg-[#fafbfe]"
         onClick={() => toggelShowDropdown()}
       >
         {!!user && (
@@ -28,9 +28,19 @@ export function AccountMenu() {
               src={user.avatar}
               alt={user.displayName + " avatar"}
             />
-            <span>{user?.displayName}</span>
+            <span className="text-primary-700 ml-[10px] mr-[8px] text-[13px]">
+              {user?.displayName}
+            </span>
 
-            <Icon icon="arrow-down" />
+            <svg
+              className="h-[18px]"
+              width="24"
+              height="24"
+              fill="#bbbbc2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"></path>
+            </svg>
           </>
         )}
         {!user && "Loading..."}
@@ -38,36 +48,45 @@ export function AccountMenu() {
 
       <menu
         className={clsx(
-          "bg-primary-50 dark:bg-primary-500 absolute right-0 top-full grid w-60 transition-[grid-template-rows_padding] duration-300",
-          showDropdown ? "grid-rows-[1fr] py-2" : "grid-rows-[0fr] py-0",
+          "bg-primary-50 dark:bg-primary-500 absolute right-0 top-full z-[101] grid w-[210px] shadow-[0_2px_15px_0_rgba(0,0,0,0.05)] transition-[grid-template-rows_padding] duration-300",
+          showDropdown ? "grid-rows-[1fr] py-[15px]" : "grid-rows-[0fr] py-0",
         )}
       >
         <div className="overflow-hidden">
           <MenuItem
-            icon="person"
+            icon="user"
             label="Profile"
             onClick={() => router.push(DashboardRoute.Profile.Path)}
           />
           <MenuItem
-            icon="placholder"
-            label="Placholder"
+            icon="briefcase"
+            label="Wallet"
             onClick={() => console.log("haha")}
           />
-          <div className="my-2 h-px bg-slate-700" />
+
+          <div className="bg-primary-200 dark:bg-primary-700 my-[15px] h-px transition-colors duration-300"></div>
+
           <MenuItem
-            icon="placholder"
-            label="Placholder"
+            icon="cog"
+            label="Settings"
             onClick={() => console.log("haha")}
           />
-          <MenuItem icon="exit" label="Logout" onClick={handleLogout} />
+          <MenuItem icon="exit" label="Log Out" onClick={handleLogout} />
         </div>
       </menu>
+
+      {showDropdown && (
+        <div
+          className="fixed left-0 top-0 z-[100] h-screen w-screen cursor-pointer"
+          onClick={() => toggelShowDropdown()}
+        />
+      )}
     </div>
   );
 }
 
 export type MenuItemProps = {
-  icon: Icons;
+  icon: LinearIcons;
   label: string;
   onClick: () => void;
 };
@@ -75,15 +94,14 @@ function MenuItem(props: MenuItemProps) {
   return (
     <button
       className={clsx(
-        "group/button relative flex h-9 w-full items-center gap-2 border-l-2 px-4 py-2 text-left text-sm transition-colors duration-300",
-        "hover:border-accent-400 bg-primary-50 hover:bg-accent-50 dark:bg-primary-500 dark:hover:bg-primary-400 border-transparent",
+        "group/button text-primary-600 relative flex h-8 w-full gap-[10px] px-[20px] py-[9px] text-left text-sm transition-colors duration-300",
+        "bg-primary-50 dark:bg-primary-500 dark:hover:bg-primary-400 hover:bg-[#fafbfe]",
+        "hover:before:bg-accent-500 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:transition-colors before:duration-300",
       )}
       onClick={props.onClick}
     >
-      <span>
-        <Icon icon={props.icon} className="text-lg" />
-      </span>
-      <span className="overflow-hidden transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
+      <LinearIcon icon={props.icon} className="text-primary-100" />
+      <span className="overflow-hidden text-[14px] leading-[16px] transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
         {props.label}
       </span>
     </button>
