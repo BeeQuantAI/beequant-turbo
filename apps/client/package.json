@@ -30,11 +30,8 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@beequant/codegen-config": "*",
     "@beequant/tailwind-config": "*",
-    "@graphql-codegen/cli": "^5.0.2",
-    "@graphql-codegen/client-preset": "^4.2.5",
-    "@graphql-codegen/typescript": "^4.0.6",
-    "@graphql-codegen/typescript-operations": "^4.2.0",
     "@parcel/watcher": "^2.4.1",
     "@types/node": "^20",
     "@types/react": "^18",
