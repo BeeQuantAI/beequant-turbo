@@ -33,7 +33,7 @@ function SidebarMenuItem(props: SidebarMenuItem) {
       <button
         className={clsx(
           "group/button relative flex h-9 w-full px-5 py-[11px] text-left text-sm transition-colors duration-300",
-          "dark:bg-primary-900 dark:hover:bg-primary-700 bg-primary-50 hover:bg-[#fafbfe]",
+          "dark:bg-primary-900 dark:hover:bg-primary-700 bg-primary-50 hover:bg-accent-50",
           "hover:before:bg-accent-500 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:transition-colors before:duration-300",
         )}
         onClick={props.onClick}
@@ -47,7 +47,7 @@ function SidebarMenuItem(props: SidebarMenuItem) {
             "group-data-[status=expanded]/container:hidden",
             "absolute left-full top-0 h-9 overflow-hidden py-2 transition-[width_padding_color] duration-300",
             "w-0 group-hover/button:w-52 group-hover/button:px-6",
-            "group-hover/button:dark:bg-primary-700 dark:bg-primary-900 group-hover/button:bg-[#fafbfe]",
+            "group-hover/button:dark:bg-primary-700 dark:bg-primary-900 group-hover/button:bg-accent-50",
           )}
         >
           {props.label}
@@ -87,7 +87,7 @@ function SidebarAccordion(props: SidebarAccordionProps) {
         onClick={() => toggleOpen()}
         className={clsx(
           "relative flex h-9 w-full gap-2.5 px-5 py-[11px] text-left text-sm transition-colors duration-300",
-          "dark:bg-primary-900 group-hover/accordion:dark:bg-primary-700 bg-primary-50 group-hover/accordion:bg-[#fafbfe]",
+          "dark:bg-primary-900 group-hover/accordion:dark:bg-primary-700 bg-primary-50 group-hover/accordion:bg-accent-50",
           "hover:before:bg-accent-500 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:transition-colors before:duration-300",
         )}
       >
@@ -101,7 +101,7 @@ function SidebarAccordion(props: SidebarAccordionProps) {
             "absolute left-full top-0 h-9 overflow-hidden py-2 transition-[width_padding_color_background-color] duration-300",
             "w-0 group-hover/accordion:w-52 group-hover/accordion:px-6",
             "group-hover/accordion:dark:text-primary-50 text-transparent group-hover/accordion:text-neutral-950",
-            "bg-primary-50 dark:bg-primary-700 group-hover/accordion:dark:bg-primary-700 group-hover/accordion:bg-[#fafbfe]",
+            "bg-primary-50 dark:bg-primary-700 group-hover/accordion:dark:bg-primary-700 group-hover/accordion:bg-accent-50",
           )}
         >
           {props.label}
@@ -122,7 +122,7 @@ function SidebarAccordion(props: SidebarAccordionProps) {
       >
         <ul
           className={clsx(
-            "dark:bg-primary-700 overflow-hidden bg-[#fafbfe] duration-300",
+            "dark:bg-primary-700 bg-accent-50 overflow-hidden duration-300",
           )}
         >
           {props.options.map((o, i) => (
@@ -131,7 +131,7 @@ function SidebarAccordion(props: SidebarAccordionProps) {
                 onClick={o.onClick}
                 className={clsx(
                   "relative h-9 w-full py-2 pl-[43px] pr-4 text-left text-sm transition-colors duration-300",
-                  "dark:bg-primary-700 dark:hover:bg-primary-900 hover:bg-primary-50 bg-[#fafbfe]",
+                  "dark:bg-primary-700 dark:hover:bg-primary-900 hover:bg-primary-50 bg-accent-50",
                   "hover:before:bg-accent-500 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:transition-colors before:duration-300",
                 )}
               >
@@ -152,7 +152,7 @@ function SidebarAccordion(props: SidebarAccordionProps) {
       >
         <ul
           className={clsx(
-            "dark:bg-primary-700 overflow-hidden bg-[#fafbfe] duration-300",
+            "dark:bg-primary-700 bg-accent-50 overflow-hidden duration-300",
           )}
         >
           {props.options.map((o, i) => (
@@ -161,7 +161,7 @@ function SidebarAccordion(props: SidebarAccordionProps) {
                 onClick={o.onClick}
                 className={clsx(
                   "relative h-9 w-full px-4 py-2 text-left text-sm transition-colors duration-300",
-                  "dark:bg-primary-700 dark:hover:bg-primary-900 hover:bg-primary-50 bg-[#fafbfe]",
+                  "dark:bg-primary-700 dark:hover:bg-primary-900 hover:bg-primary-50 bg-accent-50",
                   "hover:before:bg-accent-500 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:transition-colors before:duration-300",
                 )}
               >

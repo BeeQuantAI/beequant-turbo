@@ -64,7 +64,7 @@ module.exports = {
           900: "#232329", // hsl(240, 5%, 7%)
         },
         accent: {
-          50: "#F5FAFF",
+          50: "#fafbfe",
           100: "#D0E9FF",
           200: "#ABD8FF",
           300: "#87c3f7",

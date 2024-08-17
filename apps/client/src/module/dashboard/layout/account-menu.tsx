@@ -18,8 +18,8 @@ export function AccountMenu() {
     <div className="h-inherit relative ml-auto mr-[30px]">
       <button
         className={clsx(
-          "dark:hover:bg-primary-700 flex h-full items-center px-[15px] py-3 transition-colors duration-300 hover:bg-[#fafbfe]",
-          showDropdown && "dark:bg-primary-700 bg-[#fafbfe]",
+          "dark:hover:bg-primary-700 hover:bg-accent-50 flex h-full items-center px-[15px] py-3 transition-colors duration-300",
+          showDropdown && "dark:bg-primary-700 bg-accent-50",
         )}
         onClick={() => toggelShowDropdown()}
       >
@@ -98,7 +98,7 @@ function MenuItem(props: MenuItemProps) {
     <button
       className={clsx(
         "group/button text-primary-600 relative flex h-8 w-full gap-[10px] px-[20px] py-[9px] text-left text-sm transition-colors duration-300",
-        "bg-primary-50 dark:bg-primary-900 dark:hover:bg-primary-400 hover:bg-[#fafbfe]",
+        "bg-primary-50 dark:bg-primary-900 dark:hover:bg-primary-700 hover:bg-accent-50",
         "hover:before:bg-accent-900 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:transition-colors before:duration-300",
       )}
       onClick={props.onClick}
