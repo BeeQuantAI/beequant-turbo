@@ -3,7 +3,7 @@ import React from "react";
 
 export interface ButtonVariants extends VariantProps<typeof buttonVariants> {}
 const buttonVariants = cva(
-  "border-accent-400 relative overflow-hidden rounded border text-sm transition-all duration-500",
+  "border-accent-400 text-md relative overflow-hidden rounded border transition-all duration-500",
   {
     variants: {
       variant: {

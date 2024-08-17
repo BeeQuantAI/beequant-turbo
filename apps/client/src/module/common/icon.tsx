@@ -75,9 +75,7 @@ type LinearIconProps = { icon: LinearIcons; className?: string };
 export function LinearIcon({ icon, className }: LinearIconProps) {
   return (
     <span
-      className={twMerge(
-        clsx(`lnr lnr-${icon} text-primary-200 text-[13px]`, className),
-      )}
+      className={twMerge(clsx(`lnr lnr-${icon} text-primary-200`, className))}
     />
   );
 }
