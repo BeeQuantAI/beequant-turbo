@@ -1,11 +1,11 @@
-import '../index.css'
-import '../App.css'
+import "../App.css";
+import "../index.css";
 
-import { useState } from 'react'
+import { useState } from "react";
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/router-devtools'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
+import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 
 export const Route = createRootRoute({
   component: () => {
@@ -17,21 +17,21 @@ export const Route = createRootRoute({
             retry: 3,
           },
         },
-      })
-    )
+      }),
+    );
     return (
       <>
-        <div className='p-2 flex gap-2'>
-          <Link to='/' className='[&.active]:text-orange-500'>
+        <div className="flex gap-4 p-2">
+          <Link to="/" className="[&.active]:text-orange-500">
             Home
-          </Link>{' '}
-          <Link to='/query' className='[&.active]:text-orange-500'>
+          </Link>{" "}
+          <Link to="/query" className="[&.active]:text-orange-500">
             Query
           </Link>
-          <Link to='/form' className='[&.active]:text-orange-500'>
+          <Link to="/form" className="[&.active]:text-orange-500">
             Form
           </Link>
-          <Link to='/table' className='[&.active]:text-orange-500'>
+          <Link to="/table" className="[&.active]:text-orange-500">
             Table
           </Link>
         </div>
@@ -41,6 +41,6 @@ export const Route = createRootRoute({
         </QueryClientProvider>
         <TanStackRouterDevtools />
       </>
-    )
+    );
   },
-})
+});

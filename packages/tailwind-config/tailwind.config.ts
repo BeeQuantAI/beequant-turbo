@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+import { Config } from "tailwindcss";
 import color from "tailwindcss/colors";
 
 const primary = {
@@ -29,8 +29,8 @@ const accent = {
   950: "#04080C",
 };
 
-module.exports = {
-  content: ["./src/**/*.tsx"],
+const config: Config = {
+  content: [],
   theme: {
     extend: {
       fontFamily: {
@@ -112,3 +112,5 @@ module.exports = {
   },
   darkMode: "class",
 };
+
+export default config;
