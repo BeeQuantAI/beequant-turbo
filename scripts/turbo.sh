@@ -8,6 +8,10 @@ if [ -n "$CMD" ]; then
   "dev")
     if [ -n "$FILTER" ]; then
       case $FILTER in
+      "client-vite")
+        yarn turbo run dev --filter=$NAMESPACE/client --filter=$NAMESPACE/client-vite --filter=$NAMESPACE/platform-api
+        ;;
+
       "client")
         yarn turbo run dev --filter=$NAMESPACE/client --filter=$NAMESPACE/platform-api
         ;;
@@ -24,6 +28,10 @@ if [ -n "$CMD" ]; then
   "start")
     if [ -n "$FILTER" ]; then
       case $FILTER in
+      "client-vite")
+        yarn turbo run start --filter=$NAMESPACE/client --filter=$NAMESPACE/client-vite  --filter=$NAMESPACE/platform-api
+        ;;
+
       "client")
         yarn turbo run start --filter=$NAMESPACE/client --filter=$NAMESPACE/platform-api
         ;;
