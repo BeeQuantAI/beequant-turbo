@@ -17,7 +17,10 @@ export function AccountMenu() {
   return (
     <div className="h-inherit relative ml-auto mr-[30px]">
       <button
-        className="dark:hover:bg-primary-500 flex h-full items-center px-[15px] py-3 transition-colors duration-300 hover:bg-[#fafbfe]"
+        className={clsx(
+          "dark:hover:bg-primary-700 flex h-full items-center px-[15px] py-3 transition-colors duration-300 hover:bg-[#fafbfe]",
+          showDropdown && "dark:bg-primary-700 bg-[#fafbfe]",
+        )}
         onClick={() => toggelShowDropdown()}
       >
         {!!user && (
@@ -28,7 +31,7 @@ export function AccountMenu() {
               src={user.avatar}
               alt={user.displayName + " avatar"}
             />
-            <span className="text-primary-700 ml-[10px] mr-[8px] text-[13px]">
+            <span className="dark:text-primary-100 text-primary-700 ml-[10px] mr-[8px] text-[13px]">
               {user?.displayName}
             </span>
 
@@ -48,7 +51,7 @@ export function AccountMenu() {
 
       <menu
         className={clsx(
-          "bg-primary-50 dark:bg-primary-500 absolute right-0 top-full z-[101] grid w-[210px] shadow-[0_2px_15px_0_rgba(0,0,0,0.05)] transition-[grid-template-rows_padding] duration-300",
+          "bg-primary-50 dark:bg-primary-900 absolute right-0 top-full z-[101] grid w-[210px] shadow-[0_2px_15px_0_rgba(0,0,0,0.05)] transition-[grid-template-rows_padding] duration-300",
           showDropdown ? "grid-rows-[1fr] py-[15px]" : "grid-rows-[0fr] py-0",
         )}
       >
@@ -95,13 +98,16 @@ function MenuItem(props: MenuItemProps) {
     <button
       className={clsx(
         "group/button text-primary-600 relative flex h-8 w-full gap-[10px] px-[20px] py-[9px] text-left text-sm transition-colors duration-300",
-        "bg-primary-50 dark:bg-primary-500 dark:hover:bg-primary-400 hover:bg-[#fafbfe]",
-        "hover:before:bg-accent-500 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:transition-colors before:duration-300",
+        "bg-primary-50 dark:bg-primary-900 dark:hover:bg-primary-400 hover:bg-[#fafbfe]",
+        "hover:before:bg-accent-900 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:transition-colors before:duration-300",
       )}
       onClick={props.onClick}
     >
-      <LinearIcon icon={props.icon} className="text-primary-100" />
-      <span className="overflow-hidden text-[14px] leading-[16px] transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
+      <LinearIcon
+        icon={props.icon}
+        className="text-primary-100 dark:text-primary-700"
+      />
+      <span className="dark:text-primary-100 overflow-hidden text-[14px] leading-[16px] transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
         {props.label}
       </span>
     </button>
