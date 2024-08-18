@@ -11,6 +11,7 @@ import { z } from "zod";
 import { AuthFormContainer } from "./auth-form-container";
 import { register, RegisterPayload } from "./auth-service";
 import { AuthRoute } from "./route";
+import { UserHelpMsgs } from "@src/utils/user-help-messgage";
 
 type FormSchema = z.infer<typeof formSchema>;
 const formSchema = z.object({
@@ -60,6 +61,7 @@ export function RegisterForm() {
     <AuthFormContainer onSubmit={onSubmit} error={errors.root?.message}>
       <ControlledTextInput
         label="Display Name (optional)"
+        tooltips={UserHelpMsgs.DisplayNameRegisterPage}
         name="displayName"
         control={control}
         leftElement={<Icon icon="person" />}
@@ -73,6 +75,7 @@ export function RegisterForm() {
       />
       <ControlledPasswordInput
         label="Password"
+        tooltips={UserHelpMsgs.PasswordRegisterPage}
         name="password"
         control={control}
         autoComplete="new-password"

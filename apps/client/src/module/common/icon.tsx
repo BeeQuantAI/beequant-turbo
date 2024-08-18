@@ -6,6 +6,10 @@ import { FaKey } from "react-icons/fa";
 import { FaEarthAsia } from "react-icons/fa6";
 import { GoEye, GoEyeClosed, GoHome } from "react-icons/go";
 import { IoDiamondOutline, IoLogOutOutline } from "react-icons/io5";
+import { FaMobileScreenButton } from "react-icons/fa6";
+import { MdOutlineMail } from "react-icons/md";
+import { IoSettingsOutline } from "react-icons/io5";
+
 import {
   MdCheck,
   MdInsertChart,
@@ -21,10 +25,13 @@ const genericIcons = {
   "arrow-down": MdOutlineKeyboardArrowDown,
   "arrow-up": MdOutlineKeyboardArrowUp,
   close: AiOutlineClose,
-  placholder: PiPlaceholder,
+  placeholder: PiPlaceholder,
   check: MdCheck,
   dayTime: MdSunny,
   nightTime: MdModeNight,
+  mobile: FaMobileScreenButton,
+  email: MdOutlineMail,
+  setting: IoSettingsOutline,
 };
 
 const authIcons = {
