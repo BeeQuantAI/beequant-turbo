@@ -46,7 +46,7 @@ function SidebarMenuItem(props: SidebarMenuItem) {
           className={clsx(
             "group-data-[status=expanded]/container:hidden",
             "absolute left-full top-0 h-9 overflow-hidden py-2 transition-[width_padding_color] duration-300",
-            "w-0 group-hover/button:w-52 group-hover/button:px-6",
+            "w-0 group-hover/button:w-52 group-hover/button:px-4",
             "group-hover/button:dark:bg-primary-700 dark:bg-primary-900 group-hover/button:bg-accent-50",
           )}
         >
@@ -95,22 +95,22 @@ function SidebarAccordion(props: SidebarAccordionProps) {
         <span className="overflow-hidden text-[14px] leading-[16px] transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
           {props.label}
         </span>
+        <LinearIcon
+          icon={open ? "chevron-down" : "chevron-right"}
+          className="text-primary-600 self-center text-[10px] group-data-[status=collapsed]/container:hidden"
+        />
+
         <span
           className={clsx(
             "group-data-[status=expanded]/container:hidden",
-            "absolute left-full top-0 h-9 overflow-hidden py-2 transition-[width_padding_color_background-color] duration-300",
-            "w-0 group-hover/accordion:w-52 group-hover/accordion:px-6",
-            "group-hover/accordion:dark:text-primary-50 text-transparent group-hover/accordion:text-neutral-950",
+            "transition-cl absolute left-full top-0 h-9 overflow-hidden py-2 transition-[width,padding,color,background-color] duration-300",
+            "w-0 group-hover/accordion:w-52 group-hover/accordion:px-4",
+            "group-hover/accordion:dark:text-primary-50 group-hover/accordion:text-primary-700 text-transparent",
             "bg-primary-50 dark:bg-primary-700 group-hover/accordion:dark:bg-primary-700 group-hover/accordion:bg-accent-50",
           )}
         >
           {props.label}
         </span>
-
-        <LinearIcon
-          icon={open ? "chevron-down" : "chevron-right"}
-          className="text-primary-600 self-center text-[10px] group-data-[status=collapsed]/container:hidden"
-        />
       </button>
 
       <div
