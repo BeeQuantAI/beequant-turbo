@@ -26,7 +26,7 @@ export function Checkbox({
       </RxCheckbox.Root>
       {label && (
         <label
-          className="group-hover:text-accent-400 cursor-pointer text-[13px] transition-colors duration-300 dark:text-neutral-400"
+          className="group-hover:text-accent-400 cursor-pointer transition-colors duration-300 dark:text-neutral-400"
           htmlFor={props.name || "checkbox"}
         >
           {label}

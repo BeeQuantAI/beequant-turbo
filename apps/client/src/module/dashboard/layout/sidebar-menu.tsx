@@ -39,7 +39,7 @@ function SidebarMenuItem(props: SidebarMenuItem) {
         onClick={props.onClick}
       >
         <LinearIcon icon={props.icon} />
-        <span className="ml-2.5 self-center overflow-hidden text-[14px] leading-[16px] transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
+        <span className="text-md ml-2.5 self-center overflow-hidden leading-[16px] transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
           {props.label}
         </span>
         <span
@@ -92,7 +92,7 @@ function SidebarAccordion(props: SidebarAccordionProps) {
         )}
       >
         <LinearIcon icon={props.icon} />
-        <span className="overflow-hidden text-[14px] leading-[16px] transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
+        <span className="text-md overflow-hidden leading-[16px] transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
           {props.label}
         </span>
         <LinearIcon

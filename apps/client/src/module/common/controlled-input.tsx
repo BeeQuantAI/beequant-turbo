@@ -29,7 +29,7 @@ export function ControlledTextInput<TFieldValues extends object>({
 
   return (
     <label className="space-y-1">
-      <span className="text-[13px]">{label}</span>
+      <span>{label}</span>
       <div className="relative flex items-stretch">
         {!!leftElement && (
           <span className="bg-primary-100 text-primary-300 p-2 transition-colors duration-300 dark:bg-neutral-700">
