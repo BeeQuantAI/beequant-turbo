@@ -43,6 +43,7 @@ module.exports = {
       "3xl": ["30px", "24px"],
     },
     extend: {
+      screens: { sm: "480px" },
       fontFamily: {
         sans: ["'Roboto', sans-serif"],
       },
@@ -89,6 +90,7 @@ module.exports = {
         "inset-2": "inset 0 0 0 2px",
         header: "0 2px 15px 0 rgba(0, 0, 0, 0.05)",
         sidebar: "0 1px 30px 1px rgba(0, 0, 0, 0.11)",
+        settingPage: "0 10px 30px 1px rgba(0,0,0,0.06)",
       },
       width: {
         "btn-w-cover": "255%",
