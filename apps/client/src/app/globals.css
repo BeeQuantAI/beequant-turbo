@@ -10,6 +10,10 @@
   }
 }
 
+body {
+  @apply text-base;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

@@ -31,7 +31,7 @@ export function AccountMenu() {
               src={user.avatar}
               alt={user.displayName + " avatar"}
             />
-            <span className="dark:text-primary-100 text-primary-700 ml-[10px] mr-[8px] text-[13px]">
+            <span className="dark:text-primary-100 text-primary-700 ml-[10px] mr-[8px]">
               {user?.displayName}
             </span>
 
@@ -107,7 +107,7 @@ function MenuItem(props: MenuItemProps) {
         icon={props.icon}
         className="text-primary-100 dark:text-primary-700"
       />
-      <span className="dark:text-primary-100 overflow-hidden text-[14px] leading-[16px] transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
+      <span className="dark:text-primary-100 text-md overflow-hidden leading-[16px] transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
         {props.label}
       </span>
     </button>

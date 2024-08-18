@@ -1,4 +1,4 @@
-# Beequant Turbo
+# BeeQuant Turbo
 
 ## What is this?
 
@@ -6,13 +6,33 @@ Ask Damon, don't ask Norris
 
 ## How do I run this
 
-TL,DR;
-
-```bash
-yarn
-
-yarn dev client
-```
+1. git clone this repo to your local machine with following command:
+   ```bash
+   git clone https://github.com/BeeQuantAI/beequant-turbo.git
+   ```
+2. access into beequant-turbo folder with following command:
+   ```bash
+   cd beequant-turbo
+   ```
+3. run following command to enter dev branch:
+   ```bash
+   git checkout dev
+   ```
+4. run `yarn` to install all dependencies
+5. set a `.env` file to `beequant-turbo/apps/platform-api` with the following content:
+   ```bash
+    DB_HOST=localhost
+    DB_NAME=bqCore
+    DB_PORT=5432
+    DB_USERNAME=postgres
+    DB_PASSWORD=CORE_ADMIN
+    JWT_SECRET=hello_beeQuant
+    DEFAULT_REFERENCE=COREINTERNAL
+    DEFAULT_DISPLAY_NAME='New User'
+   ``` 
+6. Please ensure that you have docker desktop installed and running on your machine.
+7. End the postgres container in your docker desktop if you have one running for the old platform_api backend.(optional)
+8. Run `yarn dev client` to start the new platform app
 
 ## What workspaces do we have here?
 
