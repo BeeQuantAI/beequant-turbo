@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import type { IconBaseProps } from "react-icons";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
@@ -14,6 +15,7 @@ import {
   MdSunny,
 } from "react-icons/md";
 import { PiPlaceholder } from "react-icons/pi";
+import { twMerge } from "tailwind-merge";
 
 const genericIcons = {
   "arrow-down": MdOutlineKeyboardArrowDown,
@@ -55,4 +57,25 @@ export type IconProps = {
 export function Icon({ icon, ...props }: IconProps) {
   const I = icons[icon];
   return <I {...props} />;
+}
+
+export type LinearIcons =
+  | "menu"
+  | "home"
+  | "chart-bars"
+  | "earth"
+  | "diamond"
+  | "user"
+  | "briefcase"
+  | "cog"
+  | "exit"
+  | "chevron-right"
+  | "chevron-down";
+type LinearIconProps = { icon: LinearIcons; className?: string };
+export function LinearIcon({ icon, className }: LinearIconProps) {
+  return (
+    <span
+      className={twMerge(clsx(`lnr lnr-${icon} text-primary-200`, className))}
+    />
+  );
 }

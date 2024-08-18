@@ -32,6 +32,16 @@ const accent = {
 module.exports = {
   content: ["./src/**/*.tsx"],
   theme: {
+    fontSize: {
+      xs: ["11px", "15px"],
+      sm: ["12px", "16px"],
+      base: ["13px", "1.6"],
+      md: ["14px", "1.5"],
+      lg: ["20px", "32px"],
+      xl: ["24px", "32px"],
+      "2xl": ["28px", "normal"],
+      "3xl": ["30px", "24px"],
+    },
     extend: {
       fontFamily: {
         sans: ["'Roboto', sans-serif"],
@@ -39,9 +49,12 @@ module.exports = {
       textColor: {
         primary: {
           100: "#dddddd",
-          300: "#999999",
-          700: "#646777",
-          900: "#555555",
+          200: "#bbbbc2", // hsl(240, 5%, 70%)
+          300: "#999999", //hsl(240, 5%, 60%)
+          400: "#b1c3c8", // hsl(200, 10%, 70%) ??????
+          600: "#787985", // hsl(240, 5%, 47%)
+          700: "#646777", // hsl(240, 5%, 40%)
+          900: "#555555", //hsl(240, 5%, 34%)
         },
       },
       backgroundImage: {
@@ -54,11 +67,14 @@ module.exports = {
           ...color.zinc,
           50: "#FFFFFF",
           100: "#F2F4F7",
-          800: "#2a2a31",
-          900: "#232329",
+          200: "#Eff1f5",
+          600: "#333246", // hsl(240, 5%, 14%)
+          700: "#38373f", // hsl(240, 5%, 15%)
+          800: "#2a2a31", // hsl(240, 5%, 10%)
+          900: "#232329", // hsl(240, 5%, 7%)
         },
         accent: {
-          50: "#F5FAFF",
+          50: "#fafbfe",
           100: "#D0E9FF",
           200: "#ABD8FF",
           300: "#87c3f7",
@@ -71,20 +87,23 @@ module.exports = {
       boxShadow: {
         inset: "inset 0 0 0 1px",
         "inset-2": "inset 0 0 0 2px",
+        header: "0 2px 15px 0 rgba(0, 0, 0, 0.05)",
+        sidebar: "0 1px 30px 1px rgba(0, 0, 0, 0.11)",
       },
       width: {
         "btn-w-cover": "255%",
         400: "400px",
-        sidebar: "256px",
+        "sidebar-collapsed": "var(--sidebar-width-collapsed)",
+        "sidebar-expanded": "var(--sidebar-width-expanded)",
       },
       height: {
         inherit: "inherit",
-        header: "64px",
         "btn-h-cover": "500%",
       },
       spacing: {
-        header: "64px",
-        sidebar: "256px",
+        header: "var(--header-height)",
+        "sidebar-collapsed": "var(--sidebar-width-collapsed)",
+        "sidebar-expanded": "var(--sidebar-width-expanded)",
       },
       animation: {
         "growing-bubble-tl-primary":

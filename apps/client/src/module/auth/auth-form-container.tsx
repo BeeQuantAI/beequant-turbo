@@ -15,7 +15,7 @@ export function AuthFormContainer(props: Props) {
           {"BeeQuant "}
           <span className="text-accent-400">AI</span>
         </span>
-        <span className="text-primary-300 text-xs">
+        <span className="text-primary-300 text-sm">
           Trading smart, trading with BeeQuant AI
         </span>
       </div>

@@ -1,5 +1,6 @@
 "use client";
-import { Icon, Icons } from "@src/module/common";
+import { LinearIcon, LinearIcons } from "@src/module/common";
+import { useToggle } from "@src/utils";
 import clsx from "clsx";
 
 type Props = {
@@ -7,7 +8,7 @@ type Props = {
 };
 export function SidebarMenu({ menu }: Props) {
   return (
-    <menu>
+    <menu className="my-[15px]">
       {menu.map((item, index) => (
         <SidebarMenuItem key={index} {...item} />
       ))}
@@ -18,7 +19,7 @@ export function SidebarMenu({ menu }: Props) {
 export type SidebarMenuItem =
   | {
       type: "button";
-      icon: Icons;
+      icon: LinearIcons;
       label: string;
       onClick: () => void;
     }
@@ -31,24 +32,22 @@ function SidebarMenuItem(props: SidebarMenuItem) {
     return (
       <button
         className={clsx(
-          "group/button relative flex h-9 w-full items-center gap-2 border-l-2 px-4 py-2 text-left text-sm transition-colors duration-300",
-          "hover:border-accent-500 dark:bg-primary-900 dark:hover:bg-primary-700 bg-primary-50 hover:bg-accent-50 border-transparent",
+          "group/button relative flex h-9 w-full px-5 py-[11px] text-left text-sm transition-colors duration-300",
+          "dark:bg-primary-900 dark:hover:bg-primary-700 bg-primary-50 hover:bg-accent-50",
+          "hover:before:bg-accent-500 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:transition-colors before:duration-300",
         )}
         onClick={props.onClick}
       >
-        <span>
-          <Icon icon={props.icon} className="text-lg" />
-        </span>
-        <span className="overflow-hidden transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
+        <LinearIcon icon={props.icon} />
+        <span className="text-md ml-2.5 self-center overflow-hidden leading-[16px] transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
           {props.label}
         </span>
-
         <span
           className={clsx(
             "group-data-[status=expanded]/container:hidden",
-            "absolute left-full h-9 overflow-hidden py-2 transition-[width_padding_color] duration-300",
-            "w-0 group-hover/button:w-48 group-hover/button:px-6",
-            "group-hover/button:bg-accent-50 group-hover/button:dark:bg-primary-700 dark:bg-primary-700",
+            "absolute left-full top-0 h-9 overflow-hidden py-2 transition-[width_padding_color] duration-300",
+            "w-0 group-hover/button:w-52 group-hover/button:px-6",
+            "group-hover/button:dark:bg-primary-700 dark:bg-primary-900 group-hover/button:bg-accent-50",
           )}
         >
           {props.label}
@@ -62,7 +61,9 @@ function SidebarMenuItem(props: SidebarMenuItem) {
   }
 
   if (props.type === "divider") {
-    return <div className="bg-primary-400 my-3 h-px"></div>;
+    return (
+      <div className="bg-primary-200 dark:bg-primary-700 my-[15px] h-px transition-colors duration-300"></div>
+    );
   }
 
   return <></>;
@@ -70,7 +71,7 @@ function SidebarMenuItem(props: SidebarMenuItem) {
 
 type SidebarAccordionProps = {
   type: "accordion";
-  icon: Icons;
+  icon: LinearIcons;
   label: string;
   options: {
     label: string;
@@ -78,49 +79,90 @@ type SidebarAccordionProps = {
   }[];
 };
 function SidebarAccordion(props: SidebarAccordionProps) {
+  const [open, toggleOpen] = useToggle(false);
+
   return (
-    <div className="group/accordion">
+    <div className="group/accordion" data-open={open}>
       <button
+        onClick={() => toggleOpen()}
         className={clsx(
-          "relative flex h-9 w-full items-center gap-2 border-l-2 px-4 py-2 text-left text-sm transition-colors duration-300",
-          "group-hover/accordion:border-accent-500 dark:bg-primary-900 group-hover/accordion:dark:bg-primary-700 bg-primary-50 group-hover/accordion:bg-accent-50 border-transparent",
+          "relative flex h-9 w-full gap-2.5 px-5 py-[11px] text-left text-sm transition-colors duration-300",
+          "dark:bg-primary-900 group-hover/accordion:dark:bg-primary-700 bg-primary-50 group-hover/accordion:bg-accent-50",
+          "hover:before:bg-accent-500 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:transition-colors before:duration-300",
         )}
       >
-        <span>
-          <Icon icon={props.icon} className="text-lg" />
-        </span>
-        <span className="overflow-hidden transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
+        <LinearIcon icon={props.icon} />
+        <span className="text-md overflow-hidden leading-[16px] transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
           {props.label}
         </span>
-
         <span
           className={clsx(
             "group-data-[status=expanded]/container:hidden",
-            "absolute left-full h-9 overflow-hidden py-2 transition-[width_padding_color_background-color] duration-300",
-            "w-0 group-hover/accordion:w-48 group-hover/accordion:px-6",
+            "absolute left-full top-0 h-9 overflow-hidden py-2 transition-[width_padding_color_background-color] duration-300",
+            "w-0 group-hover/accordion:w-52 group-hover/accordion:px-6",
             "group-hover/accordion:dark:text-primary-50 text-transparent group-hover/accordion:text-neutral-950",
-            "bg-primary-50 group-hover/accordion:bg-accent-50 dark:bg-primary-700 group-hover/accordion:dark:bg-primary-700",
+            "bg-primary-50 dark:bg-primary-700 group-hover/accordion:dark:bg-primary-700 group-hover/accordion:bg-accent-50",
           )}
         >
           {props.label}
         </span>
+
+        <LinearIcon
+          icon={open ? "chevron-down" : "chevron-right"}
+          className="text-primary-600 self-center text-[10px] group-data-[status=collapsed]/container:hidden"
+        />
       </button>
 
       <div
         className={clsx(
-          "group-data-[status=collapsed]/container:absolute group-data-[status=collapsed]/container:left-full group-data-[status=collapsed]/container:w-48",
-          "dark:bg-primary-900 bg-primary-100 grid transition-[grid-template-rows_padding] duration-300",
-          "group-data-hover/accordion:py-2 grid-rows-[0fr] py-0 group-hover/accordion:grid-rows-[1fr]",
+          "group-data-[status=collapsed]/container:hidden",
+          "grid transition-[grid-template-rows] duration-300 group-data-[open=true]/accordion:-mt-px",
+          "grid-rows-[0fr] group-data-[status=expanded]/container:group-data-[open=true]/accordion:grid-rows-[1fr]",
         )}
       >
-        <ul className="dark:bg-primary-700 bg-accent-50 overflow-hidden py-0 transition-[padding] duration-300 group-hover/accordion:py-2">
+        <ul
+          className={clsx(
+            "dark:bg-primary-700 bg-accent-50 overflow-hidden duration-300",
+          )}
+        >
           {props.options.map((o, i) => (
-            <li key={o.label + i}>
+            <li key={o.label + i} className="first:mt-[15px] last:mb-[15px]">
               <button
                 onClick={o.onClick}
                 className={clsx(
-                  "h-9 w-full border-l-2 px-4 py-2 text-left text-sm transition-colors duration-300",
-                  "hover:border-accent-500 dark:bg-primary-700 dark:hover:bg-primary-900 bg-accent-50 hover:bg-primary-50 border-transparent",
+                  "relative h-9 w-full py-2 pl-[43px] pr-4 text-left text-sm transition-colors duration-300",
+                  "dark:bg-primary-700 dark:hover:bg-primary-900 hover:bg-primary-50 bg-accent-50",
+                  "hover:before:bg-accent-500 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:transition-colors before:duration-300",
+                )}
+              >
+                {o.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div
+        className={clsx(
+          "group-data-[status=expanded]/container:hidden",
+          "grid transition-[grid-template-rows] duration-300",
+          "group-data-[status=collapsed]/container:absolute group-data-[status=collapsed]/container:left-full group-data-[status=collapsed]/container:w-52",
+          "grid-rows-[0fr] group-data-[status=collapsed]/container:group-hover/accordion:grid-rows-[1fr]",
+        )}
+      >
+        <ul
+          className={clsx(
+            "dark:bg-primary-700 bg-accent-50 overflow-hidden duration-300",
+          )}
+        >
+          {props.options.map((o, i) => (
+            <li key={o.label + i} className="first:mt-[15px] last:mb-[15px]">
+              <button
+                onClick={o.onClick}
+                className={clsx(
+                  "relative h-9 w-full px-4 py-2 text-left text-sm transition-colors duration-300",
+                  "dark:bg-primary-700 dark:hover:bg-primary-900 hover:bg-primary-50 bg-accent-50",
+                  "hover:before:bg-accent-500 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:transition-colors before:duration-300",
                 )}
               >
                 {o.label}
