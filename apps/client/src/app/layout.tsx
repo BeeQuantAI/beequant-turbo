@@ -6,8 +6,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `

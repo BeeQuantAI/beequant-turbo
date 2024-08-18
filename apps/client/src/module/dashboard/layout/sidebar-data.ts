@@ -36,16 +36,24 @@ export function useSidebar() {
 function useBotsMenu(): SidebarMenuItem {
   return {
     type: "accordion",
-    icon: "bots",
+    icon: "chart-bars",
     label: "Bots",
     options: [
       {
-        label: "Profile",
-        onClick: () => console.log("Navigate to Profile"),
+        label: "Bots Dashboard",
+        onClick: () => console.log("Navigate to Bots Dashboard"),
       },
       {
-        label: "Account",
-        onClick: () => console.log("Navigate to Account"),
+        label: "Bots Management",
+        onClick: () => console.log("Navigate to Bots Management"),
+      },
+      {
+        label: "Bot Create",
+        onClick: () => console.log("Navigate to Bot Create"),
+      },
+      {
+        label: "Bot Details",
+        onClick: () => console.log("Navigate to Bot Details"),
       },
     ],
   };
@@ -54,12 +62,24 @@ function useBotsMenu(): SidebarMenuItem {
 function useCryptoEconomyMenu(): SidebarMenuItem {
   return {
     type: "accordion",
-    icon: "crypto",
+    icon: "earth",
     label: "Cryptoeconomy",
     options: [
       {
         label: "Prices",
         onClick: () => console.log("Navigate to Prices"),
+      },
+      {
+        label: "Price Details",
+        onClick: () => console.log("Navigate to Price Details"),
+      },
+      {
+        label: "Exchanges",
+        onClick: () => console.log("Navigate to Exchanges"),
+      },
+      {
+        label: "Exchange Details",
+        onClick: () => console.log("Navigate to Exchange Details"),
       },
     ],
   };
@@ -70,7 +90,7 @@ function useThemeMenu(): SidebarMenuItem {
 
   return {
     type: "accordion",
-    icon: "theme",
+    icon: "diamond",
     label: "Theme",
     options: [
       {
@@ -88,7 +108,7 @@ function useThemeMenu(): SidebarMenuItem {
 function useAccount(): SidebarMenuItem {
   return {
     type: "accordion",
-    icon: "account",
+    icon: "user",
     label: "Account",
     options: [
       {
@@ -107,7 +127,7 @@ function useLogout(): SidebarMenuItem {
   return {
     type: "button",
     icon: "exit",
-    label: "Logout",
+    label: "Log Out",
     onClick: () => logout(),
   };
 }
