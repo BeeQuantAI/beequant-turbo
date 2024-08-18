@@ -92,7 +92,7 @@ function SidebarAccordion(props: SidebarAccordionProps) {
         )}
       >
         <LinearIcon icon={props.icon} />
-        <span className="text-md overflow-hidden leading-[16px] transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
+        <span className="text-md overflow-hidden transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
           {props.label}
         </span>
         <LinearIcon
