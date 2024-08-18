@@ -9,9 +9,11 @@ import {
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { AuthFormContainer } from "./auth-form-container";
-import { register, RegisterPayload } from "./auth-service";
 import { AuthRoute } from "./route";
 import { UserHelpMsgs } from "@src/utils/user-help-messgage";
+import { REGISTER } from "@src/module/graphql/user";
+import { useMutation } from "@apollo/client";
+import { useRouter} from 'next/navigation';
 
 type FormSchema = z.infer<typeof formSchema>;
 const formSchema = z.object({
@@ -25,6 +27,8 @@ const formSchema = z.object({
 });
 
 export function RegisterForm() {
+  const [register] = useMutation(REGISTER);
+  const router = useRouter();
   const {
     handleSubmit,
     control,
@@ -43,22 +47,30 @@ export function RegisterForm() {
     resolver: zodResolver(formSchema),
   });
 
-  async function action(payload: RegisterPayload) {
-    const res = await register(payload);
-
-    if (res?.error) {
-      setError("root", { message: res.error });
-    }
-  }
-
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit =async (data:FormSchema ) => {
     console.log(data);
     const { confirmPassword, realName, mobile, ...filteredData } = data;
-    action(filteredData);
-  });
+
+    try {
+    const res = await register({
+      variables: {
+        input: {
+          ...filteredData,
+        },
+      },
+    });
+    console.log("res", res);
+    if(res?.data.register.code === 200){
+      router.push(AuthRoute.Login.Path);
+    }
+    } catch (error) {
+      console.log(error);
+      setError("root", { message: (error as Error).message });
+    }
+  };
 
   return (
-    <AuthFormContainer onSubmit={onSubmit} error={errors.root?.message}>
+    <AuthFormContainer onSubmit={handleSubmit(onSubmit)} error={errors.root?.message}>
       <ControlledTextInput
         label="Display Name (optional)"
         tooltips={UserHelpMsgs.DisplayNameRegisterPage}

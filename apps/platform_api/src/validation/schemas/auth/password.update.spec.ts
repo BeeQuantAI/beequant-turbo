@@ -11,24 +11,24 @@ describe('passwordUpdateSchema', () => {
       oldPassword: validPassword,
       newPassword: validPassword,
     };
-    const { error } = passwordUpdateSchema.validate(data);
-    expect(error).toBeUndefined();
+    const validatedData = passwordUpdateSchema.parse(data);
+    expect(validatedData).toEqual(data);
   });
 
   it('should fail when oldPassword is missing', () => {
     const data = {
       newPassword: validPassword,
     };
-    const { error } = passwordUpdateSchema.validate(data);
-    expect(error).toBeDefined();
+    const result = passwordUpdateSchema.safeParse(data);
+    expect(result.success).toBe(false);
   });
 
   it('should fail when newPassword is missing', () => {
     const data = {
       oldPassword: validPassword,
     };
-    const { error } = passwordUpdateSchema.validate(data);
-    expect(error).toBeDefined();
+    const result = passwordUpdateSchema.safeParse(data);
+    expect(result.success).toBe(false);
   });
 
   it('should fail when oldPassword does not match pattern', () => {
@@ -36,8 +36,8 @@ describe('passwordUpdateSchema', () => {
       oldPassword: invalidPassword,
       newPassword: validPassword,
     };
-    const { error } = passwordUpdateSchema.validate(data);
-    expect(error).toBeDefined();
+    const result = passwordUpdateSchema.safeParse(data);
+    expect(result.success).toBe(false);
   });
 
   it('should fail when newPassword does not match pattern', () => {
@@ -45,8 +45,8 @@ describe('passwordUpdateSchema', () => {
       oldPassword: validPassword,
       newPassword: invalidPassword,
     };
-    const { error } = passwordUpdateSchema.validate(data);
-    expect(error).toBeDefined();
+    const result = passwordUpdateSchema.safeParse(data);
+    expect(result.success).toBe(false);
   });
 
   it('should fail when oldPassword is empty', () => {
@@ -54,8 +54,8 @@ describe('passwordUpdateSchema', () => {
       oldPassword: '',
       newPassword: validPassword,
     };
-    const { error } = passwordUpdateSchema.validate(data);
-    expect(error).toBeDefined();
+    const result = passwordUpdateSchema.safeParse(data);
+    expect(result.success).toBe(false);
   });
 
   it('should fail when newPassword is empty', () => {
@@ -63,7 +63,7 @@ describe('passwordUpdateSchema', () => {
       oldPassword: validPassword,
       newPassword: '',
     };
-    const { error } = passwordUpdateSchema.validate(data);
-    expect(error).toBeDefined();
+    const result = passwordUpdateSchema.safeParse(data);
+    expect(result.success).toBe(false);
   });
 });

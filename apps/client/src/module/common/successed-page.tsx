@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "@src/module/common";
-import successImg from "../../../public/image/success.png";
+import successImg from "/public/img/success.png";
 import { AuthRoute } from "../auth/route";
 
 interface SuccessProps {

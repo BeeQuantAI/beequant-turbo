@@ -12,6 +12,11 @@ import {
   SUCCESS,
   UPDATE_PASSWORD_ERROR,
 } from '@/common/constants/code';
+import { AccessTokenGuard } from '@/modules/auth/guards/jwt-access-auth.guard';
+import { RefreshJwtAuthGuard } from '@/modules/auth/guards/jwt-refresh-auth.guard';
+import { CombinedAuthGuard } from '@/modules/auth/guards/combined-auth.guard';
+import { TokenService } from '@/modules/auth/token.service';
+import { UserResolver } from '@/modules/user/user.resolver';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -22,6 +27,8 @@ describe('AuthService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         AuthService,
+        TokenService,
+        UserResolver,
         {
           provide: UserService,
           useValue: {
@@ -37,6 +44,9 @@ describe('AuthService', () => {
             sign: jest.fn(),
           },
         },
+        CombinedAuthGuard,
+        AccessTokenGuard,
+        RefreshJwtAuthGuard,
       ],
     }).compile();
 
@@ -52,7 +62,7 @@ describe('AuthService', () => {
   describe('login', () => {
     it('should return error if user does not exist', async () => {
       jest.spyOn(userService, 'findByEmail').mockResolvedValueOnce(null);
-      expect(await service.login('test@example.com', 'password')).toEqual({
+      expect(await service.login('test@example.com', 'password', true)).toEqual({
         code: 10002,
         message: "account doesn't exist",
       });
@@ -67,7 +77,7 @@ describe('AuthService', () => {
 
       jest.spyOn(bcrypt, 'compare' as any).mockResolvedValueOnce(false);
 
-      expect(await service.login('test@example.com', 'wrongpassword')).toEqual({
+      expect(await service.login('test@example.com', 'wrongpassword', true)).toEqual({
         code: 10003,
         message: 'login failed, wrong password',
       });
@@ -82,7 +92,7 @@ describe('AuthService', () => {
       jest.spyOn(bcrypt, 'compare' as any).mockResolvedValueOnce(true);
       jest.spyOn(jwtService, 'sign').mockReturnValue('token');
 
-      expect(await service.login('test@example.com', 'password')).toEqual({
+      expect(await service.login('test@example.com', 'password', true)).toEqual({
         code: 200,
         message: 'login successful',
         data: 'token',

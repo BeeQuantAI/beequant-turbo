@@ -1,20 +1,22 @@
-import "./globals.css";
+import './globals.css';
+import React from 'react';
+import ProviderWrapper from '@src/boot/ProviderWrapper';
 
 export default function RootLayout({
-  children,
-}: Readonly<{
+                                     children,
+                                   }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+    <head>
+      <link
+        rel="stylesheet"
+        href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css"
+      />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
                 try {
                   if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                     document.documentElement.classList.add('dark')
@@ -24,12 +26,15 @@ export default function RootLayout({
                   }
                 } catch (_) {}
               `,
-          }}
-        />
-      </head>
-      <body className="dark:bg-primary-800 text-primary-700 bg-primary-100 dark:text-primary-100 font-sans antialiased transition-colors">
-        {children}
-      </body>
+        }}
+      />
+    </head>
+    <body
+      className="text-primary-700 dark:bg-primary-800 bg-primary-100 dark:text-primary-100 font-sans antialiased transition-colors">
+    <ProviderWrapper>
+      {children}
+    </ProviderWrapper>
+    </body>
     </html>
   );
 }

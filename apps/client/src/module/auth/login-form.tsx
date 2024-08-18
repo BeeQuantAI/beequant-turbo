@@ -1,38 +1,42 @@
-"use client";
-import { zodResolver } from "@hookform/resolvers/zod";
+'use client';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Button,
-  Checkbox,
+  ControlledCheckbox,
   ControlledPasswordInput,
   ControlledTextInput,
   Icon,
-} from "@src/module/common";
-import clsx from "clsx";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { SocialButton } from "../common/social-button";
-import { AuthFormContainer } from "./auth-form-container";
-import { login, LoginPayload } from "./auth-service";
-import { AuthRoute } from "./route";
+} from '@src/module/common';
+import clsx from 'clsx';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { SocialButton } from '../common/social-button';
+import { AuthFormContainer } from './auth-form-container';
+import { AuthRoute } from './route';
+import { USER_LOGIN } from '@src/module/graphql/auth';
+import { useMutation } from '@apollo/client';
+import Cookies from 'js-cookie';
+import { DashboardRoute} from '@src/module/dashboard';
 
 type LoginForm = z.infer<typeof formSchema>;
 // source of truth for this login form <= this is the law, is the king, is the absolute authority for this form - K总
 const formSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
-  remeber: z.string(),
+  isStaySignedIn: z.boolean().optional(),
 });
 
 // Need this to enforce default value to match the LoginForm schema, because if you do it in the `useForm` hook, it turns it into a `Partial<LoginForm>` type.
 const defaultValues = {
-  email: "",
-  password: "",
-  remeber: "",
+  email: '',
+  password: '',
+  isStaySignedIn: false,
 } satisfies LoginForm; // Satifies make sure this object you are making can satisfy the LoginForm schema.
 
 export function LoginForm() {
   const router = useRouter();
+  const [login] = useMutation(USER_LOGIN);
   const {
     handleSubmit,
     control,
@@ -43,21 +47,29 @@ export function LoginForm() {
     resolver: zodResolver(formSchema),
   });
 
-  async function action(payload: LoginPayload) {
-    const res = await login(payload);
 
-    if (res?.error) {
-      console.log(res.error);
-      setError("root", { message: res.error });
+  const onSubmit = async (data: LoginForm) => {
+    try {
+      const res = await login({
+        variables: {
+          email: data.email,
+          password: data.password,
+          isStaySignedIn: data.isStaySignedIn,
+        },
+      });
+
+      if (res?.data?.login) {
+        Cookies.set('token', res.data.login.data);
+        router.push(DashboardRoute.Root.Path);
+      }
+    } catch (err) {
+      console.log(err);
+      setError('root', { message: (err as Error).message || 'An error occurred' });
     }
-  }
-
-  const onSubmit = handleSubmit((data) => {
-    action(data);
-  });
+  };
 
   return (
-    <AuthFormContainer onSubmit={onSubmit} error={errors.root?.message}>
+    <AuthFormContainer onSubmit={handleSubmit(onSubmit)} error={errors.root?.message}>
       <div className="flex flex-col gap-5">
         <ControlledTextInput
           label="Email"
@@ -75,11 +87,17 @@ export function LoginForm() {
             autoComplete="current-password"
           />
 
-          <AuthRoute.ForgetPassword.Link className="text-accent-300 hover:text-accent-400 self-end text-xs transition-colors">
+          <AuthRoute.ForgetPassword.Link
+            className="text-accent-300 hover:text-accent-400 self-end text-xs transition-colors">
             Forgot Password?
           </AuthRoute.ForgetPassword.Link>
 
-          <Checkbox className="self-start" label="Remember me" />
+          <ControlledCheckbox
+            className="self-start"
+            label="Stay signed in"
+            name="isStaySignedIn"
+            control={control}
+          />
         </div>
       </div>
 
@@ -95,8 +113,8 @@ export function LoginForm() {
       <div className="relative mt-8 flex w-full content-center justify-center">
         <p
           className={clsx(
-            "before:bg-primary-300 text-[13px] before:absolute before:left-0 before:top-2.5 before:h-px before:w-28",
-            "after:bg-primary-300 after:absolute after:right-0 after:top-2.5 after:h-px after:w-28",
+            'before:bg-primary-300 text-[13px] before:absolute before:left-0 before:top-2.5 before:h-px before:w-28',
+            'after:bg-primary-300 after:absolute after:right-0 after:top-2.5 after:h-px after:w-28',
           )}
         >
           Or Easily Using

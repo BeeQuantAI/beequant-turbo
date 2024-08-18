@@ -5,9 +5,8 @@ import { CreateUserInput } from '../user/dto/new-user.input';
 import { UserService } from '../user/user.service';
 import { Result } from '@/common/dto/result.type';
 import { UpdatePasswordInput } from '../user/dto/update-password.input';
-import * as dotenv from 'dotenv';
-dotenv.config();
-
+import { User } from '../user/models/user.entity';
+import { TokenService } from '@/modules/auth/token.service';
 import {
   ACCOUNT_EXIST,
   ACCOUNT_NOT_EXIST,
@@ -22,10 +21,11 @@ import {
 export class AuthService {
   constructor(
     private userService: UserService,
-    private jwtService: JwtService
+    private jwtService: JwtService,
+    private tokenService: TokenService
   ) {}
 
-  async login(email: string, password: string): Promise<Result> {
+  async login(email: string, password: string, isStaySignedIn: boolean): Promise<Result> {
     const user = await this.userService.findByEmail(email);
     if (!user) {
       return {
@@ -33,13 +33,21 @@ export class AuthService {
         message: "account doesn't exist",
       };
     }
+
     const isPasswordValid = await bcrypt.compare(password, user.password);
+    const periodOneDay = 1000 * 60 * 60 * 24;
+    const periodOneWeek = periodOneDay * 7;
+    const expiresFreshToken = isStaySignedIn ? periodOneWeek : periodOneDay;
+
     if (isPasswordValid) {
-      const token = this.jwtService.sign({ id: user.id });
+      const accessToken = await this.generateAccessToken(user);
+      const refreshToken = this.jwtService.sign({ id: user.id }, { expiresIn: expiresFreshToken });
+      await this.userService.update(user.id, { refreshToken });
+
       return {
         code: SUCCESS,
         message: 'login successful',
-        data: token,
+        data: accessToken,
       };
     }
     return {
@@ -112,5 +120,18 @@ export class AuthService {
         message: 'an unexpected error occurred during password update',
       };
     }
+  }
+
+  async generateAccessToken(user: User): Promise<string> {
+    const accessToken = this.jwtService.sign({ id: user.id }, { expiresIn: '1h' });
+    await this.userService.update(user.id, { accessToken });
+    return accessToken;
+  }
+
+  async revokeTokens(context: any): Promise<boolean> {
+    const req = context.req;
+    const { id } = await this.tokenService.processToken(req);
+    await this.userService.update(id, { refreshToken: '', accessToken: '' });
+    return true;
   }
 }

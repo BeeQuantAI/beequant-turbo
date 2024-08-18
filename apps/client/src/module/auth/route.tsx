@@ -5,6 +5,19 @@ type RouteLinkProps = {
   className?: string;
 };
 
+const Root = {
+  Metadata: {
+    title: "Landing Page | BeeQuant",
+  },
+  Path: "/" as const,
+  Link: ({ children, className }: RouteLinkProps) => (
+    <Link href={Root.Path} className={className}>
+      {children}
+    </Link>
+  ),
+};
+
+
 const Login = {
   Metadata: {
     title: "Sign In | BeeQuant",
@@ -53,9 +66,23 @@ const RegisterSuccessed = {
   ),
 };
 
+const LandingPage = {
+  Metadata: {
+    title: "Home | BeeQuant",
+  },
+  Path: "/landing" as const,
+  Link: ({ children, className }: RouteLinkProps) => (
+    <Link href={LandingPage.Path} className={className}>
+      {children}
+    </Link>
+  ),
+}
+
 export const AuthRoute = {
+  Root,
   Login,
   Register,
   ForgetPassword,
   RegisterSuccessed,
+  LandingPage,
 };

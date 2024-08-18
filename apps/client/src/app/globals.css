@@ -1,3 +1,13 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import '@src/assets/css/style-common.css';
+@import '@src/assets/css/style-header.css';
+@import '@src/assets/css/style-hero.css';
+@import '@src/assets/css/style-section.css';
+@import '@src/assets/css/style-feature.css';
+@import '@src/assets/css/style-deals.css';
+@import '@src/assets/css/style-investment.css';
+@import '@src/assets/css/style-footer.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

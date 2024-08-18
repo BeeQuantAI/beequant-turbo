@@ -1,38 +1,31 @@
-import { ArgumentsHost, Catch, ExceptionFilter } from '@nestjs/common';
-import { GqlArgumentsHost } from '@nestjs/graphql';
-import { NOT_EMPTY, VALIDATE_ERROR } from '@/common/constants/code';
+import { Catch, ExceptionFilter } from '@nestjs/common';
+import { NOT_EMPTY, UNKNOWN_ERROR, VALIDATE_ERROR } from '@/common/constants/code';
 import { EmptyFiledException } from '@/exceptions/empty-field.exception';
 import { InvalidInputException } from '@/exceptions/invalid-input.exception';
+import { GraphQLError } from 'graphql';
 
 @Catch(EmptyFiledException, InvalidInputException)
 export class PasswordPipeErrorFilter implements ExceptionFilter {
-  catch(exception: EmptyFiledException | InvalidInputException, host: ArgumentsHost) {
-    const gqlHost = GqlArgumentsHost.create(host);
-    const ctx = gqlHost.getContext();
-    const response = ctx.req.res;
+  catch(exception: EmptyFiledException | InvalidInputException) {
+    let errorCode: number;
+    let errorMessage: string;
 
-    if (exception instanceof EmptyFiledException) {
-      response.json({
-        data: {
-          changePassword: {
-            code: NOT_EMPTY,
-            message: exception.message,
-            data: null,
-          },
-        },
-      });
+    switch (exception.constructor) {
+      case EmptyFiledException:
+        errorCode = NOT_EMPTY;
+        errorMessage = exception.message;
+        break;
+      case InvalidInputException:
+        errorCode = VALIDATE_ERROR;
+        errorMessage = exception.message;
+        break;
+      default:
+        errorCode = UNKNOWN_ERROR;
+        errorMessage = exception.message;
     }
 
-    if (exception instanceof InvalidInputException) {
-      response.json({
-        data: {
-          changePassword: {
-            code: VALIDATE_ERROR,
-            message: exception.message,
-            data: null,
-          },
-        },
-      });
-    }
+    throw new GraphQLError(errorMessage, {
+      extensions: { code: errorCode },
+    });
   }
 }

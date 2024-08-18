@@ -4,13 +4,14 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserService } from '@/modules/user/user.service';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class AccessJwtStrategy extends PassportStrategy(Strategy, 'jwt-access-token') {
   constructor(private readonly userService: UserService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: process.env.JWT_SECRET,
     });
   }
+
   async validate(user): Promise<any> {
     if (!user.id) {
       throw new UnauthorizedException('Login first to access this endpoint.');

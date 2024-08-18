@@ -1,9 +1,9 @@
 "use client";
-import { logout } from "@src/module/auth";
 import { useTheme } from "@src/module/system";
 import { useRouter } from "next/navigation";
 import { DashboardRoute } from "../route";
 import { SidebarMenuItem } from "./sidebar-menu";
+import { useRevokeTokens } from '@src/module/auth/useRevokeTokens';
 
 export function useSidebar() {
   const router = useRouter();
@@ -11,7 +11,8 @@ export function useSidebar() {
   const cryptoeconomy = useCryptoEconomyMenu();
   const theme = useThemeMenu();
   const account = useAccount();
-  const logout = useLogout();
+  // const logout = useLogout();
+  const revokeTokens = useRevokeTokens();
 
   const menu: SidebarMenuItem[] = [
     {
@@ -27,7 +28,14 @@ export function useSidebar() {
     theme,
     account,
     { type: "divider" },
-    logout,
+    {
+      type: "button",
+      icon: "exit",
+      label: "Log Out",
+      onClick:async () => {
+        await revokeTokens();
+      },
+    },
   ];
 
   return { menu };
@@ -120,14 +128,5 @@ function useAccount(): SidebarMenuItem {
         onClick: () => console.log("Navigate to Account"),
       },
     ],
-  };
-}
-
-function useLogout(): SidebarMenuItem {
-  return {
-    type: "button",
-    icon: "exit",
-    label: "Log Out",
-    onClick: () => logout(),
   };
 }

@@ -6,12 +6,12 @@ export async function middleware(request: NextRequest) {
 
   if (!token) {
     const url = request.nextUrl.clone();
-    url.pathname = AuthRoute.Login.Path;
+    url.pathname = AuthRoute.LandingPage.Path;
     return NextResponse.redirect(url);
   }
-
   return NextResponse.next();
 }
+
 
 export const config = {
   matcher: [
@@ -20,8 +20,9 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
+     * - landing (landing page)
      * Feel free to modify this pattern to include more paths.
      */
-    "/((?!_next/static|_next/image|favicon.ico|login|register|.*\\.(?:svg|png|jpg|jpeg|gif|webp|auth)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|landing|login|register|.*\\.(?:svg|png|jpg|jpeg|gif|webp|auth)$).*)",
   ],
 };

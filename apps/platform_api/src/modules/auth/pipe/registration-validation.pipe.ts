@@ -1,31 +1,24 @@
-import { Injectable, PipeTransform, BadRequestException } from '@nestjs/common';
-import * as Joi from 'joi';
-import { EmptyFiledException } from '../../../exceptions/empty-field.exception';
-import { InvalidInputException } from '../../../exceptions/invalid-input.exception';
+import { Injectable, PipeTransform } from '@nestjs/common';
+import { errorMatcher } from '@/common/utils/errorMatcher';
+import { z, ZodIssue, ZodSchema } from 'zod';
 
 @Injectable()
 export class ValidationPipe implements PipeTransform {
-  constructor(private schema: Joi.ObjectSchema) {}
+  constructor(private schema: ZodSchema) {}
 
-  transform(value: any) {
-    const { error, value: validatedValue } = this.schema.validate(value);
-
-    if (error) {
-      if (
-        error.details[0].message === '"Email" is required' ||
-        error.details[0].message === '"Password" is required'
-      ) {
-        throw new EmptyFiledException(error.details[0].message);
+  transform(value: unknown) {
+    try {
+      const parsedValue = this.schema.parse(value);
+      return parsedValue;
+    } catch (error) {
+      const issues: ZodIssue = error.issues;
+      const code: z.ZodIssueCode = issues[0].code;
+      const message: string = issues[0].message;
+      if (code === 'too_small') {
+        const min: number = issues[0].minimum;
+        return errorMatcher({ code, message, min });
       }
-
-      if (
-        error.details[0].message ===
-        '"Display Name" with value "11" fails to match the required pattern: /^([a-zA-Z0-9-_]{4,15})?$/'
-      ) {
-        throw new InvalidInputException('"Display Name" fails to match the required pattern');
-      }
-      throw new BadRequestException(error.details[0].message);
+      return errorMatcher({ code, message });
     }
-    return validatedValue;
   }
 }

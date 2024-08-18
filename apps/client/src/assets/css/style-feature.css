@@ -1,0 +1,77 @@
+.feature {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 215px;
+    margin-top: 24px;
+    border-radius: 25px 10px 10px 10px;
+    border: 2px solid rgba(255, 255, 255, 0.05);
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: relative;
+    padding: 0 55px;
+}
+
+.feature__title {
+    font-size: 24px;
+    line-height: 34px;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.feature__text {
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 400;
+    color: #d0d0d0;
+    margin-bottom: 0;
+    text-align: center;
+}
+.feature__text b,
+.feature__text strong {
+    color: #fff;
+    font-weight: 500;
+}
+
+.screw--bl {
+    bottom: 15px;
+    left: 15px;
+}
+
+.screw--tr {
+    top: 15px;
+    right: 15px;
+}
+
+.screw--big-br {
+    width: 67px;
+    height: 67px;
+    background: url('/img/dodgers/screw--big-br.svg') no-repeat center;
+    bottom: 15px;
+    right: 15px;
+}
+
+
+
+
+
+
+
+
+
+@media (min-width: 576px) {
+    .section__btns {
+        margin-top: 50px;
+    }
+    .section__btns--two .section__btn {
+        margin: 0 20px;
+    }
+    .section__btns--mt {
+        margin-top: 20px;
+    }
+}

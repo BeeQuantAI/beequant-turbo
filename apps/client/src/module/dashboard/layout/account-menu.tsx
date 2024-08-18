@@ -1,25 +1,30 @@
-"use client";
-import { useToggle } from "@src/utils";
-import clsx from "clsx";
-import { useRouter } from "next/navigation";
-import { logout } from "../../auth";
-import { useUser } from "../../auth/user-store";
-import { LinearIcon, LinearIcons } from "../../common";
-import { DashboardRoute } from "../route";
+'use client';
+import { useToggle } from '@src/utils';
+import clsx from 'clsx';
+import { useRouter } from 'next/navigation';
+import { useUser } from '../../auth/user-store';
+import { LinearIcon, LinearIcons } from '../../common';
+import { AuthRoute } from '@src/module/auth';
+import { DashboardRoute } from '@src/module/dashboard/route';
+import { useRevokeTokens } from '@src/module/auth/useRevokeTokens';
 
 export function AccountMenu() {
+  const revokeTokens = useRevokeTokens();
   const user = useUser((s) => s.user);
   const router = useRouter();
   const [showDropdown, toggelShowDropdown] = useToggle(false);
 
-  const handleLogout = () => logout();
+  const handleLogout = async () => {
+    await revokeTokens();
+    router.push(AuthRoute.Login.Path);
+  };
 
   return (
     <div className="h-inherit relative ml-auto mr-[30px]">
       <button
         className={clsx(
-          "dark:hover:bg-primary-700 hover:bg-accent-50 flex h-full items-center px-[15px] py-3 transition-colors duration-300",
-          showDropdown && "dark:bg-primary-700 bg-accent-50",
+          'dark:hover:bg-primary-700 hover:bg-accent-50 flex h-full items-center px-[15px] py-3 transition-colors duration-300',
+          showDropdown && 'dark:bg-primary-700 bg-accent-50',
         )}
         onClick={() => toggelShowDropdown()}
       >
@@ -29,7 +34,7 @@ export function AccountMenu() {
             <img
               className="h-inherit aspect-square rounded-full object-cover"
               src={user.avatar}
-              alt={user.displayName + " avatar"}
+              alt={user.displayName + ' avatar'}
             />
             <span className="dark:text-primary-100 text-primary-700 ml-[10px] mr-[8px]">
               {user?.displayName}
@@ -46,13 +51,13 @@ export function AccountMenu() {
             </svg>
           </>
         )}
-        {!user && "Loading..."}
+        {!user && 'Loading...'}
       </button>
 
       <menu
         className={clsx(
-          "bg-primary-50 dark:bg-primary-900 absolute right-0 top-full z-[101] grid w-[210px] shadow-[0_2px_15px_0_rgba(0,0,0,0.05)] transition-[grid-template-rows_padding] duration-300",
-          showDropdown ? "grid-rows-[1fr] py-[15px]" : "grid-rows-[0fr] py-0",
+          'bg-primary-50 dark:bg-primary-900 absolute right-0 top-full z-[101] grid w-[210px] shadow-[0_2px_15px_0_rgba(0,0,0,0.05)] transition-[grid-template-rows_padding] duration-300',
+          showDropdown ? 'grid-rows-[1fr] py-[15px]' : 'grid-rows-[0fr] py-0',
         )}
       >
         <div className="overflow-hidden">
@@ -64,7 +69,7 @@ export function AccountMenu() {
           <MenuItem
             icon="briefcase"
             label="Wallet"
-            onClick={() => console.log("haha")}
+            onClick={() => console.log('haha')}
           />
 
           <div className="bg-primary-200 dark:bg-primary-700 my-[15px] h-px transition-colors duration-300"></div>
@@ -93,13 +98,14 @@ export type MenuItemProps = {
   label: string;
   onClick: () => void;
 };
+
 function MenuItem(props: MenuItemProps) {
   return (
     <button
       className={clsx(
-        "group/button text-primary-600 relative flex h-8 w-full gap-[10px] px-[20px] py-[9px] text-left text-sm transition-colors duration-300",
-        "bg-primary-50 dark:bg-primary-900 dark:hover:bg-primary-700 hover:bg-accent-50",
-        "hover:before:bg-accent-900 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:transition-colors before:duration-300",
+        'group/button text-primary-600 relative flex h-8 w-full gap-[10px] px-[20px] py-[9px] text-left text-sm transition-colors duration-300',
+        'bg-primary-50 dark:bg-primary-900 dark:hover:bg-primary-700 hover:bg-accent-50',
+        'hover:before:bg-accent-900 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:transition-colors before:duration-300',
       )}
       onClick={props.onClick}
     >
@@ -107,7 +113,8 @@ function MenuItem(props: MenuItemProps) {
         icon={props.icon}
         className="text-primary-100 dark:text-primary-700"
       />
-      <span className="dark:text-primary-100 text-md overflow-hidden leading-[16px] transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
+      <span
+        className="dark:text-primary-100 text-md overflow-hidden leading-[16px] transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
         {props.label}
       </span>
     </button>

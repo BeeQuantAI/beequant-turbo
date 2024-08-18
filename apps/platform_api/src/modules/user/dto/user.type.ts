@@ -8,7 +8,7 @@ export class UserType {
   email: string;
   @Field({ description: 'User is referred by' })
   ref: string;
-  @Field({ description: 'User real name' })
+  @Field({ description: 'User real name', nullable: true })
   realName?: string;
   @Field({ description: 'User display name' })
   displayName: string;

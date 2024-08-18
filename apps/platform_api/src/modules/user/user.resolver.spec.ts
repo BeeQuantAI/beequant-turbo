@@ -1,9 +1,14 @@
-import { GqlAuthGuard } from '@/common/guards/auth.guard';
-import { ExecutionContext } from '@nestjs/common';
-import { GqlExecutionContext } from '@nestjs/graphql';
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserResolver } from './user.resolver';
 import { UserService } from './user.service';
+import { ExecutionContext } from '@nestjs/common';
+import { GqlExecutionContext } from '@nestjs/graphql';
+import { JwtService } from '@nestjs/jwt';
+import { CombinedAuthGuard } from '@/modules/auth/guards/combined-auth.guard';
+import { AuthService } from '@/modules/auth/auth.service';
+import { AccessTokenGuard } from '@/modules/auth/guards/jwt-access-auth.guard';
+import { RefreshJwtAuthGuard } from '@/modules/auth/guards/jwt-refresh-auth.guard';
+import { TokenService } from '@/modules/auth/token.service';
 
 describe('UserResolver', () => {
   let resolver: UserResolver;
@@ -26,6 +31,22 @@ describe('UserResolver', () => {
     },
   };
 
+  const mockAccessTokenGuard = {
+    canActivate: jest.fn(() => true),
+  };
+
+  const mockRefreshJwtAuthGuard = {
+    canActivate: jest.fn(() => true),
+  };
+
+  const mockAuthService = {
+    generateAccessToken: jest.fn().mockResolvedValue('newAccessToken'),
+  };
+
+  const mockTokenService = {
+    processToken: jest.fn().mockResolvedValue(true),
+  };
+
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -35,7 +56,7 @@ describe('UserResolver', () => {
           useValue: mockUserService,
         },
         {
-          provide: GqlAuthGuard,
+          provide: CombinedAuthGuard,
           useValue: {
             canActivate: (context: ExecutionContext) => {
               const ctx = GqlExecutionContext.create(context);
@@ -44,6 +65,23 @@ describe('UserResolver', () => {
             },
           },
         },
+        {
+          provide: AuthService,
+          useValue: mockAuthService,
+        },
+        {
+          provide: AccessTokenGuard,
+          useValue: mockAccessTokenGuard,
+        },
+        {
+          provide: RefreshJwtAuthGuard,
+          useValue: mockRefreshJwtAuthGuard,
+        },
+        {
+          provide: TokenService,
+          useValue: mockTokenService,
+        },
+        JwtService,
       ],
     }).compile();
 

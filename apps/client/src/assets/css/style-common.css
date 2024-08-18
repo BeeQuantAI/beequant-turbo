@@ -1,0 +1,321 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&display=swap');
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+html,
+.body--home {
+    height: 100%;
+}
+
+.body--home {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+    background-color: #16142a;
+    -webkit-font-smoothing: antialiased;
+}
+
+.body--home {
+    background: url("/img/bg.png") no-repeat top center/cover #16142a;
+}
+
+.body--home::-webkit-scrollbar {
+    width: 16px;
+}
+
+.body--home::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.body--home::-webkit-scrollbar-thumb {
+    background-color: #16142a;
+    outline: 0 solid rgba(255, 255, 255, 0.05);
+}
+
+button {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    transition: 0.5s ease;
+    transition-property: color, background-color, border-color, box-shadow;
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+}
+
+a {
+    text-decoration: none;
+    transition: 0.5s ease;
+    transition-property: color, background-color, border-color, box-shadow;
+}
+
+a:hover,
+a:active,
+a:focus {
+    outline: none;
+    text-decoration: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+:focus {
+    outline: -webkit-focus-ring-color auto 0px;
+}
+
+:focus-visible {
+    outline: 0px dotted;
+}
+
+::-moz-selection {
+    background: #a034fa;
+    color: #16142a;
+    text-shadow: none;
+}
+
+::selection {
+    background: #a034fa;
+    color: #16142a;
+    text-shadow: none;
+}
+
+
+.section {
+    position: relative;
+    padding-bottom: 60px;
+}
+
+.block-icon {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    border: 2px solid;
+    border-radius: 50%;
+}
+
+.block-icon i {
+    font-size: 22px;
+    color: #fff;
+}
+
+.block-icon:before {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    width: 74px;
+    height: 74px;
+    top: 50%;
+    left: 50%;
+}
+
+.block-icon--orange {
+    border-color: #e66c12;
+}
+
+.block-icon--orange:before {
+    background: url('/img/dodgers/dots--orange.svg') no-repeat center;
+}
+
+.block-icon--green {
+    border-color: #39dc01;
+}
+
+.block-icon--green:before {
+    background: url('/img/dodgers/dots--green.svg') no-repeat center;
+}
+
+.block-icon--blue {
+    border-color: #4399fc;
+}
+
+.block-icon--blue:before {
+    background: url('/img/dodgers/dots--blue.svg') no-repeat center;
+}
+
+
+.screw {
+    position: absolute;
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: url('/img/dodgers/screw.svg') no-repeat center;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.section__title {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.section__title h1,
+.section__title h2 {
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: 300;
+    color: #fff;
+    margin-bottom: 16px;
+    text-align: center;
+    position: relative;
+    width: auto;
+    padding: 0 50px;
+}
+
+.section__title h1:before,
+.section__title h2:before,
+.section__title h1:after,
+.section__title h2:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+    top: 50%;
+    margin-top: -12px;
+}
+
+.section__title h1:before,
+.section__title h2:before {
+    left: 0;
+    background: url('/img/dodgers/title--left.svg') no-repeat center;
+}
+
+.section__title h1:after,
+.section__title h2:after {
+    right: 0;
+    background: url('/img/dodgers/title--right.svg') no-repeat center;
+}
+
+.section__title p {
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 400;
+    color: #d0d0d0;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.section__title p a {
+    color: #fff;
+    border-bottom: 2px solid #a034fa;
+}
+
+.section__title p a:hover {
+    border-color: transparent;
+}
+
+.screw--lines-bl {
+    width: 67px;
+    height: 67px;
+    background: url('/img/dodgers/screw--lines-bl.svg') no-repeat center;
+    bottom: 15px;
+    left: 15px;
+}
+
+.screw--lines-br {
+    width: 67px;
+    height: 67px;
+    background: url('/img/dodgers/screw--lines-br.svg') no-repeat center;
+    bottom: 15px;
+    right: 15px;
+}
+
+
+.screw--lines-tr {
+    width: 67px;
+    height: 67px;
+    background: url('/img/dodgers/screw--lines-tr.svg') no-repeat center;
+    top: 15px;
+    right: 15px;
+}
+
+.screw--lines-tl {
+    width: 67px;
+    height: 67px;
+    background: url('/img/dodgers/screw--lines-tl.svg') no-repeat center;
+    top: 15px;
+    left: 15px;
+}
+
+
+@media (min-width: 768px) {
+    .section {
+        padding-bottom: 70px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .section {
+        padding-bottom: 100px;
+    }
+
+}
+
+
+@media (min-width: 576px) {
+    .container,
+    .container-sm {
+        max-width: 540px;
+    }
+
+    .section__title h1,
+    .section__title h2 {
+        font-size: 36px;
+        line-height: 50px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container,
+    .container-md,
+    .container-sm {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl {
+        max-width: 1140px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl,
+    .container-xxl {
+        max-width: 1320px;
+    }
+}

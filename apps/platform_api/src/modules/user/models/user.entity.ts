@@ -60,6 +60,20 @@ export class User extends CommonEntity {
   qq: string;
 
   @Column({
+    comment: 'Refresh token',
+    default: '',
+    nullable: true,
+  })
+  refreshToken: string;
+
+  @Column({
+    comment: 'Access token',
+    default: '',
+    nullable: true,
+  })
+  accessToken: string;
+
+  @Column({
     comment: 'Last login date',
     nullable: true,
   })

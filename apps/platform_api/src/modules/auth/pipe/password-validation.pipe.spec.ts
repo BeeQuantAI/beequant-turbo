@@ -2,6 +2,7 @@ import { PasswordValidationPipe } from './password-validation.pipe';
 import { passwordUpdateSchema } from '@/validation/schemas/auth/password.update';
 import { EmptyFiledException } from '@/exceptions/empty-field.exception';
 import { InvalidInputException } from '@/exceptions/invalid-input.exception';
+import { PasswordErrorMsgs, PasswordUpdateErrorMsgs } from '@/common/utils/helpers';
 
 describe('PasswordValidationPipe', () => {
   let pipe: PasswordValidationPipe;
@@ -24,7 +25,7 @@ describe('PasswordValidationPipe', () => {
       newPassword: 'newPass123!',
     };
     expect(() => pipe.transform(value)).toThrow(EmptyFiledException);
-    expect(() => pipe.transform(value)).toThrow('"Old Password" is required');
+    expect(() => pipe.transform(value)).toThrow(PasswordUpdateErrorMsgs.OldPasswordRequired);
   });
 
   it('should throw EmptyFiledException when newPassword is missing', () => {
@@ -33,28 +34,42 @@ describe('PasswordValidationPipe', () => {
       newPassword: '',
     };
     expect(() => pipe.transform(value)).toThrow(EmptyFiledException);
-    expect(() => pipe.transform(value)).toThrow('"New Password" is required');
+    expect(() => pipe.transform(value)).toThrow(PasswordUpdateErrorMsgs.NewPasswordRequired);
+  });
+
+  it('should throw InvalidInputException when newPassword is too short', () => {
+    const value = {
+      oldPassword: 'invalid12!',
+      newPassword: 'validPa',
+    };
+    expect(() => pipe.transform(value)).toThrow(InvalidInputException);
+    expect(() => pipe.transform(value)).toThrow(PasswordErrorMsgs.MinLength);
+  });
+
+  it('should throw InvalidInputException when newPassword is too long', () => {
+    const value = {
+      oldPassword: 'invalid12!',
+      newPassword: 'validPaabcedfs01234567890!!abcdefghi0123',
+    };
+    expect(() => pipe.transform(value)).toThrow(InvalidInputException);
+    expect(() => pipe.transform(value)).toThrow(PasswordErrorMsgs.MaxLength);
   });
 
   it('should throw InvalidInputException when oldPassword does not match pattern', () => {
     const value = {
-      oldPassword: 'invalid',
+      oldPassword: 'invalid12',
       newPassword: 'validPass123!',
     };
     expect(() => pipe.transform(value)).toThrow(InvalidInputException);
-    expect(() => pipe.transform(value)).toThrow(
-      'Validation failed: password must contain 8 to 32 characters, including letter, number and special character.'
-    );
+    expect(() => pipe.transform(value)).toThrow(PasswordErrorMsgs.Invalid);
   });
 
   it('should throw InvalidInputException when newPassword does not match pattern', () => {
     const value = {
       oldPassword: 'validPass123!',
-      newPassword: 'invalid',
+      newPassword: 'invalid12',
     };
     expect(() => pipe.transform(value)).toThrow(InvalidInputException);
-    expect(() => pipe.transform(value)).toThrow(
-      'Validation failed: password must contain 8 to 32 characters, including letter, number and special character.'
-    );
+    expect(() => pipe.transform(value)).toThrow(PasswordErrorMsgs.Invalid);
   });
 });

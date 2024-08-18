@@ -38,6 +38,7 @@ import { AuthModule } from './modules/auth/auth.module';
         };
         return errorMessage;
       },
+      context: ({ req, res }) => ({ req, res }),
     }),
     UserModule,
     AuthModule,

@@ -1,11 +1,10 @@
-import { GqlAuthGuard } from '@/common/guards/auth.guard';
-import { UseGuards } from '@nestjs/common';
 import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { SkipAuth } from '../auth/skip-auth.decorator';
 import { CreateUserInput } from './dto/new-user.input';
-import { UpdateUserInput } from './dto/update-user.input';
 import { UserType } from './dto/user.type';
 import { UserService } from './user.service';
+import { UpdateUserInput } from './dto/update-user.input';
+import { UseGuards } from '@nestjs/common';
+import { CombinedAuthGuard } from '@/modules/auth/guards/combined-auth.guard';
 
 @Resolver()
 export class UserResolver {
@@ -22,24 +21,25 @@ export class UserResolver {
   }
 
   @Query(() => UserType, { description: 'Find user by id' })
+  @UseGuards(CombinedAuthGuard)
   async getUserById(@Args('id') id: string): Promise<UserType> {
     return await this.userService.find(id);
   }
 
   @Query(() => UserType, { description: 'Find user by context' })
-  @UseGuards(GqlAuthGuard)
+  @UseGuards(CombinedAuthGuard)
   async getUserInfo(@Context() cxt: any): Promise<UserType> {
     const id = cxt.req.user.id;
     return await this.userService.find(id);
   }
 
-  @SkipAuth()
   @Mutation(() => Boolean, { description: 'Create new user' })
   async createUser(@Args('input') input: CreateUserInput): Promise<boolean> {
     return await this.userService.create(input);
   }
 
   @Mutation(() => Boolean, { description: 'Update user info' })
+  @UseGuards(CombinedAuthGuard)
   async updateUser(
     @Args('id') id: string,
     @Args('input') input: UpdateUserInput
