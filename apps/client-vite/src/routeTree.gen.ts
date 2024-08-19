@@ -20,6 +20,7 @@ import { Route as TableImport } from './routes/table'
 const QueryLazyImport = createFileRoute('/query')()
 const FormLazyImport = createFileRoute('/form')()
 const IndexLazyImport = createFileRoute('/')()
+const authLoginLazyImport = createFileRoute('/(auth)/login')()
 
 // Create/Update Routes
 
@@ -42,6 +43,13 @@ const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const authLoginLazyRoute = authLoginLazyImport
+  .update({
+    path: '/login',
+    getParentRoute: () => rootRoute,
+  } as any)
+  .lazy(() => import('./routes/(auth)/login.lazy').then((d) => d.Route))
 
 // Populate the FileRoutesByPath interface
 
@@ -75,6 +83,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QueryLazyImport
       parentRoute: typeof rootRoute
     }
+    '/(auth)/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof authLoginLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -85,6 +100,7 @@ export const routeTree = rootRoute.addChildren({
   TableRoute,
   FormLazyRoute,
   QueryLazyRoute,
+  authLoginLazyRoute,
 })
 
 /* prettier-ignore-end */
@@ -98,7 +114,8 @@ export const routeTree = rootRoute.addChildren({
         "/",
         "/table",
         "/form",
-        "/query"
+        "/query",
+        "/login"
       ]
     },
     "/": {
@@ -112,6 +129,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/query": {
       "filePath": "query.lazy.tsx"
+    },
+    "/login": {
+      "filePath": "(auth)/login.lazy.tsx"
     }
   }
 }
