@@ -6,6 +6,16 @@ Ask Damon, don't ask Norris
 
 ## How do I run this
 
+### Preping local database
+
+A. you could use your locally installed pg instance
+or
+B. `cd apps/platform_api && docker compose up -d && cd ../../`
+
+Just make sure you db is accessible via the `.env` you created for the servier/platform_api
+
+### Start client and server
+
 1. git clone this repo to your local machine with following command:
    ```bash
    git clone https://github.com/BeeQuantAI/beequant-turbo.git
@@ -29,10 +39,8 @@ Ask Damon, don't ask Norris
     JWT_SECRET=hello_beeQuant
     DEFAULT_REFERENCE=COREINTERNAL
     DEFAULT_DISPLAY_NAME='New User'
-   ``` 
-6. Please ensure that you have docker desktop installed and running on your machine.
-7. End the postgres container in your docker desktop if you have one running for the old platform_api backend.(optional)
-8. Run `yarn dev client` to start the new platform app
+   ```
+6. Run `yarn dev client` to start the new platform app
 
 ## What workspaces do we have here?
 
