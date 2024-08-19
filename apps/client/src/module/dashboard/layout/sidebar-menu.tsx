@@ -86,13 +86,13 @@ function SidebarAccordion(props: SidebarAccordionProps) {
       <button
         onClick={() => toggleOpen()}
         className={clsx(
-          "relative flex h-9 w-full gap-2.5 px-5 py-[11px] text-left text-sm transition-colors duration-300",
+          "relative flex h-9 w-full gap-2.5 px-5 py-[11px] text-left transition-colors duration-300",
           "dark:bg-primary-900 group-hover/accordion:dark:bg-primary-700 bg-primary-50 group-hover/accordion:bg-accent-50",
           "hover:before:bg-accent-500 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:transition-colors before:duration-300",
         )}
       >
         <LinearIcon icon={props.icon} />
-        <span className="text-md overflow-hidden transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
+        <span className="text-md overflow-hidden leading-[16px] transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
           {props.label}
         </span>
         <LinearIcon
