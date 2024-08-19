@@ -50,7 +50,7 @@ export function ControlledTextInput<TFieldValues extends object>({
 
   return (
     <label className={inputVariants({ direction })}>
-      <span className="text-[13px]">
+      <span>
         {label}
         {!!tooltips && direction === "vertical" && (
           <span className="text-accent-400 hidden group-focus-within:inline">
@@ -60,13 +60,13 @@ export function ControlledTextInput<TFieldValues extends object>({
       </span>
       <div className={clsx(!!tooltips && "flex flex-col")}>
         {!!tooltips && direction === "horizontal" && (
-          <span className="text-accent-400 hidden space-y-1 text-[13px] group-focus-within:inline">
+          <span className="text-accent-400 hidden space-y-1 group-focus-within:inline">
             {tooltips}
           </span>
         )}
         <div className="relative flex items-stretch">
           {!!leftElement && (
-            <span className="bg-primary-100 text-primary-300 p-2 transition-colors duration-300 dark:bg-neutral-700">
+            <span className="bg-primary-100 text-primary-300 p-2 transition-colors duration-300 dark:bg-[#33333a]">
               {leftElement}
             </span>
           )}
