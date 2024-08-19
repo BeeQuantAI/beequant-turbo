@@ -1,9 +1,5 @@
 # BeeQuant Turbo
 
-## What is this?
-
-Ask Damon, don't ask Norris
-
 ## How do I run this
 
 ### Preping local database
@@ -45,5 +41,4 @@ Just make sure you db is accessible via the `.env` you created for the servier/p
 ## What workspaces do we have here?
 
 - client: the new platform app
-- platform-app: the old platform app
 - platform-api: the backend
