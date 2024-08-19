@@ -72,7 +72,7 @@ export function AccountMenu() {
           <MenuItem
             icon="cog"
             label="Settings"
-            onClick={() => console.log("haha")}
+            onClick={() => router.push(DashboardRoute.Setting.Path)}
           />
           <MenuItem icon="exit" label="Log Out" onClick={handleLogout} />
         </div>

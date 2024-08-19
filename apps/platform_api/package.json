@@ -5,11 +5,10 @@
   "author": "Chris Wang",
   "license": "UNLICENSED",
   "scripts": {
-    "predev": "docker compose up -d",
     "build": "nest build",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
-    "dev": "yarn predev && nest start",
+    "dev": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start": "node dist/main",

@@ -2,7 +2,7 @@
   "name": "@beequant/client",
   "version": "0.1.0",
   "scripts": {
-    "dev": "yarn dev-codegen & yarn dev-next",
+    "dev": "concurrently 'yarn:dev-*' --restart-tries 3 --restart-after 3000",
     "dev-codegen": "graphql-codegen --watch",
     "dev-next": "next dev -p 3010",
     "build": "next build",
@@ -39,6 +39,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.20",
+    "concurrently": "^8.2.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8",
