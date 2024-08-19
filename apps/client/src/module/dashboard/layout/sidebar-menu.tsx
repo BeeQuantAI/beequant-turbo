@@ -45,8 +45,8 @@ function SidebarMenuItem(props: SidebarMenuItem) {
         <span
           className={clsx(
             "group-data-[status=expanded]/container:hidden",
-            "absolute left-full top-0 h-9 overflow-hidden py-2 transition-[width_padding_color] duration-300",
-            "w-0 group-hover/button:w-52 group-hover/button:px-6",
+            "text-md absolute left-full top-0 h-9 overflow-hidden py-2 transition-[width_padding_color] duration-300",
+            "w-0 group-hover/button:w-[220px] group-hover/button:px-4",
             "group-hover/button:dark:bg-primary-700 dark:bg-primary-900 group-hover/button:bg-accent-50",
           )}
         >
@@ -86,7 +86,7 @@ function SidebarAccordion(props: SidebarAccordionProps) {
       <button
         onClick={() => toggleOpen()}
         className={clsx(
-          "relative flex h-9 w-full gap-2.5 px-5 py-[11px] text-left text-sm transition-colors duration-300",
+          "relative flex h-9 w-full gap-2.5 px-5 py-[11px] text-left transition-colors duration-300",
           "dark:bg-primary-900 group-hover/accordion:dark:bg-primary-700 bg-primary-50 group-hover/accordion:bg-accent-50",
           "hover:before:bg-accent-500 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:transition-colors before:duration-300",
         )}
@@ -95,22 +95,22 @@ function SidebarAccordion(props: SidebarAccordionProps) {
         <span className="text-md overflow-hidden leading-[16px] transition-[width] group-data-[status=collapsed]/container:w-0 group-data-[status=expanded]/container:w-full">
           {props.label}
         </span>
+        <LinearIcon
+          icon={open ? "chevron-down" : "chevron-right"}
+          className="text-primary-600 self-center text-[10px] group-data-[status=collapsed]/container:hidden"
+        />
+
         <span
           className={clsx(
             "group-data-[status=expanded]/container:hidden",
-            "absolute left-full top-0 h-9 overflow-hidden py-2 transition-[width_padding_color_background-color] duration-300",
-            "w-0 group-hover/accordion:w-52 group-hover/accordion:px-6",
-            "group-hover/accordion:dark:text-primary-50 text-transparent group-hover/accordion:text-neutral-950",
+            "transition-cl text-md absolute left-full top-0 h-9 overflow-hidden py-2 transition-[width,padding,color,background-color] duration-300",
+            "w-0 group-hover/accordion:w-[220px] group-hover/accordion:px-4",
+            "group-hover/accordion:dark:text-primary-100 group-hover/accordion:text-primary-700 text-transparent",
             "bg-primary-50 dark:bg-primary-700 group-hover/accordion:dark:bg-primary-700 group-hover/accordion:bg-accent-50",
           )}
         >
           {props.label}
         </span>
-
-        <LinearIcon
-          icon={open ? "chevron-down" : "chevron-right"}
-          className="text-primary-600 self-center text-[10px] group-data-[status=collapsed]/container:hidden"
-        />
       </button>
 
       <div
@@ -130,7 +130,7 @@ function SidebarAccordion(props: SidebarAccordionProps) {
               <button
                 onClick={o.onClick}
                 className={clsx(
-                  "relative h-9 w-full py-2 pl-[43px] pr-4 text-left text-sm transition-colors duration-300",
+                  "text-md relative h-9 w-full py-2 pl-[43px] pr-4 text-left transition-colors duration-300",
                   "dark:bg-primary-700 dark:hover:bg-primary-900 hover:bg-primary-50 bg-accent-50",
                   "hover:before:bg-accent-500 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:transition-colors before:duration-300",
                 )}
@@ -146,7 +146,7 @@ function SidebarAccordion(props: SidebarAccordionProps) {
         className={clsx(
           "group-data-[status=expanded]/container:hidden",
           "grid transition-[grid-template-rows] duration-300",
-          "group-data-[status=collapsed]/container:absolute group-data-[status=collapsed]/container:left-full group-data-[status=collapsed]/container:w-52",
+          "group-data-[status=collapsed]/container:absolute group-data-[status=collapsed]/container:left-full group-data-[status=collapsed]/container:w-[220px]",
           "grid-rows-[0fr] group-data-[status=collapsed]/container:group-hover/accordion:grid-rows-[1fr]",
         )}
       >
@@ -160,7 +160,7 @@ function SidebarAccordion(props: SidebarAccordionProps) {
               <button
                 onClick={o.onClick}
                 className={clsx(
-                  "relative h-9 w-full px-4 py-2 text-left text-sm transition-colors duration-300",
+                  "text-md relative h-9 w-full px-4 py-2 text-left leading-[14px] transition-colors duration-300",
                   "dark:bg-primary-700 dark:hover:bg-primary-900 hover:bg-primary-50 bg-accent-50",
                   "hover:before:bg-accent-500 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:transition-colors before:duration-300",
                 )}
