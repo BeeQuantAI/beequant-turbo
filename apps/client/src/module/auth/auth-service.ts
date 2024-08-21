@@ -47,6 +47,17 @@ export async function login(payload: LoginPayload) {
   }
 }
 
+export async function OauthLogin(payload: { token: string }) {
+  if (payload.token){
+    cookies().set("token", payload.token);
+    redirect("/dashboard");
+  }
+  else {
+    console.log("No token found in the URL, Oauth failed.");
+    redirect(AuthRoute.Login.Path);
+  }
+}
+
 const registerMutation = graphql(`
   mutation Register($input: CreateUserInput!) {
     register(input: $input) {
