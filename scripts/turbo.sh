@@ -9,7 +9,7 @@ if [ -n "$CMD" ]; then
     if [ -n "$FILTER" ]; then
       case $FILTER in
       "client")
-        yarn turbo run dev --filter=$NAMESPACE/client --filter=$NAMESPACE/platform-api
+        yarn turbo run dev --filter=@beequant/client --filter=@beequant/platform-api
         ;;
 
       *)
