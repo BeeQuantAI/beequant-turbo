@@ -110,7 +110,7 @@ export function ControlledPasswordInput<TFieldValues extends object>({
       rightElement={
         showPassword ? (
           <button
-            className="bg-accent-400 text-primary-50 p-2"
+            className="bg-accent-600 text-primary-50 p-2"
             type="button"
             onClick={() => toggleShowPassword()}
           >
@@ -118,7 +118,7 @@ export function ControlledPasswordInput<TFieldValues extends object>({
           </button>
         ) : (
           <button
-            className="bg-accent-400 text-primary-50 p-2"
+            className="bg-accent-300 text-primary-50 hover:bg-accent-400 p-2"
             type="button"
             onClick={() => toggleShowPassword()}
           >
