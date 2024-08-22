@@ -6,16 +6,18 @@ type Props = {
 export function AuthFormContainer(props: Props) {
   return (
     <form
-      className="dark:bg-primary-900 bg-primary-50 flex w-full max-w-[520px] flex-col gap-5 px-[60px] py-[50px] transition-colors duration-300 max-sm:px-[30px] max-sm:py-[35px]"
+      className="dark:bg-primary-900 bg-primary-50 flex w-full max-w-[520px] flex-col gap-5 px-[60px] py-[50px] transition-colors duration-300 max-sm:px-[30px] max-sm:py-[35px] lg:my-5 lg:mt-10 lg:min-w-[1000px] lg:px-[80px] lg:py-[70px] lg:text-[34px]"
       onSubmit={props.onSubmit}
     >
       <div className="border-accent-400 mb-3 flex flex-col border-l-4 px-2.5">
-        <span className="text-2xl max-sm:text-xl">Welcome to</span>
-        <span className="tracking-widemax-sm:text-xl text-2xl font-bold max-sm:text-xl">
+        <span className="text-2xl max-sm:text-xl lg:text-[64px]">
+          Welcome to
+        </span>
+        <span className="tracking-widemax-sm:text-xl text-2xl font-bold max-sm:text-xl lg:text-[64px]">
           {"BeeQuant "}
           <span className="text-accent-400">AI</span>
         </span>
-        <span className="text-primary-300 text-sm">
+        <span className="text-primary-300 text-sm lg:text-3xl">
           Trading smart, trading with BeeQuant AI
         </span>
       </div>

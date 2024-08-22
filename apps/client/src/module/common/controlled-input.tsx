@@ -9,7 +9,7 @@ export interface InputVariants extends VariantProps<typeof inputVariants> {}
 const inputVariants = cva("group", {
   variants: {
     direction: {
-      vertical: ["space-y-1"],
+      vertical: ["space-y-1 lg:space-y-3"],
       horizontal: [
         "grid grid-cols-[80px_1fr] items-center gap-x-[10px] sm:grid-cols-[120px_1fr] sm:gap-x-5",
       ],
@@ -71,7 +71,7 @@ export function ControlledTextInput<TFieldValues extends object>({
             </span>
           )}
           <input
-            className="focus:shadow-accent-400 dark:focus:shadow-accent-400 shadow-primary-100 dark:shadow-primary-700 shadow-inset flex-1 bg-transparent px-2 py-1 text-xs transition-[box-shadow] duration-300 placeholder:text-xs focus:outline-none"
+            className="focus:shadow-accent-400 dark:focus:shadow-accent-400 shadow-primary-100 dark:shadow-primary-700 shadow-inset flex-1 bg-transparent px-2 py-1 text-xs transition-[box-shadow] duration-300 placeholder:text-xs focus:outline-none lg:text-3xl lg:placeholder:text-3xl"
             placeholder={label ? label : props.placeholder}
             {...props}
             {...field}

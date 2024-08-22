@@ -75,7 +75,7 @@ export function LoginForm() {
             autoComplete="current-password"
           />
 
-          <AuthRoute.ForgetPassword.Link className="text-accent-300 hover:text-accent-400 self-end text-xs transition-colors">
+          <AuthRoute.ForgetPassword.Link className="text-accent-300 hover:text-accent-400 self-end text-xs transition-colors lg:text-2xl">
             Forgot Password?
           </AuthRoute.ForgetPassword.Link>
 
@@ -83,7 +83,9 @@ export function LoginForm() {
         </div>
       </div>
 
-      <Button type="submit">Sign In</Button>
+      <Button type="submit" className="lg:my-5">
+        Sign In
+      </Button>
 
       <Button
         variant="outline"
@@ -95,15 +97,15 @@ export function LoginForm() {
       <div className="relative mt-8 flex w-full content-center justify-center">
         <p
           className={clsx(
-            "before:bg-primary-300 before:absolute before:left-0 before:top-2.5 before:h-px before:w-28 max-sm:before:w-20",
-            "after:bg-primary-300 after:absolute after:right-0 after:top-2.5 after:h-px after:w-28 max-sm:after:w-20",
+            "before:bg-primary-300 before:absolute before:left-0 before:top-2.5 before:h-px before:w-28 max-sm:before:w-20 lg:before:top-8 lg:before:w-60",
+            "after:bg-primary-300 after:absolute after:right-0 after:top-2.5 after:h-px after:w-28 max-sm:after:w-20 lg:after:top-8 lg:after:w-60",
           )}
         >
           Or Easily Using
         </p>
       </div>
 
-      <div className="relative mb-5 flex content-center justify-center space-x-3">
+      <div className="relative mb-5 flex content-center justify-center space-x-3 lg:mb-10 lg:mt-8 lg:space-x-6">
         <SocialButton social="facebook" />
         <SocialButton social="google" />
       </div>
