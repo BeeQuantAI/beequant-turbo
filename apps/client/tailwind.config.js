@@ -46,7 +46,6 @@ module.exports = {
       screens: {
         sm: "480px",
         lg: "2560px",
-        xl: "3440px",
       },
       fontFamily: {
         sans: ["'Roboto', sans-serif"],
