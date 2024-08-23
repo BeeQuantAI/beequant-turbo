@@ -3,40 +3,37 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { ControlledTextInput, Icon, Button } from "@src/module/common";
 import * as z from "zod";
-import {
-  DisplayErrorMsgs,
-  displayNamePatten,
-  EmailErrorMsgs,
-  RefErrorMsgs,
-} from "@src/utils/validation-message";
-import { UserHelpMsgs } from "@src/utils/user-help-messgage";
-
-const formSchema = z.object({
-  displayName: z.union([
-    z
-      .string()
-      .min(4, { message: DisplayErrorMsgs.MinLength })
-      .max(15, { message: DisplayErrorMsgs.MaxLength })
-      .regex(displayNamePatten, {
-        message: DisplayErrorMsgs.Invalid,
-      }),
-    z
-      .string()
-      .length(0)
-      .transform(() => "New User"),
-  ]),
-  realName: z.string(),
-  email: z
-    .string()
-    .min(1, { message: EmailErrorMsgs.Required })
-    .email({ message: EmailErrorMsgs.Invalid }),
-  mobile: z.string(),
-  ref: z.string().min(1, { message: RefErrorMsgs.Required }),
-});
-
-type FormSchema = z.infer<typeof formSchema>;
+import { displayNamePatten } from "@src/utils/validation-message";
+import { useTranslations } from "next-intl";
 
 export function AccountSettingForm() {
+  const t = useTranslations();
+
+  const formSchema = z.object({
+    displayName: z.union([
+      z
+        .string()
+        .min(4, { message: t("Notifications.displayName.minLength") })
+        .max(15, { message: t("Notifications.displayName.maxLength") })
+        .regex(displayNamePatten, {
+          message: t("Notifications.displayName.invalid"),
+        }),
+      z
+        .string()
+        .length(0)
+        .transform(() => "New User"),
+    ]),
+    realName: z.string(),
+    email: z
+      .string()
+      .min(1, { message: t("Notifications.email.required") })
+      .email({ message: t("Notifications.email.invalid") }),
+    mobile: z.string(),
+    ref: z.string().min(1, { message: t("Notifications.ref.required") }),
+  });
+
+  type FormSchema = z.infer<typeof formSchema>;
+
   const {
     control,
     handleSubmit,
@@ -59,57 +56,54 @@ export function AccountSettingForm() {
   return (
     <div className="dark:bg-primary-900 bg-primary-50 shadow-settingPage dark:shadow-settingPage flex flex-col rounded-lg p-5">
       <div className="mb-[30px] space-y-1">
-        <h1 className="text-base font-bold">SETTINGS</h1>
+        <h1 className="text-base font-bold">{t("SettingPage.title")}</h1>
         <h5 className="text-primary-700 dark:text-primary-100 text-sm opacity-70">
-          Update your profile
+          {t("SettingPage.subtitle")}
         </h5>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-5">
         <ControlledTextInput
           direction="horizontal"
-          label="Real Name"
+          label={t("SettingPage.realName")}
           name="realName"
-          placeholder="Real Name"
           control={control}
           leftElement={<Icon icon="person" />}
         />
         <ControlledTextInput
           direction="horizontal"
-          label="Display Name"
+          label={t("Shared.displayName", { optional: false })}
           name="displayName"
-          placeholder="Display Name"
           control={control}
-          tooltips={UserHelpMsgs.DisplayNameSettingPage}
+          tooltips={t("Notifications.displayName.description", {
+            optional: false,
+          })}
           leftElement={<Icon icon="person" />}
         />
         <ControlledTextInput
           direction="horizontal"
-          label="Email"
+          label={t("Shared.email")}
           name="email"
-          placeholder="Email"
           control={control}
           leftElement={<Icon icon="email" />}
         />
         <ControlledTextInput
           direction="horizontal"
-          label="Mobile"
+          label={t("SettingPage.mobile")}
           name="mobile"
-          placeholder="Mobile"
           control={control}
           leftElement={<Icon icon="mobile" />}
         />
         <ControlledTextInput
           direction="horizontal"
-          label="Reference"
+          label={t("Shared.ref")}
           name="ref"
-          placeholder="Reference"
           control={control}
           leftElement={<Icon icon="person" />}
         />
         <div className="mb-[10px] ml-[90px] mt-2 flex gap-4 sm:ml-[140px]">
-          <Button type="submit">Submit</Button>
+          <Button type="submit">{t("SettingPage.submit")}</Button>
           <Button variant="secondary" onClick={() => reset()}>
-            Cancel
+            {t("SettingPage.cancel")}
           </Button>
         </div>
       </form>
