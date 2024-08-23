@@ -23,7 +23,7 @@ export function Successed({ title, message }: SuccessProps) {
         />
       </div>
 
-      <div className="border-accent-400 dark:text-primary-100 flex w-full flex-col border-l-4 px-3 text-xl lg:mb-12 lg:text-[64px]">
+      <div className="border-accent-400 dark:text-primary-100 flex w-full flex-col border-l-4 px-3 text-xl">
         <span className="text-accent-400 font-bold lg:mb-10">{title}</span>
         <span className="lg:leading-[1.1]">{message}</span>
       </div>

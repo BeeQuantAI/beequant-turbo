@@ -71,7 +71,7 @@ export function ControlledTextInput<TFieldValues extends object>({
             </span>
           )}
           <input
-            className="focus:shadow-accent-400 dark:focus:shadow-accent-400 shadow-primary-100 dark:shadow-primary-700 shadow-inset flex-1 bg-transparent px-2 py-1 text-xs transition-[box-shadow] duration-300 placeholder:text-xs focus:outline-none lg:text-3xl lg:placeholder:text-3xl"
+            className="focus:shadow-accent-400 dark:focus:shadow-accent-400 shadow-primary-100 dark:shadow-primary-700 shadow-inset flex-1 bg-transparent px-2 py-1 text-xs transition-[box-shadow] duration-300 placeholder:text-xs focus:outline-none"
             placeholder={label ? label : props.placeholder}
             {...props}
             {...field}

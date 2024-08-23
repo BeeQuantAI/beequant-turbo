@@ -3,7 +3,7 @@ import React from "react";
 
 export interface ButtonVariants extends VariantProps<typeof buttonVariants> {}
 const buttonVariants = cva(
-  "text-md relative overflow-hidden rounded border transition-all duration-500 lg:text-[38px]",
+  "text-md relative overflow-hidden rounded border transition-all duration-500",
   {
     variants: {
       variant: {

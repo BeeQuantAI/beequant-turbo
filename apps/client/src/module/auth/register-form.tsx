@@ -99,7 +99,7 @@ export function RegisterForm() {
         Sign Up
       </Button>
 
-      <span className="text-center lg:text-[36px]">
+      <span className="text-center">
         {"Already have an account? "}
         <AuthRoute.Login.Link className="text-accent-400 hover:text-accent-400">
           Sign In
