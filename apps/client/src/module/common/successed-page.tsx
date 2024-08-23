@@ -11,7 +11,7 @@ interface SuccessProps {
 
 export function Successed({ title, message }: SuccessProps) {
   return (
-    <div className="dark:bg-primary-900 bg-primary-50 flex w-full max-w-[520px] flex-col justify-center gap-5 px-[60px] py-[50px] transition-colors duration-300 max-sm:px-[30px] lg:my-5 lg:min-w-[1000px] lg:px-[80px] lg:py-[70px]">
+    <div className="dark:bg-primary-900 bg-primary-50 flex w-full max-w-[520px] flex-col justify-center gap-5 px-[60px] py-[50px] transition-colors duration-300 max-sm:px-[30px] lg:my-5 lg:max-w-[1000px] lg:px-[80px] lg:py-[70px]">
       <div className="mb-5 flex justify-center self-center lg:max-w-6xl">
         <Image
           src={successImg}
