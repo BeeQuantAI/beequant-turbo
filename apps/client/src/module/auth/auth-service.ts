@@ -47,11 +47,6 @@ export async function login(payload: LoginPayload) {
   }
 }
 
-/**
- * Oauth login handler. redirecting to dashboard if success, or login page if failed.
- * @param payload the token from the URL
- * @returns void
- */
 export async function OauthLogin(payload: { token: string }) {
   if (payload.token){
     cookies().set("token", payload.token);

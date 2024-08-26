@@ -53,7 +53,6 @@ export function LoginForm() {
   });
 
   useEffect(() => {
-    //const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
     if (token && typeof window !== 'undefined') {
       OauthLogin({ token }).then(r => console.log(r));
