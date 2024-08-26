@@ -53,9 +53,22 @@ const RegisterSuccessed = {
   ),
 };
 
+const PageNotFound = {
+  Metadata: {
+    title: "Page Not Found | BeeQuant",
+  },
+  Path: "/not-found" as const,
+  Link: ({ children, className }: RouteLinkProps) => (
+    <Link href={PageNotFound.Path} className={className}>
+      {children}
+    </Link>
+  ),
+};
+
 export const AuthRoute = {
   Login,
   Register,
   ForgetPassword,
   RegisterSuccessed,
+  PageNotFound,
 };
