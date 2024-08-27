@@ -1,6 +1,7 @@
 #!/bin/bash
 CMD=$1
 FILTER=$2
+PACKAGE_MANAGER=pnpm
 NAMESPACE=@beequant
 
 if [ -n "$CMD" ]; then
@@ -9,15 +10,15 @@ if [ -n "$CMD" ]; then
     if [ -n "$FILTER" ]; then
       case $FILTER in
       "client")
-        yarn turbo run dev --filter=$NAMESPACE/client --filter=$NAMESPACE/platform-api
+        $PACKAGE_MANAGER turbo run dev --filter=$NAMESPACE/client --filter=$NAMESPACE/platform-api
         ;;
 
       *)
-        yarn turbo run dev --filter=$NAMESPACE/$FILTER
+        $PACKAGE_MANAGER turbo run dev --filter=$NAMESPACE/$FILTER
         ;;
       esac
     else
-      yarn turbo run dev
+      $PACKAGE_MANAGER turbo run dev
     fi
     ;;
 
@@ -25,26 +26,26 @@ if [ -n "$CMD" ]; then
     if [ -n "$FILTER" ]; then
       case $FILTER in
       "client")
-        yarn turbo run start --filter=$NAMESPACE/client --filter=$NAMESPACE/platform-api
+        $PACKAGE_MANAGER turbo run start --filter=$NAMESPACE/client --filter=$NAMESPACE/platform-api
         ;;
 
       *)
-        yarn turbo run start --filter=$NAMESPACE/$FILTER
+        $PACKAGE_MANAGER turbo run start --filter=$NAMESPACE/$FILTER
         ;;
       esac
     else
-      yarn turbo run start
+      $PACKAGE_MANAGER turbo run start
     fi
     ;;
 
   "ci")
-    yarn turbo run lint --force
-    yarn turbo run type-check --force
-    yarn turbo run build --force
+    $PACKAGE_MANAGER turbo run lint --force
+    $PACKAGE_MANAGER turbo run type-check --force
+    $PACKAGE_MANAGER turbo run build --force
     ;;
 
   *)
-    yarn turbo run $CMD
+    $PACKAGE_MANAGER turbo run $CMD
     ;;
 
   esac
