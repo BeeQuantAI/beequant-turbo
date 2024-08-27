@@ -5,9 +5,9 @@ import {
   graphql,
 } from "@src/module/graphql";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { z } from "zod";
 import { AuthRoute } from "./route";
+import { redirect } from "../../configs/navigation";
 
 const authResultSchema = z.object({
   code: z.number(),
@@ -44,6 +44,17 @@ export async function login(payload: LoginPayload) {
       return {
         error: login.message,
       };
+  }
+}
+
+export async function OauthLogin(payload: { token: string }) {
+  if (payload.token){
+    cookies().set("token", payload.token);
+    redirect("/dashboard");
+  }
+  else {
+    console.log("No token found in the URL, Oauth failed.");
+    redirect(AuthRoute.Login.Path);
   }
 }
 
