@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 export interface SocialButtonVariants
   extends VariantProps<typeof socialButtonVariants> {}
 const socialButtonVariants = cva(
-  "text-primary-50 relative size-[38px] overflow-hidden rounded transition-all duration-500 lg:size-24",
+  "text-primary-50 relative size-[38px] overflow-hidden rounded transition-all duration-500",
   {
     variants: {
       variant: {
@@ -22,7 +22,7 @@ const socialButtonVariants = cva(
 const socialButtonSvgs = {
   google: (
     <svg
-      className="size-5 lg:size-16"
+      className="size-5"
       fill="currentColor"
       viewBox="0 0 24 24"
       style={{
@@ -37,7 +37,7 @@ const socialButtonSvgs = {
   ),
   facebook: (
     <svg
-      className="size-5 lg:size-16"
+      className="size-5"
       fill="currentColor"
       viewBox="0 0 24 24"
       style={{
