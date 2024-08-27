@@ -15,7 +15,9 @@
     "lightTheme": "Light Theme",
     "darkTheme": "Dark Theme",
     "system": "System",
-    "easyUsing": "Or Easy Using"
+    "easyUsing": "Or Easy Using",
+    "submit": "Submit",
+    "accountManagement": "Account Management"
   },
 
   "LoginPage": {
@@ -64,7 +66,8 @@
   "AccountMenu": {
     "profile": "Profile",
     "wallet": "Wallet",
-    "settings": "Settings"
+    "settings": "Settings",
+    "accountManagement": "Account Management"
   },
 
   "Notifications": {
@@ -92,7 +95,12 @@
     },
     "login": {
       "failed": "login failed, wrong password or email"
+    },
+    "changePassword":{
+      "currentPasswordWrong": "Current password is wrong",
+      "failed": "Change password failed"
     }
+    
   },
 
   "SettingPage": {
@@ -121,6 +129,17 @@
     "pending-orders": "Pending Orders",
     "recent-transaction": "Recent Transaction"
   },
+
+  "UpdatePasswordPage": {
+    "title": "Change Password",
+    "subtitle": "Change your password",
+    "oldPassword": "Old Password",
+    "newPassword": "New Password",
+    "succeed": "You have successfully reset your password!",
+    "button": "Ready to trade again"
+  },
+
+
 
   "exchange": {},
   "bot": {}

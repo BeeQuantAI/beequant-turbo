@@ -7,6 +7,7 @@ import { useUser } from "../../auth/user-store";
 import { LinearIcon, LinearIcons } from "../../common";
 import { DashboardRoute } from "../route";
 import { useTranslations } from "next-intl";
+import { AccountRoute } from "@src/module/account/layout/route";
 
 export function AccountMenu() {
   const t = useTranslations();
@@ -73,8 +74,13 @@ export function AccountMenu() {
 
           <MenuItem
             icon="cog"
+            label={t("Shared.accountManagement")}
+            onClick={() => router.push(AccountRoute.Management.Path)}
+          />
+          <MenuItem
+            icon="cog"
             label={t("AccountMenu.settings")}
-            onClick={() => router.push(DashboardRoute.Setting.Path)}
+            onClick={() => router.push(AccountRoute.Setting.Path)}
           />
           <MenuItem
             icon="exit"
