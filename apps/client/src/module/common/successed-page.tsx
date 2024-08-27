@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Button } from "@src/module/common";
 import successImg from "../../../public/image/success.png";
 import { AuthRoute } from "../auth/route";
+import { useTranslations } from "next-intl";
 
 interface SuccessProps {
   title: string;
@@ -10,6 +11,7 @@ interface SuccessProps {
 }
 
 export function Successed({ title, message }: SuccessProps) {
+  const t = useTranslations();
   return (
     <div className="dark:bg-primary-900 bg-primary-50 flex w-full max-w-[520px] flex-col justify-center gap-5 px-[60px] py-[50px] transition-colors duration-300 max-sm:px-[30px]">
       <div className="mb-5 flex justify-center self-center">
@@ -30,8 +32,8 @@ export function Successed({ title, message }: SuccessProps) {
 
       <div className="mb-5 mt-3">
         <AuthRoute.Login.Link>
-          <Button variant="outline" className="w-full">
-            Back to Login
+          <Button variant="outline" className="w-[400px]">
+            {t("RegisterPage.succeed.backToLogin")}
           </Button>
         </AuthRoute.Login.Link>
       </div>

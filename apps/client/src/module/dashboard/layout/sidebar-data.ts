@@ -1,23 +1,25 @@
 "use client";
 import { logout } from "@src/module/auth";
 import { useTheme } from "@src/module/system";
-import { useRouter } from "next/navigation";
-import { DashboardRoute } from "../route";
+import { useRouter } from "@src/configs/navigation";
+import { AppSettingRoute, DashboardRoute } from "../route";
 import { SidebarMenuItem } from "./sidebar-menu";
+import { useTranslations } from "next-intl";
 
 export function useSidebar() {
+  const t = useTranslations();
   const router = useRouter();
   const bots = useBotsMenu();
   const cryptoeconomy = useCryptoEconomyMenu();
   const theme = useThemeMenu();
   const account = useAccount();
-  const logout = useLogout();
+  const logoutMenu = useLogout();
 
   const menu: SidebarMenuItem[] = [
     {
       type: "button",
       icon: "home",
-      label: "Dashboard",
+      label: t("Sidebar.dashboard"),
       onClick: () => router.push(DashboardRoute.Root.Path),
     },
     { type: "divider" },
@@ -27,107 +29,111 @@ export function useSidebar() {
     theme,
     account,
     { type: "divider" },
-    logout,
+    logoutMenu,
   ];
 
   return { menu };
-}
 
-function useBotsMenu(): SidebarMenuItem {
-  return {
-    type: "accordion",
-    icon: "chart-bars",
-    label: "Bots",
-    options: [
-      {
-        label: "Bots Dashboard",
-        onClick: () => console.log("Navigate to Bots Dashboard"),
-      },
-      {
-        label: "Bots Management",
-        onClick: () => console.log("Navigate to Bots Management"),
-      },
-      {
-        label: "Bot Create",
-        onClick: () => console.log("Navigate to Bot Create"),
-      },
-      {
-        label: "Bot Details",
-        onClick: () => console.log("Navigate to Bot Details"),
-      },
-    ],
-  };
-}
+  function useAccount(): SidebarMenuItem {
+    return {
+      type: "accordion",
+      icon: "user",
+      label: t("Sidebar.account.categoryName"),
+      options: [
+        {
+          label: t("Sidebar.account.profile"),
+          onClick: () => console.log("Navigate to Profile"),
+        },
+        {
+          label: t("Sidebar.account.exchangeManagement"),
+          onClick: () => console.log("Navigate to Exchange Management"),
+        },
+        {
+          label: t("Sidebar.account.appSetting"),
+          onClick: () => router.push(AppSettingRoute.AppSetting.Path),
+        },
+      ],
+    };
+  }
 
-function useCryptoEconomyMenu(): SidebarMenuItem {
-  return {
-    type: "accordion",
-    icon: "earth",
-    label: "Cryptoeconomy",
-    options: [
-      {
-        label: "Prices",
-        onClick: () => console.log("Navigate to Prices"),
-      },
-      {
-        label: "Price Details",
-        onClick: () => console.log("Navigate to Price Details"),
-      },
-      {
-        label: "Exchanges",
-        onClick: () => console.log("Navigate to Exchanges"),
-      },
-      {
-        label: "Exchange Details",
-        onClick: () => console.log("Navigate to Exchange Details"),
-      },
-    ],
-  };
-}
+  function useBotsMenu(): SidebarMenuItem {
+    return {
+      type: "accordion",
+      icon: "chart-bars",
+      label: t("Sidebar.bots.categoryName"),
+      options: [
+        {
+          label: t("Sidebar.bots.dashboard"),
+          onClick: () => console.log("Navigate to Bots Dashboard"),
+        },
+        {
+          label: t("Sidebar.bots.management"),
+          onClick: () => console.log("Navigate to Bots Management"),
+        },
+        {
+          label: t("Sidebar.bots.create"),
+          onClick: () => console.log("Navigate to Bot Create"),
+        },
+        {
+          label: t("Sidebar.bots.details"),
+          onClick: () => console.log("Navigate to Bot Details"),
+        },
+      ],
+    };
+  }
 
-function useThemeMenu(): SidebarMenuItem {
-  const { setTheme } = useTheme();
+  function useCryptoEconomyMenu(): SidebarMenuItem {
+    return {
+      type: "accordion",
+      icon: "earth",
+      label: t("Sidebar.cryptoEconomy.categoryName"),
+      options: [
+        {
+          label: t("Sidebar.cryptoEconomy.prices"),
+          onClick: () => console.log("Navigate to Prices"),
+        },
+        {
+          label: t("Sidebar.cryptoEconomy.pricesDetails"),
+          onClick: () => console.log("Navigate to Price Details"),
+        },
+        {
+          label: t("Sidebar.cryptoEconomy.exchange"),
+          onClick: () => console.log("Navigate to Exchanges"),
+        },
+        {
+          label: t("Sidebar.cryptoEconomy.exchangeDetails"),
+          onClick: () => console.log("Navigate to Exchange Details"),
+        },
+      ],
+    };
+  }
 
-  return {
-    type: "accordion",
-    icon: "diamond",
-    label: "Theme",
-    options: [
-      {
-        label: "Light Theme",
-        onClick: () => setTheme("light"),
-      },
-      {
-        label: "Dark Theme",
-        onClick: () => setTheme("dark"),
-      },
-    ],
-  };
-}
+  function useThemeMenu(): SidebarMenuItem {
+    const { setTheme } = useTheme();
 
-function useAccount(): SidebarMenuItem {
-  return {
-    type: "accordion",
-    icon: "user",
-    label: "Account",
-    options: [
-      {
-        label: "Profile",
-        onClick: () => console.log("Navigate to Profile"),
-      },
-      {
-        label: "Account",
-        onClick: () => console.log("Navigate to Account"),
-      },
-    ],
-  };
-}
+    return {
+      type: "accordion",
+      icon: "diamond",
+      label: t("Shared.theme"),
+      options: [
+        {
+          label: t("Shared.lightTheme"),
+          onClick: () => setTheme("light"),
+        },
+        {
+          label: t("Shared.darkTheme"),
+          onClick: () => setTheme("dark"),
+        },
+      ],
+    };
+  }
 
-function useLogout(): SidebarMenuItem {
-  return {
-    type: "button",
-    icon: "exit",
-    label: "Log Out",
-    onClick: () => logout(),
-  };
+  function useLogout(): SidebarMenuItem {
+    return {
+      type: "button",
+      icon: "exit",
+      label: t("Shared.logout"),
+      onClick: () => logout(),
+    };
+  }
 }
