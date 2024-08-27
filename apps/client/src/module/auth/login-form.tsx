@@ -97,15 +97,15 @@ export function LoginForm() {
       <div className="relative mt-8 flex w-full content-center justify-center">
         <p
           className={clsx(
-            "before:bg-primary-300 text-[13px] before:absolute before:left-0 before:top-2.5 before:h-px before:w-28",
-            "after:bg-primary-300 after:absolute after:right-0 after:top-2.5 after:h-px after:w-28",
+            "before:bg-primary-300 before:absolute before:left-0 before:top-2.5 before:h-px before:w-28 max-sm:before:w-20",
+            "after:bg-primary-300 after:absolute after:right-0 after:top-2.5 after:h-px after:w-28 max-sm:after:w-20",
           )}
         >
           {t("Shared.easyUsing")}
         </p>
       </div>
 
-      <div className="relative flex content-center justify-center space-x-3">
+      <div className="relative mb-5 flex content-center justify-center space-x-3">
         <SocialButton social="facebook" />
         <SocialButton social="google" />
       </div>

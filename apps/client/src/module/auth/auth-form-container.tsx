@@ -9,7 +9,7 @@ export function AuthFormContainer(props: Props) {
   const t = useTranslations();
   return (
     <form
-      className="dark:bg-primary-900 bg-primary-50 flex w-[520px] max-w-[520px] flex-col gap-5 px-[60px] py-[50px] transition-colors duration-300"
+      className="dark:bg-primary-900 bg-primary-50 flex w-full max-w-[520px] flex-col gap-5 px-[60px] py-[50px] transition-colors duration-300 max-sm:px-[30px] max-sm:py-[35px]"
       onSubmit={props.onSubmit}
     >
       <div className="border-accent-400 flex flex-col border-l-4 px-2.5">

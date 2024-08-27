@@ -43,7 +43,9 @@ module.exports = {
       "3xl": ["30px", "24px"],
     },
     extend: {
-      screens: { sm: "480px" },
+      screens: {
+        sm: "480px",
+      },
       fontFamily: {
         sans: ["'Roboto', sans-serif"],
       },
