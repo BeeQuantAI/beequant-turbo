@@ -26,9 +26,9 @@ const defaultValues = {
   remeber: '',
 } satisfies LoginForm; // Satisfies make sure this object you are making can satisfy the LoginForm schema.
 
-export function LoginForm() {
+export function LoginForm({ token }: { token: string }) {
   const router = useRouter();
-  const urlParams = useSearchParams();
+  //const urlParams = useSearchParams();
   const {
     handleSubmit,
     control,
@@ -53,11 +53,11 @@ export function LoginForm() {
   });
 
   useEffect(() => {
-    const token = urlParams.get('token');
+    //const token = searchParams.get('token');
     if (token && typeof window !== 'undefined') {
       OauthLogin({ token }).then(r => console.log(r));
     }
-  }, [urlParams]);
+  }, [token]);
 
   const handleThirdPartyLogin = (provider: string): void => {
     const thirdPartyApiUrl = process.env.NEXT_PUBLIC_THIRD_PARTY_API_URL;
