@@ -43,7 +43,7 @@ export function useSidebar() {
       options: [
         {
           label: t("Sidebar.account.profile"),
-          onClick: () => console.log("Navigate to Profile"),
+          onClick: () => router.push(DashboardRoute.Profile.Path),
         },
         {
           label: t("Sidebar.account.exchangeManagement"),

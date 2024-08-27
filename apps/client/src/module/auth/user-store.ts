@@ -10,6 +10,7 @@ type User = {
   title?: string;
   email?: string;
   phone?: string;
+  ref?: string;
 };
 const initialState = {
   user: null as User | null,
@@ -29,16 +30,8 @@ export const useUser = create(
 );
 
 export const fetchUserInfo = async () => {
-  const { id, displayName } = await getUserInfo();
-  const fakeUser = {
-    avatar: "https://picsum.photos/300", // fakeing one for now
-    name: "John Doe",
-    title: "Software Engineer",
-    email: "john-doe@doe.com",
-    phone: "+12 3456 7890",
-  };
-
-  useUser.setState(() => ({ user: { id, displayName, ...fakeUser } }));
+  const { id, displayName, email, ref } = await getUserInfo();
+  useUser.setState(() => ({ user: { id, displayName, email, ref, avatar: "https://picsum.photos/300"} }));
 };
 
 export const clearUser = () => {

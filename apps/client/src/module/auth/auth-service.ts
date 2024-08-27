@@ -82,6 +82,8 @@ const getUserInfoQuery = graphql(`
     getUserInfo {
       id
       displayName
+      email
+      ref
     }
   }
 `);

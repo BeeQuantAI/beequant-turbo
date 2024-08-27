@@ -129,6 +129,17 @@
     "pending-orders": "Pending Orders",
     "recent-transaction": "Recent Transaction"
   },
+  "Profile":{
+    "update-profile-error":"Failed to update profile. Please try again.",
+    "header": "Profile",
+    "sub-header": "Update your account information",
+    "displayName": "display name",
+    "email": "Email",
+    "reference": "Reference",
+    "submit":"Submit",
+    "invalid-input": "Display name must be 4-15 characters long and contain only letters, numbers, hyphens, and underscores.",
+    "unknown-error": "An error occurred while updating the profile."
+  },
 
   "UpdatePasswordPage": {
     "title": "Change Password",

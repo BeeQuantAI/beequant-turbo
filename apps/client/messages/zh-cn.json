@@ -125,6 +125,17 @@
     "pending-orders": "待处理订单",
     "recent-transaction": "最近交易"
   },
+  "Profile":{
+    "update-profile-error":"更新失败，请重新提交。",
+    "header": "用户信息",
+    "sub-header": "更新你的用户信息",
+    "displayName": "用户昵称",
+    "email": "邮箱",
+    "reference": "推荐人",
+    "submit":"提交",
+    "invalid-input": "用户名称长度需要为4-15字符,且只包含数字,字母,横杠和下划线",
+    "unknown-error": "更新账户信息时发生未知错误"
+  },
 
   "UpdatePasswordPage": {
     "title": "修改密码",

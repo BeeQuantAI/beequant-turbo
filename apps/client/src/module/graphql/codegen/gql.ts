@@ -16,7 +16,8 @@ const documents = {
     "\n  mutation UpdatePassword($input: UpdatePasswordInput!) {\n    changePassword(input: $input) {\n      code\n      message\n    }\n  }\n": types.UpdatePasswordDocument,
     "\n  mutation Login($email: String!, $password: String!) {\n    login(email: $email, password: $password) {\n      code\n      message\n      data\n    }\n  }\n": types.LoginDocument,
     "\n  mutation Register($input: CreateUserInput!) {\n    register(input: $input) {\n      code\n      message\n    }\n  }\n": types.RegisterDocument,
-    "\n  query getUserInfo {\n    getUserInfo {\n      id\n      displayName\n    }\n  }\n": types.GetUserInfoDocument,
+    "\n  query getUserInfo {\n    getUserInfo {\n      id\n      displayName\n      email\n      ref\n    }\n  }\n": types.GetUserInfoDocument,
+    "\n    mutation UpdateUserDisplayName($id: String!, $input: UpdateUserInput!) {\n        updateUser(id: $id, input: $input)\n    }\n": types.UpdateUserDisplayNameDocument,
 };
 
 /**
@@ -48,7 +49,11 @@ export function graphql(source: "\n  mutation Register($input: CreateUserInput!)
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query getUserInfo {\n    getUserInfo {\n      id\n      displayName\n    }\n  }\n"): (typeof documents)["\n  query getUserInfo {\n    getUserInfo {\n      id\n      displayName\n    }\n  }\n"];
+export function graphql(source: "\n  query getUserInfo {\n    getUserInfo {\n      id\n      displayName\n      email\n      ref\n    }\n  }\n"): (typeof documents)["\n  query getUserInfo {\n    getUserInfo {\n      id\n      displayName\n      email\n      ref\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    mutation UpdateUserDisplayName($id: String!, $input: UpdateUserInput!) {\n        updateUser(id: $id, input: $input)\n    }\n"): (typeof documents)["\n    mutation UpdateUserDisplayName($id: String!, $input: UpdateUserInput!) {\n        updateUser(id: $id, input: $input)\n    }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
