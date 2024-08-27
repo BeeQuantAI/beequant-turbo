@@ -5,9 +5,9 @@ import {
   graphql,
 } from "@src/module/graphql";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { z } from "zod";
 import { AuthRoute } from "./route";
+import { redirect } from "../../configs/navigation";
 
 const authResultSchema = z.object({
   code: z.number(),

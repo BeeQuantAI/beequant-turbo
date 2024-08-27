@@ -36,7 +36,13 @@ Just make sure you db is accessible via the `.env` you created for the servier/p
     DEFAULT_REFERENCE=COREINTERNAL
     DEFAULT_DISPLAY_NAME='New User'
    ```
-6. Run `yarn dev client` to start the new platform app
+6. set a `.env.local` file to `beequant-turbo/apps/client/` with following content:
+```bash
+NEXT_PUBLIC_DEV_SERVER_URL=http://localhost:3000/graphql
+VITE_APP_REFERENCE_NAME=COREINTERNAL
+NEXT_PUBLIC_THIRD_PARTY_API_URL=http://localhost:3000/auth
+```
+7. Run `yarn dev client` to start the new platform app
 
 ## What workspaces do we have here?
 

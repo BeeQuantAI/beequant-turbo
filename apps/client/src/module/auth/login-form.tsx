@@ -1,15 +1,22 @@
-'use client';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Checkbox, ControlledPasswordInput, ControlledTextInput, Icon } from '@src/module/common';
-import clsx from 'clsx';
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { SocialButton } from '../common/social-button';
-import { AuthFormContainer } from './auth-form-container';
-import { login, LoginPayload, OauthLogin } from './auth-service';
-import { AuthRoute } from './route';
-import { useEffect } from 'react';
+"use client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Button,
+  Checkbox,
+  ControlledPasswordInput,
+  ControlledTextInput,
+  Icon,
+} from "@src/module/common";
+import clsx from "clsx";
+import { useRouter } from "@src/configs/navigation";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { SocialButton } from "../common/social-button";
+import { AuthFormContainer } from "./auth-form-container";
+import { login, LoginPayload, OauthLogin } from "./auth-service";
+import { AuthRoute } from "./route";
+import { useEffect } from "react";
+import { useTranslations } from "next-intl";
 
 type LoginForm = z.infer<typeof formSchema>;
 // source of truth for this login form <= this is the law, is the king, is the absolute authority for this form - K总
@@ -21,9 +28,9 @@ const formSchema = z.object({
 
 // Need this to enforce default value to match the LoginForm schema, because if you do it in the `useForm` hook, it turns it into a `Partial<LoginForm>` type.
 const defaultValues = {
-  email: '',
-  password: '',
-  remeber: '',
+  email: "",
+  password: "",
+  remeber: "",
 } satisfies LoginForm; // Satisfies make sure this object you are making can satisfy the LoginForm schema.
 
 export function LoginForm({ token }: { token: string }) {
@@ -43,7 +50,7 @@ export function LoginForm({ token }: { token: string }) {
 
     if (res?.error) {
       console.log(res.error);
-      setError('root', { message: res.error });
+      setError("root", { message: res.error });
     }
   }
 
@@ -52,8 +59,8 @@ export function LoginForm({ token }: { token: string }) {
   });
 
   useEffect(() => {
-    if (token && typeof window !== 'undefined') {
-      OauthLogin({ token }).then(r => console.log(r));
+    if (token && typeof window !== "undefined") {
+      OauthLogin({ token }).then((r) => console.log(r));
     }
   }, [token]);
 
@@ -66,7 +73,7 @@ export function LoginForm({ token }: { token: string }) {
     <AuthFormContainer onSubmit={onSubmit} error={errors.root?.message}>
       <div className="flex flex-col gap-5">
         <ControlledTextInput
-          label="Email"
+          label={t("Shared.email")}
           name="email"
           control={control}
           leftElement={<Icon icon="person" />}
@@ -75,44 +82,49 @@ export function LoginForm({ token }: { token: string }) {
 
         <div className="flex flex-col gap-1">
           <ControlledPasswordInput
-            label="Password"
+            label={t("Shared.password")}
             name="password"
             control={control}
             autoComplete="current-password"
           />
 
-          <AuthRoute.ForgetPassword.Link
-            className="text-accent-300 hover:text-accent-400 self-end text-xs transition-colors">
+          <AuthRoute.ForgetPassword.Link className="text-accent-300 hover:text-accent-400 self-end text-xs transition-colors">
             Forgot Password?
           </AuthRoute.ForgetPassword.Link>
 
-          <Checkbox className="self-start" label="Remember me" />
+          <Checkbox className="self-start" label={t("LoginPage.rememberMe")} />
         </div>
       </div>
 
-      <Button type="submit">Sign In</Button>
+      <Button type="submit">{t("Shared.signIn")}</Button>
 
       <Button
         variant="outline"
         onClick={() => router.push(AuthRoute.Register.Path)}
       >
-        Create Account
+        {t("LoginPage.createAccount")}
       </Button>
 
       <div className="relative mt-8 flex w-full content-center justify-center">
         <p
           className={clsx(
-            'before:bg-primary-300 text-[13px] before:absolute before:left-0 before:top-2.5 before:h-px before:w-28',
-            'after:bg-primary-300 after:absolute after:right-0 after:top-2.5 after:h-px after:w-28',
+            "before:bg-primary-300 text-[13px] before:absolute before:left-0 before:top-2.5 before:h-px before:w-28",
+            "after:bg-primary-300 after:absolute after:right-0 after:top-2.5 after:h-px after:w-28",
           )}
         >
-          Or Easily Using
+          {t("Shared.easyUsing")}
         </p>
       </div>
 
       <div className="relative flex content-center justify-center space-x-3">
-        <SocialButton social="facebook" handleThirdPartyLogin={() => handleThirdPartyLogin('facebook')} />
-        <SocialButton social="google" handleThirdPartyLogin={() => handleThirdPartyLogin('google')} />
+        <SocialButton
+          social="facebook"
+          handleThirdPartyLogin={() => handleThirdPartyLogin("facebook")}
+        />
+        <SocialButton
+          social="google"
+          handleThirdPartyLogin={() => handleThirdPartyLogin("google")}
+        />
       </div>
     </AuthFormContainer>
   );
