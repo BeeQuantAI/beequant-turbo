@@ -34,6 +34,7 @@ const defaultValues = {
 } satisfies LoginForm; // Satisfies make sure this object you are making can satisfy the LoginForm schema.
 
 export function LoginForm({ token }: { token: string }) {
+  const  t  = useTranslations();
   const router = useRouter();
   const {
     handleSubmit,
