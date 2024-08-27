@@ -15,17 +15,12 @@ export function Checkbox({
   ...props
 }: CheckboxProps) {
   return (
-    <div
-      className={clsx(
-        "group flex items-center gap-2 lg:gap-4",
-        props.className,
-      )}
-    >
+    <div className={clsx("group flex items-center gap-2", props.className)}>
       <RxCheckbox.Root
-        className="border-primary-300 data-[state=checked]:border-accent-400 group-hover:border-accent-400 aspect-square h-4 w-4 appearance-none rounded border transition-colors duration-300 lg:h-[36px] lg:w-[36px]"
+        className="border-primary-300 data-[state=checked]:border-accent-400 group-hover:border-accent-400 aspect-square h-4 w-4 appearance-none rounded border transition-colors duration-300"
         id={props.name || "checkbox"}
       >
-        <RxCheckbox.Indicator className="text-accent-400 text-sm lg:text-[36px]">
+        <RxCheckbox.Indicator className="text-accent-400 text-sm">
           <Icon icon="check" />
         </RxCheckbox.Indicator>
       </RxCheckbox.Root>

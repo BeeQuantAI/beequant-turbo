@@ -9,7 +9,7 @@ export interface InputVariants extends VariantProps<typeof inputVariants> {}
 const inputVariants = cva("group", {
   variants: {
     direction: {
-      vertical: ["space-y-1 lg:space-y-3"],
+      vertical: ["space-y-1"],
       horizontal: [
         "grid grid-cols-[80px_1fr] items-center gap-x-[10px] sm:grid-cols-[120px_1fr] sm:gap-x-5",
       ],
