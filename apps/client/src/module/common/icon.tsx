@@ -9,6 +9,7 @@ import { IoDiamondOutline, IoLogOutOutline } from "react-icons/io5";
 import { FaMobileScreenButton } from "react-icons/fa6";
 import { MdOutlineMail } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
+import { HiOutlineUsers } from "react-icons/hi2";
 
 import {
   MdCheck,
@@ -77,7 +78,8 @@ export type LinearIcons =
   | "cog"
   | "exit"
   | "chevron-right"
-  | "chevron-down";
+  | "chevron-down"
+  | "users";
 type LinearIconProps = { icon: LinearIcons; className?: string };
 export function LinearIcon({ icon, className }: LinearIconProps) {
   return (

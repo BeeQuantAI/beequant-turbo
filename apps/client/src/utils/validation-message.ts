@@ -4,7 +4,7 @@ export const emailPattern =
 export const urlPattern =
   /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_.~#?&//=]*)/;
 export const passwordPatten =
-  /^(?=.*[A-Za-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*_+=\\~<>:;”’(),./[\]_`|{}-])[A-Za-z0-9#?!@$%^&*_+=\\~<>:;”’(),./[\]_`|{}-]{8,32}$/;
+  /^(?=.*[A-Za-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*_+=\\~<>:;”’(),./[\]_`|{}-])[A-Za-z0-9#?!@$%^&*_+=\\~<>:;”’(),./[\]_`|{}-]+$/;
 
 export enum DisplayErrorMsgs {
   Required = "Display name is required",
@@ -23,6 +23,7 @@ export enum PasswordErrorMsgs {
   MinLength = "Password must be at least 8 characters",
   MaxLength = "Password must be at most 32 characters",
   Invalid = "Password must contain at least one letter, one number and one special character",
+  NotMatch = "Passwords do not match",
 }
 
 export enum RefErrorMsgs {
