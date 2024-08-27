@@ -2,7 +2,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Checkbox, ControlledPasswordInput, ControlledTextInput, Icon } from '@src/module/common';
 import clsx from 'clsx';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { SocialButton } from '../common/social-button';
@@ -28,7 +28,6 @@ const defaultValues = {
 
 export function LoginForm({ token }: { token: string }) {
   const router = useRouter();
-  //const urlParams = useSearchParams();
   const {
     handleSubmit,
     control,
@@ -53,7 +52,6 @@ export function LoginForm({ token }: { token: string }) {
   });
 
   useEffect(() => {
-    //const token = searchParams.get('token');
     if (token && typeof window !== 'undefined') {
       OauthLogin({ token }).then(r => console.log(r));
     }
