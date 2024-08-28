@@ -5,6 +5,7 @@ import { ControlledTextInput, Icon, Button } from "@src/module/common";
 import * as z from "zod";
 import { displayNamePatten } from "@src/utils/validation-message";
 import { useTranslations } from "next-intl";
+import { FormContainer } from "../layout/form-container";
 
 export function AccountSettingForm() {
   const t = useTranslations();
@@ -54,14 +55,14 @@ export function AccountSettingForm() {
     console.log(formData);
   };
   return (
-    <div className="dark:bg-primary-900 bg-primary-50 shadow-settingPage dark:shadow-settingPage flex flex-col rounded-lg p-5">
-      <div className="mb-[30px] space-y-1">
-        <h1 className="text-base font-bold">{t("SettingPage.title")}</h1>
-        <h5 className="text-primary-700 dark:text-primary-100 text-sm opacity-70">
-          {t("SettingPage.subtitle")}
-        </h5>
-      </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-5">
+    <FormContainer
+      title={t("SettingPage.title")}
+      description={t("SettingPage.subtitle")}
+    >
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="mt-[30px] flex flex-col gap-y-5"
+      >
         <ControlledTextInput
           direction="horizontal"
           label={t("SettingPage.realName")}
@@ -107,6 +108,6 @@ export function AccountSettingForm() {
           </Button>
         </div>
       </form>
-    </div>
+    </FormContainer>
   );
 }
