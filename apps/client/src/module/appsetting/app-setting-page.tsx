@@ -1,13 +1,13 @@
 "use client";
+import { locales, Locales } from "@src/configs/configs";
 import { useTranslations } from "next-intl";
 import { Select } from "../common/select";
-import { useTheme, useLanguage } from "../system";
-import { locales, Locales } from "@src/configs/configs";
+import { Theme, useLanguage, useTheme } from "../system";
 
 export function AppSettingPage() {
   const t = useTranslations();
   const { currentLocale, loading, languageSwitcher } = useLanguage();
-  const { theme, themeSwitcher } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   const languageLabels = ["English", "中文"] as const;
   const languageOptions = locales.map((locale, index) => {
@@ -16,7 +16,7 @@ export function AppSettingPage() {
       value: locale,
     };
   });
-  
+
   const themes = ["light", "dark", "system"] as const;
   const themeLabels = [
     t("Shared.lightTheme"),
@@ -53,7 +53,9 @@ export function AppSettingPage() {
             label={t("Shared.theme")}
             value={theme}
             options={themeOptions}
-            onChange={(e) => themeSwitcher({ e })}
+            onChange={(e) => {
+              setTheme(e.target.value as Theme);
+            }}
           />
         </form>
       )}

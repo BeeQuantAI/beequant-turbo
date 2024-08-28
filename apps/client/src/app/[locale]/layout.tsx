@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
-import "./globals.css";
 import { getMessages } from "next-intl/server";
+import { ThemeProvider } from "next-themes";
+import "./globals.css";
 
 export default async function RootLayout({
   children,
@@ -34,7 +35,7 @@ export default async function RootLayout({
       </head>
       <body className="dark:bg-primary-800 text-primary-700 bg-primary-100 dark:text-primary-100 font-sans antialiased transition-colors">
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <ThemeProvider attribute="class">{children}</ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

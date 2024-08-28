@@ -3,11 +3,12 @@ import { useTheme as useNextTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Icon } from "../common";
 
-type Theme = (typeof supportedThemes)[number];
+export type Theme = (typeof supportedThemes)[number];
 const supportedThemes = ["light", "dark", "system"] as const;
 
 export function useTheme() {
   const { theme, setTheme } = useNextTheme();
+
   return { theme, setTheme } as {
     theme: Theme;
     setTheme: (theme: Theme) => void;
