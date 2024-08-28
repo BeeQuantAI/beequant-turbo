@@ -1,13 +1,16 @@
 "use client";
 import { useToggle } from "@src/utils";
 import clsx from "clsx";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@src/configs/navigation";
 import { logout } from "../../auth";
 import { useUser } from "../../auth/user-store";
 import { LinearIcon, LinearIcons } from "../../common";
 import { DashboardRoute } from "../route";
+import { useTranslations } from "next-intl";
+import { AccountRoute } from "@src/module/account/layout/route";
 
 export function AccountMenu() {
+  const t = useTranslations();
   const user = useUser((s) => s.user);
   const router = useRouter();
   const [showDropdown, toggelShowDropdown] = useToggle(false);
@@ -58,12 +61,12 @@ export function AccountMenu() {
         <div className="overflow-hidden">
           <MenuItem
             icon="user"
-            label="Profile"
+            label={t("AccountMenu.profile")}
             onClick={() => router.push(DashboardRoute.Profile.Path)}
           />
           <MenuItem
             icon="briefcase"
-            label="Wallet"
+            label={t("AccountMenu.wallet")}
             onClick={() => console.log("haha")}
           />
 
@@ -71,10 +74,19 @@ export function AccountMenu() {
 
           <MenuItem
             icon="cog"
-            label="Settings"
-            onClick={() => router.push(DashboardRoute.Setting.Path)}
+            label={t("Shared.accountManagement")}
+            onClick={() => router.push(AccountRoute.Management.Path)}
           />
-          <MenuItem icon="exit" label="Log Out" onClick={handleLogout} />
+          <MenuItem
+            icon="cog"
+            label={t("AccountMenu.settings")}
+            onClick={() => router.push(AccountRoute.Setting.Path)}
+          />
+          <MenuItem
+            icon="exit"
+            label={t("Shared.logout")}
+            onClick={handleLogout}
+          />
         </div>
       </menu>
 

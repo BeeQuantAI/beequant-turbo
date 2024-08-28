@@ -5,7 +5,7 @@ import { SidebarToggleButton } from "./sidebar";
 
 export function Header() {
   return (
-    <header className="h-header dark:bg-primary-900 bg-primary-50 shadow-header z-10 flex items-center transition-colors duration-300">
+    <header className="h-header dark:bg-primary-900 bg-primary-50 shadow-header z-20 flex items-center transition-colors duration-300">
       <SidebarToggleButton />
 
       <DashboardRoute.Root.Link>
