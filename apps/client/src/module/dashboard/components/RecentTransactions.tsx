@@ -26,8 +26,8 @@ const RecentTransactions = () => {
   };
 
   return (
-    <div className="col-span-1 xl:col-span-1 lg:col-span-2 md:col-span-3 p-4">
-      <div className="bg-white p-6 rounded-lg shadow-md">
+    <div className="col-span-1 xl:col-span-1 lg:col-span-2 md:col-span-3 p-1">
+      <div className="bg-white pt-[20px] pb-[38px] px-[25px] rounded-lg shadow-md">
         <div className="flex justify-between items-center mb-4">
           <h5 className="text-gray-400 text-base">Recent transactions</h5>
         </div>
