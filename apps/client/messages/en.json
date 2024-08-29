@@ -37,6 +37,13 @@
     }
   },
 
+  "NotFoundPage": {
+    "backHome": "Back Home",
+    "content": {
+      "message": "Ooops! The page you are looking for could not be found"
+    }
+  },
+
   "Sidebar": {
     "dashboard": "Dashboard",
     "bots": {
@@ -96,11 +103,10 @@
     "login": {
       "failed": "login failed, wrong password or email"
     },
-    "changePassword":{
+    "changePassword": {
       "currentPasswordWrong": "Current password is wrong",
       "failed": "Change password failed"
     }
-    
   },
 
   "SettingPage": {
@@ -138,8 +144,6 @@
     "succeed": "You have successfully reset your password!",
     "button": "Ready to trade again"
   },
-
-
 
   "exchange": {},
   "bot": {}

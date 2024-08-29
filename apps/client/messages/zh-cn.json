@@ -37,6 +37,13 @@
     }
   },
 
+  "NotFoundPage": {
+    "backHome": "返回主页",
+    "content": {
+      "message": "哦！无法找到您所寻找的页面"
+    }
+  },
+
   "Sidebar": {
     "dashboard": "中控台",
     "bots": {
