@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "concurrently 'yarn:dev-*' --restart-tries 3 --restart-after 3000",
     "dev-codegen": "graphql-codegen --watch",
-    "dev-next": "next dev -p 3010",
+    "dev-next": "next dev -p 3010 --turbo",
     "build": "next build",
     "start": "next start -p 3010",
     "lint": "next lint",
