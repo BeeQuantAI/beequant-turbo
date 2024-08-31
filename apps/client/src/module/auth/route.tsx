@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@src/configs/navigation";
 
 type RouteLinkProps = {
   children: React.ReactNode;
@@ -41,6 +41,18 @@ const ForgetPassword = {
   ),
 };
 
+const ResetPassword = {
+  Metadata: {
+    title: "Reset Password | BeeQuant",
+  },
+  Path: "/reset-password" as const,
+  Link: ({ children, className }: RouteLinkProps) => (
+    <Link href={ResetPassword.Path} className={className}>
+      {children}
+    </Link>
+  ),
+};
+
 const RegisterSuccessed = {
   Metadata: {
     title: "Register Successed | BeeQuant",
@@ -53,9 +65,23 @@ const RegisterSuccessed = {
   ),
 };
 
+const ResetPasswordSuccessed = {
+  Metadata: {
+    title: "Reset Succeed | BeeQuant",
+  },
+  Path: "/reset-password-successed" as const,
+  Link: ({ children, className }: RouteLinkProps) => (
+    <Link href={ResetPasswordSuccessed.Path} className={className}>
+      {children}
+    </Link>
+  ),
+};
+
 export const AuthRoute = {
   Login,
   Register,
   ForgetPassword,
+  ResetPassword,
   RegisterSuccessed,
+  ResetPasswordSuccessed,
 };

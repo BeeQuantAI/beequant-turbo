@@ -17,6 +17,8 @@ const documents = {
     "\n  mutation Login($email: String!, $password: String!) {\n    login(email: $email, password: $password) {\n      code\n      message\n      data\n    }\n  }\n": types.LoginDocument,
     "\n  mutation Register($input: CreateUserInput!) {\n    register(input: $input) {\n      code\n      message\n    }\n  }\n": types.RegisterDocument,
     "\n  query getUserInfo {\n    getUserInfo {\n      id\n      displayName\n    }\n  }\n": types.GetUserInfoDocument,
+    "\n  mutation ForgotPassword($email: String!){\n    forgotPassword(email: $email) {\n      code\n      message\n      data\n    }\n  }\n": types.ForgotPasswordDocument,
+    "\n  mutation resetPassword($input: ResetPasswordInput!){\n    resetPassword(input: $input) {\n      code\n      message\n      data\n    }\n  }\n": types.ResetPasswordDocument,
 };
 
 /**
@@ -49,6 +51,14 @@ export function graphql(source: "\n  mutation Register($input: CreateUserInput!)
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query getUserInfo {\n    getUserInfo {\n      id\n      displayName\n    }\n  }\n"): (typeof documents)["\n  query getUserInfo {\n    getUserInfo {\n      id\n      displayName\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation ForgotPassword($email: String!){\n    forgotPassword(email: $email) {\n      code\n      message\n      data\n    }\n  }\n"): (typeof documents)["\n  mutation ForgotPassword($email: String!){\n    forgotPassword(email: $email) {\n      code\n      message\n      data\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation resetPassword($input: ResetPasswordInput!){\n    resetPassword(input: $input) {\n      code\n      message\n      data\n    }\n  }\n"): (typeof documents)["\n  mutation resetPassword($input: ResetPasswordInput!){\n    resetPassword(input: $input) {\n      code\n      message\n      data\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

@@ -1,6 +1,7 @@
 "use server";
 import {
   CreateUserInput,
+  ResetPasswordInput,
   getServerGqlClient,
   graphql,
 } from "@src/module/graphql";
@@ -98,3 +99,67 @@ export async function logout() {
 
   redirect(AuthRoute.Login.Path);
 }
+
+const forgotPasswordMutation = graphql(`
+  mutation ForgotPassword($email: String!){
+    forgotPassword(email: $email) {
+      code
+      message
+      data
+    }
+  }
+`);
+
+export type ForgotPasswordPayload = {
+  email: string;
+};
+
+export async function forgotPassword(payload: ForgotPasswordPayload) {
+  const gqlClient = await getServerGqlClient();
+  const { forgotPassword } = await gqlClient.request(forgotPasswordMutation, payload);
+
+  switch (forgotPassword.code) {
+    case 200:
+      return {
+        success: forgotPassword.message,
+      };
+      
+    case 10012:
+    case 10009:
+    default:
+      return {
+        error: forgotPassword.message,
+      };
+  }
+}
+
+const resetPasswordMutation = graphql(`
+  mutation resetPassword($input: ResetPasswordInput!){
+    resetPassword(input: $input) {
+      code
+      message
+      data
+    }
+  }
+`);
+
+export type ResetPasswordPayload = ResetPasswordInput;
+export async function resetPassword(input: ResetPasswordPayload) {
+  const gqlClient = await getServerGqlClient();
+  const { resetPassword } = await gqlClient.request(resetPasswordMutation, {
+    input,
+  });
+
+  switch (resetPassword.code) { 
+    case 200:
+      redirect(AuthRoute.ResetPasswordSuccessed.Path);
+
+    case 10012:
+    case 10009:
+    default:
+      return {
+        error: resetPassword.message,
+      };
+  }
+}
+
