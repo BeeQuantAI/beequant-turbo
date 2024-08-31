@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { AuthRoute } from "./module/auth";
 import createMiddleware from "next-intl/middleware";
 import { defaultLocale, locales } from "./configs/configs";
@@ -11,7 +11,12 @@ const handleI18Routing = createMiddleware({
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("token");
   const pathname = request.nextUrl.pathname;
-  const pagesWithoutToken = ["login", "register", "register-successed"];
+  const pagesWithoutToken = [
+    "login",
+    "register",
+    "register-successed",
+    "not-found",
+  ];
   const pagesRegex = new RegExp(
     `^\/(?:en|zh-cn)\/(?:${pagesWithoutToken.join("|")})$`,
   );
