@@ -14,15 +14,11 @@ import {
 import { Modal } from "@src/module/common/modal";
 import { useRef } from "react";
 import { logout } from "@src/module/auth";
+import { passwordValidationSchema } from "@src/utils/validation-schema";
 
 export function ChangePasswordForm() {
   const t = useTranslations();
-  const passwordSchema = z
-    .string()
-    .min(1, { message: t("Notifications.password.required") })
-    .min(8, { message: t("Notifications.password.minLength") })
-    .max(32, { message: t("Notifications.password.maxLength") })
-    .regex(passwordPatten, { message: t("Notifications.password.invalid") });
+  const passwordSchema = passwordValidationSchema(t);
 
   const updatePasswordSchema = z
     .object({

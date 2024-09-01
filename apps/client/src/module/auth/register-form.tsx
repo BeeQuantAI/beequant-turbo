@@ -11,21 +11,41 @@ import { z } from "zod";
 import { AuthFormContainer } from "./auth-form-container";
 import { register, RegisterPayload } from "./auth-service";
 import { AuthRoute } from "./route";
+import { displayNamePatten } from "@src/utils/validation-message";
 import { useTranslations } from "next-intl";
-
-type FormSchema = z.infer<typeof formSchema>;
-const formSchema = z.object({
-  displayName: z.string(),
-  email: z.string().email(),
-  mobile: z.string().optional(),
-  password: z.string().min(8),
-  confirmPassword: z.string().min(8),
-  realName: z.string().optional(),
-  ref: z.string(),
-});
+import { passwordValidationSchema } from "@src/utils/validation-schema";
 
 export function RegisterForm() {
   const t = useTranslations();
+  const passwordSchema = passwordValidationSchema(t);
+
+  type FormSchema = z.infer<typeof formSchema>;
+  const formSchema = z.object({
+    displayName: z.union([
+      z.string()
+        .min(4, { message: t("Notifications.displayName.minLength") })
+        .max(15, { message: t("Notifications.displayName.maxLength") })
+        .regex(displayNamePatten, {
+          message: t("Notifications.displayName.invalid"),
+        }),
+      z.string().length(0),
+    ]),
+    email: z.string()
+      .min(1, { message: t("Notifications.email.required") })
+      .email({ message: t("Notifications.email.invalid") }),
+    mobile: z.string().optional(),
+    password: passwordSchema,
+    confirmPassword: passwordSchema,
+    realName: z.string().optional(),
+    ref: z.string()
+      .min(1, { message: t("Notifications.ref.required") })
+      .default("COREINTERNAL"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+      message: t("Notifications.password.notMatch"),
+      path: ["confirmPassword"],
+  });
+
   const {
     handleSubmit,
     control,
