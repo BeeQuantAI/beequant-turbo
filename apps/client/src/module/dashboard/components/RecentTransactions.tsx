@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from 'react';
 import { BarChart, Bar, Cell, ResponsiveContainer } from 'recharts';
@@ -27,14 +27,14 @@ const RecentTransactions = () => {
 
   return (
     <div className="col-span-1 xl:col-span-1 lg:col-span-2 md:col-span-3 p-1">
-      <div className="bg-white pt-[20px] pb-[38px] px-[25px] rounded-lg shadow-md">
-        <div className="flex justify-between items-center mb-4">
-          <h5 className="text-gray-400 text-base">Recent transactions</h5>
+      <div className="bg-white pt-[20px] pb-[20px] px-[25px] rounded-lg shadow-md">
+        <div className="mb-8">
+          <h5 className="text-[12px] font-medium text-left opacity-70 mt-[-4px] uppercase text-primary-600 font-sans">Recent transactions</h5>
         </div>
-        <div className="flex justify-between items-center">
-          <p className="text-3xl font-bold text-teal-400">{activeItem.pv}</p>
-          <div className="ml-4 flex-1">
-            <ResponsiveContainer width="100%" height={50}>
+        <div className="flex items-end justify-between">
+          <p className="text-3xl font-sans text-teal-400 mb-1 mr-auto">{activeItem.pv}</p>
+          <div className="w-full flex justify-end">
+            <ResponsiveContainer width="70%" height={50}>
               <BarChart data={data} onClick={handleClick}>
                 <Bar dataKey="pv">
                   {data.map((entry, index) => (

@@ -7,12 +7,11 @@ const TotalAssets = () => (
   <div className="col-span-1 xl:col-span-1 lg:col-span-2 md:col-span-3 p-1">
     <div className="bg-white pt-[20px] pb-[38px] px-[25px] rounded-lg shadow-md">
       <div className="flex justify-between items-center mb-1">
-        <h2 className="text-[28px] font-medium text-sky-300 mt-[-4px]">$ 878 372</h2>
+        <h2 className="text-[28px] font-medium text-accent-400 mt-[-4px] font-sans">$ 878 372</h2> 
         <TrendingUpIcon className="text-gray-300"/>
       </div>
       <h5
-        className="text-xs font-medium text-left opacity-70 mt-[-4px] uppercase"
-        style={{ color: '#787985', fontFamily: 'Roboto, sans-serif' }}
+        className="text-[12px] font-medium text-left opacity-70 mt-[-4px] uppercase text-primary-600 font-sans"
       >
         Total assets
       </h5>
@@ -23,9 +22,9 @@ const TotalAssets = () => (
               width: '18%',
               borderRadius: "9999px", 
             }}
-            className="flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-sky-300 to-sky-200"
+            className="flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-accent-400 to-accent-200"
           >
-            <p className="text-sky-300 text-sm font-semibold absolute right-0 top-[-1rem]">18%</p>
+            <p className="text-accent-400 text-[14px] absolute right-0 top-[-1rem] font-sans">18%</p>
           </div>
         </div>
       </div>
@@ -34,5 +33,3 @@ const TotalAssets = () => (
 );
 
 export default TotalAssets;
-
-
