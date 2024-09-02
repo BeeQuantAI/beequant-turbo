@@ -1,0 +1,257 @@
+.footer {
+    border-top: 2px solid rgba(255, 255, 255, 0.05);
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer__logo {
+    margin-top: 60px;
+}
+
+.footer__logo img {
+    width: auto;
+    height: 50px;
+    display: block;
+}
+
+.footer__tagline {
+    margin-top: 20px;
+    display: block;
+    font-size: 14px;
+    line-height: 24px;
+    color: #d0d0d0;
+    margin-bottom: 0;
+}
+
+.footer__currencies {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.footer__currencies i {
+    font-size: 24px;
+    margin-right: 20px;
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.footer__currencies i:last-child {
+    margin-right: 0;
+}
+
+.footer__title {
+    display: block;
+    margin-top: 40px;
+    font-size: 16px;
+    line-height: 26px;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.footer__nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.footer__nav a {
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 15px;
+    color: #d0d0d0;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.footer__nav a:last-child {
+    margin-bottom: 0;
+}
+
+.footer__nav a:hover {
+    color: #a034fa;
+}
+
+.footer__content {
+    position: relative;
+    margin-top: 60px;
+    padding: 10px 0 30px;
+}
+
+.footer__content:before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    display: block;
+    height: 2px;
+    background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.05) 20%,
+            rgba(255, 255, 255, 0.05) 80%,
+            rgba(255, 255, 255, 0) 100%
+    );
+}
+
+.footer__social {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.footer__social a {
+    height: 20px;
+    width: 20px;
+    margin-top: 20px;
+    margin-right: 20px;
+    position: relative;
+    color: #d0d0d0;
+}
+
+.footer__social a i {
+    font-size: 20px;
+    transition: color 0.5s ease;
+}
+
+.footer__social a:last-child {
+    margin-right: 0;
+}
+
+.footer__social a:hover i {
+    color: #a034fa;
+}
+
+.footer__copyright {
+    display: block;
+    font-size: 14px;
+    color: #d0d0d0;
+    margin-top: 30px;
+    font-weight: 400;
+}
+
+.footer__copyright a {
+    color: #d0d0d0;
+}
+
+.footer__copyright a:hover {
+    color: #a034fa;
+}
+
+.screw--footer {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .footer {
+        padding-top: 20px;
+    }
+
+    .footer__logo {
+        margin-top: 50px;
+    }
+
+    .footer__title {
+        margin-top: 50px;
+    }
+
+    .footer__content {
+        margin-top: 70px;
+        padding: 0;
+        height: 100px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .footer__social {
+        display: inline-flex;
+        width: auto;
+        order: 2;
+    }
+
+    .footer__social a {
+        margin-top: 0;
+    }
+
+    .footer__copyright {
+        margin-top: 0;
+        order: 1;
+    }
+}
+
+@media (min-width: 1200px) {
+    .footer {
+        padding-top: 50px;
+    }
+
+    .footer__content {
+        margin-top: 100px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .footer:before {
+        content: '';
+        position: absolute;
+        bottom: 101px;
+        left: 70px;
+        right: 70px;
+        display: block;
+        height: 2px;
+        background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.05) 20%,
+                rgba(255, 255, 255, 0.05) 80%,
+                rgba(255, 255, 255, 0) 100%
+        );
+    }
+
+    .footer__content:before {
+        display: none;
+    }
+
+    .screw--footer {
+        display: block;
+        width: 67px;
+        height: 67px;
+    }
+
+    .screw--footer-tl {
+        background: url('/img/dodgers/screw--lines-tl.svg') no-repeat center;
+        top: 30px;
+        left: 30px;
+    }
+
+    .screw--footer-tr {
+        background: url('/img/dodgers/screw--lines-tr.svg') no-repeat center;
+        top: 30px;
+        right: 30px;
+    }
+
+    .screw--footer-br {
+        background: url('/img/dodgers/screw--lines-br.svg') no-repeat center;
+        bottom: 30px;
+        right: 30px;
+    }
+
+    .screw--footer-bl {
+        background: url('/img/dodgers/screw--lines-bl.svg') no-repeat center;
+        bottom: 30px;
+        left: 30px;
+    }
+}
