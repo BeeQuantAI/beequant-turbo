@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@src/module/common";
-import { AuthRoute } from "@src/module/auth";
+import { DashboardRoute } from "@src/module/dashboard";
 import { useTranslations } from "next-intl";
 
 interface NotFoundProps {
@@ -21,9 +21,9 @@ export function NotFoundContent({ message }: NotFoundProps) {
             className="w-full max-w-[31.25rem]"
           />
           <div className="mb-5 mt-[5.625rem] text-[1.1875rem]">{message}</div>
-          <AuthRoute.Login.Link>
+          <DashboardRoute.Root.Link>
             <Button variant="default">{t("NotFoundPage.backHome")}</Button>
-          </AuthRoute.Login.Link>
+          </DashboardRoute.Root.Link>
         </div>
       </div>
     </main>
