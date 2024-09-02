@@ -1,13 +1,13 @@
 "use client";
 
-import { AuthRoute } from "@src/module/auth";
-import { NotFoundContent } from "@src/module/common/not-found-page";
-import { useTranslations } from "next-intl";
+import Error from "next/error";
 
-export const metadata = AuthRoute.PageNotFound.Metadata;
-
-export default function NotFoundPage() {
-  const t = useTranslations("NotFoundPage");
-
-  return <NotFoundContent message={t("content.message")} />;
+export default function NotFound() {
+  return (
+    <html lang="en">
+      <body>
+        <Error statusCode={404} />
+      </body>
+    </html>
+  );
 }

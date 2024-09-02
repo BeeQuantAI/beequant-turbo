@@ -19,7 +19,7 @@ export async function middleware(request: NextRequest) {
     "not-found",
   ];
   const pagesRegex = new RegExp(
-    `^\/(?:en|zh-cn)?\/?(?:${pagesWithoutToken.join("|")})$`,
+    `^\/(?:en|zh-cn)\/(?:${pagesWithoutToken.join("|")})$`,
   );
 
   if (!token && !pagesRegex.test(pathname)) {
