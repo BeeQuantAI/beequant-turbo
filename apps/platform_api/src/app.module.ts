@@ -9,6 +9,8 @@ import { UserModule } from './modules/user/user.module';
 import { ExchangeKeyModule } from './modules/exchangeKey/exchangeKey.module';
 import getConfig from './config';
 import { AuthModule } from './modules/auth/auth.module';
+import { ExchangeModule } from './modules/exchange/exchange.module';
+import { UserExchangeModule } from './modules/user-exchange/user-exchange.module';
 
 @Module({
   imports: [
@@ -42,6 +44,8 @@ import { AuthModule } from './modules/auth/auth.module';
     UserModule,
     AuthModule,
     ExchangeKeyModule,
+    ExchangeModule,
+    UserExchangeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

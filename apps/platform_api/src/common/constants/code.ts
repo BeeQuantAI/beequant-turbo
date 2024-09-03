@@ -8,3 +8,7 @@ export const NOT_EMPTY = 10006;
 export const VALIDATE_ERROR = 10007;
 export const UPDATE_PASSWORD_ERROR = 10008;
 export const UNKNOWN_ERROR = 10009;
+export const EXCHANGE_KEY_EXIST = 10010;
+export const EXCHANGE_NOT_EXIST = 10011;
+export const EXCHANGE_KET_INVALID = 10012;
+export const EXCHANGE_KEY_STORE_ERROR = 10013;

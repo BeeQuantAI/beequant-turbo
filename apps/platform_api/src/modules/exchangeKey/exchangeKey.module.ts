@@ -3,9 +3,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ExchangeKey } from './models/exchangeKey.entity';
 import { ExchangeKeyService } from './exchangeKey.service';
 import { ExchangeKeyResolver } from './exchangeKey.resolver';
+import { UserExchangeModule } from '../user-exchange/user-exchange.module';
+import { ExchangeModule } from '../exchange/exchange.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ExchangeKey])],
+  imports: [TypeOrmModule.forFeature([ExchangeKey]), UserExchangeModule, ExchangeModule],
   providers: [ConsoleLogger, ExchangeKeyService, ExchangeKeyResolver],
   exports: [ExchangeKeyService],
 })

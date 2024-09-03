@@ -68,7 +68,7 @@ export type Mutation = {
   /** Change password */
   changePassword: Result;
   /** Create exchange key */
-  createExchangeKey: Scalars['Boolean']['output'];
+  createExchangeKey: Result;
   /** Create new user */
   createUser: Scalars['Boolean']['output'];
   /** Hard delete an user */
