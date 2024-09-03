@@ -19,13 +19,8 @@ export function DashboardLayout({ children }: Props) {
       <main
         className={clsx(
           "top-header bg-primary-100 dark:bg-primary-800 absolute bottom-0 right-0 overflow-y-hidden p-8 transition-[left] duration-300",
-<<<<<<< HEAD
-          "peer-data-[status=expanded]/sidebar:md:left-sidebar-expanded peer-data-[status=collapsed]/sidebar:md:left-sidebar-collapsed left-0",
-          "m-auto max-w-[1630px]",
-=======
           "peer-data-[status=expanded]/sidebar:md:left-sidebar-expanded peer-data-[status=collapsed]/sidebar:md:left-sidebar-collapsed left-0 z-10", // 将 -z-10 改为 z-10
           "m-auto max-w-[1700px]"
->>>>>>> c13e7543243eb60cef6d41ff98bf07774d7a5cc2
         )}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">

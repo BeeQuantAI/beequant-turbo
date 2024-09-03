@@ -1,4 +1,3 @@
-"use client";
 
 import React from 'react';
 import TrendingUpIcon from 'mdi-react/TrendingUpIcon';
@@ -7,7 +6,11 @@ const TotalProfitEarned = () => (
   <div className="col-span-1 xl:col-span-1 lg:col-span-2 md:col-span-3 p-0.5"> 
     <div className="bg-white pt-[20px] pb-[38px] px-[25px] rounded-lg shadow-md">
       <div className="flex justify-between items-center mb-1">
-        <h2 className="text-[28px] font-medium text-rose-400 mt-[-4px] font-sans" >$ 165 832</h2>
+      <h2
+        className="text-[28px] font-medium mt-[-4px] font-sans"
+        style={{ color: '#FF4861' }}>
+        $ 165 832
+      </h2>
         <TrendingUpIcon className="text-gray-300 " />
       </div>
       <h5
@@ -17,14 +20,18 @@ const TotalProfitEarned = () => (
       </h5>
       <div className="relative pt-1 mt-4 ">
         <div className="overflow-hidden h-2 text-xs flex rounded-full bg-gray-300">
-          <div
+        <div
             style={{
               width: '27%',
-              borderRadius: "9999px", 
+              borderRadius: '9999px',
+              background: 'linear-gradient(to right, #FF4861, #ff7e9a)',
+              color: '#FF4861',
             }}
-            className="flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-rose-400 to-rose-300"
+            className="flex flex-col text-center whitespace-nowrap text-white justify-center"
           >
-            <p className="text-rose-400 text-[14px] font-sans absolute right-0 top-[-1rem]">27%</p>
+            <p className="text-[14px] font-sans absolute right-0 top-[-1rem]"
+            style={{ color: '#FF4861' }}>
+            27%</p>
           </div>
         </div>
       </div>

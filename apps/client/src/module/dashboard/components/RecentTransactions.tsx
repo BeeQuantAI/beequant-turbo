@@ -32,7 +32,9 @@ const RecentTransactions = () => {
           <h5 className="text-[12px] font-medium text-left opacity-70 mt-[-4px] uppercase text-primary-600 font-sans">Recent transactions</h5>
         </div>
         <div className="flex items-end justify-between">
-          <p className="text-3xl font-sans text-teal-400 mb-1 mr-auto">{activeItem.pv}</p>
+          <p className="text-3xl font-sans mb-1 mr-auto"
+            style={{ color: '#4CE1B6' }}>
+            {activeItem.pv}</p>
           <div className="w-full flex justify-end">
             <ResponsiveContainer width="70%" height={50}>
               <BarChart data={data} onClick={handleClick}>
@@ -41,7 +43,7 @@ const RecentTransactions = () => {
                     <Cell
                       key={`cell-${index}`}
                       cursor="pointer"
-                      fill={index === activeIndex ? '#4ce1b6' : '#c88ffa'}
+                      fill={index === activeIndex ? '#4CE1B6' : '#c88ffa'}
                     />
                   ))}
                 </Bar>

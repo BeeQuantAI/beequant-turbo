@@ -21,8 +21,9 @@ const TotalAssets = () => (
             style={{ 
               width: '18%',
               borderRadius: "9999px", 
+              background: 'linear-gradient(to right, #48b5ff, #7edbff)',
             }}
-            className="flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-accent-400 to-accent-200"
+            className="flex flex-col text-center whitespace-nowrap text-white justify-center"
           >
             <p className="text-accent-400 text-[14px] absolute right-0 top-[-1rem] font-sans">18%</p>
           </div>
