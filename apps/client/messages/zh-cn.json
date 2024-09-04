@@ -31,9 +31,26 @@
     "signUp": "注册",
     "haveAccount": "已经拥有账号?",
     "succeed": {
-      "congratulation": "恭喜您!",
-      "message": "注册成功",
+      "congratulation": "请查看您的邮箱",
+      "message": "我们已向您发送了验证邮件",
       "backToLogin": "返回登录"
+    }
+  },
+
+  "VerifyEmail": {
+    "succeed":{
+      "title": "恭喜您!",
+      "message": "您已成功完成注册"
+    },
+    "failed": {
+      "title": "验证失败",
+      "message": {
+        "userNotFound": "用户不存在，请注册。",
+        "alreadyVerified": "邮箱经过已验证，请您登录。",
+        "expiredLink": "链接已过期，已向您发送了新的验证邮件。",
+        "invalidLink": "链接无效，已向您发送了新的验证邮件。",
+        "unknownError": "邮件验证时出现错误，请重试。"
+      }
     }
   },
 
@@ -91,7 +108,8 @@
       "required": "请输入推荐码"
     },
     "login": {
-      "failed": "登入失败，密码或邮箱错误"
+      "failed": "登入失败，密码或邮箱错误",
+      "emailNotVerified": "邮箱尚未验证，我们已向您发送了验证邮件"
     },
     "changePassword": {
       "currentPasswordWrong": "旧密码错误",

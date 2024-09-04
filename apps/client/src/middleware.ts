@@ -11,7 +11,7 @@ const handleI18Routing = createMiddleware({
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("token");
   const pathname = request.nextUrl.pathname;
-  const pagesWithoutToken = ["login", "register", "register-successed","landing"];
+  const pagesWithoutToken = ["login", "register", "register-successed", "landing", "verify-email", "verify-email-successed"];
   const pagesRegex = new RegExp(
     `^\/(?:en|zh-cn)?\/?(?:${pagesWithoutToken.join("|")})$`,
   );
