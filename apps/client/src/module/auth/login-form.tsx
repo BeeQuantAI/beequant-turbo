@@ -24,7 +24,7 @@ import { useTheme } from "@src/module/system";
 import { fetchUserInfo } from "@src/module/auth/user-store";
 import { useSearchParams } from "next/navigation";
 
-export function LoginForm() {
+export function LoginForm({token}: {token: string}) {
   const t = useTranslations();
   const [loading, setLoading] = useState(false);
   const { theme } = useTheme();
