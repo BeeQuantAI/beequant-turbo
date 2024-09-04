@@ -18,23 +18,28 @@ import { AuthRoute } from "./route";
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 
-type LoginForm = z.infer<typeof formSchema>;
-// source of truth for this login form <= this is the law, is the king, is the absolute authority for this form - K总
-const formSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8),
-  remeber: z.string(),
-});
+export function LoginForm() {
+  const t = useTranslations();
 
-// Need this to enforce default value to match the LoginForm schema, because if you do it in the `useForm` hook, it turns it into a `Partial<LoginForm>` type.
-const defaultValues = {
-  email: "",
-  password: "",
-  remeber: "",
-} satisfies LoginForm; // Satisfies make sure this object you are making can satisfy the LoginForm schema.
+  type LoginForm = z.infer<typeof formSchema>;
+  // source of truth for this login form <= this is the law, is the king, is the absolute authority for this form - K总
 
-export function LoginForm({ token }: { token: string }) {
-  const  t  = useTranslations();
+  const formSchema = z.object({
+    email: z
+        .string()
+        .min(1, { message: t("Notifications.email.required") })
+        .email({ message: t("Notifications.email.invalid") }),
+    password: z.string()
+      .min(1, { message: t("Notifications.password.required") }),
+    remember: z.string(),
+  });
+
+  // Need this to enforce default value to match the LoginForm schema, because if you do it in the `useForm` hook, it turns it into a `Partial<LoginForm>` type.
+  const defaultValues = {
+    email: "",
+    password: "",
+    remember: "",
+  } satisfies LoginForm; // Satifies make sure this object you are making can satisfy the LoginForm schema.
   const router = useRouter();
   const {
     handleSubmit,
