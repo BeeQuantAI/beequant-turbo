@@ -18,7 +18,7 @@ import { AuthRoute } from "./route";
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 
-export function LoginForm() {
+export function LoginForm({token}: {token: string}) {
   const t = useTranslations();
 
   type LoginForm = z.infer<typeof formSchema>;
