@@ -19,14 +19,10 @@
     "target": "es6",
     "baseUrl": "./",
     "paths": {
-      "@src/*": [
-        "./src/*"
-      ]
+      "@src/*": ["./src/*"]
     },
-    "outDir": "./dist",
+    "outDir": "./dist"
   },
   "exclude": ["node_modules", "dist", "build"],
-  "include": [
-    "./src",
-  ]
+  "include": ["./src"]
 }

@@ -36,11 +36,5 @@ yarn-error.log*
 .DS_Store
 *.pem
 
-# Yarn
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+# yarn
+.yarn

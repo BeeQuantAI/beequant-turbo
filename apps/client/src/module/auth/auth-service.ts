@@ -5,9 +5,9 @@ import {
   graphql,
 } from "@src/module/graphql";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { z } from "zod";
 import { AuthRoute } from "./route";
+import { redirect } from "../../configs/navigation";
 
 const authResultSchema = z.object({
   code: z.number(),
@@ -40,8 +40,11 @@ export async function login(payload: LoginPayload) {
       redirect("/dashboard");
 
     case 10003:
+    case 10010:
+    default:
       return {
         error: login.message,
+        code: login.code,
       };
   }
 }
@@ -65,13 +68,41 @@ export async function register(input: RegisterPayload) {
   switch (register.code) {
     case 200:
       // I don't [ads-friendly-content] know if this data is valid or not so screw it
-      redirect(AuthRoute.Login.Path);
+      redirect(AuthRoute.RegisterSuccessed.Path);
 
     case 10004:
     case 10005:
     default:
       return {
         error: register.message,
+      };
+  }
+}
+
+const verifyEmailMutation = graphql(`
+  mutation VerifyEmail($email: String!, $token: String!) {
+    verifyEmail(email: $email, token: $token) {
+      code
+      message
+    }
+  }
+`);
+
+export type VerifyEmailPayload = {
+  email: string;
+  token: string;
+};
+
+export async function verifyEmail(payload: VerifyEmailPayload) {
+  const gqlClient = await getServerGqlClient();
+  const { verifyEmail } = await gqlClient.request(verifyEmailMutation, payload);
+
+  switch (verifyEmail.code) {
+    case 200:
+      redirect(AuthRoute.VerifyEmailSuccessed.Path);
+    case 10011:
+      return {
+        error: verifyEmail.message,
       };
   }
 }
@@ -89,4 +120,11 @@ export async function getUserInfo() {
   const { getUserInfo } = await gqlClient.request(getUserInfoQuery);
 
   return getUserInfo;
+}
+
+export async function logout() {
+  const cookieStore = cookies();
+  cookieStore.delete("token");
+
+  redirect(AuthRoute.Login.Path);
 }

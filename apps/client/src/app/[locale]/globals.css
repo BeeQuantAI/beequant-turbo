@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    --header-height: 60px;
+    --sidebar-width-collapsed: 55px;
+    --sidebar-width-expanded: 240px;
+  }
+}
+
+body {
+  @apply text-base;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

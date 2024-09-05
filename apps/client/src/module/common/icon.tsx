@@ -1,23 +1,60 @@
+import clsx from "clsx";
 import type { IconBaseProps } from "react-icons";
-import { GoEye, GoEyeClosed, GoKey, GoPerson } from "react-icons/go";
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { BsPerson } from "react-icons/bs";
+import { FaKey } from "react-icons/fa";
+import { FaEarthAsia } from "react-icons/fa6";
+import { GoEye, GoEyeClosed, GoHome } from "react-icons/go";
+import { IoDiamondOutline, IoLogOutOutline } from "react-icons/io5";
+import { FaMobileScreenButton } from "react-icons/fa6";
+import { MdOutlineMail } from "react-icons/md";
+import { IoSettingsOutline } from "react-icons/io5";
+
 import {
-  MdSunny,
+  MdCheck,
+  MdInsertChart,
   MdModeNight,
   MdOutlineKeyboardArrowDown,
   MdOutlineKeyboardArrowUp,
+  MdSunny,
 } from "react-icons/md";
-const icons = {
-  person: GoPerson,
-  key: GoKey,
-  "eye-open": GoEye,
-  "eye-closed": GoEyeClosed,
-  menu: AiOutlineMenu,
-  dayTime: MdSunny,
-  nightTime: MdModeNight,
+import { PiPlaceholder } from "react-icons/pi";
+import { twMerge } from "tailwind-merge";
+
+const genericIcons = {
   "arrow-down": MdOutlineKeyboardArrowDown,
   "arrow-up": MdOutlineKeyboardArrowUp,
   close: AiOutlineClose,
+  placeholder: PiPlaceholder,
+  check: MdCheck,
+  dayTime: MdSunny,
+  nightTime: MdModeNight,
+  mobile: FaMobileScreenButton,
+  email: MdOutlineMail,
+  setting: IoSettingsOutline,
+};
+
+const authIcons = {
+  person: BsPerson,
+  key: FaKey,
+  "eye-open": GoEye,
+  "eye-closed": GoEyeClosed,
+};
+
+const dashboardIcons = {
+  menu: AiOutlineMenu,
+  home: GoHome,
+  bots: MdInsertChart,
+  crypto: FaEarthAsia,
+  theme: IoDiamondOutline,
+  account: BsPerson,
+  exit: IoLogOutOutline,
+};
+
+const icons = {
+  ...genericIcons,
+  ...authIcons,
+  ...dashboardIcons,
 };
 
 export type Icons = keyof typeof icons;
@@ -27,4 +64,27 @@ export type IconProps = {
 export function Icon({ icon, ...props }: IconProps) {
   const I = icons[icon];
   return <I {...props} />;
+}
+
+export type LinearIcons =
+  | "menu"
+  | "home"
+  | "chart-bars"
+  | "earth"
+  | "diamond"
+  | "user"
+  | "briefcase"
+  | "cog"
+  | "exit"
+  | "chevron-right"
+  | "chevron-down";
+type LinearIconProps = { icon: LinearIcons; className?: string };
+export function LinearIcon({ icon, className }: LinearIconProps) {
+  return (
+    <span
+      className={twMerge(
+        clsx(`lnr lnr-${icon} text-primary-200 text-base`, className),
+      )}
+    />
+  );
 }

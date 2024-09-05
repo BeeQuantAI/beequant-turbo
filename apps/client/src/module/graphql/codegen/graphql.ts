@@ -83,6 +83,8 @@ export type Mutation = {
   updateExchangeKey: Scalars['Boolean']['output'];
   /** Update user info */
   updateUser: Scalars['Boolean']['output'];
+  /** Email Verification */
+  verifyEmail: Result;
 };
 
 
@@ -125,6 +127,12 @@ export type MutationUpdateExchangeKeyArgs = {
 export type MutationUpdateUserArgs = {
   id: Scalars['String']['input'];
   input: UpdateUserInput;
+};
+
+
+export type MutationVerifyEmailArgs = {
+  email: Scalars['String']['input'];
+  token: Scalars['String']['input'];
 };
 
 export type Query = {
@@ -184,6 +192,8 @@ export type UpdatePasswordInput = {
 export type UpdateUserInput = {
   /** User display name */
   displayName?: InputMaybe<Scalars['String']['input']>;
+  /** is Email Verified */
+  isEmailVerified?: InputMaybe<Scalars['Boolean']['input']>;
   /** Mobile number */
   mobile?: InputMaybe<Scalars['String']['input']>;
   /** Password */
@@ -192,6 +202,8 @@ export type UpdateUserInput = {
   realName?: InputMaybe<Scalars['String']['input']>;
   /** User is referred by */
   ref?: InputMaybe<Scalars['String']['input']>;
+  /** Verification Token */
+  verificationToken?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type UserType = {
@@ -202,6 +214,8 @@ export type UserType = {
   email: Scalars['String']['output'];
   /** User ID */
   id: Scalars['String']['output'];
+  /** is Email Verified */
+  isEmailVerified: Scalars['Boolean']['output'];
   /** Mobile number */
   mobile: Scalars['String']['output'];
   /** QQ */
@@ -210,9 +224,18 @@ export type UserType = {
   realName: Scalars['String']['output'];
   /** User is referred by */
   ref: Scalars['String']['output'];
+  /** Verification Token */
+  verificationToken?: Maybe<Scalars['String']['output']>;
   /** Wechat */
   wechat: Scalars['String']['output'];
 };
+
+export type UpdatePasswordMutationVariables = Exact<{
+  input: UpdatePasswordInput;
+}>;
+
+
+export type UpdatePasswordMutation = { __typename?: 'Mutation', changePassword: { __typename?: 'Result', code: number, message?: string | null } };
 
 export type LoginMutationVariables = Exact<{
   email: Scalars['String']['input'];
@@ -229,12 +252,22 @@ export type RegisterMutationVariables = Exact<{
 
 export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'Result', code: number, message?: string | null } };
 
+export type VerifyEmailMutationVariables = Exact<{
+  email: Scalars['String']['input'];
+  token: Scalars['String']['input'];
+}>;
+
+
+export type VerifyEmailMutation = { __typename?: 'Mutation', verifyEmail: { __typename?: 'Result', code: number, message?: string | null } };
+
 export type GetUserInfoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetUserInfoQuery = { __typename?: 'Query', getUserInfo: { __typename?: 'UserType', id: string, displayName: string } };
 
 
+export const UpdatePasswordDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdatePassword"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdatePasswordInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"changePassword"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<UpdatePasswordMutation, UpdatePasswordMutationVariables>;
 export const LoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"Login"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}},{"kind":"Argument","name":{"kind":"Name","value":"password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"password"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"data"}}]}}]}}]} as unknown as DocumentNode<LoginMutation, LoginMutationVariables>;
 export const RegisterDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"Register"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateUserInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"register"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<RegisterMutation, RegisterMutationVariables>;
+export const VerifyEmailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"VerifyEmail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"token"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verifyEmail"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}},{"kind":"Argument","name":{"kind":"Name","value":"token"},"value":{"kind":"Variable","name":{"kind":"Name","value":"token"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<VerifyEmailMutation, VerifyEmailMutationVariables>;
 export const GetUserInfoDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getUserInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getUserInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}}]}}]}}]} as unknown as DocumentNode<GetUserInfoQuery, GetUserInfoQueryVariables>;

@@ -1,0 +1,256 @@
+{
+  "Shared": {
+    "welcome": "欢迎来到",
+    "beequant": "BeeQuant",
+    "ai": "AI",
+    "slogan": "使用BeeQuant AI智能交易",
+    "email": "邮箱",
+    "password": "密码",
+    "signIn": "登录",
+    "confirmPassword": "重复密码",
+    "ref": "推荐码",
+    "displayName": "用户名称{optional, select, true {(可选)} other {}}",
+    "logout": "登出",
+    "theme": "主题",
+    "lightTheme": "浅色",
+    "darkTheme": "暗色",
+    "system": "系统默认设置",
+    "easyUsing": "或轻松使用",
+    "submit": "提交",
+    "accountManagement": "账号管理"
+  },
+
+  "LoginPage": {
+    "forgetPassword": "忘记密码?",
+    "rememberMe": "记住密码",
+    "createAccount": "创建帐户"
+  },
+
+  "RegisterPage": {
+    "alreadyHaveAccount": "已有帐户？",
+    "signUp": "注册",
+    "haveAccount": "已经拥有账号?",
+    "succeed": {
+      "congratulation": "请查看您的邮箱",
+      "message": "我们已向您发送了验证邮件",
+      "backToLogin": "返回登录"
+    }
+  },
+
+  "VerifyEmail": {
+    "succeed":{
+      "title": "恭喜您!",
+      "message": "您已成功完成注册"
+    },
+    "failed": {
+      "title": "验证失败",
+      "message": {
+        "userNotFound": "用户不存在，请注册。",
+        "alreadyVerified": "邮箱经过已验证，请您登录。",
+        "expiredLink": "链接已过期，已向您发送了新的验证邮件。",
+        "invalidLink": "链接无效，已向您发送了新的验证邮件。",
+        "unknownError": "邮件验证时出现错误，请重试。"
+      }
+    }
+  },
+
+  "Sidebar": {
+    "dashboard": "中控台",
+    "bots": {
+      "categoryName": "交易助手",
+      "dashboard": "控制面板",
+      "management": "管理助手",
+      "create": "创建助手",
+      "details": "详细信息"
+    },
+    "cryptoEconomy": {
+      "categoryName": "加密经济",
+      "prices": "价格",
+      "pricesDetails": "价格信息",
+      "exchange": "交易",
+      "exchangeDetails": "交易信息"
+    },
+    "account": {
+      "categoryName": "帐户",
+      "profile": "个人资料",
+      "exchangeManagement": "交易管理",
+      "appSetting": "系统设置"
+    }
+  },
+
+  "AccountMenu": {
+    "profile": "账户信息",
+    "wallet": "钱包",
+    "settings": "账户设置"
+  },
+
+  "Notifications": {
+    "email": {
+      "required": "请填写邮箱",
+      "invalid": "邮箱格式不正确"
+    },
+    "displayName": {
+      "description": "{optional, select, true {:} other {用户名：}}称长度在4到15个字符之间，只允许使用字母、数字、连字符和下划线",
+      "required": "请输入用户名称",
+      "invalid": "用户名称只能包含字母、数字、连字符和下划线",
+      "minLength": "用户名称长度至少为4个字符",
+      "maxLength": "用户名称长度最多为32个字符"
+    },
+    "password": {
+      "description": "：密码长度在8到32个字符，必须包含至少一个字母、数字或特殊字符",
+      "required": "请输入密码",
+      "invalid": "密码必须包含至少一个字母、一个数字和一个特殊字符",
+      "minLength": "密码长度至少为8个字符",
+      "maxLength": "密码长度最多为32个字符",
+      "notMatch": "两次输入的密码不匹配"
+    },
+    "ref": {
+      "required": "请输入推荐码"
+    },
+    "login": {
+      "failed": "登入失败，密码或邮箱错误",
+      "emailNotVerified": "邮箱尚未验证，我们已向您发送了验证邮件"
+    },
+    "changePassword": {
+      "currentPasswordWrong": "旧密码错误",
+      "failed": "修改密码失败"
+    }
+  },
+
+  "SettingPage": {
+    "title": "账户设置",
+    "subtitle": "更新您的账户信息",
+    "realName": "真实姓名",
+    "mobile": "手机号码",
+    "submit": "提交",
+    "cancel": "取消"
+  },
+
+  "AppSettingPage": {
+    "title": "系统设置",
+    "subtitle": "更新您的系统设置",
+    "language": "语言"
+  },
+
+  "CryptoSettingPage": {
+    "title": "加密货币交易所管理"
+  },
+
+  "Dashboard": {
+    "header": "BeeQuant中控台",
+    "total-profit-earned": "总收益",
+    "total-asset": "总资产",
+    "pending-orders": "待处理订单",
+    "recent-transaction": "最近交易"
+  },
+
+  "UpdatePasswordPage": {
+    "title": "修改密码",
+    "subtitle": "修改您的密码",
+    "oldPassword": "旧密码",
+    "newPassword": "新密码",
+    "succeed": "您已成功重置密码！",
+    "button": "准备再次交易"
+  },
+
+  "exchange": {},
+  "bot": {},
+
+  "Landing": {
+    "home": "首页",
+    "company": "公司",
+    "aboutUs": "关于我们",
+    "daysOnTheMarket": "市场天数",
+    "members": "成员",
+    "supportTradingPairs": "支持的交易对",
+    "totalEarned": "总收益",
+    "zh-cn":"中文",
+    "en": "英文",
+    "aiForTrading": "用于加密行业交易的 AI",
+    "register": "注册",
+    "aboutUs": "关于我们",
+    "registrationOpen": "限时开放注册",
+    "signUpText": "注册并参与我们的 alpha 测试，有机会赢得 ",
+    "limitedSpotsText": "注册名额有限。",
+    "spots": "名额:",
+    "spotsLeft": "0",
+    "spotsRight": "100",
+    "prizeAmount": "$500 奖品",
+    "progressBarAriaLabel": "动画条纹",
+    "animatedStripedLabel": "动画条纹",
+    "progressBarValue": "75",
+    "daysOnTheMarket": "市场天数",
+    "members": "成员",
+    "supportTradingPairs": "支持的交易对",
+    "totalEarned": "总收益",
+    "totalValue": "超过 10 亿美元",
+    "ourFeaturesTitle": "我们的功能",
+    "ourFeaturesDescription": "无论您是初学者还是有经验的交易者，我们的平台都能帮助您做出明智的决定，确保您的交易成功。",
+    "safetyTitle": "安全性",
+    "safetyDescription": "我们无法访问您的个人数据，也无法提取资金。",
+    "automatizationTitle": "自动化",
+    "automatizationDescription": "自动交易和交易结束。",
+    "analyticsTitle": "分析",
+    "analyticsDescription": "机器人实时显示您的交易表现。",
+    "trendingDealsTitle": "热门交易",
+    "trendingDealsDescription": "浏览精心策划的实时交易列表，获取有关所涉及的加密货币和交易所的详细信息。",
+    "tableHeaders": {
+      "pair": "交易对",
+      "exchange": "交易所",
+      "date": "日期",
+      "buyingPrice": "买入价格",
+      "sellingPrice": "卖出价格",
+      "dealAmount": "交易金额",
+      "profit": "利润",
+      "spread": "差价"
+    },
+    "deals": {
+      "bnbUsdt": "BNB/USDT",
+      "solUsdt": "SOL/USDT",
+      "algoUsdt": "ALGO/USDT",
+      "maticUsdt": "MATIC/USDT",
+      "dateExample": "15.4.24 01:09",
+      "buyPriceExample": "304.3",
+      "sellPriceExample": "305",
+      "dealAmountExample": "$4 259",
+      "profitExample": "+$9.80",
+      "spreadExample": "0.23%"
+    },
+    "footerTagline": "BeeQuant AI 团队致力于提供卓越的财务成果并增加客户的收入。",
+    "company": "公司",
+    "aboutUs": "关于 BeeQuant AI",
+    "news": "我们的新闻",
+    "license": "执照",
+    "contacts": "联系我们",
+    "servicesAndFeatures": "服务与功能",
+    "invest": "投资",
+    "token": "代币",
+    "affiliate": "联属计划",
+    "contest": "竞赛",
+    "safety": "安全",
+    "automatization": "自动化",
+    "analytics": "分析",
+    "reports": "报告",
+    "support": "支持",
+    "helpCenter": "帮助中心",
+    "howItWorks": "如何运作",
+    "privacyPolicy": "隐私政策",
+    "termsConditions": "条款与条件",
+    "copyright": "© BeeQuant AI, 2024.",
+    "investmentOpportunitiesTitle1": "针对投资者",
+    "investmentOpportunitiesTitle2": "BeeQuant 代币",
+    "investmentList": {
+      "item1": "- 3 种类型的 AI 交易机器人，具有可定制和可配置的功能；",
+      "item2": "- 定制机器人和服务；",
+      "item3": "- 其他奖励和奖金；"
+    },
+    "moreBenefitsLink": "更多福利",
+    "currentCourse": "当前汇率",
+    "currentRate": "1 BeeQuant 代币 (BQC) = $0.791",
+    "weekChange": "周变化",
+    "weekChangeValue": "+0.19%",
+    "weekChangeDetails": "[0.84]",
+    "moreAboutTokenLink": "更多关于代币的信息"
+  }
+
+}

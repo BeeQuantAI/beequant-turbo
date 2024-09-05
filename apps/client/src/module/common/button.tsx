@@ -3,28 +3,37 @@ import React from "react";
 
 export interface ButtonVariants extends VariantProps<typeof buttonVariants> {}
 const buttonVariants = cva(
-  "relative overflow-hidden rounded border border-primary-400 transition-all duration-500",
+  "relative overflow-hidden rounded border transition-all duration-500",
   {
     variants: {
       variant: {
-        primary: "bg-primary-400",
-        secondary: "bg-transparent",
+        default: [
+          "border-accent-400 bg-accent-400 text-md text-neutral-50",
+          "before:transition-width before:transition-height before:bg-accent-600 hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:duration-500 before:ease-in-out hover:before:-z-50",
+        ],
+        outline: [
+          "text-accent-400 border-accent-400 text-md bg-transparent",
+          "before:transition-width before:transition-height before:bg-accent-400 hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:duration-500 before:ease-in-out hover:text-white hover:before:-z-50",
+        ],
+        primary: [
+          "border-[#0D6EFD] bg-[#0D6EFD] text-[16px] text-white",
+          "hover:bg-[#0b5ed7]",
+        ],
+        secondary: [
+          "text-md border-[#D8DFE9] bg-[#D8DFE9] text-[#787985]",
+          "before:transition-width before:transition-height hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-[#b8c5d7] before:duration-500 before:ease-in-out hover:before:-z-50",
+        ],
       },
       size: {
-        medium: "mb-5 w-400 px-6 py-2.5",
-      },
-      animation: {
-        "growing-bubble-tl-primary":
-          "before:transition-width before:transition-height relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-primary-500 before:duration-500 before:ease-in-out hover:before:-z-50 hover:before:h-btn-h-cover hover:before:w-btn-w-cover",
-        "growing-bubble-tl-secondary":
-          "before:transition-width before:transition-height relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-primary-500 before:duration-500 before:ease-in-out hover:text-white hover:before:-z-50 hover:before:h-btn-h-cover hover:before:w-btn-w-cover",
-      },
-      textColor: {
-        white: "text-neutral-50",
-        blue: "text-primary-300",
+        small: "px-3 py-[6px]",
+        medium: "px-6 py-2.5",
       },
     },
-  }
+    defaultVariants: {
+      variant: "default",
+      size: "medium",
+    },
+  },
 );
 
 type Props = {
@@ -33,11 +42,10 @@ type Props = {
   ButtonVariants;
 
 export function Button({
+  className,
   children,
   variant,
-  animation,
   size,
-  textColor,
   type = "button",
   ...props
 }: Props) {
@@ -46,8 +54,7 @@ export function Button({
       className={buttonVariants({
         variant,
         size,
-        animation,
-        textColor,
+        className,
       })}
       type={type}
       {...props}
