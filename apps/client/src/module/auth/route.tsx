@@ -55,7 +55,7 @@ const RegisterSuccessed = {
 
 const VerifyEmail = {
   Metadata: {
-    title: "Verify Email | BeeQuant",
+    title: "Verify Email Page | BeeQuant",
   },
   Path: "/verify-email" as const,
   Link: ({ children, className }: RouteLinkProps) => (
