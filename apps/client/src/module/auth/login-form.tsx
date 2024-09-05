@@ -2,7 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Button,
-  Checkbox,
+  ControlledCheckbox,
   ControlledPasswordInput,
   ControlledTextInput,
   Icon,
@@ -17,28 +17,23 @@ import { login, LoginPayload } from "./auth-service";
 import { AuthRoute } from "./route";
 import { useTranslations } from "next-intl";
 
+type LoginForm = z.infer<typeof formSchema>;
+// source of truth for this login form <= this is the law, is the king, is the absolute authority for this form - K总
+const formSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8),
+  isStaySignedIn: z.boolean().optional(),
+});
+
+// Need this to enforce default value to match the LoginForm schema, because if you do it in the `useForm` hook, it turns it into a `Partial<LoginForm>` type.
+const defaultValues = {
+  email: "",
+  password: "",
+  isStaySignedIn: false,
+} satisfies LoginForm; // Satifies make sure this object you are making can satisfy the LoginForm schema.
+
 export function LoginForm() {
   const t = useTranslations();
-
-  type LoginForm = z.infer<typeof formSchema>;
-  // source of truth for this login form <= this is the law, is the king, is the absolute authority for this form - K总
-
-  const formSchema = z.object({
-    email: z
-        .string()
-        .min(1, { message: t("Notifications.email.required") })
-        .email({ message: t("Notifications.email.invalid") }),
-    password: z.string()
-      .min(1, { message: t("Notifications.password.required") }),
-    remember: z.string(),
-  });
-
-  // Need this to enforce default value to match the LoginForm schema, because if you do it in the `useForm` hook, it turns it into a `Partial<LoginForm>` type.
-  const defaultValues = {
-    email: "",
-    password: "",
-    remember: "",
-  } satisfies LoginForm; // Satifies make sure this object you are making can satisfy the LoginForm schema.
   const router = useRouter();
   const {
     handleSubmit,
@@ -86,7 +81,11 @@ export function LoginForm() {
             {t("LoginPage.forgetPassword")}
           </AuthRoute.ForgetPassword.Link>
 
-          <Checkbox className="self-start" label={t("LoginPage.rememberMe")} />
+          <ControlledCheckbox
+            name="isStaySignedIn"
+            control={control}
+            label={t("LoginPage.staySignedIn")}
+          />
         </div>
       </div>
 

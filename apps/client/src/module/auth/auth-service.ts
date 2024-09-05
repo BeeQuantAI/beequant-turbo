@@ -8,6 +8,7 @@ import { cookies } from "next/headers";
 import { z } from "zod";
 import { AuthRoute } from "./route";
 import { redirect } from "../../configs/navigation";
+import { LandingRoute } from "@src/module/landing-page/route";
 
 const authResultSchema = z.object({
   code: z.number(),
@@ -95,6 +96,5 @@ export async function getUserInfo() {
 export async function logout() {
   const cookieStore = cookies();
   cookieStore.delete("token");
-
-  redirect(AuthRoute.Login.Path);
+  redirect(LandingRoute.Root.Path);
 }

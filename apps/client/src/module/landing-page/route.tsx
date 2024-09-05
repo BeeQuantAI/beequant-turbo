@@ -7,16 +7,15 @@ type RouteLinkProps = {
 
 const Root = {
   Metadata: {
-    title: "Landing | BeeQuant",
+    title: "Home | BeeQuant",
   },
-  Path:"/landing" as const,
+  Path: "/" as const,
   Link: ({ children, className }: RouteLinkProps) => (
     <Link href={Root.Path} className={className}>
       {children}
     </Link>
   ),
 };
-
 
 export const LandingRoute = {
   Root,

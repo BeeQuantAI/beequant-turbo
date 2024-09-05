@@ -19,13 +19,11 @@
     "submit": "提交",
     "accountManagement": "账号管理"
   },
-
   "LoginPage": {
     "forgetPassword": "忘记密码?",
-    "rememberMe": "记住密码",
+    "staySignedIn": "保持登录状态",
     "createAccount": "创建帐户"
   },
-
   "RegisterPage": {
     "alreadyHaveAccount": "已有帐户？",
     "signUp": "注册",
@@ -34,6 +32,14 @@
       "congratulation": "恭喜您!",
       "message": "注册成功",
       "backToLogin": "返回登录"
+    }
+  },
+
+  "NotFoundPage": {
+    "returnToLanding": "返回首页",
+    "returnToDashboard": "返回中控台",
+    "content": {
+      "message": "哦！无法找到您所寻找的页面"
     }
   },
 
@@ -60,13 +66,11 @@
       "appSetting": "系统设置"
     }
   },
-
   "AccountMenu": {
     "profile": "账户信息",
     "wallet": "钱包",
     "settings": "账户设置"
   },
-
   "Notifications": {
     "email": {
       "required": "请填写邮箱",
@@ -98,7 +102,6 @@
       "failed": "修改密码失败"
     }
   },
-
   "SettingPage": {
     "title": "账户设置",
     "subtitle": "更新您的账户信息",
@@ -107,17 +110,14 @@
     "submit": "提交",
     "cancel": "取消"
   },
-
   "AppSettingPage": {
     "title": "系统设置",
     "subtitle": "更新您的系统设置",
     "language": "语言"
   },
-
   "CryptoSettingPage": {
     "title": "加密货币交易所管理"
   },
-
   "Dashboard": {
     "header": "BeeQuant中控台",
     "total-profit-earned": "总收益",
@@ -125,7 +125,6 @@
     "pending-orders": "待处理订单",
     "recent-transaction": "最近交易"
   },
-
   "UpdatePasswordPage": {
     "title": "修改密码",
     "subtitle": "修改您的密码",
@@ -134,10 +133,8 @@
     "succeed": "您已成功重置密码！",
     "button": "准备再次交易"
   },
-
   "exchange": {},
   "bot": {},
-
   "Landing": {
     "home": "首页",
     "company": "公司",
@@ -146,7 +143,7 @@
     "members": "成员",
     "supportTradingPairs": "支持的交易对",
     "totalEarned": "总收益",
-    "zh-cn":"中文",
+    "zh-cn": "中文",
     "en": "英文",
     "aiForTrading": "用于加密行业交易的 AI",
     "register": "注册",
@@ -234,5 +231,4 @@
     "weekChangeDetails": "[0.84]",
     "moreAboutTokenLink": "更多关于代币的信息"
   }
-
 }

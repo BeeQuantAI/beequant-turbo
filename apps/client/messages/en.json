@@ -22,7 +22,7 @@
 
   "LoginPage": {
     "forgetPassword": "Forgot a password?",
-    "rememberMe": "Remember Me",
+    "staySignedIn": "Stay Signed In",
     "createAccount": "Create Account"
   },
 
@@ -34,6 +34,14 @@
       "congratulation": "Congratulations!",
       "message": "Your registration is successful",
       "backToLogin": "Back to login"
+    }
+  },
+
+  "NotFoundPage": {
+    "returnToLanding": "Return to Home",
+    "returnToDashboard": "Return to Dashboard",
+    "content": {
+      "message": "Ooops! The page you are looking for could not be found"
     }
   },
 
