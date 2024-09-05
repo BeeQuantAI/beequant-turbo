@@ -1,11 +1,11 @@
-import { Args, Context, GqlExecutionContext, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { CreateUserInput } from './dto/new-user.input';
-import { UserType } from './dto/user.type';
-import { UserService } from './user.service';
-import { UpdateUserInput } from './dto/update-user.input';
-import { SkipAuth } from '../auth/skip-auth.decorator';
 import { GqlAuthGuard } from '@/common/guards/auth.guard';
 import { UseGuards } from '@nestjs/common';
+import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { SkipAuth } from '../auth/skip-auth.decorator';
+import { CreateUserInput } from './dto/new-user.input';
+import { UpdateUserInput } from './dto/update-user.input';
+import { UserType } from './dto/user.type';
+import { UserService } from './user.service';
 
 @Resolver()
 export class UserResolver {

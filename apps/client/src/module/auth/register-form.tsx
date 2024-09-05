@@ -8,21 +8,44 @@ import {
 } from "@src/module/common";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { AuthFormContainer } from "./auth-form-container";
 import { register, RegisterPayload } from "./auth-service";
 import { AuthRoute } from "./route";
-
-type FormSchema = z.infer<typeof formSchema>;
-const formSchema = z.object({
-  displayName: z.string(),
-  email: z.string().email(),
-  mobile: z.string().optional(),
-  password: z.string().min(8),
-  confirmPassword: z.string().min(8),
-  realName: z.string().optional(),
-  ref: z.string(),
-});
+import { displayNamePatten } from "@src/utils/validation-message";
+import { useTranslations } from "next-intl";
+import { passwordValidationSchema } from "@src/utils/validation-schema";
 
 export function RegisterForm() {
+  const t = useTranslations();
+  const passwordSchema = passwordValidationSchema(t);
+
+  type FormSchema = z.infer<typeof formSchema>;
+  const formSchema = z.object({
+    displayName: z.union([
+      z.string()
+        .min(4, { message: t("Notifications.displayName.minLength") })
+        .max(15, { message: t("Notifications.displayName.maxLength") })
+        .regex(displayNamePatten, {
+          message: t("Notifications.displayName.invalid"),
+        }),
+      z.string().length(0),
+    ]),
+    email: z.string()
+      .min(1, { message: t("Notifications.email.required") })
+      .email({ message: t("Notifications.email.invalid") }),
+    mobile: z.string().optional(),
+    password: passwordSchema,
+    confirmPassword: passwordSchema,
+    realName: z.string().optional(),
+    ref: z.string()
+      .min(1, { message: t("Notifications.ref.required") })
+      .default("COREINTERNAL"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+      message: t("Notifications.password.notMatch"),
+      path: ["confirmPassword"],
+  });
+
   const {
     handleSubmit,
     control,
@@ -44,7 +67,7 @@ export function RegisterForm() {
   async function action(payload: RegisterPayload) {
     const res = await register(payload);
 
-    if (res.error) {
+    if (res?.error) {
       setError("root", { message: res.error });
     }
   }
@@ -56,59 +79,55 @@ export function RegisterForm() {
   });
 
   return (
-    <form className="card card-body bg-neutral max-w-lg" onSubmit={onSubmit}>
-      {errors.root && <span className="text-error">{errors.root.message}</span>}
-
+    <AuthFormContainer onSubmit={onSubmit} error={errors.root?.message}>
       <ControlledTextInput
-        label="Display Name (optional)"
+        label={t("Shared.displayName", { optional: true })}
+        tooltips={t("Notifications.displayName.description", {
+          optional: true,
+        })}
         name="displayName"
         control={control}
         leftElement={<Icon icon="person" />}
       />
       <ControlledTextInput
-        label="Email"
+        label={t("Shared.email")}
         name="email"
         control={control}
         leftElement={<Icon icon="person" />}
         autoComplete="email"
       />
-      <ControlledTextInput
-        label="Mobile (Not Allowed By Backend???)"
-        name="mobile"
-        control={control}
-        leftElement={<Icon icon="person" />}
-      />
-      <ControlledTextInput
-        label="Real Name (Not in Figma But Requested In CreateUserInput Schema, And Then Not Allowed By Backend???)"
-        name="realName"
-        control={control}
-        leftElement={<Icon icon="person" />}
-      />
       <ControlledPasswordInput
-        label="Password"
+        label={t("Shared.password")}
+        tooltips={t("Notifications.password.description")}
         name="password"
         control={control}
         autoComplete="new-password"
       />
       <ControlledPasswordInput
-        label="Confirm Password"
+        label={t("Shared.confirmPassword")}
         name="confirmPassword"
         control={control}
         autoComplete="new-password"
       />
 
       <ControlledTextInput
-        label="Reference"
+        label={t("Shared.ref")}
         name="ref"
         control={control}
         leftElement={<Icon icon="person" />}
         disabled
       />
 
-      <Button>Sign Up</Button>
-      <AuthRoute.Login.Link className="btn btn-outline">
-        Sign In
-      </AuthRoute.Login.Link>
-    </form>
+      <Button type="submit" className="my-5">
+        {t("RegisterPage.signUp")}
+      </Button>
+
+      <span className="text-center text-[13px]">
+        {t("RegisterPage.alreadyHaveAccount")}{" "}
+        <AuthRoute.Login.Link className="text-accent-400 hover:text-accent-400">
+          {t("Shared.signIn")}
+        </AuthRoute.Login.Link>
+      </span>
+    </AuthFormContainer>
   );
 }
