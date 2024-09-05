@@ -22,7 +22,7 @@
 
   "LoginPage": {
     "forgetPassword": "Forgot a password?",
-    "rememberMe": "Remember Me",
+    "staySignedIn": "Stay Signed In",
     "createAccount": "Create Account"
   },
 
@@ -51,6 +51,14 @@
         "invalidLink": "Invalid link, a new verification email will be sent shortly.",
         "unknownError": "An error occurred while verifying email."
       }
+    }
+  },
+
+  "NotFoundPage": {
+    "returnToLanding": "Return to Home",
+    "returnToDashboard": "Return to Dashboard",
+    "content": {
+      "message": "Ooops! The page you are looking for could not be found"
     }
   },
 

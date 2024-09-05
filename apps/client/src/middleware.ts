@@ -1,30 +1,59 @@
 import { NextRequest, NextResponse } from "next/server";
-import { LandingRoute } from "@src/module/landing-page/route";
+import { AuthRoute } from "@src/module/auth";
+import { DashboardRoute } from "@src/module/dashboard";
 import createMiddleware from "next-intl/middleware";
 import { defaultLocale, locales } from "./configs/configs";
+import { LandingRoute } from "@src/module/landing-page/route";
 
 const handleI18Routing = createMiddleware({
   locales,
   defaultLocale,
 });
 
-export async function middleware(request: NextRequest) {
+const checkRouteExists = (path: string): boolean => {
+  const cleanPath = path.replace(/^\/(?:en|zh-cn)?\//, "");
+  return AuthRoute.validRoutes.includes(cleanPath);
+};
+
+const middleware = (request: NextRequest) => {
   const token = request.cookies.get("token");
   const pathname = request.nextUrl.pathname;
-  const pagesWithoutToken = ["login", "register", "register-successed", "landing", "verify-email", "verify-email-successed"];
+  const pagesWithoutToken = [
+    "login",
+    "register",
+    "register-successed",
+    "landing",
+  ];
   const pagesRegex = new RegExp(
     `^\/(?:en|zh-cn)?\/?(?:${pagesWithoutToken.join("|")})$`,
   );
 
-  if (!token && !pagesRegex.test(pathname)) {
-    const locale = request.cookies.get("NEXT_LOCALE")?.value || "en";
-    const url = request.nextUrl.clone();
-    url.pathname = `${locale}${LandingRoute.Root.Path}`;
-    return Response.redirect(url);
-  }
   const response = handleI18Routing(request);
+  const locale = request.cookies.get("NEXT_LOCALE")?.value || "en";
+  const url = request.nextUrl.clone();
+  const routeExists = checkRouteExists(pathname);
+
+  if (token && (pathname.includes("login") || pathname.includes("register"))) {
+    url.pathname = `${locale}${DashboardRoute.Root.Path}`;
+    return NextResponse.redirect(url);
+  }
+
+  if (pathname === "/" && !token) {
+    url.pathname = `${locale}${LandingRoute.Root.Path}`;
+    return NextResponse.redirect(url);
+  }
+
+  if (!token && !pagesRegex.test(pathname)) {
+    if (routeExists) {
+      url.pathname = `${locale}${AuthRoute.Login.Path}`;
+      return NextResponse.redirect(url);
+    } else if (!routeExists) {
+      return response;
+    }
+  }
   return response;
-}
+};
+export default middleware;
 
 export const config = {
   matcher: [
