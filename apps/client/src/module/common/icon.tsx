@@ -1,14 +1,27 @@
 import clsx from "clsx";
 import type { IconBaseProps } from "react-icons";
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import {
+  AiOutlineClose,
+  AiOutlineLoading,
+  AiOutlineMenu,
+} from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
 import { FaKey } from "react-icons/fa";
-import { FaEarthAsia } from "react-icons/fa6";
-import { GoEye, GoEyeClosed, GoHome } from "react-icons/go";
-import { IoDiamondOutline, IoLogOutOutline } from "react-icons/io5";
-import { FaMobileScreenButton } from "react-icons/fa6";
+import { FaEarthAsia, FaMobileScreenButton } from "react-icons/fa6";
+import {
+  GoCodespaces,
+  GoEye,
+  GoEyeClosed,
+  GoHome,
+  GoMoon,
+  GoSun,
+} from "react-icons/go";
+import {
+  IoDiamondOutline,
+  IoLogOutOutline,
+  IoSettingsOutline,
+} from "react-icons/io5";
 import { MdOutlineMail } from "react-icons/md";
-import { IoSettingsOutline } from "react-icons/io5";
 
 import {
   MdCheck,
@@ -32,6 +45,7 @@ const genericIcons = {
   mobile: FaMobileScreenButton,
   email: MdOutlineMail,
   setting: IoSettingsOutline,
+  loading: AiOutlineLoading,
 };
 
 const authIcons = {
@@ -39,6 +53,12 @@ const authIcons = {
   key: FaKey,
   "eye-open": GoEye,
   "eye-closed": GoEyeClosed,
+};
+
+const themeIcons = {
+  light: GoSun,
+  dark: GoMoon,
+  system: GoCodespaces,
 };
 
 const dashboardIcons = {
@@ -54,6 +74,7 @@ const dashboardIcons = {
 const icons = {
   ...genericIcons,
   ...authIcons,
+  ...themeIcons,
   ...dashboardIcons,
 };
 

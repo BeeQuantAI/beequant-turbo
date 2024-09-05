@@ -22,8 +22,16 @@
 
   "LoginPage": {
     "forgetPassword": "忘记密码?",
-    "rememberMe": "记住密码",
+    "staySignedIn": "保持登录状态",
     "createAccount": "创建帐户"
+  },
+
+  "NotFoundPage": {
+    "returnToLanding": "返回首页",
+    "returnToDashboard": "返回中控台",
+    "content": {
+      "message": "哦！无法找到您所寻找的页面"
+    }
   },
 
   "RegisterPage": {
@@ -252,5 +260,4 @@
     "weekChangeDetails": "[0.84]",
     "moreAboutTokenLink": "更多关于代币的信息"
   }
-
 }

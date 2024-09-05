@@ -77,6 +77,34 @@ const VerifyEmailSuccessed = {
   ),
 };
 
+const PageNotFound = {
+  Metadata: {
+    title: "Page Not Found | BeeQuant",
+  },
+  Path: "/not-found" as const,
+  Link: ({ children, className }: RouteLinkProps) => (
+    <Link href={PageNotFound.Path} className={className}>
+      {children}
+    </Link>
+  ),
+};
+
+const validRoutes = [
+  "/",
+  "login",
+  "register",
+  "forgot-password",
+  "register-successed",
+  "account/change/password",
+  "account/management",
+  "account/setting",
+  "appsetting",
+  "dashboard",
+  "dashboard/leads",
+  "dashboard/profile",
+  "landing",
+];
+
 export const AuthRoute = {
   Login,
   Register,
@@ -84,4 +112,6 @@ export const AuthRoute = {
   RegisterSuccessed,
   VerifyEmail,
   VerifyEmailSuccessed,
+  PageNotFound,
+  validRoutes,
 };

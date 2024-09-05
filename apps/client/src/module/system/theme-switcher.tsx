@@ -1,122 +1,41 @@
 "use client";
-import { useEffect, useLayoutEffect, useRef } from "react";
-import { GoMoon, GoSun } from "react-icons/go";
-import { create } from "zustand";
+import { useTheme as useNextTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import { Icon } from "../common";
 
-export type Theme = "dark" | "light" | "system";
-
-type State = {
-  theme: Theme;
-};
-
-type Action = {
-  setTheme: (theme: Theme) => void;
-};
-
-export const useThemeSetting = create<State & Action>((set) => ({
-  theme: null as any,
-  setTheme: (theme: Theme) => set({ theme }),
-}));
-
-function update() {
-  document.documentElement.classList.add("changing-theme");
-  if (
-    localStorage.theme === "dark" ||
-    (!("theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    document.documentElement.classList.add("dark");
-    document
-      .querySelector('meta[name="theme-color"]')
-      ?.setAttribute("content", "#0B1120");
-  } else {
-    document.documentElement.classList.remove("dark");
-    document
-      .querySelector('meta[name="theme-color"]')
-      ?.setAttribute("content", "#f8fafc");
-  }
-  window.setTimeout(() => {
-    document.documentElement.classList.remove("changing-theme");
-  });
-}
+export type Theme = (typeof supportedThemes)[number];
+const supportedThemes = ["light", "dark", "system"] as const;
 
 export function useTheme() {
-  const { theme, setTheme } = useThemeSetting();
-  const initial = useRef(true);
+  const { theme, setTheme } = useNextTheme();
 
-  useLayoutEffect(() => {
-    const theme = localStorage.theme;
-    if (theme === "light" || theme === "dark") {
-      setTheme(theme);
-    } else {
-      setTheme("system");
-    }
-  }, [setTheme]);
-
-  useLayoutEffect(() => {
-    if (theme === "system") {
-      localStorage.removeItem("theme");
-    } else if (theme === "light" || theme === "dark") {
-      localStorage.theme = theme;
-    }
-    if (initial.current) {
-      initial.current = false;
-    } else {
-      update();
-    }
-  }, [theme]);
-
-  useEffect(() => {
-    let mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-
-    if (mediaQuery?.addEventListener) {
-      mediaQuery.addEventListener("change", update);
-    } else {
-      mediaQuery.addListener(update);
-    }
-
-    function onStorage() {
-      update();
-      let theme = localStorage.theme;
-      if (theme === "light" || theme === "dark") {
-        setTheme(theme);
-      } else {
-        setTheme("system");
-      }
-    }
-    window.addEventListener("storage", onStorage);
-
-    return () => {
-      if (mediaQuery?.removeEventListener) {
-        mediaQuery.removeEventListener("change", update);
-      } else {
-        mediaQuery.removeListener(update);
-      }
-
-      window.removeEventListener("storage", onStorage);
-    };
-  }, [setTheme]);
-
-  function themeSwitcher({ e }: { e: React.ChangeEvent<HTMLSelectElement> }) {
-    const selectedTheme = e.target.value as Theme;
-    setTheme(selectedTheme);
-  }
-
-  return { theme, setTheme, themeSwitcher };
+  return { theme, setTheme } as {
+    theme: Theme;
+    setTheme: (theme: Theme) => void;
+  };
 }
 
+/**
+ * https://github.com/pacocoursey/next-themes/tree/main/next-themes#avoid-hydration-mismatch
+ */
 export function ThemeToggle() {
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+
+  // useEffect only runs on the client, so now we can safely show the UI
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <button
       className="hover:border-accent-600 hover:text-accent-600 border-accent-600 text-accent-600 dark:border-primary-100 dark:text-primary-100 dark:hover:border-primary-100 dark:hover:text-primary-100 rounded-md border-2 p-1 transition-colors duration-300"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
-      {theme === "dark" ? (
-        <GoMoon className="h-6 w-6" />
+      {mounted ? (
+        <Icon icon={theme} className="h-6 w-6" />
       ) : (
-        <GoSun className="h-6 w-6" />
+        <Icon icon="loading" className="h-6 w-6 animate-spin" />
       )}
     </button>
   );
