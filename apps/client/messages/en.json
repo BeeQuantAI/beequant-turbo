@@ -31,9 +31,26 @@
     "signUp": "Sign Up",
     "haveAccount": "Already have an account?",
     "succeed": {
-      "congratulation": "Congratulations!",
-      "message": "Your registration is successful",
-      "backToLogin": "Back to login"
+      "congratulation": "Please check your mailbox",
+      "message": "We have sent you a verification email",
+      "backToLogin": "Back to Login"
+    }
+  },
+
+  "VerifyEmail": {
+    "succeed":{
+      "title": "Congratulations !",
+      "message": "Your registration is successful"
+    },
+    "failed": {
+      "title": "Oops ! Verification failed",
+      "message": {
+        "userNotFound": "User not found, please register.",
+        "alreadyVerified": "Email is already verified, please login.",
+        "expiredLink": "Link expired, a new verification email will be sent shortly.",
+        "invalidLink": "Invalid link, a new verification email will be sent shortly.",
+        "unknownError": "An error occurred while verifying email."
+      }
     }
   },
 
@@ -94,7 +111,8 @@
       "required": "Referral code is required"
     },
     "login": {
-      "failed": "login failed, wrong password or email"
+      "failed": "login failed, wrong password or email",
+      "emailNotVerified": "Email verification required. A new verification email will be sent shortly."
     },
     "changePassword":{
       "currentPasswordWrong": "Current password is wrong",
