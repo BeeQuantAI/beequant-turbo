@@ -18,7 +18,7 @@ import { AuthRoute } from "./route";
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 
-export function LoginForm({token}: {token: string}) {
+export function LoginForm({ token }: { token: string }) {
   const t = useTranslations();
 
   type LoginForm = z.infer<typeof formSchema>;
@@ -26,10 +26,11 @@ export function LoginForm({token}: {token: string}) {
 
   const formSchema = z.object({
     email: z
-        .string()
-        .min(1, { message: t("Notifications.email.required") })
-        .email({ message: t("Notifications.email.invalid") }),
-    password: z.string()
+      .string()
+      .min(1, { message: t("Notifications.email.required") })
+      .email({ message: t("Notifications.email.invalid") }),
+    password: z
+      .string()
       .min(1, { message: t("Notifications.password.required") }),
     remember: z.string(),
   });
@@ -124,10 +125,10 @@ export function LoginForm({token}: {token: string}) {
       </div>
 
       <div className="relative flex content-center justify-center space-x-3">
-        <SocialButton
+        {/* <SocialButton
           social="facebook"
           handleThirdPartyLogin={() => handleThirdPartyLogin("facebook")}
-        />
+        /> */}
         <SocialButton
           social="google"
           handleThirdPartyLogin={() => handleThirdPartyLogin("google")}
