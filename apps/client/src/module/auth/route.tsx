@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@src/configs/navigation";
 
 type RouteLinkProps = {
   children: React.ReactNode;
@@ -53,9 +53,35 @@ const RegisterSuccessed = {
   ),
 };
 
+const VerifyEmail = {
+  Metadata: {
+    title: "Verify Email | BeeQuant",
+  },
+  Path: "/verify-email" as const,
+  Link: ({ children, className }: RouteLinkProps) => (
+    <Link href={VerifyEmail.Path} className={className}>
+      {children}
+    </Link>
+  ),
+};
+
+const VerifyEmailSuccessed = {
+  Metadata: {
+    title: "Verify Successed | BeeQuant",
+  },
+  Path: "/verify-email-successed" as const,
+  Link: ({ children, className }: RouteLinkProps) => (
+    <Link href={VerifyEmailSuccessed.Path} className={className}>
+      {children}
+    </Link>
+  ),
+};
+
 export const AuthRoute = {
   Login,
   Register,
   ForgetPassword,
   RegisterSuccessed,
+  VerifyEmail,
+  VerifyEmailSuccessed,
 };

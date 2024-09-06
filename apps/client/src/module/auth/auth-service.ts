@@ -40,9 +40,11 @@ export async function login(payload: LoginPayload) {
       redirect("/dashboard");
 
     case 10003:
+    case 10010:
     default:
       return {
         error: login.message,
+        code: login.code,
       };
   }
 }
@@ -84,6 +86,34 @@ export async function register(input: RegisterPayload) {
     default:
       return {
         error: register.message,
+      };
+  }
+}
+
+const verifyEmailMutation = graphql(`
+  mutation VerifyEmail($email: String!, $token: String!) {
+    verifyEmail(email: $email, token: $token) {
+      code
+      message
+    }
+  }
+`);
+
+export type VerifyEmailPayload = {
+  email: string;
+  token: string;
+};
+
+export async function verifyEmail(payload: VerifyEmailPayload) {
+  const gqlClient = await getServerGqlClient();
+  const { verifyEmail } = await gqlClient.request(verifyEmailMutation, payload);
+
+  switch (verifyEmail.code) {
+    case 200:
+      redirect(AuthRoute.VerifyEmailSuccessed.Path);
+    case 10011:
+      return {
+        error: verifyEmail.message,
       };
   }
 }

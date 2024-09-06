@@ -54,9 +54,10 @@ export function LoginForm({token}: {token: string}) {
   async function action(payload: LoginPayload) {
     const res = await login(payload);
 
-    if (res?.error) {
-      console.log(res.error);
-      setError("root", { message: res.error });
+    if (res?.code === 10010) {
+      setError("root", { message: t("Notifications.login.emailNotVerified") });
+    } else if (res?.error) {
+      setError("root", { message: t("Notifications.login.failed") });
     }
   }
 

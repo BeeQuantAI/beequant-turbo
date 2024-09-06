@@ -16,6 +16,7 @@ const documents = {
     "\n  mutation UpdatePassword($input: UpdatePasswordInput!) {\n    changePassword(input: $input) {\n      code\n      message\n    }\n  }\n": types.UpdatePasswordDocument,
     "\n  mutation Login($email: String!, $password: String!) {\n    login(email: $email, password: $password) {\n      code\n      message\n      data\n    }\n  }\n": types.LoginDocument,
     "\n  mutation Register($input: CreateUserInput!) {\n    register(input: $input) {\n      code\n      message\n    }\n  }\n": types.RegisterDocument,
+    "\n  mutation VerifyEmail($email: String!, $token: String!) {\n    verifyEmail(email: $email, token: $token) {\n      code\n      message\n    }\n  }\n": types.VerifyEmailDocument,
     "\n  query getUserInfo {\n    getUserInfo {\n      id\n      displayName\n    }\n  }\n": types.GetUserInfoDocument,
 };
 
@@ -45,6 +46,10 @@ export function graphql(source: "\n  mutation Login($email: String!, $password: 
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  mutation Register($input: CreateUserInput!) {\n    register(input: $input) {\n      code\n      message\n    }\n  }\n"): (typeof documents)["\n  mutation Register($input: CreateUserInput!) {\n    register(input: $input) {\n      code\n      message\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation VerifyEmail($email: String!, $token: String!) {\n    verifyEmail(email: $email, token: $token) {\n      code\n      message\n    }\n  }\n"): (typeof documents)["\n  mutation VerifyEmail($email: String!, $token: String!) {\n    verifyEmail(email: $email, token: $token) {\n      code\n      message\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
