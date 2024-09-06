@@ -2,10 +2,6 @@ import clsx from "clsx";
 import React from "react";
 import { Header } from "./header";
 import { SidebarContainer } from "./sidebar";
-import TotalProfitEarned from '../components/TotalProfitEarned';
-import TotalAssets from '../components/TotalAssets';
-import PendingOrders from '../components/PendingOrders';
-import RecentTransactions from '../components/RecentTransactions';
 
 type Props = {
   children: React.ReactNode;
@@ -23,13 +19,6 @@ export function DashboardLayout({ children }: Props) {
           "m-auto max-w-[1700px]"
         )}
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <TotalProfitEarned />
-          <TotalAssets />
-          <PendingOrders />
-          <RecentTransactions />
-        </div>
-
         {children}
       </main>
     </div>
