@@ -7,17 +7,18 @@ import {
   ControlledTextInput,
   Icon,
 } from "@src/module/common";
+import { useEffect } from "react";
 import clsx from "clsx";
 import { useRouter } from "@src/configs/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { SocialButton } from "../common/social-button";
 import { AuthFormContainer } from "./auth-form-container";
-import { login, LoginPayload } from "./auth-service";
+import { login, LoginPayload, OauthLogin } from "./auth-service";
 import { AuthRoute } from "./route";
 import { useTranslations } from "next-intl";
 
-export function LoginForm() {
+export function LoginForm({ token }: { token: string }) {
   const t = useTranslations();
 
   type LoginForm = z.infer<typeof formSchema>;
@@ -63,6 +64,17 @@ export function LoginForm() {
   const onSubmit = handleSubmit((data) => {
     action(data);
   });
+
+  useEffect(() => {
+    if (token && typeof window !== "undefined") {
+      OauthLogin({ token }).then((r) => console.log(r));
+    }
+  }, [token]);
+
+  const handleThirdPartyLogin = (provider: string): void => {
+    const thirdPartyApiUrl = process.env.NEXT_PUBLIC_THIRD_PARTY_API_URL;
+    window.location.href = `${thirdPartyApiUrl}/${provider}`;
+  };
 
   return (
     <AuthFormContainer onSubmit={onSubmit} error={errors.root?.message}>
@@ -111,9 +123,15 @@ export function LoginForm() {
         </p>
       </div>
 
-      <div className="relative mb-5 flex content-center justify-center space-x-3">
-        <SocialButton social="facebook" />
-        <SocialButton social="google" />
+      <div className="relative flex content-center justify-center space-x-3">
+        {/* <SocialButton
+          social="facebook"
+          handleThirdPartyLogin={() => handleThirdPartyLogin("facebook")}
+        /> */}
+        <SocialButton
+          social="google"
+          handleThirdPartyLogin={() => handleThirdPartyLogin("google")}
+        />
       </div>
     </AuthFormContainer>
   );

@@ -54,14 +54,16 @@ const socialButtonSvgs = {
 
 type Props = {
   social: keyof typeof socialButtonSvgs;
+  handleThirdPartyLogin: () => void;
 };
-export function SocialButton({ social }: Props) {
+export function SocialButton({ social, handleThirdPartyLogin}: Props) {
   return (
     <button
       className={socialButtonVariants({
         variant: social,
       })}
       type="button"
+      onClick={handleThirdPartyLogin}
     >
       {socialButtonSvgs[social]}
     </button>

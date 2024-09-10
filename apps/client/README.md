@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+Set a `.env` file to `beequant-turbo/apps/client`
+with the following content:
+```bash
+NEXT_PUBLIC_THIRD_PARTY_API_URL=http://localhost:3000/auth
+```
+
 ## Getting Started
 
 First, run the development server:
