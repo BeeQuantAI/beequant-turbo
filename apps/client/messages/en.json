@@ -38,7 +38,7 @@
   },
 
   "VerifyEmail": {
-    "succeed":{
+    "succeed": {
       "title": "Congratulations !",
       "message": "Your registration is successful"
     },
@@ -114,11 +114,21 @@
       "failed": "login failed, wrong password or email",
       "emailNotVerified": "Email verification required. A new verification email will be sent shortly."
     },
-    "changePassword":{
+    "changePassword": {
       "currentPasswordWrong": "Current password is wrong",
       "failed": "Change password failed"
+    },
+    "platform": {
+      "required": "Please select a valid platform."
+    },
+    "accessKey": {
+      "required": "The accessKey is required.",
+      "maxLength": "The access key must be between 1 and 255 characters."
+    },
+    "secretKey": {
+      "required": "The secretKey is required.",
+      "maxLength": "The secret key must be between 1 and 255 characters."
     }
-    
   },
 
   "SettingPage": {
@@ -157,12 +167,10 @@
     "button": "Ready to trade again"
   },
 
-
-
   "exchange": {},
   "bot": {},
 
-  "Landing":{
+  "Landing": {
     "home": "Home",
     "company": "Company",
     "aboutUs": "About Us",
@@ -257,6 +265,37 @@
     "weekChangeValue": "+0.19%",
     "weekChangeDetails": "[0.84]",
     "moreAboutTokenLink": "More about token"
+  },
+  "ExchangePage": {
+    "formContainer": {
+      "heading": "Connect New Exchange",
+      "backButton": "Back",
+      "submitButton": "Submit",
+      "nextButton": "Next"
+    },
+    "selectPlatformPage": {
+      "title": "Select Platform",
+      "platforms": {
+        "binance": "Binance"
+      }
+    },
+    "inputKeyPage": {
+      "title": "Input API Keys",
+      "displayName": "Display Name",
+      "accessKey": "API Key",
+      "secretKey": "API Secret"
+    },
+    "successedPage": {
+      "title": "Cool!",
+      "subtitle": "Your exchange key is added successfully",
+      "button": "Back to Exchange Management"
+    },
+    "errorCode": {
+      "default": "Unknowing error occurred",
+      "10012": "Exchange key already exists",
+      "10013": "Current exchange is not supported",
+      "10014": "Exchange key is invalid",
+      "10015": "Exchange key store failed"
+    }
   }
-
 }
