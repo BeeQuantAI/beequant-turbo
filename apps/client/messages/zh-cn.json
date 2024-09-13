@@ -44,7 +44,7 @@
   },
 
   "VerifyEmail": {
-    "succeed":{
+    "succeed": {
       "title": "恭喜您!",
       "message": "您已成功完成注册"
     },
@@ -119,6 +119,17 @@
     "changePassword": {
       "currentPasswordWrong": "旧密码错误",
       "failed": "修改密码失败"
+    },
+    "platform": {
+      "required": "请选择有效的平台"
+    },
+    "accessKey": {
+      "required": "请输入API密钥",
+      "maxLength": "API密钥必须在1至255个字符之间"
+    },
+    "secretKey": {
+      "required": "请输入密钥",
+      "maxLength": "密钥必须在1至255个字符之间"
     }
   },
 
@@ -169,7 +180,7 @@
     "members": "成员",
     "supportTradingPairs": "支持的交易对",
     "totalEarned": "总收益",
-    "zh-cn":"中文",
+    "zh-cn": "中文",
     "en": "英文",
     "aiForTrading": "用于加密行业交易的 AI",
     "register": "注册",
@@ -256,6 +267,38 @@
     "weekChangeValue": "+0.19%",
     "weekChangeDetails": "[0.84]",
     "moreAboutTokenLink": "更多关于代币的信息"
-  }
+  },
 
+  "ExchangePage": {
+    "formContainer": {
+      "heading": "连接新交易所",
+      "backButton": "返回",
+      "submitButton": "提交",
+      "nextButton": "下一步"
+    },
+    "selectPlatformPage": {
+      "title": "选择平台",
+      "platforms": {
+        "binance": "币安"
+      }
+    },
+    "inputKeyPage": {
+      "title": "输入 API 密钥",
+      "displayName": "显示名称",
+      "accessKey": "API 密钥",
+      "secretKey": "密钥"
+    },
+    "successedPage": {
+      "title": "太棒了！",
+      "subtitle": "您的交易所密钥已成功添加",
+      "button": "返回交易所管理"
+    },
+    "errorCode": {
+      "default": "发生未知错误",
+      "10012": "交易所密钥已存在",
+      "10013": "当前交易所不受支持",
+      "10014": "交易所密钥无效",
+      "10015": "交易所密钥存储失败"
+    }
+  }
 }
