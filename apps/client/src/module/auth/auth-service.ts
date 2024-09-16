@@ -119,7 +119,7 @@ const getUserInfoQuery = graphql(`
 export async function getUserInfo() {
   const gqlClient = await getServerGqlClient();
   const { getUserInfo } = await gqlClient.request(getUserInfoQuery);
-
+  console.log("getUserInfo", getUserInfo);
   return getUserInfo;
 }
 

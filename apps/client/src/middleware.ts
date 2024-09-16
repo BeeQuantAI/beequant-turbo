@@ -31,26 +31,26 @@ const middleware = (request: NextRequest) => {
   const response = handleI18Routing(request);
   const locale = request.cookies.get("NEXT_LOCALE")?.value || "en";
   const url = request.nextUrl.clone();
-  const routeExists = checkRouteExists(pathname);
-
-  if (token && (pathname.includes("login") || pathname.includes("register"))) {
-    url.pathname = `${locale}${DashboardRoute.Root.Path}`;
-    return NextResponse.redirect(url);
-  }
-
-  if (pathname === "/" && !token) {
-    url.pathname = `${locale}${LandingRoute.Root.Path}`;
-    return NextResponse.redirect(url);
-  }
-
-  if (!token && !pagesRegex.test(pathname)) {
-    if (routeExists) {
-      url.pathname = `${locale}${AuthRoute.Login.Path}`;
-      return NextResponse.redirect(url);
-    } else if (!routeExists) {
-      return response;
-    }
-  }
+  // const routeExists = checkRouteExists(pathname);
+  //
+  // if (token && (pathname.includes("login") || pathname.includes("register"))) {
+  //   url.pathname = `${locale}${DashboardRoute.Root.Path}`;
+  //   return NextResponse.redirect(url);
+  // }
+  //
+  // if (pathname === "/" && !token) {
+  //   url.pathname = `${locale}${LandingRoute.Root.Path}`;
+  //   return NextResponse.redirect(url);
+  // }
+  //
+  // if (!token && !pagesRegex.test(pathname)) {
+  //   if (routeExists) {
+  //     url.pathname = `${locale}${AuthRoute.Login.Path}`;
+  //     return NextResponse.redirect(url);
+  //   } else if (!routeExists) {
+  //     return response;
+  //   }
+  // }
   return response;
 };
 export default middleware;

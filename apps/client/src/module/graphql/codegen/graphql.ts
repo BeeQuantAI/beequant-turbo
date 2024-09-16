@@ -79,6 +79,8 @@ export type Mutation = {
   login: Result;
   /** User register */
   register: Result;
+  /** User logout */
+  revokeTokens: Scalars['Boolean']['output'];
   /** Update exchange key info */
   updateExchangeKey: Scalars['Boolean']['output'];
   /** Update user info */
@@ -110,6 +112,7 @@ export type MutationDeleteUserArgs = {
 
 export type MutationLoginArgs = {
   email: Scalars['String']['input'];
+  isStaySignedIn?: InputMaybe<Scalars['Boolean']['input']>;
   password: Scalars['String']['input'];
 };
 
