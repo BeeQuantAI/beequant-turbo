@@ -68,7 +68,9 @@ export async function register(input: RegisterPayload) {
   switch (register.code) {
     case 200:
       // I don't [ads-friendly-content] know if this data is valid or not so screw it
-      redirect(AuthRoute.RegisterSuccessed.Path);
+      return {
+        success: true,
+      }
 
     case 10004:
     case 10005:
@@ -99,7 +101,9 @@ export async function verifyEmail(payload: VerifyEmailPayload) {
 
   switch (verifyEmail.code) {
     case 200:
-      redirect(AuthRoute.VerifyEmailSuccessed.Path);
+      return {
+        success: true,
+      };
     case 10011:
       return {
         error: verifyEmail.message,

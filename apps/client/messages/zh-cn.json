@@ -34,6 +34,12 @@
       "congratulation": "请查看您的邮箱",
       "message": "我们已向您发送了验证邮件",
       "backToLogin": "返回登录"
+    },
+    "error": {
+      "alreadyExists": "帐户已存在",
+      "registrationFailed": "注册时发生错误，请稍后再试",
+      "emailSendingFailed": "验证邮件发送失败，请稍后再试",
+      "unknownError": "注册时发生错误，请稍后再试"
     }
   },
 
@@ -46,7 +52,6 @@
       "title": "验证失败",
       "message": {
         "userNotFound": "用户不存在，请注册。",
-        "alreadyVerified": "邮箱经过已验证，请您登录。",
         "expiredLink": "链接已过期，已向您发送了新的验证邮件。",
         "invalidLink": "链接无效，已向您发送了新的验证邮件。",
         "unknownError": "邮件验证时出现错误，请重试。"
