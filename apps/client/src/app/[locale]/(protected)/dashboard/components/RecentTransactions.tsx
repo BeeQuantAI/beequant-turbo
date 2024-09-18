@@ -20,8 +20,8 @@ const RecentTransactions = () => {
         data={data}
         hideIcon={true}
         isSubtitleStyle={true}
-        customClass="pb-[26px]" 
         titleColor="#787985"
+        customPaddingBottom="27px"
       />
   );
 };
