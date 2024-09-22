@@ -118,13 +118,26 @@ const getUserInfoQuery = graphql(`
 `);
 export async function getUserInfo() {
   const gqlClient = await getServerGqlClient();
-  const { getUserInfo } = await gqlClient.request(getUserInfoQuery);
-  console.log("getUserInfo", getUserInfo);
+  const res = await gqlClient.request(getUserInfoQuery);
+  console.log("getUserInfo", res);
   return getUserInfo;
 }
 
 export async function logout() {
   const cookieStore = cookies();
   cookieStore.delete("token");
+  console.log("arrived here");
   redirect(LandingRoute.Root.Path);
+}
+
+const getNewAccessTokenMutation = graphql(`
+  query getNewAccessToken {
+    generateNewAccessToken
+  }
+`);
+
+export async function getNewAccessToken() {
+  const gqlClient = await getServerGqlClient();
+  const newToken = await gqlClient.request(getNewAccessTokenMutation);
+  return newToken;
 }

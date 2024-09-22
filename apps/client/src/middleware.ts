@@ -17,6 +17,10 @@ const checkRouteExists = (path: string): boolean => {
 
 const middleware = (request: NextRequest) => {
   const token = request.cookies.get("token");
+  //加一层验证token是否过期的逻辑
+
+  //在这里decode token layer 直接发更新token的请求
+
   const pathname = request.nextUrl.pathname;
   const pagesWithoutToken = [
     "login",
