@@ -30,7 +30,7 @@ export function SidebarContainer() {
     <div
       data-status={showSidebar ? "expanded" : "collapsed"}
       className={clsx(
-        "top-header peer/sidebar group/container shadow-sidebar dark:bg-primary-900 bg-primary-50 absolute bottom-0 z-50 overflow-hidden py-[15px] transition-[width_background-color] duration-300 md:overflow-visible",
+        "top-header peer/sidebar group/container shadow-sidebar dark:bg-primary-900 bg-primary-50 absolute bottom-0 z-40 overflow-hidden py-[15px] transition-[width_background-color] duration-300 md:overflow-visible",
         "data-[status=expanded]:w-sidebar-expanded data-[status=collapsed]:md:w-sidebar-collapsed w-0 duration-300 data-[status=collapsed]:w-0",
       )}
     >
