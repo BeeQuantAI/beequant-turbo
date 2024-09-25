@@ -37,6 +37,7 @@ export function ControlledTextInput<TFieldValues extends object>({
   label,
   name,
   control,
+  className,
   tooltips,
   leftElement,
   rightElement,
@@ -67,7 +68,10 @@ export function ControlledTextInput<TFieldValues extends object>({
             </span>
           )}
           <input
-            className="focus:shadow-accent-400 dark:focus:shadow-accent-400 shadow-primary-100 dark:shadow-primary-700 shadow-inset flex-1 bg-transparent px-2 py-1 text-sm transition-[box-shadow] duration-300 placeholder:text-xs focus:outline-none"
+            className={clsx(
+              "focus:shadow-accent-400 dark:focus:shadow-accent-400 shadow-primary-100 dark:shadow-primary-700 shadow-inset flex-1 bg-transparent px-2 py-1 text-sm transition-[box-shadow] duration-300 placeholder:text-xs focus:outline-none",
+              inputVariants({ className }),
+            )}
             placeholder={label ? label : props.placeholder}
             {...props}
             {...field}

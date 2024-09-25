@@ -1,21 +1,12 @@
-"use client";
-import { Button } from "@src/module/common";
 import { exchangeRoutes } from "@src/module/exchange";
-import { useRouter } from "next/navigation";
+import { ExchangePage } from "@src/module/exchange/exchange-page";
 import React from "react";
+
+export const metadata = exchangeRoutes.exchangePage.Metadata;
 export default function Page() {
-  const router = useRouter();
   return (
-    <div className="flex">
-      <div className="flex flex-1 justify-between">
-        <h1 className="text-xl">Exchange Management</h1>
-        <Button
-          variant="outline"
-          onClick={() => router.push(exchangeRoutes.createExchange.Path)}
-        >
-          Connect Exchange
-        </Button>
-      </div>
-    </div>
+    <>
+      <ExchangePage />
+    </>
   );
 }

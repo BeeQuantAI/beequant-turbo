@@ -10,22 +10,21 @@ import { FormContainer } from "../../common/form-container";
 import { useUser } from "@src/module/auth/user-store";
 import { useEffect } from "react";
 import { fetchUserInfo } from "@src/module/auth/user-store";
-import { useTheme } from "@src/module/system/theme-switcher";
 import { Toaster } from "react-hot-toast";
 import { errorNotify, succeedNotify } from "@src/module/common/toast";
 import { UPDATE_USER_PROFILE } from "@src/graphql/user";
 import { useMutation } from "@apollo/client";
+import { Loading } from "@src/module/common/loading-animation";
 
 export function AccountSettingForm() {
   const t = useTranslations();
   const [updateUserProfile] = useMutation(UPDATE_USER_PROFILE);
   const [loading, setLoading] = useState(false);
-  const { theme } = useTheme();
   const formSchema = z.object({
     displayName: z
       .string()
       .min(4, { message: t("Notifications.displayName.minLength") })
-      .max(15, { message: t("Notifications.displayName.maxLength") })
+      .max(65, { message: t("Notifications.displayName.maxLength") })
       .regex(displayNamePatten, {
         message: t("Notifications.displayName.invalid"),
       }),
@@ -38,12 +37,17 @@ export function AccountSettingForm() {
           message: t("Notifications.realName.invalid"),
         }),
       z.string().length(0),
+      z.string().length(0),
     ]),
     email: z
       .string()
       .min(1, { message: t("Notifications.email.required") })
       .email({ message: t("Notifications.email.invalid") }),
     mobile: z.union([
+      z
+        .string()
+        .regex(/(^\+?\d+)$/, { message: t("Notifications.mobile.invalid") }),
+      z.string().length(0),
       z
         .string()
         .regex(/(^\+?\d+)$/, { message: t("Notifications.mobile.invalid") }),
@@ -118,20 +122,9 @@ export function AccountSettingForm() {
     }
   };
 
-  const backgroundColor = theme === "dark" ? "bg-black" : "bg-white";
-
   return (
     <>
-      {loading && (
-        <div
-          className={`fixed inset-0 z-50 flex items-center justify-center ${backgroundColor} bg-opacity-50`}
-        >
-          <div
-            className="inline-block h-16 w-16 animate-spin rounded-full border-8 border-solid border-blue-500 border-t-transparent"
-            role="status"
-          ></div>
-        </div>
-      )}
+      {loading && <Loading />}
       <Toaster />
       <FormContainer
         title={t("Profile.header")}

@@ -22,12 +22,12 @@ import Cookies from "js-cookie";
 import { useState } from "react";
 import { useTheme } from "@src/module/system";
 import { fetchUserInfo } from "@src/module/auth/user-store";
+import { Loading } from "../common/loading-animation";
 import { useSearchParams } from "next/navigation";
 
 export function LoginForm() {
   const t = useTranslations();
   const [loading, setLoading] = useState(false);
-  const { theme } = useTheme();
   const searchParams = useSearchParams();
   const redirectUrl = searchParams.get("redirect") || DashboardRoute.Root.Path;
 
@@ -90,23 +90,14 @@ export function LoginForm() {
     } catch (error) {
       setLoading(false);
       setError("root", { message: t("Notifications.login.failed") });
+    } finally {
+      setLoading(false);
     }
   });
 
-  const backgroundColor = theme === "dark" ? "bg-black" : "bg-white";
-
   return (
     <>
-      {loading && (
-        <div
-          className={`fixed inset-0 z-50 flex items-center justify-center ${backgroundColor} bg-opacity-50`}
-        >
-          <div
-            className="inline-block h-16 w-16 animate-spin rounded-full border-8 border-solid border-blue-500 border-t-transparent"
-            role="status"
-          ></div>
-        </div>
-      )}
+      {loading && <Loading />}
       <AuthFormContainer onSubmit={onSubmit} error={errors.root?.message}>
         <div className="flex flex-col gap-5">
           <ControlledTextInput

@@ -29,7 +29,14 @@ const createExchange = {
   ),
 };
 
+const updateExchange = {
+  Metadata: {
+    title: "Update Exchange | BeeQuant",
+  },
+};
+
 export const exchangeRoutes = {
   exchangePage,
   createExchange,
+  updateExchange,
 };

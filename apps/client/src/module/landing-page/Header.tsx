@@ -12,7 +12,7 @@ const Header: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLUListElement>(null);
-  const { currentLocale, loading, languageSwitcher } = useLanguage();
+  const { currentLocale, languageSwitcher } = useLanguage();
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   useEffect(() => {

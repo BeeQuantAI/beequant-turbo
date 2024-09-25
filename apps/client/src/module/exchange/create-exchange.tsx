@@ -2,13 +2,13 @@
 import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
+  exchangeRoutes,
   FormContainer,
   InputKeyForm,
   SelectPlatform,
 } from "@src/module/exchange";
 import { FormProvider, useFormContext } from "@src/module/exchange/FormContext";
 import { CreateExchangeKeyInput } from "@src/graphql";
-import { displayNamePatten } from "@src/utils/validation-message";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -16,6 +16,7 @@ import { z } from "zod";
 import { ConnectSuccess } from "./connect-success";
 import { CREATE_EXCHANGE_KEY } from "@src/graphql";
 import { useMutation } from "@apollo/client";
+import { Loading } from "../common/loading-animation";
 
 type CreateExchangePayload = CreateExchangeKeyInput;
 
@@ -39,10 +40,10 @@ const InputKeyFormSchema = (t: any) =>
     displayName: z.union([
       z
         .string()
-        .min(4, { message: t("Notifications.displayName.minLength") })
-        .max(15, { message: t("Notifications.displayName.maxLength") })
-        .regex(displayNamePatten, {
-          message: t("Notifications.displayName.invalid"),
+        .min(4, { message: t("Notifications.exchangeDisplayName.minLength") })
+        .max(65, { message: t("Notifications.exchangeDisplayName.maxLength") })
+        .regex(/^[a-zA-Z0-9-_ ]+$/, {
+          message: t("Notifications.exchangeDisplayName.invalid"),
         }),
       z
         .string()
@@ -87,8 +88,10 @@ function ExchangePageContent({
 }: ExchangePageContentProps) {
   const { formData, setFormData } = useFormContext();
   const [serverError, setServerError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [createExchangeKey] = useMutation(CREATE_EXCHANGE_KEY);
+  const router = useRouter();
 
   const {
     handleSubmit: handleSubmitStep1,
@@ -120,33 +123,42 @@ function ExchangePageContent({
     setStep((prev: number) => prev + 1);
   };
 
-  const handleBack = () => setStep((prev: number) => prev - 1);
+  const handleBack = () => {
+    setStep((prev: number) => prev - 1);
+  };
 
   async function action(payload: CreateExchangePayload) {
-    const { data } = await createExchangeKey({
-      variables: {
-        input: payload,
-      },
-    });
+    setLoading(true);
+    try {
+      const { data } = await createExchangeKey({
+        variables: {
+          input: payload,
+        },
+      });
 
-    const code = data?.createExchangeKey?.code;
-    const message = data?.createExchangeKey?.message;
+      const code = data?.createExchangeKey?.code;
+      const message = data?.createExchangeKey?.message;
 
-    if (code) {
-      switch (code) {
-        case 200:
-          setIsSuccess(true);
-          break;
-        case 10012:
-        case 10013:
-        case 10014:
-        case 10015:
-          setServerError(t(`ExchangePage.errorCode.${code}`));
-          break;
-        default:
-          setServerError(message || t("ExchangePage.errorCode.default"));
-          break;
+      if (code) {
+        switch (code) {
+          case 200:
+            setIsSuccess(true);
+            break;
+          case 10012:
+          case 10013:
+          case 10014:
+          case 10015:
+            setServerError(t(`ExchangePage.errorCode.${code}`));
+            break;
+          default:
+            setServerError(message || t("ExchangePage.errorCode.default"));
+            break;
+        }
       }
+    } catch (error) {
+      setServerError(t("ExchangePage.errorCode.default"));
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -165,6 +177,12 @@ function ExchangePageContent({
     2: t("ExchangePage.inputKeyPage.title"),
   };
 
+  if (loading) return <Loading />;
+
+  const handleCancel = () => {
+    router.push(exchangeRoutes.exchangePage.Path);
+  };
+
   return (
     <>
       {isSuccess ? (
@@ -180,14 +198,17 @@ function ExchangePageContent({
           }
           showBack={step > 1}
           showSubmit={step === 2}
+          showCancel={step === 1}
           onBackClick={handleBack}
+          onCancelClick={handleCancel}
           error={
-            (errorsStep1.exchangeName?.message ||
-              errorsStep2.displayName?.message ||
-              errorsStep2.accessKey?.message ||
-              errorsStep2.secretKey?.message ||
-              serverError) ??
-            undefined
+            step === 1
+              ? errorsStep1.exchangeName?.message || undefined
+              : errorsStep2.displayName?.message ||
+                errorsStep2.accessKey?.message ||
+                errorsStep2.secretKey?.message ||
+                serverError ||
+                undefined
           }
         >
           {step === 1 ? (

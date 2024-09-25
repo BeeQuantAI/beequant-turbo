@@ -1,3 +1,4 @@
+import { exchangeRoutes } from "@src/module/exchange";
 import { UpdateExchangePage } from "@src/module/exchange/components/update-exchange-page";
 
 interface PageProps {
@@ -5,6 +6,8 @@ interface PageProps {
     id: string;
   };
 }
+
+export const metadata = exchangeRoutes.updateExchange.Metadata;
 
 export default function Page(props: PageProps) {
   const { id } = props.params;
