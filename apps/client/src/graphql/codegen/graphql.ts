@@ -445,6 +445,39 @@ export type CreateExchangeKeyMutation = {
   };
 };
 
+export type GetUserExchangesAndBalancesQueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type GetUserExchangesAndBalancesQuery = {
+  __typename?: "Query";
+  getUserExchangesAndBalances: {
+    __typename?: "Results";
+    code: number;
+    message: string;
+    data?: Array<{
+      __typename?: "UserExchangeType";
+      id: string;
+      name: string;
+      displayName: string;
+      balances: number;
+    }> | null;
+  };
+};
+
+export type DeleteExchangeKeyMutationVariables = Exact<{
+  exchangeKeyId: Scalars["String"]["input"];
+}>;
+
+export type DeleteExchangeKeyMutation = {
+  __typename?: "Mutation";
+  deleteExchangeKey: {
+    __typename?: "Result";
+    code: number;
+    message?: string | null;
+  };
+};
+
 export type GetUserInfoQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetUserInfoQuery = {
@@ -1130,6 +1163,109 @@ export const CreateExchangeKeyDocument = {
 } as unknown as DocumentNode<
   CreateExchangeKeyMutation,
   CreateExchangeKeyMutationVariables
+>;
+export const GetUserExchangesAndBalancesDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetUserExchangesAndBalances" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getUserExchangesAndBalances" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "code" } },
+                { kind: "Field", name: { kind: "Name", value: "message" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "data" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "displayName" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "balances" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetUserExchangesAndBalancesQuery,
+  GetUserExchangesAndBalancesQueryVariables
+>;
+export const DeleteExchangeKeyDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "DeleteExchangeKey" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "exchangeKeyId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteExchangeKey" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "exchangeKeyId" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "exchangeKeyId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "code" } },
+                { kind: "Field", name: { kind: "Name", value: "message" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  DeleteExchangeKeyMutation,
+  DeleteExchangeKeyMutationVariables
 >;
 export const GetUserInfoDocument = {
   kind: "Document",

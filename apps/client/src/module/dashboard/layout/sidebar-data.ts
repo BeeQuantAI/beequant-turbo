@@ -6,6 +6,8 @@ import { AppSettingRoute, DashboardRoute } from "../route";
 import { SidebarMenuItem } from "./sidebar-menu";
 import { useTranslations } from "next-intl";
 import { AccountRoute } from "@src/module/account/layout/route";
+import { useUser } from "@src/module/auth/user-store";
+import { exchangeRoutes } from "@src/module/exchange";
 
 export function useSidebar() {
   const t = useTranslations();
@@ -47,7 +49,7 @@ export function useSidebar() {
         },
         {
           label: t("Sidebar.account.exchangeManagement"),
-          onClick: () => console.log("Navigate to Exchange Management"),
+          onClick: () => router.push(exchangeRoutes.exchangePage.Path),
         },
         {
           label: t("Shared.accountManagement"),

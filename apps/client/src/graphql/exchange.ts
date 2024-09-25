@@ -32,3 +32,27 @@ export const CREATE_EXCHANGE_KEY = gql(`
         }
     }
 `);
+
+export const GET_USER_EXCHANGES_AND_BALANCES = gql(`
+  query GetUserExchangesAndBalances {
+    getUserExchangesAndBalances {
+      code
+      message
+      data {
+        id
+        name
+        displayName
+        balances
+      }
+    }
+  }
+`);
+
+export const DELETE_EXCHANGE_KEY = gql(`
+  mutation DeleteExchangeKey($exchangeKeyId: String!) {
+    deleteExchangeKey(exchangeKeyId: $exchangeKeyId) {
+      code
+      message
+    }
+  }
+`);

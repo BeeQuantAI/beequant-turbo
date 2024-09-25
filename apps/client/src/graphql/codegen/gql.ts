@@ -35,6 +35,10 @@ const documents = {
     types.UpdateExchangeKeyDocument,
   "\n    mutation CreateExchangeKey($input: CreateExchangeKeyInput!) {\n        createExchangeKey(input: $input) {\n            code\n            message\n        }\n    }\n":
     types.CreateExchangeKeyDocument,
+  "\n  query GetUserExchangesAndBalances {\n    getUserExchangesAndBalances {\n      code\n      message\n      data {\n        id\n        name\n        displayName\n        balances\n      }\n    }\n  }\n":
+    types.GetUserExchangesAndBalancesDocument,
+  "\n  mutation DeleteExchangeKey($exchangeKeyId: String!) {\n    deleteExchangeKey(exchangeKeyId: $exchangeKeyId) {\n      code\n      message\n    }\n  }\n":
+    types.DeleteExchangeKeyDocument,
   "\n  query GetUserInfo {\n    getUserInfo {\n      id\n      displayName\n      realName\n      email\n      mobile\n      ref\n    }\n  }\n":
     types.GetUserInfoDocument,
   "\n  query getUserById($id: String!) {\n    getUserById(id: $id) {\n      id\n      email\n      realName\n      displayName\n      mobile\n    }\n  }\n":
@@ -125,6 +129,18 @@ export function gql(
 export function gql(
   source: "\n    mutation CreateExchangeKey($input: CreateExchangeKeyInput!) {\n        createExchangeKey(input: $input) {\n            code\n            message\n        }\n    }\n",
 ): (typeof documents)["\n    mutation CreateExchangeKey($input: CreateExchangeKeyInput!) {\n        createExchangeKey(input: $input) {\n            code\n            message\n        }\n    }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "\n  query GetUserExchangesAndBalances {\n    getUserExchangesAndBalances {\n      code\n      message\n      data {\n        id\n        name\n        displayName\n        balances\n      }\n    }\n  }\n",
+): (typeof documents)["\n  query GetUserExchangesAndBalances {\n    getUserExchangesAndBalances {\n      code\n      message\n      data {\n        id\n        name\n        displayName\n        balances\n      }\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "\n  mutation DeleteExchangeKey($exchangeKeyId: String!) {\n    deleteExchangeKey(exchangeKeyId: $exchangeKeyId) {\n      code\n      message\n    }\n  }\n",
+): (typeof documents)["\n  mutation DeleteExchangeKey($exchangeKeyId: String!) {\n    deleteExchangeKey(exchangeKeyId: $exchangeKeyId) {\n      code\n      message\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

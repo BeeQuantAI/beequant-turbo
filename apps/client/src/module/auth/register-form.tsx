@@ -17,6 +17,7 @@ import { USER_REGISTER } from "@src/graphql";
 import { useMutation } from "@apollo/client";
 import { Successed } from "@src/module/common";
 import { useState } from "react";
+import { Loading } from "../common/loading-animation";
 
 export function RegisterForm() {
   const t = useTranslations();
@@ -32,7 +33,7 @@ export function RegisterForm() {
         z
           .string()
           .min(4, { message: t("Notifications.displayName.minLength") })
-          .max(15, { message: t("Notifications.displayName.maxLength") })
+          .max(65, { message: t("Notifications.displayName.maxLength") })
           .regex(displayNamePatten, {
             message: t("Notifications.displayName.invalid"),
           }),
@@ -126,14 +127,7 @@ export function RegisterForm() {
 
   return (
     <>
-      {loading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-75">
-          <div
-            className="inline-block h-16 w-16 animate-spin rounded-full border-8 border-solid border-blue-500 border-t-transparent"
-            role="status"
-          ></div>
-        </div>
-      )}
+      {loading && <Loading />}
 
       <AuthFormContainer onSubmit={onSubmit} error={errors.root?.message}>
         <ControlledTextInput

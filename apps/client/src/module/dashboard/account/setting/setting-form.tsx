@@ -14,7 +14,7 @@ export function AccountSettingForm() {
       z
         .string()
         .min(4, { message: t("Notifications.displayName.minLength") })
-        .max(15, { message: t("Notifications.displayName.maxLength") })
+        .max(65, { message: t("Notifications.displayName.maxLength") })
         .regex(displayNamePatten, {
           message: t("Notifications.displayName.invalid"),
         }),

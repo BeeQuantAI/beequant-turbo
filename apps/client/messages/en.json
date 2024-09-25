@@ -120,21 +120,21 @@
       "invalid": "Invalid email address"
     },
     "displayName": {
-      "description": "{optional, select, true {:} other {Real Name:}}between 4 to 15 characters, only letters, numbers, dashes and underscore are allowed",
-      "required": "Real Name is required",
-      "invalid": "Real name must contain only letters, numbers, hyphens and underscores",
-      "minLength": "Real name must be at least 4 characters",
-      "maxLength": "Real name must be at most 15 characters"
+      "description": "{optional, select, true {:} other {Display Name: }}between 4 to 64 characters, only letters, numbers, dashes and underscore are allowed",
+      "required": "Display Name is required",
+      "invalid": "Display name must contain only letters, numbers, hyphens and underscores",
+      "minLength": "Display name must be at least 4 characters",
+      "maxLength": "Display name must be at most 64 characters"
     },
     "realName": {
-      "description": "{optional, select, true {:} other {Display Name:}}between 4 to 15 characters, only letters, numbers, dashes and underscore are allowed",
+      "description": "{optional, select, true {:} other {Real Name:}}between 4 to 64 characters, only letters, numbers, dashes and underscore are allowed",
       "required": "Real Name is required",
       "invalid": "Real name must contain only letters, numbers, hyphens and underscores",
       "minLength": "Real name must be at least 4 characters",
-      "maxLength": "Real name must be at most 15 characters"
+      "maxLength": "Real name must be at most 64 characters"
     },
     "mobile": {
-      "description": "{optional, select, true {:} other {mobile: }} only contain digit number and '+' ",
+      "description": "{optional, select, true {:} other {Mobile: }} only contain digit number and '+' ",
       "invalid": "mobile number can only contain digit number and '+' "
     },
     "password": {
@@ -162,14 +162,23 @@
       "invalid": "Exchange key is invalid!",
       "failed": "Exchange key update failed!"
     },
+    "deleteExchangeKey": {
+      "succeed": "Exchange key deleted successfully.",
+      "failed": "Failed to delete exchange key.",
+      "notfound": "Exchange key not found.",
+      "invalid": "Invalid exchange key ID.",
+      "error": "An unexpected error occurred while deleting the exchange key."
+    },
     "exchangeName": {
       "required": "Exchange name is required"
     },
     "accessKey": {
-      "required": "Access key is required"
+      "required": "Access key is required",
+      "maxLength": "The access key must be between 1 and 255 characters."
     },
     "secretKey": {
-      "required": "Secret key is required"
+      "required": "Secret key is required",
+      "maxLength": "The secret key must be between 1 and 255 characters."
     },
     "forgotPassword": {
       "emailRequestSuccess": "If the email is associated with an account, a reset email will be sent shortly. Please check your mailbox.",
@@ -182,7 +191,16 @@
       "unknownError": "An error occurred while updating the profile. Please try again later."
     },
     "error": {
-      "unknown": "An error occurred. Please try again later."
+      "unknown": "An error occurred. Please try again later.",
+      "failed": "Profile update failed. Please try again."
+    },
+    "platform": {
+      "required": "Please select a platform"
+    },
+    "exchangeDisplayName": {
+      "minLength": "Display name must be at least 4 characters",
+      "maxLength": "Display name must be at most 64 characters",
+      "invalid": "Display name must contain only letters, numbers, space, hyphens and underscores"
     }
   },
 
@@ -213,14 +231,14 @@
     "recent-transaction": "Recent Transaction"
   },
 
-  "Profile":{
-    "update-profile-error":"Failed to update profile. Please try again.",
+  "Profile": {
+    "update-profile-error": "Failed to update profile. Please try again.",
     "header": "Profile",
     "sub-header": "Update your account information",
     "displayName": "display name",
     "email": "Email",
     "reference": "Reference",
-    "submit":"Submit",
+    "submit": "Submit",
     "invalid-input": "Display name must be 4-15 characters long and contain only letters, numbers, hyphens, and underscores.",
     "unknown-error": "An error occurred while updating the profile."
   },
@@ -230,8 +248,11 @@
     "subtitle": "Change your password",
     "oldPassword": "Old Password",
     "newPassword": "New Password",
-    "succeed": "You have successfully reset your password!",
-    "button": "Ready to trade again"
+    "successedPage": {
+      "title": "Cool !",
+      "succeed": "You have successfully reset your password!",
+      "button": "Ready to trade again"
+    }
   },
 
   "UpdateExchangeKeyPage": {
@@ -243,7 +264,10 @@
     "apiKey": "API Key",
     "alertTitle": "Attention!",
     "alertMessage": "You're going to update this exchange key. Are you sure?",
-    "alertYes": "Confirm"
+    "alertDeleteTitle": "Delete Exchange Key",
+    "alertDeleteMessage": "You're about to delete this exchange key. This action cannot be undone. Are you sure?",
+    "alertYes": "Confirm",
+    "alertCancel": "Cancel"
   },
 
   "bot": {},
@@ -343,5 +367,50 @@
     "weekChangeValue": "+0.19%",
     "weekChangeDetails": "[0.84]",
     "moreAboutTokenLink": "More about token"
+  },
+  "ExchangePage": {
+    "formContainer": {
+      "heading": "Connect New Exchange",
+      "nextButton": "Next",
+      "backButton": "Back",
+      "submitButton": "Submit",
+      "cancelButton": "Cancel"
+    },
+    "selectPlatformPage": {
+      "title": "Select Platform",
+      "platforms": {
+        "binance": "Binance"
+      }
+    },
+    "inputKeyPage": {
+      "title": "Fill your API Keys",
+      "displayName": "Display Name",
+      "accessKey": "API Key",
+      "secretKey": "API Secret"
+    },
+    "successedPage": {
+      "title": "Cool !",
+      "subtitle": "Your exchange key added successfully",
+      "button": "Back to Exchange Management"
+    },
+    "errorCode": {
+      "10012": "Exchange key already exists",
+      "10013": "Current exchange is not supported",
+      "10014": "Exchange key is invalid",
+      "10015": "Exchange key store failed",
+      "default": "An unexpected error occurred. Please try again later."
+    }
+  },
+  "ExchangeManagement": {
+    "heading": "Exchange Management",
+    "createExchangeButton": "Connect Exchange +",
+    "exchangeCard": {
+      "exchange": "EXCHANGE",
+      "balance": "BALANCE",
+      "unavaliable": "Unavaliable",
+      "names": {
+        "binance": "Binance"
+      }
+    }
   }
 }

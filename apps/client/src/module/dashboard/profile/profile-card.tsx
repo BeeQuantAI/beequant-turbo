@@ -1,5 +1,6 @@
 "use client";
 import { useUser } from "@src/module/auth/user-store";
+import { Loading } from "@src/module/common/loading-animation";
 import { useTranslations } from "next-intl";
 
 export function ProfileCard() {
@@ -7,7 +8,7 @@ export function ProfileCard() {
   const user = useUser((s) => s.user);
   return (
     <div className="bg-primary-50 dark:bg-primary-900 flex flex-col items-center gap-4 rounded-md p-4 shadow-md md:p-8">
-      {!user && "Loading..."}
+      {!user && <Loading />}
       {!!user && (
         <>
           <img
@@ -22,8 +23,7 @@ export function ProfileCard() {
             <p>{user?.mobile}</p>
           </div>
         </>
-        )
-      }
+      )}
     </div>
   );
 }

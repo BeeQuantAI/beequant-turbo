@@ -27,6 +27,10 @@ const buttonVariants = cva(
           "text-md border-[#D8DFE9] bg-[#D8DFE9] text-[#787985]",
           "before:transition-width before:transition-height hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-[#b8c5d7] before:duration-500 before:ease-in-out hover:before:-z-50",
         ],
+        actionPrimary: [
+          "text-md dark:text-primary-50 border-[#D8DFE9] text-[#787985]",
+          "before:transition-width before:transition-height hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-[#b8c5d7] before:duration-500 before:ease-in-out hover:before:-z-50",
+        ],
       },
       size: {
         small: "px-3 py-[6px]",

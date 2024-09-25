@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@src/module/common";
-import { ForwardedRef, forwardRef, use, useEffect, useState } from "react";
+import { ForwardedRef, forwardRef } from "react";
 
 type ModalProps = {
   message: string;
