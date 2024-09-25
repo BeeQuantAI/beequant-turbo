@@ -34,6 +34,12 @@
       "congratulation": "Please check your mailbox",
       "message": "We have sent you a verification email",
       "backToLogin": "Back to Login"
+    },
+    "error": {
+      "alreadyExists": "Account already exists",
+      "registrationFailed": "An error occurred while registering, please try again later",
+      "emailSendingFailed": "Email verification failed, please try again later",
+      "unknownError": "An error occurred while registering, please try again later"
     }
   },
 
@@ -46,7 +52,6 @@
       "title": "Oops ! Verification failed",
       "message": {
         "userNotFound": "User not found, please register.",
-        "alreadyVerified": "Email is already verified, please login.",
         "expiredLink": "Link expired, a new verification email will be sent shortly.",
         "invalidLink": "Invalid link, a new verification email will be sent shortly.",
         "unknownError": "An error occurred while verifying email."

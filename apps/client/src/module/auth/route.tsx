@@ -41,18 +41,6 @@ const ForgetPassword = {
   ),
 };
 
-const RegisterSuccessed = {
-  Metadata: {
-    title: "Register Successed | BeeQuant",
-  },
-  Path: "/register-successed" as const,
-  Link: ({ children, className }: RouteLinkProps) => (
-    <Link href={RegisterSuccessed.Path} className={className}>
-      {children}
-    </Link>
-  ),
-};
-
 const VerifyEmail = {
   Metadata: {
     title: "Verify Email | BeeQuant",
@@ -65,23 +53,9 @@ const VerifyEmail = {
   ),
 };
 
-const VerifyEmailSuccessed = {
-  Metadata: {
-    title: "Verify Successed | BeeQuant",
-  },
-  Path: "/verify-email-successed" as const,
-  Link: ({ children, className }: RouteLinkProps) => (
-    <Link href={VerifyEmailSuccessed.Path} className={className}>
-      {children}
-    </Link>
-  ),
-};
-
 export const AuthRoute = {
   Login,
   Register,
   ForgetPassword,
-  RegisterSuccessed,
   VerifyEmail,
-  VerifyEmailSuccessed,
 };

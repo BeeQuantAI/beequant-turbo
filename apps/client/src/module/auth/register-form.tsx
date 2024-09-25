@@ -14,10 +14,13 @@ import { AuthRoute } from "./route";
 import { displayNamePatten } from "@src/utils/validation-message";
 import { useTranslations } from "next-intl";
 import { passwordValidationSchema } from "@src/utils/validation-schema";
+import { Successed } from "@src/module/common";
+import { useState } from "react";
 
 export function RegisterForm() {
   const t = useTranslations();
   const passwordSchema = passwordValidationSchema(t);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   type FormSchema = z.infer<typeof formSchema>;
   const formSchema = z.object({
@@ -67,16 +70,41 @@ export function RegisterForm() {
   async function action(payload: RegisterPayload) {
     const res = await register(payload);
 
-    if (res?.error) {
-      setError("root", { message: res.error });
+    if (res?.success) {
+      setIsSuccess(true);
+    } else if (res?.error) {
+      setError("root", { message: getErrorMessage(res.error) });
     }
   }
+
+  function getErrorMessage(error: string): string {
+    switch (error) {
+        case "account already exists":
+            return t("RegisterPage.error.alreadyExists");
+        case "registration failed":
+            return t("RegisterPage.error.registrationFailed");
+        case "Email verification failed":
+            return t("RegisterPage.error.emailSendingFailed");
+        default:
+            return t("RegisterPage.error.unknownError");
+    }
+}
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
     const { confirmPassword, realName, mobile, ...filteredData } = data;
     action(filteredData);
   });
+
+  if (isSuccess) {
+    return (
+      <Successed
+        title={t("RegisterPage.succeed.congratulation")}
+        message={t("RegisterPage.succeed.message")}
+        state="success"
+      />
+    );
+  }
 
   return (
     <AuthFormContainer onSubmit={onSubmit} error={errors.root?.message}>
