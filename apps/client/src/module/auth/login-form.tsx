@@ -16,9 +16,13 @@ import { AuthFormContainer } from "./auth-form-container";
 import { login, LoginPayload } from "./auth-service";
 import { AuthRoute } from "./route";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
+import { useTheme } from "../system/theme-switcher";
 
 export function LoginForm() {
   const t = useTranslations();
+  const [loading, setLoading] = useState(false);
+  const { theme } = useTheme();
 
   type LoginForm = z.infer<typeof formSchema>;
   // source of truth for this login form <= this is the law, is the king, is the absolute authority for this form - K总
@@ -51,11 +55,19 @@ export function LoginForm() {
   });
 
   async function action(payload: LoginPayload) {
-    const res = await login(payload);
+    setLoading(true); 
+    try {
+      const res = await login(payload);
 
-    if (res?.code === 10010) {
-      setError("root", { message: t("Notifications.login.emailNotVerified") });
-    } else if (res?.error) {
+      if (res?.code === 10010) {
+        setLoading(false)
+        setError("root", { message: t("Notifications.login.emailNotVerified") });
+      } else if (res?.error) {
+        setLoading(false)
+        setError("root", { message: t("Notifications.login.failed") });
+      }
+    } catch (error) {
+      setLoading(false)
       setError("root", { message: t("Notifications.login.failed") });
     }
   }
@@ -64,7 +76,19 @@ export function LoginForm() {
     action(data);
   });
 
+  const backgroundColor = theme === "dark" ? "bg-black" : "bg-white";
+  
   return (
+    <>
+      {loading && (
+        <div className={`fixed inset-0 z-50 flex items-center justify-center ${backgroundColor} bg-opacity-50`}>
+          <div
+            className="inline-block h-16 w-16 animate-spin rounded-full border-8 border-solid border-blue-500 border-t-transparent"
+            role="status"
+          >
+          </div>
+        </div>
+      )}
     <AuthFormContainer onSubmit={onSubmit} error={errors.root?.message}>
       <div className="flex flex-col gap-5">
         <ControlledTextInput
@@ -116,5 +140,6 @@ export function LoginForm() {
         <SocialButton social="google" />
       </div>
     </AuthFormContainer>
+    </>
   );
 }
