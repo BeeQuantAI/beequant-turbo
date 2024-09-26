@@ -20,6 +20,7 @@ import { useState } from "react";
 export function RegisterForm() {
   const t = useTranslations();
   const passwordSchema = passwordValidationSchema(t);
+  const [loading, setLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
   type FormSchema = z.infer<typeof formSchema>;
@@ -68,12 +69,19 @@ export function RegisterForm() {
   });
 
   async function action(payload: RegisterPayload) {
-    const res = await register(payload);
+    setLoading(true); 
+    try {
+      const res = await register(payload);
 
-    if (res?.success) {
-      setIsSuccess(true);
-    } else if (res?.error) {
-      setError("root", { message: getErrorMessage(res.error) });
+      if (res?.success) {
+        setIsSuccess(true); 
+      } else if (res?.error) {
+        setError("root", { message: getErrorMessage(res.error) });
+      }
+    } catch (error) {
+      setError("root", { message: t("Notifications.error.unknown") });
+    } finally {
+      setLoading(false); 
     }
   }
 
@@ -107,55 +115,68 @@ export function RegisterForm() {
   }
 
   return (
-    <AuthFormContainer onSubmit={onSubmit} error={errors.root?.message}>
-      <ControlledTextInput
-        label={t("Shared.displayName", { optional: true })}
-        tooltips={t("Notifications.displayName.description", {
-          optional: true,
-        })}
-        name="displayName"
-        control={control}
-        leftElement={<Icon icon="person" />}
-      />
-      <ControlledTextInput
-        label={t("Shared.email")}
-        name="email"
-        control={control}
-        leftElement={<Icon icon="person" />}
-        autoComplete="email"
-      />
-      <ControlledPasswordInput
-        label={t("Shared.password")}
-        tooltips={t("Notifications.password.description")}
-        name="password"
-        control={control}
-        autoComplete="new-password"
-      />
-      <ControlledPasswordInput
-        label={t("Shared.confirmPassword")}
-        name="confirmPassword"
-        control={control}
-        autoComplete="new-password"
-      />
+    <>
+      {loading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-75">
+          <div
+            className="inline-block h-16 w-16 animate-spin rounded-full border-8 border-solid border-blue-500 border-t-transparent"
+            role="status"
+          >
+          </div>
+        </div>
+      )}
 
-      <ControlledTextInput
-        label={t("Shared.ref")}
-        name="ref"
-        control={control}
-        leftElement={<Icon icon="person" />}
-        disabled
-      />
+      <AuthFormContainer onSubmit={onSubmit} error={errors.root?.message}>
+        <ControlledTextInput
+          label={t("Shared.displayName", { optional: true })}
+          tooltips={t("Notifications.displayName.description", {
+            optional: true,
+          })}
+          name="displayName"
+          control={control}
+          leftElement={<Icon icon="person" />}
+        />
+        <ControlledTextInput
+          label={t("Shared.email")}
+          name="email"
+          control={control}
+          leftElement={<Icon icon="person" />}
+          autoComplete="email"
+        />
+        <ControlledPasswordInput
+          label={t("Shared.password")}
+          tooltips={t("Notifications.password.description")}
+          name="password"
+          control={control}
+          autoComplete="new-password"
+        />
+        <ControlledPasswordInput
+          label={t("Shared.confirmPassword")}
+          name="confirmPassword"
+          control={control}
+          autoComplete="new-password"
+        />
 
-      <Button type="submit" className="my-5">
-        {t("RegisterPage.signUp")}
-      </Button>
+        <ControlledTextInput
+          label={t("Shared.ref")}
+          name="ref"
+          control={control}
+          leftElement={<Icon icon="person" />}
+          disabled
+        />
 
-      <span className="text-center text-[13px]">
-        {t("RegisterPage.alreadyHaveAccount")}{" "}
-        <AuthRoute.Login.Link className="text-accent-400 hover:text-accent-400">
-          {t("Shared.signIn")}
-        </AuthRoute.Login.Link>
-      </span>
-    </AuthFormContainer>
+        {/* SignUp button with loading */}
+        <Button type="submit" className="my-5" disabled={loading}>
+          {loading ? t("Shared.loading") : t("RegisterPage.signUp")}
+        </Button>
+
+        <span className="text-center text-[13px]">
+          {t("RegisterPage.alreadyHaveAccount")}{" "}
+          <AuthRoute.Login.Link className="text-accent-400 hover:text-accent-400">
+            {t("Shared.signIn")}
+          </AuthRoute.Login.Link>
+        </span>
+      </AuthFormContainer>
+    </>
   );
 }
