@@ -21,7 +21,7 @@ const RecentTransactions = () => {
         hideIcon={true}
         isSubtitleStyle={true}
         titleColor="#787985"
-        customPaddingBottom="27px"
+        customPaddingBottom="26px"
       />
   );
 };
