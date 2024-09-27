@@ -14,13 +14,13 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
-  /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
-  DateTime: { input: any; output: any; }
 };
 
 export type CreateExchangeKeyInput = {
   /** Access key */
   accessKey: Scalars['String']['input'];
+  /** Display name */
+  displayName: Scalars['String']['input'];
   /** Exchange name */
   exchangeName: Scalars['String']['input'];
   /** Remarks */
@@ -44,43 +44,24 @@ export type CreateUserInput = {
   ref: Scalars['String']['input'];
 };
 
-export type ExchangeKey = {
-  __typename?: 'ExchangeKey';
-  /** Access key */
-  accessKey: Scalars['String']['output'];
-  createdAt: Scalars['DateTime']['output'];
-  createdBy?: Maybe<Scalars['String']['output']>;
-  deletedAt?: Maybe<Scalars['DateTime']['output']>;
-  deletedBy?: Maybe<Scalars['String']['output']>;
-  /** Exchange name */
-  exchangeName: Scalars['String']['output'];
-  id: Scalars['String']['output'];
-  /** Remarks */
-  remarks: Scalars['String']['output'];
-  /** Secret key */
-  secretKey: Scalars['String']['output'];
-  updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  updatedBy?: Maybe<Scalars['String']['output']>;
-};
-
 export type Mutation = {
   __typename?: 'Mutation';
   /** Change password */
   changePassword: Result;
   /** Create exchange key */
-  createExchangeKey: Scalars['Boolean']['output'];
+  createExchangeKey: Result;
   /** Create new user */
   createUser: Scalars['Boolean']['output'];
   /** Hard delete an user */
   deleteUser: Scalars['Boolean']['output'];
-  /** Hard delete an user key */
-  deleteUserKey: Scalars['Boolean']['output'];
+  /** Forgot password */
+  forgotPassword: Result;
   /** User login */
   login: Result;
   /** User register */
   register: Result;
-  /** Update exchange key info */
-  updateExchangeKey: Scalars['Boolean']['output'];
+  /** Reset password */
+  resetPassword: Result;
   /** Update user info */
   updateUser: Scalars['Boolean']['output'];
   /** Email Verification */
@@ -108,6 +89,11 @@ export type MutationDeleteUserArgs = {
 };
 
 
+export type MutationForgotPasswordArgs = {
+  email: Scalars['String']['input'];
+};
+
+
 export type MutationLoginArgs = {
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
@@ -119,8 +105,8 @@ export type MutationRegisterArgs = {
 };
 
 
-export type MutationUpdateExchangeKeyArgs = {
-  input: UpdateExchangeKeyInput;
+export type MutationResetPasswordArgs = {
+  input: ResetPasswordInput;
 };
 
 
@@ -137,8 +123,6 @@ export type MutationVerifyEmailArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  /** Find exchange key by id */
-  getExchangeKeyById: ExchangeKey;
   /** Find user by email */
   getUserByEmail: UserType;
   /** Find user by id */
@@ -147,11 +131,6 @@ export type Query = {
   getUserInfo: UserType;
   /** Get all users */
   getUsers: Array<UserType>;
-};
-
-
-export type QueryGetExchangeKeyByIdArgs = {
-  id: Scalars['String']['input'];
 };
 
 
@@ -164,22 +143,18 @@ export type QueryGetUserByIdArgs = {
   id: Scalars['String']['input'];
 };
 
+export type ResetPasswordInput = {
+  /** New Password */
+  newPassword: Scalars['String']['input'];
+  /** Reset Token */
+  resetToken: Scalars['String']['input'];
+};
+
 export type Result = {
   __typename?: 'Result';
   code: Scalars['Int']['output'];
   data?: Maybe<Scalars['String']['output']>;
   message?: Maybe<Scalars['String']['output']>;
-};
-
-export type UpdateExchangeKeyInput = {
-  /** Access key */
-  accessKey: Scalars['String']['input'];
-  /** Exchange name */
-  exchangeName: Scalars['String']['input'];
-  /** Remarks */
-  remarks?: InputMaybe<Scalars['String']['input']>;
-  /** Secret key */
-  secretKey: Scalars['String']['input'];
 };
 
 export type UpdatePasswordInput = {
@@ -217,17 +192,19 @@ export type UserType = {
   /** is Email Verified */
   isEmailVerified: Scalars['Boolean']['output'];
   /** Mobile number */
-  mobile: Scalars['String']['output'];
+  mobile?: Maybe<Scalars['String']['output']>;
   /** QQ */
-  qq: Scalars['String']['output'];
+  qq?: Maybe<Scalars['String']['output']>;
   /** User real name */
-  realName: Scalars['String']['output'];
+  realName?: Maybe<Scalars['String']['output']>;
   /** User is referred by */
   ref: Scalars['String']['output'];
+  /** Reset Password Token */
+  resetPasswordToken?: Maybe<Scalars['String']['output']>;
   /** Verification Token */
   verificationToken?: Maybe<Scalars['String']['output']>;
   /** Wechat */
-  wechat: Scalars['String']['output'];
+  wechat?: Maybe<Scalars['String']['output']>;
 };
 
 export type UpdatePasswordMutationVariables = Exact<{

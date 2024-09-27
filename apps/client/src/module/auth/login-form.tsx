@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import clsx from "clsx";
 import { useRouter } from "@src/configs/navigation";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { string, z } from "zod";
 import { SocialButton } from "../common/social-button";
 import { AuthFormContainer } from "./auth-form-container";
 import { login, LoginPayload, OauthLogin } from "./auth-service";
@@ -19,10 +19,13 @@ import { AuthRoute } from "./route";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useTheme } from "../system/theme-switcher";
+import { isType } from "graphql";
+import { useSearchParams } from "next/navigation";
 
 export function LoginForm({ token }: { token: string }) {
   const t = useTranslations();
   const [loading, setLoading] = useState(false);
+  const searchParams = useSearchParams();
   const { theme } = useTheme();
 
   type LoginForm = z.infer<typeof formSchema>;
@@ -78,12 +81,27 @@ export function LoginForm({ token }: { token: string }) {
   });
 
   useEffect(() => {
+    setLoading(true);
     if (token && typeof window !== "undefined") {
-      OauthLogin({ token }).then((r) => console.log(r));
+      const handleLogin = async () => { 
+        try {
+          await OauthLogin({ token });
+        } catch (error) {
+          console.error("OauthLogin failed:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+      handleLogin();
+    } 
+    else {
+      setLoading(false);
     }
   }, [token]);
 
   const handleThirdPartyLogin = (provider: string): void => {
+    setLoading(true);
     const thirdPartyApiUrl = process.env.NEXT_PUBLIC_THIRD_PARTY_API_URL;
     window.location.href = `${thirdPartyApiUrl}/${provider}`;
   };
