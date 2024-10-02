@@ -17,6 +17,8 @@
     "system": "System",
     "easyUsing": "Or Easy Using",
     "submit": "Submit",
+    "delete": "Delete",
+    "cancel": "Cancel",
     "accountManagement": "Account Management"
   },
 
@@ -34,12 +36,6 @@
       "congratulation": "Please check your mailbox",
       "message": "We have sent you a verification email",
       "backToLogin": "Back to Login"
-    },
-    "error": {
-      "alreadyExists": "Account already exists",
-      "registrationFailed": "An error occurred while registering, please try again later",
-      "emailSendingFailed": "Email verification failed, please try again later",
-      "unknownError": "An error occurred while registering, please try again later"
     }
   },
 
@@ -52,6 +48,7 @@
       "title": "Oops ! Verification failed",
       "message": {
         "userNotFound": "User not found, please register.",
+        "alreadyVerified": "Email is already verified, please login.",
         "expiredLink": "Link expired, a new verification email will be sent shortly.",
         "invalidLink": "Invalid link, a new verification email will be sent shortly.",
         "unknownError": "An error occurred while verifying email."
@@ -123,16 +120,20 @@
       "currentPasswordWrong": "Current password is wrong",
       "failed": "Change password failed"
     },
-    "platform": {
-      "required": "Please select a valid platform."
+    "updateExchangeKey": {
+      "succeed": "Exchange key updated successfully!",
+      "notfound": "Exchange key does not exist!",
+      "invalid": "Exchange key is invalid!",
+      "failed": "Exchange key update failed!"
+    },
+    "exchangeName": {
+      "required": "Exchange name is required"
     },
     "accessKey": {
-      "required": "The accessKey is required.",
-      "maxLength": "The access key must be between 1 and 255 characters."
+      "required": "Access key is required"
     },
     "secretKey": {
-      "required": "The secretKey is required.",
-      "maxLength": "The secret key must be between 1 and 255 characters."
+      "required": "Secret key is required"
     }
   },
 
@@ -140,9 +141,7 @@
     "title": "Settings",
     "subtitle": "Update your profile",
     "realName": "Real Name",
-    "mobile": "Mobile",
-    "submit": "Submit",
-    "cancel": "Cancel"
+    "mobile": "Mobile"
   },
 
   "AppSettingPage": {
@@ -172,7 +171,18 @@
     "button": "Ready to trade again"
   },
 
-  "exchange": {},
+  "UpdateExchangeKeyPage": {
+    "title": "edit key",
+    "subtitle": "update your exchange key",
+    "keyDisplayName": "Key Display Name",
+    "exchange": "Exchange",
+    "apiSecret": "API Secret",
+    "apiKey": "API Key",
+    "alertTitle": "Attention!",
+    "alertMessage": "You're going to update this exchange key. Are you sure?",
+    "alertYes": "Confirm"
+  },
+
   "bot": {},
 
   "Landing": {
@@ -270,37 +280,5 @@
     "weekChangeValue": "+0.19%",
     "weekChangeDetails": "[0.84]",
     "moreAboutTokenLink": "More about token"
-  },
-  "ExchangePage": {
-    "formContainer": {
-      "heading": "Connect New Exchange",
-      "backButton": "Back",
-      "submitButton": "Submit",
-      "nextButton": "Next"
-    },
-    "selectPlatformPage": {
-      "title": "Select Platform",
-      "platforms": {
-        "binance": "Binance"
-      }
-    },
-    "inputKeyPage": {
-      "title": "Input API Keys",
-      "displayName": "Display Name",
-      "accessKey": "API Key",
-      "secretKey": "API Secret"
-    },
-    "successedPage": {
-      "title": "Cool!",
-      "subtitle": "Your exchange key is added successfully",
-      "button": "Back to Exchange Management"
-    },
-    "errorCode": {
-      "default": "Unknowing error occurred",
-      "10012": "Exchange key already exists",
-      "10013": "Current exchange is not supported",
-      "10014": "Exchange key is invalid",
-      "10015": "Exchange key store failed"
-    }
   }
 }

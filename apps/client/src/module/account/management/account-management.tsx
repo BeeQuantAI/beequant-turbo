@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "@src/configs/navigation";
-import { FormContainer } from "../layout/form-container";
+import { FormContainer } from "../../common/form-container";
 import { useTranslations } from "next-intl";
 import { AccountRoute } from "../layout/route";
 

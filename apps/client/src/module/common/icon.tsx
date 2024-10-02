@@ -9,6 +9,7 @@ import { IoDiamondOutline, IoLogOutOutline } from "react-icons/io5";
 import { FaMobileScreenButton } from "react-icons/fa6";
 import { MdOutlineMail } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
+import { BsPinAngle } from "react-icons/bs";
 
 import {
   MdCheck,
@@ -51,10 +52,15 @@ const dashboardIcons = {
   exit: IoLogOutOutline,
 };
 
+const exchangeIcons = {
+  pin: BsPinAngle,
+};
+
 const icons = {
   ...genericIcons,
   ...authIcons,
   ...dashboardIcons,
+  ...exchangeIcons,
 };
 
 export type Icons = keyof typeof icons;

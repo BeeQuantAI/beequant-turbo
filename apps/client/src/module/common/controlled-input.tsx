@@ -47,7 +47,6 @@ export function ControlledTextInput<TFieldValues extends object>({
     name,
     control,
   });
-
   return (
     <label className={inputVariants({ direction })}>
       <span>
