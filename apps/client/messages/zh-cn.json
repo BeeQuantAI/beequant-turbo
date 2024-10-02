@@ -17,6 +17,8 @@
     "system": "系统默认设置",
     "easyUsing": "或轻松使用",
     "submit": "提交",
+    "delete": "删除",
+    "cancel": "取消",
     "accountManagement": "账号管理"
   },
 
@@ -34,12 +36,6 @@
       "congratulation": "请查看您的邮箱",
       "message": "我们已向您发送了验证邮件",
       "backToLogin": "返回登录"
-    },
-    "error": {
-      "alreadyExists": "帐户已存在",
-      "registrationFailed": "注册时发生错误，请稍后再试",
-      "emailSendingFailed": "验证邮件发送失败，请稍后再试",
-      "unknownError": "注册时发生错误，请稍后再试"
     }
   },
 
@@ -52,6 +48,7 @@
       "title": "验证失败",
       "message": {
         "userNotFound": "用户不存在，请注册。",
+        "alreadyVerified": "邮箱经过已验证，请您登录。",
         "expiredLink": "链接已过期，已向您发送了新的验证邮件。",
         "invalidLink": "链接无效，已向您发送了新的验证邮件。",
         "unknownError": "邮件验证时出现错误，请重试。"
@@ -120,16 +117,20 @@
       "currentPasswordWrong": "旧密码错误",
       "failed": "修改密码失败"
     },
-    "platform": {
-      "required": "请选择有效的平台"
+    "updateExchangeKey": {
+      "succeed": "交易所密钥已成功更新!",
+      "notfound": "交易所密钥不存在!",
+      "invalid": "交易所密钥无效!",
+      "failed": "交易所密钥更新失败!"
+    },
+    "exchangeName": {
+      "required": "交易所名称是必填项"
     },
     "accessKey": {
-      "required": "请输入API密钥",
-      "maxLength": "API密钥必须在1至255个字符之间"
+      "required": "API秘钥是必填项"
     },
     "secretKey": {
-      "required": "请输入密钥",
-      "maxLength": "密钥必须在1至255个字符之间"
+      "required": "API密钥是必填项"
     }
   },
 
@@ -137,9 +138,7 @@
     "title": "账户设置",
     "subtitle": "更新您的账户信息",
     "realName": "真实姓名",
-    "mobile": "手机号码",
-    "submit": "提交",
-    "cancel": "取消"
+    "mobile": "手机号码"
   },
 
   "AppSettingPage": {
@@ -169,7 +168,18 @@
     "button": "准备再次交易"
   },
 
-  "exchange": {},
+  "UpdateExchangeKeyPage": {
+    "title": "编辑密钥",
+    "subtitle": "更新您的交易所密钥",
+    "keyDisplayName": "密钥显示名称",
+    "exchange": "交易所",
+    "apiSecret": "API 秘钥",
+    "apiKey": "API 密钥",
+    "alertTitle": "注意！",
+    "alertMessage": "您将更新此交易所密钥，是否确定？",
+    "alertYes": "确定"
+  },
+
   "bot": {},
 
   "Landing": {
@@ -267,38 +277,5 @@
     "weekChangeValue": "+0.19%",
     "weekChangeDetails": "[0.84]",
     "moreAboutTokenLink": "更多关于代币的信息"
-  },
-
-  "ExchangePage": {
-    "formContainer": {
-      "heading": "连接新交易所",
-      "backButton": "返回",
-      "submitButton": "提交",
-      "nextButton": "下一步"
-    },
-    "selectPlatformPage": {
-      "title": "选择平台",
-      "platforms": {
-        "binance": "币安"
-      }
-    },
-    "inputKeyPage": {
-      "title": "输入 API 密钥",
-      "displayName": "显示名称",
-      "accessKey": "API 密钥",
-      "secretKey": "密钥"
-    },
-    "successedPage": {
-      "title": "太棒了！",
-      "subtitle": "您的交易所密钥已成功添加",
-      "button": "返回交易所管理"
-    },
-    "errorCode": {
-      "default": "发生未知错误",
-      "10012": "交易所密钥已存在",
-      "10013": "当前交易所不受支持",
-      "10014": "交易所密钥无效",
-      "10015": "交易所密钥存储失败"
-    }
   }
 }

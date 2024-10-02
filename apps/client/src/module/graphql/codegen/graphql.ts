@@ -14,6 +14,8 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
+  DateTime: { input: any; output: any; }
 };
 
 export type CreateExchangeKeyInput = {
@@ -44,6 +46,28 @@ export type CreateUserInput = {
   ref: Scalars['String']['input'];
 };
 
+export type ExchangeKey = {
+  __typename?: 'ExchangeKey';
+  /** Access key */
+  accessKey: Scalars['String']['output'];
+  createdAt: Scalars['DateTime']['output'];
+  createdBy?: Maybe<Scalars['String']['output']>;
+  deletedAt?: Maybe<Scalars['DateTime']['output']>;
+  deletedBy?: Maybe<Scalars['String']['output']>;
+  /** Display name */
+  displayName: Scalars['String']['output'];
+  /** Exchange name */
+  exchangeName: Scalars['String']['output'];
+  /** Exchange key ID */
+  id: Scalars['String']['output'];
+  /** Remarks */
+  remarks: Scalars['String']['output'];
+  /** Secret key */
+  secretKey: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  updatedBy?: Maybe<Scalars['String']['output']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   /** Change password */
@@ -62,6 +86,8 @@ export type Mutation = {
   register: Result;
   /** Reset password */
   resetPassword: Result;
+  /** Update exchange key */
+  updateExchangeKey: Result;
   /** Update user info */
   updateUser: Scalars['Boolean']['output'];
   /** Email Verification */
@@ -110,6 +136,11 @@ export type MutationResetPasswordArgs = {
 };
 
 
+export type MutationUpdateExchangeKeyArgs = {
+  input: UpdateExchangeKeyInput;
+};
+
+
 export type MutationUpdateUserArgs = {
   id: Scalars['String']['input'];
   input: UpdateUserInput;
@@ -123,6 +154,8 @@ export type MutationVerifyEmailArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  /** Get exchange key by id */
+  getExchangeKeyById: ResultForExchangeKey;
   /** Find user by email */
   getUserByEmail: UserType;
   /** Find user by id */
@@ -131,6 +164,11 @@ export type Query = {
   getUserInfo: UserType;
   /** Get all users */
   getUsers: Array<UserType>;
+};
+
+
+export type QueryGetExchangeKeyByIdArgs = {
+  id: Scalars['String']['input'];
 };
 
 
@@ -155,6 +193,26 @@ export type Result = {
   code: Scalars['Int']['output'];
   data?: Maybe<Scalars['String']['output']>;
   message?: Maybe<Scalars['String']['output']>;
+};
+
+export type ResultForExchangeKey = {
+  __typename?: 'ResultForExchangeKey';
+  code: Scalars['Int']['output'];
+  data?: Maybe<ExchangeKey>;
+  message: Scalars['String']['output'];
+};
+
+export type UpdateExchangeKeyInput = {
+  /** Access key */
+  accessKey: Scalars['String']['input'];
+  /** Display name */
+  displayName: Scalars['String']['input'];
+  /** Exchange name */
+  exchangeName: Scalars['String']['input'];
+  /** Exchange key id */
+  id: Scalars['String']['input'];
+  /** Secret key */
+  secretKey: Scalars['String']['input'];
 };
 
 export type UpdatePasswordInput = {
@@ -192,11 +250,11 @@ export type UserType = {
   /** is Email Verified */
   isEmailVerified: Scalars['Boolean']['output'];
   /** Mobile number */
-  mobile: Scalars['String']['output'];
+  mobile?: Maybe<Scalars['String']['output']>;
   /** QQ */
-  qq: Scalars['String']['output'];
+  qq?: Maybe<Scalars['String']['output']>;
   /** User real name */
-  realName: Scalars['String']['output'];
+  realName?: Maybe<Scalars['String']['output']>;
   /** User is referred by */
   ref: Scalars['String']['output'];
   /** Reset Password Token */
@@ -204,7 +262,7 @@ export type UserType = {
   /** Verification Token */
   verificationToken?: Maybe<Scalars['String']['output']>;
   /** Wechat */
-  wechat: Scalars['String']['output'];
+  wechat?: Maybe<Scalars['String']['output']>;
 };
 
 export type UpdatePasswordMutationVariables = Exact<{
@@ -242,6 +300,20 @@ export type GetUserInfoQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetUserInfoQuery = { __typename?: 'Query', getUserInfo: { __typename?: 'UserType', id: string, displayName: string } };
 
+export type GetExchangeKeyByIdQueryVariables = Exact<{
+  id: Scalars['String']['input'];
+}>;
+
+
+export type GetExchangeKeyByIdQuery = { __typename?: 'Query', getExchangeKeyById: { __typename?: 'ResultForExchangeKey', code: number, message: string, data?: { __typename?: 'ExchangeKey', displayName: string, accessKey: string, secretKey: string, exchangeName: string } | null } };
+
+export type UpdateExchangeKeyMutationVariables = Exact<{
+  input: UpdateExchangeKeyInput;
+}>;
+
+
+export type UpdateExchangeKeyMutation = { __typename?: 'Mutation', updateExchangeKey: { __typename?: 'Result', code: number, message?: string | null } };
+
 export type CreateExchangeKeyMutationVariables = Exact<{
   input: CreateExchangeKeyInput;
 }>;
@@ -255,4 +327,6 @@ export const LoginDocument = {"kind":"Document","definitions":[{"kind":"Operatio
 export const RegisterDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"Register"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateUserInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"register"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<RegisterMutation, RegisterMutationVariables>;
 export const VerifyEmailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"VerifyEmail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"token"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verifyEmail"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}},{"kind":"Argument","name":{"kind":"Name","value":"token"},"value":{"kind":"Variable","name":{"kind":"Name","value":"token"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<VerifyEmailMutation, VerifyEmailMutationVariables>;
 export const GetUserInfoDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getUserInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getUserInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}}]}}]}}]} as unknown as DocumentNode<GetUserInfoQuery, GetUserInfoQueryVariables>;
+export const GetExchangeKeyByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetExchangeKeyById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getExchangeKeyById"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"accessKey"}},{"kind":"Field","name":{"kind":"Name","value":"secretKey"}},{"kind":"Field","name":{"kind":"Name","value":"exchangeName"}}]}}]}}]}}]} as unknown as DocumentNode<GetExchangeKeyByIdQuery, GetExchangeKeyByIdQueryVariables>;
+export const UpdateExchangeKeyDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateExchangeKey"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateExchangeKeyInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateExchangeKey"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<UpdateExchangeKeyMutation, UpdateExchangeKeyMutationVariables>;
 export const CreateExchangeKeyDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateExchangeKey"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateExchangeKeyInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createExchangeKey"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<CreateExchangeKeyMutation, CreateExchangeKeyMutationVariables>;

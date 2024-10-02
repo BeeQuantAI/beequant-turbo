@@ -1,6 +1,6 @@
 "use client";
 
-import { FormContainer } from "../../layout/form-container";
+import { FormContainer } from "../../../common/form-container";
 import * as z from "zod";
 import { passwordPatten } from "@src/utils/validation-message";
 import { useForm } from "react-hook-form";

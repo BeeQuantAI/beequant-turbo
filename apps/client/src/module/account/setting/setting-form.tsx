@@ -5,7 +5,7 @@ import { ControlledTextInput, Icon, Button } from "@src/module/common";
 import * as z from "zod";
 import { displayNamePatten } from "@src/utils/validation-message";
 import { useTranslations } from "next-intl";
-import { FormContainer } from "../layout/form-container";
+import { FormContainer } from "../../common/form-container";
 
 export function AccountSettingForm() {
   const t = useTranslations();
@@ -102,9 +102,9 @@ export function AccountSettingForm() {
           leftElement={<Icon icon="person" />}
         />
         <div className="mb-[10px] ml-[90px] mt-2 flex gap-4 sm:ml-[140px]">
-          <Button type="submit">{t("SettingPage.submit")}</Button>
+          <Button type="submit">{t("Shared.submit")}</Button>
           <Button variant="secondary" onClick={() => reset()}>
-            {t("SettingPage.cancel")}
+            {t("Shared.cancel")}
           </Button>
         </div>
       </form>
