@@ -15,7 +15,10 @@ export function AccountMenu() {
   const router = useRouter();
   const [showDropdown, toggelShowDropdown] = useToggle(false);
 
-  const handleLogout = () => logout();
+  const handleLogout = () => {
+    useUser.persist.clearStorage();
+    logout();
+  }
 
   return (
     <div className="h-inherit relative ml-auto mr-[30px]">

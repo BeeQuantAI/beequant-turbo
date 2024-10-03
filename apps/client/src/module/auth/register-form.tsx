@@ -166,8 +166,8 @@ export function RegisterForm() {
         />
 
         {/* SignUp button with loading */}
-        <Button type="submit" className="my-5" disabled={loading}>
-          {loading ? t("Shared.loading") : t("RegisterPage.signUp")}
+        <Button type="submit" className="my-5">
+          {t("RegisterPage.signUp")}
         </Button>
 
         <span className="text-center text-[13px]">

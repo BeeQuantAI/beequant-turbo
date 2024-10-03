@@ -15,6 +15,7 @@ import { Modal } from "@src/module/common/modal";
 import { useRef } from "react";
 import { logout } from "@src/module/auth";
 import { passwordValidationSchema } from "@src/utils/validation-schema";
+import { useUser } from "@src/module/auth/user-store";
 
 export function ChangePasswordForm() {
   const t = useTranslations();
@@ -85,7 +86,10 @@ export function ChangePasswordForm() {
         message={t("UpdatePasswordPage.succeed")}
         buttonLabel={t("UpdatePasswordPage.button")}
         ref={modelRef}
-        onClick={() => logout()}
+        onClick={() => {
+          useUser.persist.clearStorage();
+          logout();
+        }}
       />
       <form className="mt-[30px] flex flex-col gap-y-5" onSubmit={onSubmit}>
         {errors?.root && (

@@ -18,6 +18,7 @@ import { AuthRoute } from "./route";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useTheme } from "../system/theme-switcher";
+import { fetchUserInfo } from "@src/module/auth/user-store";
 
 export function LoginForm() {
   const t = useTranslations();
@@ -58,6 +59,10 @@ export function LoginForm() {
     setLoading(true); 
     try {
       const res = await login(payload);
+
+      if (!res?.error) {
+        fetchUserInfo();
+      }
 
       if (res?.code === 10010) {
         setLoading(false)

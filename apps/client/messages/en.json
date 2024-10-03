@@ -106,11 +106,22 @@
       "invalid": "Invalid email address"
     },
     "displayName": {
+      "description": "{optional, select, true {:} other {Real Name:}}between 4 to 15 characters, only letters, numbers, dashes and underscore are allowed",
+      "required": "Real Name is required",
+      "invalid": "Real name must contain only letters, numbers, hyphens and underscores",
+      "minLength": "Real name must be at least 4 characters",
+      "maxLength": "Real name must be at most 15 characters"
+    },
+    "realName": {
       "description": "{optional, select, true {:} other {Display Name:}}between 4 to 15 characters, only letters, numbers, dashes and underscore are allowed",
-      "required": "Display Name is required",
-      "invalid": "Display name must contain only letters, numbers, hyphens and underscores",
-      "minLength": "Display name must be at least 4 characters",
-      "maxLength": "Display name must be at most 15 characters"
+      "required": "Real Name is required",
+      "invalid": "Real name must contain only letters, numbers, hyphens and underscores",
+      "minLength": "Real name must be at least 4 characters",
+      "maxLength": "Real name must be at most 15 characters"
+    },
+    "mobile": {
+      "description": "{optional, select, true {:} other {mobile: }} only contain digit number and '+' ",
+      "invalid": "mobile number can only contain digit number and '+' "
     },
     "password": {
       "description": ":8 to 32 characters, including letter, number and special character",
@@ -150,6 +161,10 @@
       "emailRequestSuccess": "If the email is associated with an account, a reset email will be sent shortly. Please check your mailbox.",
       "tokenInvalid": "Reset password link is invalid or expired. Please back to Login page and click ' Forgot password? ' to receive a new reset link.",
       "resetPasswordError": "An error occurred while processing your request. Please try again later."
+    },
+    "updateProfile": {
+      "succeed": "Profile updated successfully!",
+      "failed": "Profile update failed. Please try again."
     }
   },
 
@@ -157,7 +172,9 @@
     "title": "Settings",
     "subtitle": "Update your profile",
     "realName": "Real Name",
-    "mobile": "Mobile"
+    "mobile": "Mobile",
+    "submit": "Submit",
+    "cancel": "Cancel"
   },
 
   "AppSettingPage": {
@@ -176,6 +193,18 @@
     "total-asset": "Total Asset",
     "pending-orders": "Pending Orders",
     "recent-transaction": "Recent Transaction"
+  },
+
+  "Profile":{
+    "update-profile-error":"Failed to update profile. Please try again.",
+    "header": "Profile",
+    "sub-header": "Update your account information",
+    "displayName": "display name",
+    "email": "Email",
+    "reference": "Reference",
+    "submit":"Submit",
+    "invalid-input": "Display name must be 4-15 characters long and contain only letters, numbers, hyphens, and underscores.",
+    "unknown-error": "An error occurred while updating the profile."
   },
 
   "UpdatePasswordPage": {
