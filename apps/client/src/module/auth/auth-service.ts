@@ -120,13 +120,17 @@ const getUserInfoQuery = graphql(`
     getUserInfo {
       id
       displayName
+      email
+      ref
+      mobile
+      realName
     }
   }
 `);
+
 export async function getUserInfo() {
   const gqlClient = await getServerGqlClient();
   const { getUserInfo } = await gqlClient.request(getUserInfoQuery);
-
   return getUserInfo;
 }
 

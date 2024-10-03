@@ -7,7 +7,7 @@ export const succeedNotify = (message: string) =>
       </div>
     ),
     {
-      duration: 30000,
+      duration: 3000,
       position: "top-right",
     },
   );

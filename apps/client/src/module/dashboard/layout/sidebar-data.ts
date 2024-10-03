@@ -6,6 +6,7 @@ import { AppSettingRoute, DashboardRoute } from "../route";
 import { SidebarMenuItem } from "./sidebar-menu";
 import { useTranslations } from "next-intl";
 import { AccountRoute } from "@src/module/account/layout/route";
+import { useUser } from "@src/module/auth/user-store";
 
 export function useSidebar() {
   const t = useTranslations();
@@ -43,8 +44,7 @@ export function useSidebar() {
       options: [
         {
           label: t("Sidebar.account.profile"),
-          onClick: () => console.log("Navigate to Profile"),
-        },
+          onClick: () => router.push(DashboardRoute.Profile.Path),        },
         {
           label: t("Sidebar.account.exchangeManagement"),
           onClick: () => console.log("Navigate to Exchange Management"),
@@ -138,7 +138,10 @@ export function useSidebar() {
       type: "button",
       icon: "exit",
       label: t("Shared.logout"),
-      onClick: () => logout(),
+      onClick: () => {
+        useUser.persist.clearStorage();
+        logout();
+      },
     };
   }
 }

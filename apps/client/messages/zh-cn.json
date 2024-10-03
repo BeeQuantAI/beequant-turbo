@@ -103,11 +103,22 @@
       "invalid": "邮箱格式不正确"
     },
     "displayName": {
-      "description": "{optional, select, true {:} other {用户名：}}称长度在4到15个字符之间，只允许使用字母、数字、连字符和下划线",
+      "description": "{optional, select, true {:} other {用户名：}}长度在4到15个字符之间，只允许使用字母、数字、连字符和下划线",
       "required": "请输入用户名称",
       "invalid": "用户名称只能包含字母、数字、连字符和下划线",
       "minLength": "用户名称长度至少为4个字符",
       "maxLength": "用户名称长度最多为32个字符"
+    },
+    "realName": {
+      "description": "{optional, select, true {:} other {真实姓名：}}长度在4到15个字符之间，只允许使用字母、数字、连字符和下划线",
+      "required": "请输入真实姓名",
+      "invalid": "真实姓名只能包含字母、数字、连字符和下划线",
+      "minLength": "真实姓名长度至少为4个字符",
+      "maxLength": "真实姓名长度最多为32个字符"
+    },
+    "mobile": {
+      "description": "{optional, select, true {:} other {手机号码：}}只允许使用数字和加号",
+      "invalid": "手机号码只能包含数字和符号'+' "
     },
     "password": {
       "description": "：密码长度在8到32个字符，必须包含至少一个字母、数字或特殊字符",
@@ -147,6 +158,10 @@
       "emailRequestSuccess": "如果该邮箱与现有账户关联，重置邮件将会发送到您的邮箱，请查收。",
       "tokenInvalid": "重置密码链接无效或已过期。请返回登录页面，点击'忘记密码？'以获取新的重置链接。",
       "resetPasswordError": "请求处理过程中出现错误，请稍后重试。"
+    },
+    "updateProfile": {
+      "succeed": "个人信息已成功更新!",
+      "failed": "更新失败，请重新提交。"
     }
   },
 
@@ -154,7 +169,9 @@
     "title": "账户设置",
     "subtitle": "更新您的账户信息",
     "realName": "真实姓名",
-    "mobile": "手机号码"
+    "mobile": "手机号码",
+    "submit": "提交",
+    "cancel": "取消"
   },
 
   "AppSettingPage": {
@@ -173,6 +190,18 @@
     "total-asset": "总资产",
     "pending-orders": "待处理订单",
     "recent-transaction": "最近交易"
+  },
+
+  "Profile":{
+    "update-profile-error":"更新失败，请重新提交。",
+    "header": "用户信息",
+    "sub-header": "更新你的用户信息",
+    "displayName": "用户昵称",
+    "email": "邮箱",
+    "reference": "推荐人",
+    "submit":"提交",
+    "invalid-input": "用户名称长度需要为4-15字符,且只包含数字,字母,横杠和下划线",
+    "unknown-error": "更新账户信息时发生未知错误"
   },
 
   "UpdatePasswordPage": {
