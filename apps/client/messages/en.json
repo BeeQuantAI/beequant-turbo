@@ -56,6 +56,17 @@
     }
   },
 
+  "ForgotPasswordPage": {
+    "forgetPasswordTitle": "Enter Your Email",
+    "resetPasswordTitle": "Reset Password",
+    "backTo": "Back to ",
+    "succeed": {
+      "title": "Cool !",
+      "message": "Your password has been reset",
+      "backToLogin": "Back to login"
+    }
+  },
+
   "Sidebar": {
     "dashboard": "Dashboard",
     "bots": {
@@ -134,6 +145,11 @@
     },
     "secretKey": {
       "required": "Secret key is required"
+    },
+    "forgotPassword": {
+      "emailRequestSuccess": "If the email is associated with an account, a reset email will be sent shortly. Please check your mailbox.",
+      "tokenInvalid": "Reset password link is invalid or expired. Please back to Login page and click ' Forgot password? ' to receive a new reset link.",
+      "resetPasswordError": "An error occurred while processing your request. Please try again later."
     }
   },
 

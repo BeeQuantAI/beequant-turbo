@@ -41,6 +41,18 @@ const ForgetPassword = {
   ),
 };
 
+const ResetPassword = {
+  Metadata: {
+    title: "Reset Password | BeeQuant",
+  },
+  Path: "/reset-password" as const,
+  Link: ({ children, className }: RouteLinkProps) => (
+    <Link href={ResetPassword.Path} className={className}>
+      {children}
+    </Link>
+  ),
+};
+
 const VerifyEmail = {
   Metadata: {
     title: "Verify Email | BeeQuant",
@@ -57,5 +69,6 @@ export const AuthRoute = {
   Login,
   Register,
   ForgetPassword,
+  ResetPassword,
   VerifyEmail,
 };

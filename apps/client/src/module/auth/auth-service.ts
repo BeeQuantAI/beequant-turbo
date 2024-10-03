@@ -1,6 +1,7 @@
 "use server";
 import {
   CreateUserInput,
+  ResetPasswordInput,
   getServerGqlClient,
   graphql,
 } from "@src/module/graphql";
@@ -41,6 +42,7 @@ export async function login(payload: LoginPayload) {
 
     case 10003:
     case 10010:
+    case 10017:
     default:
       return {
         error: login.message,
@@ -74,6 +76,7 @@ export async function register(input: RegisterPayload) {
 
     case 10004:
     case 10005:
+    case 10017:
     default:
       return {
         error: register.message,
@@ -105,6 +108,7 @@ export async function verifyEmail(payload: VerifyEmailPayload) {
         success: true,
       };
     case 10011:
+    case 10017:
       return {
         error: verifyEmail.message,
       };
@@ -132,3 +136,68 @@ export async function logout() {
 
   redirect(AuthRoute.Login.Path);
 }
+
+const forgotPasswordMutation = graphql(`
+  mutation ForgotPassword($email: String!){
+    forgotPassword(email: $email) {
+      code
+      message
+      data
+    }
+  }
+`);
+
+export type ForgotPasswordPayload = {
+  email: string;
+};
+
+export async function forgotPassword(payload: ForgotPasswordPayload) {
+  const gqlClient = await getServerGqlClient();
+  const { forgotPassword } = await gqlClient.request(forgotPasswordMutation, payload);
+
+  switch (forgotPassword.code) {
+    case 200:
+      return {
+        success: forgotPassword.message,
+      };
+      
+    case 10016:
+    case 10017:
+    default:
+      return {
+        error: forgotPassword.message,
+      };
+  }
+}
+
+const resetPasswordMutation = graphql(`
+  mutation resetPassword($input: ResetPasswordInput!){
+    resetPassword(input: $input) {
+      code
+      message
+      data
+    }
+  }
+`);
+
+export type ResetPasswordPayload = ResetPasswordInput;
+export async function resetPassword(input: ResetPasswordPayload) {
+  const gqlClient = await getServerGqlClient();
+  const { resetPassword } = await gqlClient.request(resetPasswordMutation, {
+    input,
+  });
+
+  switch (resetPassword.code) { 
+    case 200:
+      return {
+        success: true,
+      };
+
+    case 10016:
+    default:
+      return {
+        error: resetPassword.message,
+      };
+  }
+}
+

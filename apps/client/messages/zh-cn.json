@@ -56,6 +56,17 @@
     }
   },
 
+  "ForgotPasswordPage": {
+    "forgetPasswordTitle": "请输入邮箱",
+    "resetPasswordTitle": "重置密码",
+    "backTo": "返回",
+    "succeed": {
+      "title": "太棒了!",
+      "message": "您的密码已成功重置",
+      "backToLogin": "返回登录"
+      }
+    },
+
   "Sidebar": {
     "dashboard": "中控台",
     "bots": {
@@ -131,6 +142,11 @@
     },
     "secretKey": {
       "required": "API密钥是必填项"
+    },
+    "forgotPassword": {
+      "emailRequestSuccess": "如果该邮箱与现有账户关联，重置邮件将会发送到您的邮箱，请查收。",
+      "tokenInvalid": "重置密码链接无效或已过期。请返回登录页面，点击'忘记密码？'以获取新的重置链接。",
+      "resetPasswordError": "请求处理过程中出现错误，请稍后重试。"
     }
   },
 
