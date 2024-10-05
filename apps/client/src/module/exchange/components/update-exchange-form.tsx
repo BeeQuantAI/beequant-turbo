@@ -1,15 +1,18 @@
 "use client";
-
 import { Button, ControlledTextInput } from "@src/module/common";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
-import { getExchangeKeyById, updateExchangeKey } from "../exchange-server";
 import { AlertMessage } from "./AlertMessage";
 import { Toaster } from "react-hot-toast";
 import { errorNotify, succeedNotify } from "@src/module/common/toast";
 import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  GET_EXCHANGE_KEY_BY_ID,
+  UPDATE_EXCHANGE_KEY,
+} from "@src/graphql/exchange";
+import { useMutation } from "@apollo/client";
 
 export function UpdateExchangeForm({
   exchangeKeyId,
@@ -19,6 +22,8 @@ export function UpdateExchangeForm({
   const [loading, setLoading] = useState<boolean>(true);
   const modelRef = useRef<HTMLDialogElement>(null);
   const t = useTranslations();
+  const [updateExchangeKey] = useMutation(UPDATE_EXCHANGE_KEY);
+  const [getExchangeKeyById] = useMutation(GET_EXCHANGE_KEY_BY_ID);
 
   const updateExchangeKeySchema = z.object({
     displayName: z
@@ -54,7 +59,9 @@ export function UpdateExchangeForm({
 
   useEffect(() => {
     async function fetchExchangeKey(id: string) {
-      const { code, data } = await getExchangeKeyById(id);
+      const { data: resData } = await getExchangeKeyById({ variables: { id } });
+      const code = resData?.getExchangeKeyById.code;
+      const data = resData?.getExchangeKeyById.data;
       if (code === 200 && data) {
         const fieldName = Object.keys(getValues()) as (keyof FormData)[];
         fieldName.forEach((name) => {
@@ -63,12 +70,16 @@ export function UpdateExchangeForm({
         setLoading(false);
       }
     }
+
     fetchExchangeKey(exchangeKeyId);
-  }, []);
+  }, [setValue, getExchangeKeyById, exchangeKeyId, getValues]);
 
   const action = async (payload: FormData) => {
     const updateExchangeKeyPayload = { ...payload, id: exchangeKeyId };
-    const { code } = await updateExchangeKey(updateExchangeKeyPayload);
+    const { data } = await updateExchangeKey({
+      variables: { input: updateExchangeKeyPayload },
+    });
+    const code = data?.updateExchangeKey.code;
     switch (code) {
       case 200:
         succeedNotify(t("Notifications.updateExchangeKey.succeed"));

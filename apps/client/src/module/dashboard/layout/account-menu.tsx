@@ -2,8 +2,8 @@
 import { useToggle } from "@src/utils";
 import clsx from "clsx";
 import { useRouter } from "@src/configs/navigation";
-import { logout } from "../../auth";
-import { useUser } from "../../auth/user-store";
+import { useLogout } from "@src/module/auth";
+import { useUser } from "@src/module/auth/user-store";
 import { LinearIcon, LinearIcons } from "../../common";
 import { DashboardRoute } from "../route";
 import { useTranslations } from "next-intl";
@@ -13,12 +13,12 @@ export function AccountMenu() {
   const t = useTranslations();
   const user = useUser((s) => s.user);
   const router = useRouter();
+  const { revokeTokensAndClear } = useLogout();
   const [showDropdown, toggelShowDropdown] = useToggle(false);
 
-  const handleLogout = () => {
-    useUser.persist.clearStorage();
-    logout();
-  }
+  const handleLogout = async () => {
+    await revokeTokensAndClear();
+  };
 
   return (
     <div className="h-inherit relative ml-auto mr-[30px]">
@@ -88,7 +88,7 @@ export function AccountMenu() {
           <MenuItem
             icon="exit"
             label={t("Shared.logout")}
-            onClick={handleLogout}
+            onClick={() => handleLogout()}
           />
         </div>
       </menu>
@@ -108,6 +108,7 @@ export type MenuItemProps = {
   label: string;
   onClick: () => void;
 };
+
 function MenuItem(props: MenuItemProps) {
   return (
     <button
