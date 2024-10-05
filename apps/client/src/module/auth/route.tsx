@@ -1,4 +1,5 @@
 import { Link } from "@src/configs/navigation";
+import React from "react";
 
 type RouteLinkProps = {
   children: React.ReactNode;
@@ -65,10 +66,43 @@ const VerifyEmail = {
   ),
 };
 
+const PageNotFound = {
+  Metadata: {
+    title: "Page Not Found | BeeQuant",
+  },
+  Path: "/not-found" as const,
+  Link: ({ children, className }: RouteLinkProps) => (
+    <Link href={PageNotFound.Path} className={className}>
+      {children}
+    </Link>
+  ),
+};
+
+const validRoutes = [
+  "/",
+  "login",
+  "register",
+  "forgot-password",
+  "reset-password",
+  "verify-email",
+  "account/change/password",
+  "account/management",
+  "account/setting",
+  "appsetting",
+  "dashboard",
+  "dashboard/leads",
+  "dashboard/profile",
+  "exchange",
+  "exchange/update-exchange",
+  "exchange/create-exchange",
+];
+
 export const AuthRoute = {
   Login,
   Register,
   ForgetPassword,
   ResetPassword,
   VerifyEmail,
+  validRoutes,
+  PageNotFound,
 };

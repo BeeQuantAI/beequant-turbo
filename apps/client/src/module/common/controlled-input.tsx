@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
 import { useToggle } from "@src/utils";
 import clsx from "clsx";
-import React, { InputHTMLAttributes, useState } from "react"; 
+import React, { InputHTMLAttributes, useState } from "react";
 import { Control, FieldPath, useController } from "react-hook-form";
 import { Icon } from "./icon";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -51,16 +51,14 @@ export function ControlledTextInput<TFieldValues extends object>({
     control,
   });
 
-  const [isFocused, setIsFocused] = useState(false); 
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
     <label
       className={inputVariants({ direction })}
-       style={{ position: 'relative' }}
+      style={{ position: "relative" }}
     >
-      <span>
-        {label}
-      </span>
+      <span>{label}</span>
       <div className={clsx(!!tooltips && "flex flex-col")}>
         <div className="relative flex items-stretch">
           {!!leftElement && (
@@ -74,20 +72,20 @@ export function ControlledTextInput<TFieldValues extends object>({
             {...props}
             {...field}
             onFocus={(e) => {
-              setIsFocused(true); 
+              setIsFocused(true);
               if (props.onFocus) props.onFocus(e);
             }}
             onBlur={(e) => {
               setIsFocused(false);
               if (props.onBlur) props.onBlur(e);
-              field.onBlur(); 
+              field.onBlur();
             }}
           />
           {!!rightElement && rightElement}
 
           {!!tooltips && isFocused && (
             <span
-              className="absolute top-0 left-0 text-accent-400 rounded px-2 py-1 text-sm" 
+              className="text-accent-400 absolute left-0 top-0 rounded px-2 py-1 text-sm"
               style={{
                 transform: "translateY(-90%)",
                 marginLeft: direction === "horizontal" ? "25px" : "0",

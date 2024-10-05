@@ -1,8 +1,6 @@
 "use client";
-
 import { FormContainer } from "../../../common/form-container";
 import * as z from "zod";
-import { passwordPatten } from "@src/utils/validation-message";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, ControlledPasswordInput } from "@src/module/common";
@@ -13,13 +11,13 @@ import {
 } from "./change-password-service";
 import { Modal } from "@src/module/common/modal";
 import { useRef } from "react";
-import { logout } from "@src/module/auth";
+import { useLogout } from "@src/module/auth";
 import { passwordValidationSchema } from "@src/utils/validation-schema";
-import { useUser } from "@src/module/auth/user-store";
 
 export function ChangePasswordForm() {
   const t = useTranslations();
   const passwordSchema = passwordValidationSchema(t);
+  const { revokeTokensAndClear } = useLogout();
 
   const updatePasswordSchema = z
     .object({
@@ -53,6 +51,7 @@ export function ChangePasswordForm() {
 
   async function action(payload: ChangePasswordPayload) {
     const res = await changePassword(payload);
+
     switch (res) {
       case 10003:
         setError("root", {
@@ -70,7 +69,7 @@ export function ChangePasswordForm() {
     }
   }
 
-  const onSubmit = handleSubmit((formData: FormSchema) => {
+  const onSubmit = handleSubmit(async (formData: FormSchema) => {
     const { repeatNewPassword, ...payload } = formData;
     action(payload);
   });
@@ -86,9 +85,8 @@ export function ChangePasswordForm() {
         message={t("UpdatePasswordPage.succeed")}
         buttonLabel={t("UpdatePasswordPage.button")}
         ref={modelRef}
-        onClick={() => {
-          useUser.persist.clearStorage();
-          logout();
+        onClick={async () => {
+          await revokeTokensAndClear();
         }}
       />
       <form className="mt-[30px] flex flex-col gap-y-5" onSubmit={onSubmit}>

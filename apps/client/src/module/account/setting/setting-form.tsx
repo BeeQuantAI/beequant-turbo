@@ -9,26 +9,26 @@ import { useTranslations } from "next-intl";
 import { FormContainer } from "../../common/form-container";
 import { useUser } from "@src/module/auth/user-store";
 import { useEffect } from "react";
-import { updateUserProfile } from "./setting-form-service";
 import { fetchUserInfo } from "@src/module/auth/user-store";
 import { useTheme } from "@src/module/system/theme-switcher";
 import { Toaster } from "react-hot-toast";
 import { errorNotify, succeedNotify } from "@src/module/common/toast";
-
+import { UPDATE_USER_PROFILE } from "@src/graphql/user";
+import { useMutation } from "@apollo/client";
 
 export function AccountSettingForm() {
   const t = useTranslations();
+  const [updateUserProfile] = useMutation(UPDATE_USER_PROFILE);
   const [loading, setLoading] = useState(false);
   const { theme } = useTheme();
   const formSchema = z.object({
     displayName: z
-        .string()
-        .min(4, { message: t("Notifications.displayName.minLength") })
-        .max(15, { message: t("Notifications.displayName.maxLength") })
-        .regex(displayNamePatten, {
-          message: t("Notifications.displayName.invalid"),
-        })
-    ,
+      .string()
+      .min(4, { message: t("Notifications.displayName.minLength") })
+      .max(15, { message: t("Notifications.displayName.maxLength") })
+      .regex(displayNamePatten, {
+        message: t("Notifications.displayName.invalid"),
+      }),
     realName: z.union([
       z
         .string()
@@ -37,25 +37,22 @@ export function AccountSettingForm() {
         .regex(displayNamePatten, {
           message: t("Notifications.realName.invalid"),
         }),
-      z
-        .string()
-        .length(0)
+      z.string().length(0),
     ]),
     email: z
       .string()
       .min(1, { message: t("Notifications.email.required") })
       .email({ message: t("Notifications.email.invalid") }),
     mobile: z.union([
-      z.string()
-      .regex(/(^\+?\d+)$/, { message: t("Notifications.mobile.invalid") }),
-      z.string()
-      .length(0)
+      z
+        .string()
+        .regex(/(^\+?\d+)$/, { message: t("Notifications.mobile.invalid") }),
+      z.string().length(0),
     ]),
 
-    ref: z.string()
+    ref: z.string(),
   });
   const handleReset = () => {
-
     const currentValues = getValues();
     reset({
       ...currentValues,
@@ -67,14 +64,14 @@ export function AccountSettingForm() {
 
   type FormSchema = z.infer<typeof formSchema>;
 
-  const user = useUser(s=>s.user)
+  const user = useUser((s) => s.user);
   const {
     control,
     handleSubmit,
     reset,
     formState: { errors },
     setValue,
-    getValues
+    getValues,
   } = useForm<FormSchema>({
     defaultValues: {
       displayName: "",
@@ -93,45 +90,48 @@ export function AccountSettingForm() {
         const value = user[fieldName];
         setValue(fieldName, value ?? "");
       }
-    })
-  },[user])
+    });
+  }, [user, setValue, getValues]);
   const onSubmit = async (formData: FormSchema) => {
     setLoading(true);
-    if(user?.id){
+    if (user?.id) {
       try {
-        const response = await updateUserProfile({
-          id: user.id??"",
+        const input = {
           displayName: formData.displayName,
-          mobile: formData.mobile, 
-          realName: formData.realName
-        })
-        if (response.success) {
+          mobile: formData.mobile,
+          realName: formData.realName,
+        };
+        const { data } = await updateUserProfile({
+          variables: { id: user.id, input },
+        });
+        if (data?.updateUser) {
           succeedNotify(t("Notifications.updateProfile.succeed"));
-        await fetchUserInfo();
+          await fetchUserInfo();
         } else {
           errorNotify(t("Notifications.updateProfile.failed"));
         }
       } catch (error) {
-        errorNotify(t("Notifications.error.unknown"));
+        errorNotify(t("Notifications.updateProfile.unknownError"));
       } finally {
         setLoading(false);
       }
     }
-  }
+  };
 
   const backgroundColor = theme === "dark" ? "bg-black" : "bg-white";
 
   return (
     <>
       {loading && (
-        <div className={`fixed inset-0 z-50 flex items-center justify-center ${backgroundColor} bg-opacity-50`}>
         <div
-          className="inline-block h-16 w-16 animate-spin rounded-full border-8 border-solid border-blue-500 border-t-transparent"
-          role="status"
+          className={`fixed inset-0 z-50 flex items-center justify-center ${backgroundColor} bg-opacity-50`}
         >
+          <div
+            className="inline-block h-16 w-16 animate-spin rounded-full border-8 border-solid border-blue-500 border-t-transparent"
+            role="status"
+          ></div>
         </div>
-      </div>
-    )}
+      )}
       <Toaster />
       <FormContainer
         title={t("Profile.header")}
@@ -162,7 +162,7 @@ export function AccountSettingForm() {
             leftElement={<Icon icon="person" />}
           />
           <ControlledTextInput
-            className="w-full px-2 py-1 border dark:border-primary-600 bg-primary-100 dark:bg-primary-800 text-xs"
+            className="dark:border-primary-600 bg-primary-100 dark:bg-primary-800 w-full border px-2 py-1 text-xs"
             direction="horizontal"
             label={t("Shared.email")}
             name="email"
@@ -181,7 +181,7 @@ export function AccountSettingForm() {
             leftElement={<Icon icon="mobile" />}
           />
           <ControlledTextInput
-            className="w-full px-2 py-1 border dark:border-primary-600 bg-primary-100 dark:bg-primary-800 text-xs"
+            className="dark:border-primary-600 bg-primary-100 dark:bg-primary-800 w-full border px-2 py-1 text-xs"
             direction="horizontal"
             label={t("Shared.ref")}
             name="ref"
@@ -190,7 +190,7 @@ export function AccountSettingForm() {
             disabled
           />
           <div className="mb-[10px] ml-[90px] mt-2 flex gap-4 sm:ml-[140px]">
-          <Button type="submit">{t("SettingPage.submit")}</Button>
+            <Button type="submit">{t("SettingPage.submit")}</Button>
             <Button variant="secondary" onClick={() => handleReset()}>
               {t("SettingPage.cancel")}
             </Button>

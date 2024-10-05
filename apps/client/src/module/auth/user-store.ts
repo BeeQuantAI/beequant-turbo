@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { getUserInfo } from "./auth-service";
+import { GET_USER } from "@src/graphql/user";
+import { client } from "@src/boot/apollo";
 
 type User = {
   id: string;
@@ -19,11 +20,32 @@ const initialState = {
 export const useUser = create(
   persist(() => initialState, {
     name: "user-storage",
-    storage: createJSONStorage(()=> sessionStorage),
+    storage: createJSONStorage(() => localStorage),
   }),
 );
 
 export const fetchUserInfo = async () => {
-  const { id, displayName, email, ref, mobile, realName } = await getUserInfo();
-  useUser.setState(() => ({ user: { id, displayName, mobile, realName, email, ref, avatar: "https://picsum.photos/300"} }));
+  try {
+    const { data } = await client.query({
+      query: GET_USER,
+      fetchPolicy: "network-only",
+    });
+    if (data?.getUserInfo) {
+      const { id, displayName, email, ref, mobile, realName } =
+        data.getUserInfo;
+      useUser.setState(() => ({
+        user: {
+          id,
+          displayName,
+          mobile,
+          realName,
+          email,
+          ref,
+          avatar: "https://picsum.photos/300",
+        },
+      }));
+    }
+  } catch (error) {
+    console.error("Error fetching user info:", error);
+  }
 };

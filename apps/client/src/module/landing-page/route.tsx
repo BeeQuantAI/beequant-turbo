@@ -1,4 +1,5 @@
 import { Link } from "@src/configs/navigation";
+import React from "react";
 
 type RouteLinkProps = {
   children: React.ReactNode;
@@ -9,14 +10,13 @@ const Root = {
   Metadata: {
     title: "Landing | BeeQuant",
   },
-  Path:"/landing" as const,
+  Path: "/" as const,
   Link: ({ children, className }: RouteLinkProps) => (
     <Link href={Root.Path} className={className}>
       {children}
     </Link>
   ),
 };
-
 
 export const LandingRoute = {
   Root,

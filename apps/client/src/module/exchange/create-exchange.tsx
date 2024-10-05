@@ -1,4 +1,5 @@
 "use client";
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   FormContainer,
@@ -6,21 +7,17 @@ import {
   SelectPlatform,
 } from "@src/module/exchange";
 import { FormProvider, useFormContext } from "@src/module/exchange/FormContext";
-import { CreateExchangeKeyInput } from "@src/module/graphql";
+import { CreateExchangeKeyInput } from "@src/graphql";
 import { displayNamePatten } from "@src/utils/validation-message";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { set, z } from "zod";
-import { createExchangeKey, CreateExchangePayload } from "./exchangeService";
+import { z } from "zod";
 import { ConnectSuccess } from "./connect-success";
+import { CREATE_EXCHANGE_KEY } from "@src/graphql";
+import { useMutation } from "@apollo/client";
 
-// WARNING: DON'T TRY TO SEPARATE EXCHANGE CONTENT OUT OF EXCHANGE PAGE.
-// I know its ugly but,
-// It will trigger Next.js with turborepo bug for unknow reason,
-// You can check the bug report here:
-// https://github.com/vercel/turborepo/issues/2356
+type CreateExchangePayload = CreateExchangeKeyInput;
 
 interface ExchangePageContentProps {
   step: number;
@@ -91,6 +88,7 @@ function ExchangePageContent({
   const { formData, setFormData } = useFormContext();
   const [serverError, setServerError] = useState<string | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [createExchangeKey] = useMutation(CREATE_EXCHANGE_KEY);
 
   const {
     handleSubmit: handleSubmitStep1,
@@ -98,7 +96,7 @@ function ExchangePageContent({
     formState: { errors: errorsStep1 },
   } = useForm({
     resolver: zodResolver(currentSchema),
-    defaultValues: { exchangeName: formData.exchangeName },
+    defaultValues: { exchangeName: formData.exchangeName || "" },
   });
 
   const {
@@ -125,10 +123,17 @@ function ExchangePageContent({
   const handleBack = () => setStep((prev: number) => prev - 1);
 
   async function action(payload: CreateExchangePayload) {
-    const res = await createExchangeKey(payload);
+    const { data } = await createExchangeKey({
+      variables: {
+        input: payload,
+      },
+    });
 
-    if (res?.code) {
-      switch (res.code) {
+    const code = data?.createExchangeKey?.code;
+    const message = data?.createExchangeKey?.message;
+
+    if (code) {
+      switch (code) {
         case 200:
           setIsSuccess(true);
           break;
@@ -136,10 +141,10 @@ function ExchangePageContent({
         case 10013:
         case 10014:
         case 10015:
-          setServerError(t(`ExchangePage.errorCode.${res.code}`));
+          setServerError(t(`ExchangePage.errorCode.${code}`));
           break;
         default:
-          setServerError(res.error || t("ExchangePage.errorCode.default"));
+          setServerError(message || t("ExchangePage.errorCode.default"));
           break;
       }
     }

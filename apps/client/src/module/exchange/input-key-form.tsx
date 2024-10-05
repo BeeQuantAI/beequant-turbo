@@ -1,7 +1,7 @@
 "use client";
 import { Control, Controller, FieldErrors } from "react-hook-form";
 import { TextInput } from "./components/text-input";
-import { CreateExchangeKeyInput } from "../graphql";
+import { CreateExchangeKeyInput } from "@src/graphql";
 import { useTranslations } from "next-intl";
 
 interface InputKeyFormProps {

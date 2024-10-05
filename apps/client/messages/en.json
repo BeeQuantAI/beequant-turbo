@@ -24,7 +24,7 @@
 
   "LoginPage": {
     "forgetPassword": "Forgot a password?",
-    "rememberMe": "Remember Me",
+    "staySignedIn": "Stay Signed In",
     "createAccount": "Create Account"
   },
 
@@ -36,6 +36,12 @@
       "congratulation": "Please check your mailbox",
       "message": "We have sent you a verification email",
       "backToLogin": "Back to Login"
+    },
+    "error": {
+      "alreadyExists": "Account already exists",
+      "registrationFailed": "An error occurred while registering, please try again later",
+      "emailSendingFailed": "Email verification failed, please try again later",
+      "unknownError": "An error occurred while registering, please try again later"
     }
   },
 
@@ -64,6 +70,14 @@
       "title": "Cool !",
       "message": "Your password has been reset",
       "backToLogin": "Back to login"
+    }
+  },
+
+  "NotFoundPage": {
+    "returnToLanding": "Return to Home",
+    "returnToDashboard": "Return to Dashboard",
+    "content": {
+      "message": "Ooops! The page you are looking for could not be found"
     }
   },
 
@@ -164,7 +178,11 @@
     },
     "updateProfile": {
       "succeed": "Profile updated successfully!",
-      "failed": "Profile update failed. Please try again."
+      "failed": "Profile update failed. Please try again.",
+      "unknownError": "An error occurred while updating the profile. Please try again later."
+    },
+    "error": {
+      "unknown": "An error occurred. Please try again later."
     }
   },
 

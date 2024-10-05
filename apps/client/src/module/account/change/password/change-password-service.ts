@@ -1,14 +1,5 @@
-"use server";
-import { getServerGqlClient, graphql } from "@src/module/graphql";
-
-const changePasswordMutation = graphql(`
-  mutation UpdatePassword($input: UpdatePasswordInput!) {
-    changePassword(input: $input) {
-      code
-      message
-    }
-  }
-`);
+import { CHANGE_PASSWORD } from "@src/graphql";
+import { client } from "@src/boot/apollo";
 
 export type ChangePasswordPayload = {
   newPassword: string;
@@ -16,11 +7,9 @@ export type ChangePasswordPayload = {
 };
 
 export async function changePassword(input: ChangePasswordPayload) {
-  const gqlClient = await getServerGqlClient();
-  const {
-    changePassword: { code },
-  } = await gqlClient.request(changePasswordMutation, {
-    input,
+  const { data } = await client.mutate({
+    mutation: CHANGE_PASSWORD,
+    variables: { input: input },
   });
-  return code;
+  return data?.changePassword.code;
 }
