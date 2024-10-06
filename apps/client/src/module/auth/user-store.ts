@@ -30,6 +30,9 @@ export const fetchUserInfo = async () => {
       query: GET_USER,
       fetchPolicy: "network-only",
     });
+
+    console.log("data", data);
+
     if (data?.getUserInfo) {
       const { id, displayName, email, ref, mobile, realName } =
         data.getUserInfo;

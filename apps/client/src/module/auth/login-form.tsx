@@ -19,12 +19,12 @@ import { DashboardRoute } from "@src/module/dashboard";
 import { USER_LOGIN } from "@src/graphql";
 import { useMutation } from "@apollo/client";
 import Cookies from "js-cookie";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "@src/module/system";
 import { fetchUserInfo } from "@src/module/auth/user-store";
 import { useSearchParams } from "next/navigation";
 
-export function LoginForm({token}: {token: string}) {
+export function LoginForm({ token }: { token: string }) {
   const t = useTranslations();
   const [loading, setLoading] = useState(false);
   const { theme } = useTheme();
@@ -70,6 +70,7 @@ export function LoginForm({token}: {token: string}) {
         variables: loginData,
       });
       const code = data?.login.code;
+
       if (code === 200) {
         const token = data?.login.data;
         token && Cookies.set("token", token);
@@ -87,11 +88,49 @@ export function LoginForm({token}: {token: string}) {
         setLoading(false);
         setError("root", { message: t("Notifications.login.failed") });
       }
+      if (code === 10002) {
+        setLoading(false);
+        setError("root", {
+          message: t("Notifications.login.accountNotExists"),
+        });
+      }
     } catch (error) {
       setLoading(false);
       setError("root", { message: t("Notifications.login.failed") });
     }
   });
+
+  useEffect(() => {
+    setLoading(true);
+    if (token && typeof window !== "undefined") {
+      console.log("Token found in the URL, start login process.");
+      const handleLogin = async () => {
+        try {
+          if (token) {
+            token && Cookies.set("token", token);
+            await fetchUserInfo();
+            router.replace("/dashboard");
+          } else {
+            console.log("No token found in the URL, Oauth failed.");
+            router.replace(AuthRoute.Login.Path);
+          }
+        } catch (error) {
+          console.error("OAuthLogin failed:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      handleLogin();
+    } else {
+      setLoading(false);
+    }
+  }, [token, router]);
+
+  const handleThirdPartyLogin = async (provider: string): Promise<void> => {
+    setLoading(true);
+    const thirdPartyApiUrl = process.env.NEXT_PUBLIC_THIRD_PARTY_API_URL;
+    window.location.href = `${thirdPartyApiUrl}/${provider}`;
+  };
 
   const backgroundColor = theme === "dark" ? "bg-black" : "bg-white";
 
@@ -157,9 +196,17 @@ export function LoginForm({token}: {token: string}) {
           </p>
         </div>
 
-        <div className="relative mb-5 flex content-center justify-center space-x-3">
-          <SocialButton social="facebook" />
-          <SocialButton social="google" />
+        <div className="relative flex content-center justify-center space-x-3">
+          {/* <SocialButton
+          social="facebook"
+          handleThirdPartyLogin={() => handleThirdPartyLogin("facebook")}
+        /> */}
+          <SocialButton
+            social="google"
+            handleThirdPartyLogin={async () =>
+              await handleThirdPartyLogin("google")
+            }
+          />
         </div>
       </AuthFormContainer>
     </>
