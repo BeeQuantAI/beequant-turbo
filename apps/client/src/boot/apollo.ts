@@ -4,18 +4,40 @@ import {
   createHttpLink,
   InMemoryCache,
   Observable,
+  split,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
+import { WebSocketLink } from '@apollo/client/link/ws';
 import Cookies from "js-cookie";
 import {
   generateAccessToken,
   revokeTokensAndClear,
 } from "@src/module/auth/auth-service";
+import { getMainDefinition } from "@apollo/client/utilities";
 
 const httpLink = createHttpLink({
   uri: process.env.NEXT_PUBLIC_DEV_SERVER_URL,
 });
+
+const wsLink = new WebSocketLink({
+  uri: `ws://localhost:3000/graphql`, 
+  options: {
+    reconnect: true,
+  },
+});
+
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+    );
+  },
+  wsLink,
+  httpLink
+);
 
 let isRefreshing = false;
 
@@ -67,12 +89,21 @@ const authLink = setContext(async (_, { headers }) => {
 });
 
 const responseLink = new ApolloLink((operation, forward) => {
+  const { query } = operation;
+  const definition = getMainDefinition(query);
+
+  if (definition.kind === "OperationDefinition" && definition.operation === "subscription") {
+    return forward(operation);
+  }
+
   return forward(operation).map((response) => {
     if (typeof window !== "undefined") {
       const context = operation.getContext();
       const headers = context.response?.headers;
       const newAccessToken = headers?.get("New-Access-Token");
-      if (newAccessToken) Cookies.set("token", newAccessToken);
+      if (newAccessToken) {
+        Cookies.set("token", newAccessToken);
+      }
     }
     return response;
   });
@@ -91,7 +122,7 @@ const errorLink = onError(({ graphQLErrors, operation, forward }) => {
   return forward(operation);
 });
 
-const link = ApolloLink.from([authLink, errorLink, responseLink, httpLink]);
+const link = ApolloLink.from([authLink, errorLink, responseLink, splitLink]);
 
 export const client = new ApolloClient({
   ssrMode: typeof window === "undefined",

@@ -31,6 +31,12 @@ export type Scalars = {
   DateTime: { input: any; output: any };
 };
 
+export type AccumulatedNumberAndTimeType = {
+  __typename?: "AccumulatedNumberAndTimeType";
+  accumulatedNumber: Scalars["Float"]["output"];
+  currentTime: Scalars["String"]["output"];
+};
+
 export type CreateExchangeKeyInput = {
   /** Access key */
   accessKey: Scalars["String"]["input"];
@@ -79,6 +85,21 @@ export type ExchangeKey = {
   secretKey: Scalars["String"]["output"];
   updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
   updatedBy?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type GetUiKlineDto = {
+  /** End time */
+  endTime?: InputMaybe<Scalars["String"]["input"]>;
+  /** Interval */
+  interval: Scalars["String"]["input"];
+  /** Limit */
+  limit?: InputMaybe<Scalars["Float"]["input"]>;
+  /** Start time */
+  startTime?: InputMaybe<Scalars["String"]["input"]>;
+  /** Symbol */
+  symbol: Scalars["String"]["input"];
+  /** Time Zone */
+  timeZone?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type Mutation = {
@@ -178,13 +199,17 @@ export type Page = {
 
 export type Query = {
   __typename?: "Query";
+  /** Get accumulated number */
+  getAccumulatedNum: Scalars["Float"]["output"];
   /** Get exchange key by id */
   getExchangeKeyById: ResultForExchangeKey;
+  /** Get uiKlines */
+  getUiKlines: ResultForUiKlineType;
   /** Find user by email */
   getUserByEmail: UserType;
   /** Find user by id */
   getUserById: UserType;
-  getUserExchangesAndBalances: Results;
+  getUserExchangesAndBalances: ResultForExchanges;
   /** Find user by context */
   getUserInfo: UserType;
   /** Get all users */
@@ -193,6 +218,10 @@ export type Query = {
 
 export type QueryGetExchangeKeyByIdArgs = {
   id: Scalars["String"]["input"];
+};
+
+export type QueryGetUiKlinesArgs = {
+  input: GetUiKlineDto;
 };
 
 export type QueryGetUserByEmailArgs = {
@@ -224,12 +253,26 @@ export type ResultForExchangeKey = {
   message: Scalars["String"]["output"];
 };
 
-export type Results = {
-  __typename?: "Results";
+export type ResultForExchanges = {
+  __typename?: "ResultForExchanges";
   code: Scalars["Int"]["output"];
   data?: Maybe<Array<UserExchangeType>>;
   message: Scalars["String"]["output"];
   page?: Maybe<Page>;
+};
+
+export type ResultForUiKlineType = {
+  __typename?: "ResultForUiKlineType";
+  code: Scalars["Int"]["output"];
+  data?: Maybe<Array<UiKline>>;
+  message: Scalars["String"]["output"];
+  page?: Maybe<Page>;
+};
+
+export type Subscription = {
+  __typename?: "Subscription";
+  /** Subscribe to accumulated number and current server time updates every second */
+  accumulatedNumberAndTime: AccumulatedNumberAndTimeType;
 };
 
 export type UpdateExchangeKeyInput = {
@@ -305,6 +348,32 @@ export type UserType = {
   verificationToken?: Maybe<Scalars["String"]["output"]>;
   /** Wechat */
   wechat?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type UiKline = {
+  __typename?: "uiKline";
+  /** close price */
+  closePrice: Scalars["String"]["output"];
+  /** close time */
+  closeTime: Scalars["DateTime"]["output"];
+  /** high price */
+  highPrice: Scalars["String"]["output"];
+  /** low price */
+  lowPrice: Scalars["String"]["output"];
+  /** number of trades */
+  numberOfTrades: Scalars["Float"]["output"];
+  /** open price */
+  openPrice: Scalars["String"]["output"];
+  /** open time */
+  openTime: Scalars["DateTime"]["output"];
+  /** quote asset volume */
+  quoteAssetVolume: Scalars["String"]["output"];
+  /** taker buy base asset volume */
+  takerBuyBaseAssetVolume: Scalars["String"]["output"];
+  /** taker buy quote asset volume */
+  takerBuyQuoteAssetVolume: Scalars["String"]["output"];
+  /** volume */
+  volume: Scalars["String"]["output"];
 };
 
 export type LoginMutationVariables = Exact<{
@@ -452,7 +521,7 @@ export type GetUserExchangesAndBalancesQueryVariables = Exact<{
 export type GetUserExchangesAndBalancesQuery = {
   __typename?: "Query";
   getUserExchangesAndBalances: {
-    __typename?: "Results";
+    __typename?: "ResultForExchanges";
     code: number;
     message: string;
     data?: Array<{
