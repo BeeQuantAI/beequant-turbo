@@ -70,7 +70,6 @@ export function VerifyEmailPage({ searchParams }: VerifyEmailPageProps) {
           status: "error",
           message: t("VerifyEmail.failed.message.unknownError"),
         });
-        console.error(err);
       }
     }
   }, [searchParams.email, searchParams.token, t, verifyEmailMutation]);

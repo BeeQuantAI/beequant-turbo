@@ -1,7 +1,7 @@
 import { GENERATE_ACCESS_TOKEN } from "@src/graphql";
 import { client } from "@src/boot/apollo";
 import Cookies from "js-cookie";
-import { useRouter } from "@src/configs/navigation";
+import { useRouter, redirect } from "@src/configs/navigation";
 import { useUser } from "@src/module/auth/user-store";
 import { REVOKE_TOKENS } from "@src/graphql/auth";
 

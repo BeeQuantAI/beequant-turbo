@@ -81,6 +81,7 @@ const PageNotFound = {
 const validRoutes = [
   "/",
   "login",
+  "login-callback",
   "register",
   "forgot-password",
   "reset-password",

@@ -1,4 +1,4 @@
-export const displayNamePatten = /^[a-zA-Z0-9-_]+$/;
+export const displayNamePatten = /^[a-zA-Z0-9-_ ]+$/;
 export const emailPattern =
   /^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*?\.[a-zA-Z]{2,6}|(\d{1,3}\.){3}\d{1,3})(:\d{4})?$/;
 export const urlPattern =
