@@ -50,9 +50,7 @@ export function AccountSettingForm() {
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = (formData: FormSchema) => {
-    console.log(formData);
-  };
+  const onSubmit = (formData: FormSchema) => {};
   return (
     <div className="dark:bg-primary-900 bg-primary-50 shadow-settingPage dark:shadow-settingPage flex flex-col rounded-lg p-5">
       <div className="mb-[30px] space-y-1">
