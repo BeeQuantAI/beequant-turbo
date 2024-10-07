@@ -88,7 +88,7 @@ export type Mutation = {
   /** Create exchange key */
   createExchangeKey: Result;
   /** Create new user */
-  createUser: Scalars["Boolean"]["output"];
+  createUser: UserType;
   /** Delete exchange key by id */
   deleteExchangeKey: Result;
   /** Hard delete an user */

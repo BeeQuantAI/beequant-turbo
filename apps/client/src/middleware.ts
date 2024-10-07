@@ -24,6 +24,7 @@ const middleware = (request: NextRequest) => {
     "forgot-password",
     "verify-email",
     "reset-password",
+    "login-callback",
   ];
   const pagesRegex = new RegExp(
     `^\/(?:en|zh-cn)?\/?(?:${pagesWithoutToken.join("|")})$`,

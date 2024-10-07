@@ -147,7 +147,8 @@
     },
     "login": {
       "failed": "登入失败，密码或邮箱错误",
-      "emailNotVerified": "邮箱尚未验证，我们已向您发送了验证邮件"
+      "emailNotVerified": "邮箱尚未验证，我们已向您发送了验证邮件",
+      "accountNotExists": "帐户不存在，请注册"
     },
     "changePassword": {
       "currentPasswordWrong": "旧密码错误",

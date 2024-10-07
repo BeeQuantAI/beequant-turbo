@@ -28,11 +28,11 @@ import { useSearchParams } from "next/navigation";
 export function LoginForm() {
   const t = useTranslations();
   const [loading, setLoading] = useState(false);
+  const { theme } = useTheme();
   const searchParams = useSearchParams();
   const redirectUrl = searchParams.get("redirect") || DashboardRoute.Root.Path;
 
   type LoginForm = z.infer<typeof formSchema>;
-  // source of truth for this login form <= this is the law, is the king, is the absolute authority for this form - K总
 
   const formSchema = z.object({
     email: z
@@ -45,12 +45,12 @@ export function LoginForm() {
     isStaySignedIn: z.boolean().optional(),
   });
 
-  // Need this to enforce default value to match the LoginForm schema, because if you do it in the `useForm` hook, it turns it into a `Partial<LoginForm>` type.
   const defaultValues = {
     email: "",
     password: "",
     isStaySignedIn: false,
-  } satisfies LoginForm; // Satifies make sure this object you are making can satisfy the LoginForm schema.
+  } satisfies LoginForm;
+
   const router = useRouter();
   const [login] = useMutation(USER_LOGIN);
   const {
@@ -76,16 +76,19 @@ export function LoginForm() {
         setLoading(false);
         await fetchUserInfo();
         router.push(redirectUrl);
-      }
-      if (code === 10010) {
+      } else if (code === 10010) {
         setLoading(false);
         setError("root", {
           message: t("Notifications.login.emailNotVerified"),
         });
-      }
-      if (code === 10003) {
+      } else if (code === 10003) {
         setLoading(false);
         setError("root", { message: t("Notifications.login.failed") });
+      } else if (code === 10002) {
+        setLoading(false);
+        setError("root", {
+          message: t("Notifications.login.accountNotExists"),
+        });
       }
     } catch (error) {
       setLoading(false);
@@ -94,6 +97,12 @@ export function LoginForm() {
       setLoading(false);
     }
   });
+
+  const handleThirdPartyLogin = async (provider: string): Promise<void> => {
+    setLoading(true);
+    const thirdPartyApiUrl = process.env.NEXT_PUBLIC_THIRD_PARTY_API_URL;
+    window.location.href = `${thirdPartyApiUrl}/${provider}`;
+  };
 
   return (
     <>
@@ -148,9 +157,13 @@ export function LoginForm() {
           </p>
         </div>
 
-        <div className="relative mb-5 flex content-center justify-center space-x-3">
-          <SocialButton social="facebook" />
-          <SocialButton social="google" />
+        <div className="relative flex content-center justify-center space-x-3">
+          <SocialButton
+            social="google"
+            handleThirdPartyLogin={async () =>
+              await handleThirdPartyLogin("google")
+            }
+          />
         </div>
       </AuthFormContainer>
     </>

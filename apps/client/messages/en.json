@@ -150,7 +150,8 @@
     },
     "login": {
       "failed": "login failed, wrong password or email",
-      "emailNotVerified": "Email verification required. A new verification email will be sent shortly."
+      "emailNotVerified": "Email verification required. A new verification email will be sent shortly.",
+      "accountNotExists": "Account does not exist"
     },
     "changePassword": {
       "currentPasswordWrong": "Current password is wrong",

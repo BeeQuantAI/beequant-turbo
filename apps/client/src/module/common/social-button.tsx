@@ -2,6 +2,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 export interface SocialButtonVariants
   extends VariantProps<typeof socialButtonVariants> {}
+
 const socialButtonVariants = cva(
   "text-primary-50 relative size-[38px] overflow-hidden rounded transition-all duration-500",
   {
@@ -54,14 +55,17 @@ const socialButtonSvgs = {
 
 type Props = {
   social: keyof typeof socialButtonSvgs;
+  handleThirdPartyLogin?: () => Promise<void>;
 };
-export function SocialButton({ social }: Props) {
+
+export function SocialButton({ social, handleThirdPartyLogin }: Props) {
   return (
     <button
       className={socialButtonVariants({
         variant: social,
       })}
       type="button"
+      onClick={handleThirdPartyLogin}
     >
       {socialButtonSvgs[social]}
     </button>
