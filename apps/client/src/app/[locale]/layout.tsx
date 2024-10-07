@@ -21,7 +21,7 @@ export default async function RootLayout({
           href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css"
         />
       </head>
-      <body className="dark:bg-primary-800 text-primary-700 bg-primary-100 dark:text-primary-100 font-sans antialiased transition-colors">
+      <body className="dark:bg-primary-800 text-primary-700 bg-primary-100 dark:text-primary-100 h-auto font-sans antialiased transition-colors">
         <ProviderWrapper>
           <ThemeProvider attribute="class">
             <NextIntlClientProvider

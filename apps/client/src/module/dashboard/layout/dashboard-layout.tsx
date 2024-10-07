@@ -13,7 +13,7 @@ export function DashboardLayout({ children }: Props) {
       <SidebarContainer />
       <main
         className={clsx(
-          "top-header bg-primary-100 dark:bg-primary-800 absolute bottom-0 right-0 overflow-y-hidden p-8 transition-[left] duration-300",
+          "top-header bg-primary-100 dark:bg-primary-800 absolute bottom-0 right-0 h-auto p-8 transition-[left] duration-300",
           "peer-data-[status=expanded]/sidebar:md:left-sidebar-expanded peer-data-[status=collapsed]/sidebar:md:left-sidebar-collapsed left-0",
           "m-auto max-w-[1630px]",
         )}

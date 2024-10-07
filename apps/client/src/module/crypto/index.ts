@@ -1,2 +1,2 @@
 export * from "./route";
-export * from "./CryptoEconomy";
+export * from "./exchanges/exchanges-page";
