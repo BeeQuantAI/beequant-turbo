@@ -267,6 +267,43 @@
     "alertCancel": "取消"
   },
 
+  "crypto": {
+    "exchanges": {
+      "marketOverview": "市场概览",
+      "topTwenty": {
+        "title": "前20加密货币交易所",
+        "rank": "排名",
+        "name": "货币",
+        "marketCap": "市值",
+        "price": "价格",
+        "volume": "成交量",
+        "change24h": "24小时变化",
+        "change7d": "7天变化"
+      },
+      "topMarketCap": {
+        "title": "最高市值",
+        "subtitle": "按市值排名",
+        "symbol": "币种",
+        "marketCap": "市值",
+        "volume24h": "24小时内交易量"
+      },
+      "topClimbers": {
+        "title": "最高涨幅",
+        "subtitle": "按价格上涨表现",
+        "symbol": "币种",
+        "priceChange24h": "价格变化（24小时内）",
+        "priceChangePercentage24h": "涨幅百分比（24小时内）"
+      },
+      "topFallers": {
+        "title": "最高跌幅",
+        "subtitle": "按价格下跌表现",
+        "symbol": "币种",
+        "priceChange24h": "价格变化（24小时内）",
+        "priceChangePercentage24h": "跌幅百分比（24小时内）"
+      }
+    }
+  },
+
   "bot": {},
 
   "Landing": {

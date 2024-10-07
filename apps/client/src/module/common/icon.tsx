@@ -10,6 +10,7 @@ import { FaMobileScreenButton } from "react-icons/fa6";
 import { MdOutlineMail } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import { BsPinAngle } from "react-icons/bs";
+import { TbRefresh } from "react-icons/tb";
 
 import {
   MdCheck,
@@ -56,11 +57,16 @@ const exchangeIcons = {
   pin: BsPinAngle,
 };
 
+const cryptoIcons = {
+  refresh: TbRefresh,
+};
+
 const icons = {
   ...genericIcons,
   ...authIcons,
   ...dashboardIcons,
   ...exchangeIcons,
+  ...cryptoIcons,
 };
 
 export type Icons = keyof typeof icons;

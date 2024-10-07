@@ -7,6 +7,7 @@ import { SidebarMenuItem } from "./sidebar-menu";
 import { useTranslations } from "next-intl";
 import { AccountRoute } from "@src/module/account/layout/route";
 import { useUser } from "@src/module/auth/user-store";
+import { CryptoRoutes } from "@src/module/crypto/route";
 import { exchangeRoutes } from "@src/module/exchange";
 
 export function useSidebar() {
@@ -105,7 +106,7 @@ export function useSidebar() {
         },
         {
           label: t("Sidebar.cryptoEconomy.exchange"),
-          onClick: () => console.log("Navigate to Exchanges"),
+          onClick: () => router.push(CryptoRoutes.ExchangesPage.Path),
         },
         {
           label: t("Sidebar.cryptoEconomy.exchangeDetails"),
