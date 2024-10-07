@@ -97,7 +97,7 @@ export function ChangePasswordForm() {
           await revokeTokensAndClear();
         }}
       /> */}
-          <form className="mt-[30px] flex flex-col gap-y-5" onSubmit={onSubmit}>
+          <form className="flex flex-col gap-y-5" onSubmit={onSubmit}>
             {errors?.root && (
               <span className="bg-error-300 text-error-900 text-error mb-5 rounded-md px-5 py-3 text-sm">
                 {errors.root.message}

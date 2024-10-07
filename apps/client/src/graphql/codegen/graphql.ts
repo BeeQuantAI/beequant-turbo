@@ -31,6 +31,71 @@ export type Scalars = {
   DateTime: { input: any; output: any };
 };
 
+export type CoinDetails = {
+  __typename?: "CoinDetails";
+  /** All time high */
+  ath: Scalars["Float"]["output"];
+  /** Circulating supply */
+  circulationSupply: Scalars["Float"]["output"];
+  /** 24-hour high price */
+  high24h: Scalars["Float"]["output"];
+  /** 24-hour low price */
+  low24h: Scalars["Float"]["output"];
+  /** Max supply */
+  maxSupply?: Maybe<Scalars["Float"]["output"]>;
+  /** Full name of the cryptocurrency */
+  name: Scalars["String"]["output"];
+  /** Current price of the cryptocurrency */
+  price: Scalars["Float"]["output"];
+  /** 24-hour price change in symbol */
+  priceChange24h: Scalars["Float"]["output"];
+  /** 24-hour price change percentage */
+  priceChangePercentage24h: Scalars["Float"]["output"];
+  /** 24-hour price in USD */
+  quoteVolume24h: Scalars["Float"]["output"];
+  /** Symbol of the cryptocurrency */
+  symbol: Scalars["String"]["output"];
+  /** Total supply */
+  totalSupply: Scalars["Float"]["output"];
+  /** 24-hour trading volume */
+  volume24h: Scalars["Float"]["output"];
+};
+
+export type CoinDetailsResult = {
+  __typename?: "CoinDetailsResult";
+  code: Scalars["Int"]["output"];
+  data?: Maybe<CoinDetails>;
+  message: Scalars["String"]["output"];
+};
+
+export type CoinOverview = {
+  __typename?: "CoinOverview";
+  /** Market capitalization of the cryptocurrency */
+  marketCap: Scalars["Float"]["output"];
+  /** Full name of the cryptocurrency */
+  name: Scalars["String"]["output"];
+  /** Current price of the cryptocurrency */
+  price: Scalars["Float"]["output"];
+  /** 24-hour price change */
+  priceChange24h: Scalars["Float"]["output"];
+  /** 7-day price change percentage */
+  priceChangePercentage7d: Scalars["Float"]["output"];
+  /** 24-hour price change percentage */
+  priceChangePercentage24h: Scalars["Float"]["output"];
+  /** Symbol of the cryptocurrency */
+  symbol: Scalars["String"]["output"];
+  /** 24-hour trading volume */
+  volume24h: Scalars["Float"]["output"];
+};
+
+export type CoinOverviewResults = {
+  __typename?: "CoinOverviewResults";
+  code: Scalars["Int"]["output"];
+  data?: Maybe<Array<CoinOverview>>;
+  message: Scalars["String"]["output"];
+  page?: Maybe<Page>;
+};
+
 export type CreateExchangeKeyInput = {
   /** Access key */
   accessKey: Scalars["String"]["input"];
@@ -79,6 +144,40 @@ export type ExchangeKey = {
   secretKey: Scalars["String"]["output"];
   updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
   updatedBy?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type GetUiKlineDto = {
+  /** End time */
+  endTime?: InputMaybe<Scalars["String"]["input"]>;
+  /** Interval */
+  interval: Scalars["String"]["input"];
+  /** Limit */
+  limit?: InputMaybe<Scalars["Float"]["input"]>;
+  /** Start time */
+  startTime?: InputMaybe<Scalars["String"]["input"]>;
+  /** Symbol */
+  symbol: Scalars["String"]["input"];
+  /** Time Zone */
+  timeZone?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type MarketOverview = {
+  __typename?: "MarketOverview";
+  /** Top 20 cryptocurrencies */
+  top20Cryptocurrencies: Array<CoinOverview>;
+  /** Top climbing cryptocurrencies */
+  topClimbers: Array<CoinOverview>;
+  /** Top falling cryptocurrencies */
+  topFallers: Array<CoinOverview>;
+  /** Top cryptocurrencies by market cap */
+  topMarketCap: Array<CoinOverview>;
+};
+
+export type MarketOverviewResult = {
+  __typename?: "MarketOverviewResult";
+  code: Scalars["Int"]["output"];
+  data?: Maybe<MarketOverview>;
+  message: Scalars["String"]["output"];
 };
 
 export type Mutation = {
@@ -178,21 +277,37 @@ export type Page = {
 
 export type Query = {
   __typename?: "Query";
+  getCoinDetails: CoinDetailsResult;
   /** Get exchange key by id */
   getExchangeKeyById: ResultForExchangeKey;
+  getMarketOverview: MarketOverviewResult;
+  getTop20Cryptocurrencies: CoinOverviewResults;
+  getTopClimbers: CoinOverviewResults;
+  getTopFallers: CoinOverviewResults;
+  getTopMarketCap: CoinOverviewResults;
+  /** Get uiKlines */
+  getUiKlines: ResultForUiKlineType;
   /** Find user by email */
   getUserByEmail: UserType;
   /** Find user by id */
   getUserById: UserType;
-  getUserExchangesAndBalances: Results;
+  getUserExchangesAndBalances: ResultForExchanges;
   /** Find user by context */
   getUserInfo: UserType;
   /** Get all users */
   getUsers: Array<UserType>;
 };
 
+export type QueryGetCoinDetailsArgs = {
+  symbol: Scalars["String"]["input"];
+};
+
 export type QueryGetExchangeKeyByIdArgs = {
   id: Scalars["String"]["input"];
+};
+
+export type QueryGetUiKlinesArgs = {
+  input: GetUiKlineDto;
 };
 
 export type QueryGetUserByEmailArgs = {
@@ -224,10 +339,18 @@ export type ResultForExchangeKey = {
   message: Scalars["String"]["output"];
 };
 
-export type Results = {
-  __typename?: "Results";
+export type ResultForExchanges = {
+  __typename?: "ResultForExchanges";
   code: Scalars["Int"]["output"];
   data?: Maybe<Array<UserExchangeType>>;
+  message: Scalars["String"]["output"];
+  page?: Maybe<Page>;
+};
+
+export type ResultForUiKlineType = {
+  __typename?: "ResultForUiKlineType";
+  code: Scalars["Int"]["output"];
+  data?: Maybe<Array<UiKline>>;
   message: Scalars["String"]["output"];
   page?: Maybe<Page>;
 };
@@ -305,6 +428,32 @@ export type UserType = {
   verificationToken?: Maybe<Scalars["String"]["output"]>;
   /** Wechat */
   wechat?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type UiKline = {
+  __typename?: "uiKline";
+  /** close price */
+  closePrice: Scalars["String"]["output"];
+  /** close time */
+  closeTime: Scalars["DateTime"]["output"];
+  /** high price */
+  highPrice: Scalars["String"]["output"];
+  /** low price */
+  lowPrice: Scalars["String"]["output"];
+  /** number of trades */
+  numberOfTrades: Scalars["Float"]["output"];
+  /** open price */
+  openPrice: Scalars["String"]["output"];
+  /** open time */
+  openTime: Scalars["DateTime"]["output"];
+  /** quote asset volume */
+  quoteAssetVolume: Scalars["String"]["output"];
+  /** taker buy base asset volume */
+  takerBuyBaseAssetVolume: Scalars["String"]["output"];
+  /** taker buy quote asset volume */
+  takerBuyQuoteAssetVolume: Scalars["String"]["output"];
+  /** volume */
+  volume: Scalars["String"]["output"];
 };
 
 export type LoginMutationVariables = Exact<{
@@ -399,6 +548,64 @@ export type RevokeTokensMutation = {
   revokeTokens: boolean;
 };
 
+export type GetMarketOverviewQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetMarketOverviewQuery = {
+  __typename?: "Query";
+  getMarketOverview: {
+    __typename?: "MarketOverviewResult";
+    code: number;
+    message: string;
+    data?: {
+      __typename?: "MarketOverview";
+      topMarketCap: Array<{
+        __typename?: "CoinOverview";
+        symbol: string;
+        name: string;
+        marketCap: number;
+        price: number;
+        volume24h: number;
+        priceChange24h: number;
+        priceChangePercentage24h: number;
+        priceChangePercentage7d: number;
+      }>;
+      topClimbers: Array<{
+        __typename?: "CoinOverview";
+        symbol: string;
+        name: string;
+        marketCap: number;
+        price: number;
+        volume24h: number;
+        priceChange24h: number;
+        priceChangePercentage24h: number;
+        priceChangePercentage7d: number;
+      }>;
+      topFallers: Array<{
+        __typename?: "CoinOverview";
+        symbol: string;
+        name: string;
+        marketCap: number;
+        price: number;
+        volume24h: number;
+        priceChange24h: number;
+        priceChangePercentage24h: number;
+        priceChangePercentage7d: number;
+      }>;
+      top20Cryptocurrencies: Array<{
+        __typename?: "CoinOverview";
+        symbol: string;
+        name: string;
+        marketCap: number;
+        price: number;
+        volume24h: number;
+        priceChange24h: number;
+        priceChangePercentage24h: number;
+        priceChangePercentage7d: number;
+      }>;
+    } | null;
+  };
+};
+
 export type GetExchangeKeyByIdQueryVariables = Exact<{
   id: Scalars["String"]["input"];
 }>;
@@ -452,7 +659,7 @@ export type GetUserExchangesAndBalancesQueryVariables = Exact<{
 export type GetUserExchangesAndBalancesQuery = {
   __typename?: "Query";
   getUserExchangesAndBalances: {
-    __typename?: "Results";
+    __typename?: "ResultForExchanges";
     code: number;
     message: string;
     data?: Array<{
@@ -976,6 +1183,232 @@ export const RevokeTokensDocument = {
 } as unknown as DocumentNode<
   RevokeTokensMutation,
   RevokeTokensMutationVariables
+>;
+export const GetMarketOverviewDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMarketOverview" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getMarketOverview" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "code" } },
+                { kind: "Field", name: { kind: "Name", value: "message" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "data" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "topMarketCap" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "symbol" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "marketCap" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "price" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "volume24h" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "priceChange24h" },
+                            },
+                            {
+                              kind: "Field",
+                              name: {
+                                kind: "Name",
+                                value: "priceChangePercentage24h",
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: {
+                                kind: "Name",
+                                value: "priceChangePercentage7d",
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "topClimbers" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "symbol" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "marketCap" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "price" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "volume24h" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "priceChange24h" },
+                            },
+                            {
+                              kind: "Field",
+                              name: {
+                                kind: "Name",
+                                value: "priceChangePercentage24h",
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: {
+                                kind: "Name",
+                                value: "priceChangePercentage7d",
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "topFallers" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "symbol" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "marketCap" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "price" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "volume24h" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "priceChange24h" },
+                            },
+                            {
+                              kind: "Field",
+                              name: {
+                                kind: "Name",
+                                value: "priceChangePercentage24h",
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: {
+                                kind: "Name",
+                                value: "priceChangePercentage7d",
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "top20Cryptocurrencies" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "symbol" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "marketCap" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "price" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "volume24h" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "priceChange24h" },
+                            },
+                            {
+                              kind: "Field",
+                              name: {
+                                kind: "Name",
+                                value: "priceChangePercentage24h",
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: {
+                                kind: "Name",
+                                value: "priceChangePercentage7d",
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetMarketOverviewQuery,
+  GetMarketOverviewQueryVariables
 >;
 export const GetExchangeKeyByIdDocument = {
   kind: "Document",

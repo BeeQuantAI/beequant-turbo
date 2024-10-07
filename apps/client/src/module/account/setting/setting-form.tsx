@@ -132,7 +132,7 @@ export function AccountSettingForm() {
       >
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="mt-[30px] flex flex-col sm:gap-y-12 md:gap-y-8 xl:gap-y-6"
+          className="flex flex-col sm:gap-y-12 md:gap-y-8 xl:gap-y-6"
         >
           <ControlledTextInput
             direction="horizontal"

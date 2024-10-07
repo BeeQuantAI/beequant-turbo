@@ -1,3 +1,4 @@
+import { useRouter } from "@src/configs/navigation";
 interface TableRowProps<T> {
   data: T[];
   keys: (keyof T)[];
@@ -15,11 +16,11 @@ export function RenderTableHeader<T extends Record<string, any>>({
       <tr className="flex">
         {headers.map((header, index) =>
           index === 0 ? (
-            <th key={index} className="ml-2 w-[40%] text-start capitalize">
+            <th key={index} className="w-[40%] capitalize">
               {header}
             </th>
           ) : (
-            <th key={index} className="w-full text-start capitalize">
+            <th key={index} className="w-full capitalize">
               {header}
             </th>
           ),
@@ -33,10 +34,20 @@ export function RenderTableContent<T extends Record<string, any>>({
   data,
   keys,
 }: TableRowProps<T>) {
+  const router = useRouter();
   const colors = ["#f6a81e", "#5e62e6", "#3ddb42", "#21cbe6", "#6d6a6a"];
 
   return (
-    <tbody className="flex flex-col">
+    <tbody
+      className="flex cursor-pointer flex-col text-center"
+      onClick={(e) => {
+        const target = e.target as HTMLElement;
+        const symbol = target
+          .closest("tr")
+          ?.querySelector("#symbol")?.textContent;
+        router.push(`/crypto/details/${symbol}`);
+      }}
+    >
       {data.map((item, index) => (
         <tr
           key={index}
@@ -46,8 +57,9 @@ export function RenderTableContent<T extends Record<string, any>>({
             i === 0 ? (
               <td
                 key={i}
-                className="ml-2 w-[40%] font-bold"
+                className="w-[40%] font-bold"
                 style={{ color: colors[index] }}
+                id="symbol"
               >
                 {item[key]}
               </td>
