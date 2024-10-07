@@ -270,6 +270,43 @@
     "alertCancel": "Cancel"
   },
 
+  "crypto": {
+    "exchanges": {
+      "marketOverview": "Market Overview",
+      "topTwenty": {
+        "title": "Top 20 Cryptocurrencies",
+        "rank": "Rank",
+        "name": "Name",
+        "marketCap": "Market Cap",
+        "price": "Price",
+        "volume": "Volume",
+        "change24h": "Change 24h",
+        "change7d": "Change 7d"
+      },
+      "topMarketCap": {
+        "title": "Top Market Cap",
+        "subtitle": "Ratings by Market Capitalization",
+        "symbol": "Coin",
+        "marketCap": "Market Cap",
+        "volume24h": "Volume (last 24 hrs.)"
+      },
+      "topClimbers": {
+        "title": "Top Climbers",
+        "subtitle": "Performance by Price Increase",
+        "symbol": "Coin",
+        "priceChange24h": "Price Change (24 hrs.)",
+        "priceChangePercentage24h": "Percentage Gain (24 hrs.)"
+      },
+      "topFallers": {
+        "title": "Top Fallers",
+        "subtitle": "Performance by Price Drop",
+        "symbol": "Coin",
+        "priceChange24h": "Price Change (24 hrs.)",
+        "priceChangePercentage24h": "Percentage Loss (24 hrs.)"
+      }
+    }
+  },
+
   "bot": {},
 
   "Landing": {
