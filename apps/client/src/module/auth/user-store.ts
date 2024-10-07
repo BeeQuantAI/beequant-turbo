@@ -1,15 +1,17 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
-import { getUserInfo } from "./auth-service";
+import { createJSONStorage, persist } from "zustand/middleware";
+import { GET_USER } from "@src/graphql/user";
+import { client } from "@src/boot/apollo";
 
 type User = {
   id: string;
-  displayName?: string;
+  displayName?: string | null;
   avatar?: string;
-  name?: string;
+  realName?: string | null;
   title?: string;
-  email?: string;
-  phone?: string;
+  email?: string | null;
+  mobile?: string | null;
+  ref?: string | null;
 };
 const initialState = {
   user: null as User | null,
@@ -18,29 +20,32 @@ const initialState = {
 export const useUser = create(
   persist(() => initialState, {
     name: "user-storage",
-    // onRehydrateStorage: (state) => {
-    //   console.log(state);
-    //   return (state, error) => {
-    //     if (state?.user === null) fetchUserInfo();
-    //     console.dir(error);
-    //   };
-    // },
+    storage: createJSONStorage(() => localStorage),
   }),
 );
 
 export const fetchUserInfo = async () => {
-  const { id, displayName } = await getUserInfo();
-  const fakeUser = {
-    avatar: "https://picsum.photos/300", // fakeing one for now
-    name: "John Doe",
-    title: "Software Engineer",
-    email: "john-doe@doe.com",
-    phone: "+12 3456 7890",
-  };
-
-  useUser.setState(() => ({ user: { id, displayName, ...fakeUser } }));
-};
-
-export const clearUser = () => {
-  useUser.setState(initialState);
+  try {
+    const { data } = await client.query({
+      query: GET_USER,
+      fetchPolicy: "network-only",
+    });
+    if (data?.getUserInfo) {
+      const { id, displayName, email, ref, mobile, realName } =
+        data.getUserInfo;
+      useUser.setState(() => ({
+        user: {
+          id,
+          displayName,
+          mobile,
+          realName,
+          email,
+          ref,
+          avatar: "https://picsum.photos/300",
+        },
+      }));
+    }
+  } catch (error) {
+    console.error("Error fetching user info:", error);
+  }
 };

@@ -1,130 +1,49 @@
-"use server";
-import {
-  CreateUserInput,
-  getServerGqlClient,
-  graphql,
-} from "@src/module/graphql";
-import { cookies } from "next/headers";
-import { z } from "zod";
-import { AuthRoute } from "./route";
-import { redirect } from "../../configs/navigation";
+import { GENERATE_ACCESS_TOKEN } from "@src/graphql";
+import { client } from "@src/boot/apollo";
+import Cookies from "js-cookie";
+import { useRouter } from "@src/configs/navigation";
+import { useUser } from "@src/module/auth/user-store";
+import { REVOKE_TOKENS } from "@src/graphql/auth";
 
-const authResultSchema = z.object({
-  code: z.number(),
-  message: z.string(),
-  data: z.string(),
-});
-
-const loginMutation = graphql(`
-  mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      code
-      message
-      data
-    }
-  }
-`);
-
-export type LoginPayload = {
-  email: string;
-  password: string;
-};
-export async function login(payload: LoginPayload) {
-  const gqlClient = await getServerGqlClient();
-  const { login } = await gqlClient.request(loginMutation, payload);
-
-  switch (login.code) {
-    case 200:
-      const data = authResultSchema.parse(login);
-      cookies().set("token", data.data);
-      redirect("/dashboard");
-
-    case 10003:
-    case 10010:
-    default:
-      return {
-        error: login.message,
-        code: login.code,
-      };
-  }
-}
-
-const registerMutation = graphql(`
-  mutation Register($input: CreateUserInput!) {
-    register(input: $input) {
-      code
-      message
-    }
-  }
-`);
-
-export type RegisterPayload = CreateUserInput;
-export async function register(input: RegisterPayload) {
-  const gqlClient = await getServerGqlClient();
-  const { register } = await gqlClient.request(registerMutation, {
-    input,
+export async function generateAccessToken(id: string) {
+  const { data } = await client.mutate({
+    mutation: GENERATE_ACCESS_TOKEN,
+    variables: { id },
   });
-
-  switch (register.code) {
-    case 200:
-      // I don't [ads-friendly-content] know if this data is valid or not so screw it
-      redirect(AuthRoute.RegisterSuccessed.Path);
-
-    case 10004:
-    case 10005:
-    default:
-      return {
-        error: register.message,
-      };
-  }
+  return data?.generateAccessToken;
 }
 
-const verifyEmailMutation = graphql(`
-  mutation VerifyEmail($email: String!, $token: String!) {
-    verifyEmail(email: $email, token: $token) {
-      code
-      message
-    }
+export const revokeTokensAndClear = async () => {
+  try {
+    await client.mutate({
+      mutation: REVOKE_TOKENS,
+    });
+    Cookies.remove("token");
+    useUser.persist.clearStorage();
+  } catch (error) {
+    Cookies.remove("token");
+    useUser.persist.clearStorage();
   }
-`);
-
-export type VerifyEmailPayload = {
-  email: string;
-  token: string;
 };
 
-export async function verifyEmail(payload: VerifyEmailPayload) {
-  const gqlClient = await getServerGqlClient();
-  const { verifyEmail } = await gqlClient.request(verifyEmailMutation, payload);
+export function useLogout() {
+  const router = useRouter();
 
-  switch (verifyEmail.code) {
-    case 200:
-      redirect(AuthRoute.VerifyEmailSuccessed.Path);
-    case 10011:
-      return {
-        error: verifyEmail.message,
-      };
-  }
-}
+  const clearDataAndRedirect = () => {
+    Cookies.remove("token");
+    useUser.persist.clearStorage();
+    router.push("/");
+  };
 
-const getUserInfoQuery = graphql(`
-  query getUserInfo {
-    getUserInfo {
-      id
-      displayName
+  const revokeTokensAndClear = async () => {
+    try {
+      await client.mutate({
+        mutation: REVOKE_TOKENS,
+      });
+      clearDataAndRedirect();
+    } catch (error) {
+      clearDataAndRedirect();
     }
-  }
-`);
-export async function getUserInfo() {
-  const gqlClient = await getServerGqlClient();
-  const { getUserInfo } = await gqlClient.request(getUserInfoQuery);
-
-  return getUserInfo;
-}
-
-export async function logout() {
-  const cookieStore = cookies();
-  cookieStore.delete("token");
-
-  redirect(AuthRoute.Login.Path);
+  };
+  return { revokeTokensAndClear };
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@src/module/common";
-import { ForwardedRef, forwardRef, use, useEffect, useState } from "react";
+import { ForwardedRef, forwardRef } from "react";
 
 type ModalProps = {
   message: string;
@@ -16,7 +16,7 @@ export const Modal = forwardRef(function Modal(
   return (
     <dialog
       ref={ref}
-      className="dark:bg-primary-600 bg-primary-100 fixed z-20 min-w-[500px] rounded-lg px-5 pb-5 pt-[50px] shadow-[0px_0px_0px_999px_rgba(0,0,0,0.5)]"
+      className="dark:bg-primary-600 bg-primary-100 fixed z-50 min-w-[500px] rounded-lg px-5 pb-5 pt-[50px] shadow-[0px_0px_0px_999px_rgba(0,0,0,0.5)]"
     >
       <div className="flex flex-col items-center gap-[50px]">
         <h1 className="text-primary-600 text-lg font-bold">{message}</h1>

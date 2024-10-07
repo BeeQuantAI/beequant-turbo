@@ -1,16 +1,31 @@
 "use client";
 import { useEffect } from "react";
-import { fetchUserInfo, useUser } from "./user-store";
+import { useRouter } from "@src/configs/navigation";
+import { useState } from "react";
+import { usePathname } from "@src/configs/navigation";
+import { Loading } from "../common/loading-animation";
 
 type Props = {
   children: React.ReactNode;
 };
+
 export function AuthProvider({ children }: Props) {
-  const user = useUser((s) => s.user);
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+  const pathname = usePathname();
+
   useEffect(() => {
-    //!TODO: init load can not get user form local storage lol... I can fix this shit now..
-    if (!user) fetchUserInfo();
-  }, [user]);
+    const user = sessionStorage.getItem("user-storage");
+    if (pathname === "/" && !user) {
+      router.push("/login");
+    } else {
+      setIsLoading(false);
+    }
+  }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return children;
 }

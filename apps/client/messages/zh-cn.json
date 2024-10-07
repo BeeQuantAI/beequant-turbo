@@ -17,12 +17,14 @@
     "system": "系统默认设置",
     "easyUsing": "或轻松使用",
     "submit": "提交",
+    "delete": "删除",
+    "cancel": "取消",
     "accountManagement": "账号管理"
   },
 
   "LoginPage": {
     "forgetPassword": "忘记密码?",
-    "rememberMe": "记住密码",
+    "staySignedIn": "保持登录状态",
     "createAccount": "创建帐户"
   },
 
@@ -34,11 +36,17 @@
       "congratulation": "请查看您的邮箱",
       "message": "我们已向您发送了验证邮件",
       "backToLogin": "返回登录"
+    },
+    "error": {
+      "alreadyExists": "帐户已存在",
+      "registrationFailed": "注册时发生错误，请稍后再试",
+      "emailSendingFailed": "验证邮件发送失败，请稍后再试",
+      "unknownError": "注册时发生错误，请稍后再试"
     }
   },
 
   "VerifyEmail": {
-    "succeed":{
+    "succeed": {
       "title": "恭喜您!",
       "message": "您已成功完成注册"
     },
@@ -51,6 +59,25 @@
         "invalidLink": "链接无效，已向您发送了新的验证邮件。",
         "unknownError": "邮件验证时出现错误，请重试。"
       }
+    }
+  },
+
+  "ForgotPasswordPage": {
+    "forgetPasswordTitle": "请输入邮箱",
+    "resetPasswordTitle": "重置密码",
+    "backTo": "返回",
+    "succeed": {
+      "title": "太棒了!",
+      "message": "您的密码已成功重置",
+      "backToLogin": "返回登录"
+    }
+  },
+
+  "NotFoundPage": {
+    "returnToLanding": "返回首页",
+    "returnToDashboard": "返回中控台",
+    "content": {
+      "message": "哦！无法找到您所寻找的页面"
     }
   },
 
@@ -90,11 +117,22 @@
       "invalid": "邮箱格式不正确"
     },
     "displayName": {
-      "description": "{optional, select, true {:} other {用户名：}}称长度在4到15个字符之间，只允许使用字母、数字、连字符和下划线",
+      "description": "{optional, select, true {:} other {用户名：}}长度在4到64个字符之间，只允许使用字母、数字、连字符和下划线",
       "required": "请输入用户名称",
       "invalid": "用户名称只能包含字母、数字、连字符和下划线",
       "minLength": "用户名称长度至少为4个字符",
-      "maxLength": "用户名称长度最多为32个字符"
+      "maxLength": "用户名称长度最多为64个字符"
+    },
+    "realName": {
+      "description": "{optional, select, true {:} other {真实姓名：}}长度在4到64个字符之间，只允许使用字母、数字、连字符和下划线",
+      "required": "请输入真实姓名",
+      "invalid": "真实姓名只能包含字母、数字、连字符和下划线",
+      "minLength": "真实姓名长度至少为4个字符",
+      "maxLength": "真实姓名长度最多为32个字符"
+    },
+    "mobile": {
+      "description": "{optional, select, true {:} other {手机号码：}}只允许使用数字和加号",
+      "invalid": "手机号码只能包含数字和符号'+' "
     },
     "password": {
       "description": "：密码长度在8到32个字符，必须包含至少一个字母、数字或特殊字符",
@@ -114,6 +152,52 @@
     "changePassword": {
       "currentPasswordWrong": "旧密码错误",
       "failed": "修改密码失败"
+    },
+    "updateExchangeKey": {
+      "succeed": "交易所密钥已成功更新!",
+      "notfound": "交易所密钥不存在!",
+      "invalid": "交易所密钥无效!",
+      "failed": "交易所密钥更新失败!"
+    },
+    "deleteExchangeKey": {
+      "succeed": "密钥删除成功。",
+      "failed": "删除密钥失败。",
+      "notfound": "密钥未找到。",
+      "invalid": "无效的密钥 ID。",
+      "error": "删除密钥时发生意外错误。"
+    },
+    "exchangeName": {
+      "required": "交易所名称是必填项"
+    },
+    "accessKey": {
+      "required": "API秘钥是必填项",
+      "maxLength": "API密钥必须在1至255个字符之间"
+    },
+    "secretKey": {
+      "required": "API密钥是必填项",
+      "maxLength": "密钥必须在1至255个字符之间"
+    },
+    "forgotPassword": {
+      "emailRequestSuccess": "如果该邮箱与现有账户关联，重置邮件将会发送到您的邮箱，请查收。",
+      "tokenInvalid": "重置密码链接无效或已过期。请返回登录页面，点击'忘记密码？'以获取新的重置链接。",
+      "resetPasswordError": "请求处理过程中出现错误，请稍后重试。"
+    },
+    "updateProfile": {
+      "succeed": "个人信息已成功更新!",
+      "failed": "更新失败，请重新提交。"
+    },
+    "platform": {
+      "required": "请选择一个平台"
+    },
+    "exchangeDisplayName": {
+      "minLength": "显示名称至少要有4个字符",
+      "maxLength": "显示名称最多不能超过64个字符",
+      "invalid": "显示名称只能包含字母、数字、连字符、空格和下划线",
+      "failed": "更新失败，请重新提交。",
+      "unknownError": "更新账户信息时发生未知错误,请稍后重试。"
+    },
+    "error": {
+      "unknown": "未知错误,请稍后重试。"
     }
   },
 
@@ -144,16 +228,82 @@
     "recent-transaction": "最近交易"
   },
 
+  "Profile": {
+    "update-profile-error": "更新失败，请重新提交。",
+    "header": "用户信息",
+    "sub-header": "更新你的用户信息",
+    "displayName": "用户昵称",
+    "email": "邮箱",
+    "reference": "推荐人",
+    "submit": "提交",
+    "invalid-input": "用户名称长度需要为4-15字符,且只包含数字,字母,横杠和下划线",
+    "unknown-error": "更新账户信息时发生未知错误"
+  },
+
   "UpdatePasswordPage": {
     "title": "修改密码",
     "subtitle": "修改您的密码",
     "oldPassword": "旧密码",
     "newPassword": "新密码",
-    "succeed": "您已成功重置密码！",
-    "button": "准备再次交易"
+    "successedPage": {
+      "title": "棒极了！",
+      "succeed": "您已成功重置密码！",
+      "button": "准备再次交易"
+    }
   },
 
-  "exchange": {},
+  "UpdateExchangeKeyPage": {
+    "title": "编辑密钥",
+    "subtitle": "更新您的交易所密钥",
+    "keyDisplayName": "密钥显示名称",
+    "exchange": "交易所",
+    "apiSecret": "API 秘钥",
+    "apiKey": "API 密钥",
+    "alertTitle": "注意！",
+    "alertDeleteTitle": "删除交易所密钥",
+    "alertDeleteMessage": "你即将删除此交易所密钥。此操作无法撤销。确定要继续吗？",
+    "alertMessage": "您将更新此交易所密钥，是否确定？",
+    "alertYes": "确定",
+    "alertCancel": "取消"
+  },
+
+  "crypto": {
+    "exchanges": {
+      "marketOverview": "市场概览",
+      "topTwenty": {
+        "title": "前20加密货币交易所",
+        "rank": "排名",
+        "name": "货币",
+        "marketCap": "市值",
+        "price": "价格",
+        "volume": "成交量",
+        "change24h": "24小时变化",
+        "change7d": "7天变化"
+      },
+      "topMarketCap": {
+        "title": "最高市值",
+        "subtitle": "按市值排名",
+        "symbol": "币种",
+        "marketCap": "市值",
+        "volume24h": "24小时内交易量"
+      },
+      "topClimbers": {
+        "title": "最高涨幅",
+        "subtitle": "按价格上涨表现",
+        "symbol": "币种",
+        "priceChange24h": "价格变化（24小时内）",
+        "priceChangePercentage24h": "涨幅百分比（24小时内）"
+      },
+      "topFallers": {
+        "title": "最高跌幅",
+        "subtitle": "按价格下跌表现",
+        "symbol": "币种",
+        "priceChange24h": "价格变化（24小时内）",
+        "priceChangePercentage24h": "跌幅百分比（24小时内）"
+      }
+    }
+  },
+
   "bot": {},
 
   "Landing": {
@@ -164,7 +314,7 @@
     "members": "成员",
     "supportTradingPairs": "支持的交易对",
     "totalEarned": "总收益",
-    "zh-cn":"中文",
+    "zh-cn": "中文",
     "en": "英文",
     "aiForTrading": "用于加密行业交易的 AI",
     "register": "注册",
@@ -251,6 +401,50 @@
     "weekChangeValue": "+0.19%",
     "weekChangeDetails": "[0.84]",
     "moreAboutTokenLink": "更多关于代币的信息"
+  },
+  "ExchangePage": {
+    "formContainer": {
+      "heading": "连接新交易所",
+      "nextButton": "下一步",
+      "backButton": "上一步",
+      "submitButton": "提交",
+      "cancelButton": "取消"
+    },
+    "selectPlatformPage": {
+      "title": "选择平台",
+      "platforms": {
+        "binance": "币安"
+      }
+    },
+    "inputKeyPage": {
+      "title": "填写您的API密钥",
+      "displayName": "显示名称",
+      "accessKey": "API密钥",
+      "secretKey": "密钥"
+    },
+    "successedPage": {
+      "title": "太棒了！",
+      "subtitle": "您的交易所密钥已成功添加",
+      "button": "返回交易所管理"
+    },
+    "errorCode": {
+      "10012": "交易所密钥已存在",
+      "10013": "当前交易所不受支持",
+      "10014": "交易所密钥无效",
+      "10015": "交易所密钥存储失败",
+      "default": "发生了意外错误，请稍后再试。"
+    }
+  },
+  "ExchangeManagement": {
+    "heading": "交易所管理",
+    "createExchangeButton": "连接交易所 +",
+    "exchangeCard": {
+      "exchange": "交易所",
+      "balance": "余额",
+      "unavaliable": "不可用",
+      "names": {
+        "binance": "币安"
+      }
+    }
   }
-
 }

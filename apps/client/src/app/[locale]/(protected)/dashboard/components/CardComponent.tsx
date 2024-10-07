@@ -12,6 +12,7 @@ type Props = {
   isSubtitleStyle?: boolean;
   customClass?: string; 
   titleColor?: string;
+  customPaddingBottom?: string;
 } & (
   | {
       type: "percentage";
@@ -19,7 +20,7 @@ type Props = {
     }
   | {
       type: "bar-chart";
-      data: Array<{ id: number; name: string; pv: number }>;
+      data: Array<{ id: number; name: string; pv: number }> ;
     }
 );
 
@@ -47,6 +48,7 @@ const CardComponent: React.FC<Props> = ({
   customClass = "", 
   titleColor, 
   type,
+  customPaddingBottom, 
   ...rest
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -63,7 +65,10 @@ const CardComponent: React.FC<Props> = ({
 
   return (
     <div className={`col-span-1 xl:col-span-1 lg:col-span-2 md:col-span-3 ${customClass}`}>
-      <div className={`bg-white pt-[25px] pb-[38px] px-[25px] rounded-lg shadow-[0_10px_30px_1px_rgba(0,0,0,0.06)] ${customClass}`}>
+      <div
+          className={`bg-primary-50 dark:bg-primary-900 pt-[25px] px-[25px] rounded-lg shadow-[0_10px_30px_1px_rgba(0,0,0,0.06)] ${customClass}`}
+          style={{ paddingBottom: customPaddingBottom || '38px' }}
+        >
         <div className="flex justify-between items-center mb-1">
           <h2
             className={`${

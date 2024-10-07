@@ -2,20 +2,24 @@
 import { useToggle } from "@src/utils";
 import clsx from "clsx";
 import { useRouter } from "@src/configs/navigation";
-import { logout } from "../../auth";
-import { useUser } from "../../auth/user-store";
+import { useLogout } from "@src/module/auth";
+import { useUser } from "@src/module/auth/user-store";
 import { LinearIcon, LinearIcons } from "../../common";
 import { DashboardRoute } from "../route";
 import { useTranslations } from "next-intl";
 import { AccountRoute } from "@src/module/account/layout/route";
+import { Loading } from "@src/module/common/loading-animation";
 
 export function AccountMenu() {
   const t = useTranslations();
   const user = useUser((s) => s.user);
   const router = useRouter();
+  const { revokeTokensAndClear } = useLogout();
   const [showDropdown, toggelShowDropdown] = useToggle(false);
 
-  const handleLogout = () => logout();
+  const handleLogout = async () => {
+    await revokeTokensAndClear();
+  };
 
   return (
     <div className="h-inherit relative ml-auto mr-[30px]">
@@ -49,7 +53,7 @@ export function AccountMenu() {
             </svg>
           </>
         )}
-        {!user && "Loading..."}
+        {!user && <Loading />}
       </button>
 
       <menu
@@ -85,7 +89,7 @@ export function AccountMenu() {
           <MenuItem
             icon="exit"
             label={t("Shared.logout")}
-            onClick={handleLogout}
+            onClick={() => handleLogout()}
           />
         </div>
       </menu>
@@ -105,11 +109,12 @@ export type MenuItemProps = {
   label: string;
   onClick: () => void;
 };
+
 function MenuItem(props: MenuItemProps) {
   return (
     <button
       className={clsx(
-        "group/button text-primary-600 relative flex h-8 w-full gap-[10px] px-[20px] py-[9px] text-left text-sm transition-colors duration-300",
+        "group/button text-primary-600 relative flex min-h-8 w-full gap-[10px] px-[20px] py-[9px] text-left text-sm transition-colors duration-300",
         "bg-primary-50 dark:bg-primary-900 dark:hover:bg-primary-700 hover:bg-accent-50",
         "hover:before:bg-accent-900 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:transition-colors before:duration-300",
       )}

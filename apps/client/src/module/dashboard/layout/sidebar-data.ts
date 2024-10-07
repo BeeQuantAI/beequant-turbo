@@ -1,11 +1,14 @@
 "use client";
-import { logout } from "@src/module/auth";
+import { useLogout } from "@src/module/auth";
 import { useTheme } from "@src/module/system";
 import { useRouter } from "@src/configs/navigation";
 import { AppSettingRoute, DashboardRoute } from "../route";
 import { SidebarMenuItem } from "./sidebar-menu";
 import { useTranslations } from "next-intl";
 import { AccountRoute } from "@src/module/account/layout/route";
+import { useUser } from "@src/module/auth/user-store";
+import { CryptoRoutes } from "@src/module/crypto/route";
+import { exchangeRoutes } from "@src/module/exchange";
 
 export function useSidebar() {
   const t = useTranslations();
@@ -14,7 +17,7 @@ export function useSidebar() {
   const cryptoeconomy = useCryptoEconomyMenu();
   const theme = useThemeMenu();
   const account = useAccount();
-  const logoutMenu = useLogout();
+  const logoutMenu = useLogoutMenu();
 
   const menu: SidebarMenuItem[] = [
     {
@@ -43,11 +46,11 @@ export function useSidebar() {
       options: [
         {
           label: t("Sidebar.account.profile"),
-          onClick: () => console.log("Navigate to Profile"),
+          onClick: () => router.push(DashboardRoute.Profile.Path),
         },
         {
           label: t("Sidebar.account.exchangeManagement"),
-          onClick: () => console.log("Navigate to Exchange Management"),
+          onClick: () => router.push(exchangeRoutes.exchangePage.Path),
         },
         {
           label: t("Shared.accountManagement"),
@@ -103,7 +106,7 @@ export function useSidebar() {
         },
         {
           label: t("Sidebar.cryptoEconomy.exchange"),
-          onClick: () => console.log("Navigate to Exchanges"),
+          onClick: () => router.push(CryptoRoutes.ExchangesPage.Path),
         },
         {
           label: t("Sidebar.cryptoEconomy.exchangeDetails"),
@@ -133,12 +136,15 @@ export function useSidebar() {
     };
   }
 
-  function useLogout(): SidebarMenuItem {
+  function useLogoutMenu(): SidebarMenuItem {
+    const { revokeTokensAndClear } = useLogout();
     return {
       type: "button",
       icon: "exit",
       label: t("Shared.logout"),
-      onClick: () => logout(),
+      onClick: async () => {
+        await revokeTokensAndClear();
+      },
     };
   }
 }

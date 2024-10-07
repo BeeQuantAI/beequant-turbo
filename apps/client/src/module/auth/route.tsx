@@ -1,4 +1,5 @@
 import { Link } from "@src/configs/navigation";
+import React from "react";
 
 type RouteLinkProps = {
   children: React.ReactNode;
@@ -41,13 +42,13 @@ const ForgetPassword = {
   ),
 };
 
-const RegisterSuccessed = {
+const ResetPassword = {
   Metadata: {
-    title: "Register Successed | BeeQuant",
+    title: "Reset Password | BeeQuant",
   },
-  Path: "/register-successed" as const,
+  Path: "/reset-password" as const,
   Link: ({ children, className }: RouteLinkProps) => (
-    <Link href={RegisterSuccessed.Path} className={className}>
+    <Link href={ResetPassword.Path} className={className}>
       {children}
     </Link>
   ),
@@ -65,23 +66,43 @@ const VerifyEmail = {
   ),
 };
 
-const VerifyEmailSuccessed = {
+const PageNotFound = {
   Metadata: {
-    title: "Verify Successed | BeeQuant",
+    title: "Page Not Found | BeeQuant",
   },
-  Path: "/verify-email-successed" as const,
+  Path: "/not-found" as const,
   Link: ({ children, className }: RouteLinkProps) => (
-    <Link href={VerifyEmailSuccessed.Path} className={className}>
+    <Link href={PageNotFound.Path} className={className}>
       {children}
     </Link>
   ),
 };
 
+const validRoutes = [
+  "/",
+  "login",
+  "register",
+  "forgot-password",
+  "reset-password",
+  "verify-email",
+  "account/change/password",
+  "account/management",
+  "account/setting",
+  "appsetting",
+  "dashboard",
+  "dashboard/leads",
+  "dashboard/profile",
+  "exchange",
+  "exchange/update-exchange",
+  "exchange/create-exchange",
+];
+
 export const AuthRoute = {
   Login,
   Register,
   ForgetPassword,
-  RegisterSuccessed,
+  ResetPassword,
   VerifyEmail,
-  VerifyEmailSuccessed,
+  validRoutes,
+  PageNotFound,
 };

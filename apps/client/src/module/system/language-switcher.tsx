@@ -34,7 +34,7 @@ export function useLanguage() {
       setLanguage(locale as Locales);
       setLoading(false);
     });
-  }, []);
+  }, [setLanguage]);
 
   function languageSwitcher({
     path = AppSettingRoute.AppSetting.Path,

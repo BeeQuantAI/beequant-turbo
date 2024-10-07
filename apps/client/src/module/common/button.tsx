@@ -15,12 +15,20 @@ const buttonVariants = cva(
           "text-accent-400 border-accent-400 text-md bg-transparent",
           "before:transition-width before:transition-height before:bg-accent-400 hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:duration-500 before:ease-in-out hover:text-white hover:before:-z-50",
         ],
+        highlight: [
+          "text-md border-[#eb5765] bg-[#eb5765] text-white",
+          "before:transition-width before:transition-height hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-[#e83535] before:duration-500 before:ease-in-out hover:before:-z-50",
+        ],
         primary: [
           "border-[#0D6EFD] bg-[#0D6EFD] text-[16px] text-white",
           "hover:bg-[#0b5ed7]",
         ],
         secondary: [
           "text-md border-[#D8DFE9] bg-[#D8DFE9] text-[#787985]",
+          "before:transition-width before:transition-height hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-[#b8c5d7] before:duration-500 before:ease-in-out hover:before:-z-50",
+        ],
+        actionPrimary: [
+          "text-md dark:text-primary-50 border-[#D8DFE9] text-[#787985]",
           "before:transition-width before:transition-height hover:before:h-btn-h-cover hover:before:w-btn-w-cover relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-[#b8c5d7] before:duration-500 before:ease-in-out hover:before:-z-50",
         ],
       },

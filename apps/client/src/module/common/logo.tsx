@@ -1,5 +1,4 @@
 "use client";
-
 import { useTheme } from "../system";
 
 export function Logo() {
