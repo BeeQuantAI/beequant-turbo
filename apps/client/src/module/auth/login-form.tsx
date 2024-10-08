@@ -73,7 +73,6 @@ export function LoginForm() {
       if (code === 200) {
         const token = data?.login.data;
         token && Cookies.set("token", token);
-        setLoading(false);
         await fetchUserInfo();
         router.push(redirectUrl);
       } else if (code === 10010) {
@@ -93,8 +92,6 @@ export function LoginForm() {
     } catch (error) {
       setLoading(false);
       setError("root", { message: t("Notifications.login.failed") });
-    } finally {
-      setLoading(false);
     }
   });
 

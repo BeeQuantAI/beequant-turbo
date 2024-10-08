@@ -12,6 +12,7 @@ import { Successed } from "@src/module/common";
 import { RESET_PASSWORD } from "@src/graphql/auth";
 import { useMutation } from "@apollo/client";
 import { ResetPasswordInput } from "@src/graphql";
+import { Loading } from "../common/loading-animation"; 
 
 type ResetPasswordFormProps = {
   searchParams: { [key: string]: string | undefined };
@@ -24,6 +25,7 @@ export function ResetPasswordForm({ searchParams }: ResetPasswordFormProps) {
   const passwordSchema = passwordValidationSchema(t);
   const [isSuccess, setIsSuccess] = useState(false);
   const [resetPassword] = useMutation(RESET_PASSWORD);
+  const [loading, setLoading] = useState(false);
 
   type FormSchema = z.infer<typeof formSchema>;
   const formSchema = z
@@ -50,14 +52,16 @@ export function ResetPasswordForm({ searchParams }: ResetPasswordFormProps) {
   });
 
   async function action(payload: ResetPasswordPayload) {
+    setLoading(true);
     const { data } = await resetPassword({
       variables: {
         input: payload,
       },
     });
-
     const code = data?.resetPassword?.code;
     const message = data?.resetPassword?.message;
+
+    setLoading(false); 
 
     if (code === 200) {
       setIsSuccess(true);
@@ -102,35 +106,38 @@ export function ResetPasswordForm({ searchParams }: ResetPasswordFormProps) {
   }
 
   return (
-    <AuthFormContainer
-      onSubmit={onSubmit}
-      error={errors.root?.message}
-      title={t("ForgotPasswordPage.resetPasswordTitle")}
-    >
-      <ControlledPasswordInput
-        label={t("Shared.password")}
-        tooltips={t("Notifications.password.description")}
-        name="password"
-        control={control}
-        autoComplete="new-password"
-      />
-      <ControlledPasswordInput
-        label={t("Shared.confirmPassword")}
-        name="confirmPassword"
-        control={control}
-        autoComplete="new-password"
-      />
+    <>
+      {loading && <Loading />} 
+      <AuthFormContainer
+        onSubmit={onSubmit}
+        error={errors.root?.message}
+        title={t("ForgotPasswordPage.resetPasswordTitle")}
+      >
+        <ControlledPasswordInput
+          label={t("Shared.password")}
+          tooltips={t("Notifications.password.description")}
+          name="password"
+          control={control}
+          autoComplete="new-password"
+        />
+        <ControlledPasswordInput
+          label={t("Shared.confirmPassword")}
+          name="confirmPassword"
+          control={control}
+          autoComplete="new-password"
+        />
 
-      <Button type="submit" className="my-5">
-        {t("Shared.submit")}
-      </Button>
+        <Button type="submit" className="my-5">
+          {t("Shared.submit")}
+        </Button>
 
-      <span className="text-center text-[13px]">
-        {t("ForgotPasswordPage.backTo")}
-        <AuthRoute.Login.Link className="text-accent-400 hover:text-accent-400">
-          {t("Shared.signIn")}
-        </AuthRoute.Login.Link>
-      </span>
-    </AuthFormContainer>
+        <span className="text-center text-[13px]">
+          {t("ForgotPasswordPage.backTo")}
+          <AuthRoute.Login.Link className="text-accent-400 hover:text-accent-400">
+            {t("Shared.signIn")}
+          </AuthRoute.Login.Link>
+        </span>
+      </AuthFormContainer>
+    </>
   );
 }
