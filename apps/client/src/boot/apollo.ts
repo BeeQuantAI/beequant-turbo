@@ -4,7 +4,9 @@ import {
   createHttpLink,
   InMemoryCache,
   Observable,
+  split,
 } from "@apollo/client";
+import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
 import Cookies from "js-cookie";
@@ -12,10 +14,38 @@ import {
   generateAccessToken,
   revokeTokensAndClear,
 } from "@src/module/auth/auth-service";
+import { url } from "inspector";
+import { env } from "process";
+import { createClient } from "graphql-ws";
+import { getMainDefinition } from "@apollo/client/utilities";
 
 const httpLink = createHttpLink({
   uri: process.env.NEXT_PUBLIC_DEV_SERVER_URL,
 });
+
+const wsLink = new GraphQLWsLink(
+  createClient({
+    url: process.env.NEXT_PUBLIC_DEV_WS_URL || "ws://localhost:3000/graphql",
+    connectionParams: async () => {
+      const { token } = await handleToken();
+      return {
+        Authorization: token ? `Bearer ${token}` : "",
+      };
+    },
+  }),
+);
+
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === "OperationDefinition" &&
+      definition.operation === "subscription"
+    );
+  },
+  wsLink,
+  httpLink,
+);
 
 let isRefreshing = false;
 
@@ -91,7 +121,7 @@ const errorLink = onError(({ graphQLErrors, operation, forward }) => {
   return forward(operation);
 });
 
-const link = ApolloLink.from([authLink, errorLink, responseLink, httpLink]);
+const link = ApolloLink.from([authLink, errorLink, responseLink, splitLink]);
 
 export const client = new ApolloClient({
   ssrMode: typeof window === "undefined",

@@ -355,6 +355,11 @@ export type ResultForUiKlineType = {
   page?: Maybe<Page>;
 };
 
+export type Subscription = {
+  __typename?: "Subscription";
+  updateMarketOverview: MarketOverviewResult;
+};
+
 export type UpdateExchangeKeyInput = {
   /** Access key */
   accessKey: Scalars["String"]["input"];
@@ -609,6 +614,66 @@ export type GetMarketOverviewQueryVariables = Exact<{ [key: string]: never }>;
 export type GetMarketOverviewQuery = {
   __typename?: "Query";
   getMarketOverview: {
+    __typename?: "MarketOverviewResult";
+    code: number;
+    message: string;
+    data?: {
+      __typename?: "MarketOverview";
+      topMarketCap: Array<{
+        __typename?: "CoinOverview";
+        symbol: string;
+        name: string;
+        marketCap: number;
+        price: number;
+        volume24h: number;
+        priceChange24h: number;
+        priceChangePercentage24h: number;
+        priceChangePercentage7d: number;
+      }>;
+      topClimbers: Array<{
+        __typename?: "CoinOverview";
+        symbol: string;
+        name: string;
+        marketCap: number;
+        price: number;
+        volume24h: number;
+        priceChange24h: number;
+        priceChangePercentage24h: number;
+        priceChangePercentage7d: number;
+      }>;
+      topFallers: Array<{
+        __typename?: "CoinOverview";
+        symbol: string;
+        name: string;
+        marketCap: number;
+        price: number;
+        volume24h: number;
+        priceChange24h: number;
+        priceChangePercentage24h: number;
+        priceChangePercentage7d: number;
+      }>;
+      top20Cryptocurrencies: Array<{
+        __typename?: "CoinOverview";
+        symbol: string;
+        name: string;
+        marketCap: number;
+        price: number;
+        volume24h: number;
+        priceChange24h: number;
+        priceChangePercentage24h: number;
+        priceChangePercentage7d: number;
+      }>;
+    } | null;
+  };
+};
+
+export type UpdateMarketOverviewSubscriptionVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type UpdateMarketOverviewSubscription = {
+  __typename?: "Subscription";
+  updateMarketOverview: {
     __typename?: "MarketOverviewResult";
     code: number;
     message: string;
@@ -1687,6 +1752,232 @@ export const GetMarketOverviewDocument = {
 } as unknown as DocumentNode<
   GetMarketOverviewQuery,
   GetMarketOverviewQueryVariables
+>;
+export const UpdateMarketOverviewDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "subscription",
+      name: { kind: "Name", value: "UpdateMarketOverview" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateMarketOverview" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "code" } },
+                { kind: "Field", name: { kind: "Name", value: "message" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "data" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "topMarketCap" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "symbol" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "marketCap" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "price" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "volume24h" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "priceChange24h" },
+                            },
+                            {
+                              kind: "Field",
+                              name: {
+                                kind: "Name",
+                                value: "priceChangePercentage24h",
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: {
+                                kind: "Name",
+                                value: "priceChangePercentage7d",
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "topClimbers" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "symbol" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "marketCap" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "price" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "volume24h" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "priceChange24h" },
+                            },
+                            {
+                              kind: "Field",
+                              name: {
+                                kind: "Name",
+                                value: "priceChangePercentage24h",
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: {
+                                kind: "Name",
+                                value: "priceChangePercentage7d",
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "topFallers" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "symbol" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "marketCap" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "price" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "volume24h" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "priceChange24h" },
+                            },
+                            {
+                              kind: "Field",
+                              name: {
+                                kind: "Name",
+                                value: "priceChangePercentage24h",
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: {
+                                kind: "Name",
+                                value: "priceChangePercentage7d",
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "top20Cryptocurrencies" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "symbol" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "marketCap" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "price" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "volume24h" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "priceChange24h" },
+                            },
+                            {
+                              kind: "Field",
+                              name: {
+                                kind: "Name",
+                                value: "priceChangePercentage24h",
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: {
+                                kind: "Name",
+                                value: "priceChangePercentage7d",
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  UpdateMarketOverviewSubscription,
+  UpdateMarketOverviewSubscriptionVariables
 >;
 export const GetExchangeKeyByIdDocument = {
   kind: "Document",

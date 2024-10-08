@@ -6,19 +6,32 @@ import { getMarketOverview } from "./crypto-service";
 import { MarketOverview } from "@src/graphql";
 import { Skeleton } from "./layout/skeleton";
 import { TopThreeLists } from "./crypto-economy";
+import { useSubscription } from "@apollo/client";
+import { GET_MARKET_OVERVIEW_SUB } from "@src/graphql/crypto";
 
 export function ExchangesPage() {
-  const [data, setData] = useState<MarketOverview>();
+  const [exchanges, setExchanges] = useState<MarketOverview>();
   const [loading, setLoading] = useState(true);
+  const { data } = useSubscription(GET_MARKET_OVERVIEW_SUB);
   async function fetchMarketOverview() {
     setLoading(true);
     const res = await getMarketOverview();
     if (res.getMarketOverview.code === 200) {
       const data = res.getMarketOverview.data!;
-      setData(data);
+      setExchanges(data);
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    if (
+      data?.updateMarketOverview.code === 200 &&
+      data.updateMarketOverview.data
+    ) {
+      setExchanges(data.updateMarketOverview.data);
+      setLoading(false);
+    }
+  }, [data]);
 
   useEffect(() => {
     fetchMarketOverview();
@@ -26,17 +39,17 @@ export function ExchangesPage() {
 
   return (
     <>
-      {loading || !data ? (
+      {loading || !exchanges ? (
         <Skeleton />
       ) : (
         <div className="flex flex-col gap-8">
           <TopThreeLists
-            topClimbers={data.topClimbers}
-            topFallers={data.topFallers}
-            topMarketCap={data.topMarketCap}
+            topClimbers={exchanges.topClimbers}
+            topFallers={exchanges.topFallers}
+            topMarketCap={exchanges.topMarketCap}
           />
           <TopTwentyCurrencyTable
-            top20Cyrptocurrencies={data.top20Cryptocurrencies}
+            top20Cyrptocurrencies={exchanges.top20Cryptocurrencies}
             refreshHandler={fetchMarketOverview}
           />
         </div>

@@ -50,3 +50,54 @@ export const GET_MARKET_OVERVIEW = gql(`
     }
 }
 `);
+
+export const GET_MARKET_OVERVIEW_SUB = gql(`
+    subscription UpdateMarketOverview {
+    updateMarketOverview {
+        code
+        message
+        data {
+            topMarketCap {
+                symbol
+                name
+                marketCap
+                price
+                volume24h
+                priceChange24h
+                priceChangePercentage24h
+                priceChangePercentage7d
+            }
+            topClimbers {
+                symbol
+                name
+                marketCap
+                price
+                volume24h
+                priceChange24h
+                priceChangePercentage24h
+                priceChangePercentage7d
+            }
+            topFallers {
+                symbol
+                name
+                marketCap
+                price
+                volume24h
+                priceChange24h
+                priceChangePercentage24h
+                priceChangePercentage7d
+            }
+            top20Cryptocurrencies {
+                symbol
+                name
+                marketCap
+                price
+                volume24h
+                priceChange24h
+                priceChangePercentage24h
+                priceChangePercentage7d
+            }
+        }
+    }
+}
+`);
