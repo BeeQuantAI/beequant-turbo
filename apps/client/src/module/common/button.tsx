@@ -59,6 +59,7 @@ export function Button({
 }: Props) {
   return (
     <button
+      onMouseDown={(e) => e.preventDefault()}
       className={buttonVariants({
         variant,
         size,
