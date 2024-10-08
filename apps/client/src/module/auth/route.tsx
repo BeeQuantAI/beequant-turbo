@@ -96,6 +96,7 @@ const validRoutes = [
   "exchange",
   "exchange/update-exchange",
   "exchange/create-exchange",
+  "crypto/details",
   "crypto/exchanges",
 ];
 

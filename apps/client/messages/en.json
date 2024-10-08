@@ -61,7 +61,6 @@
       }
     }
   },
-
   "ForgotPasswordPage": {
     "forgetPasswordTitle": "Enter Your Email",
     "resetPasswordTitle": "Reset Password",
@@ -135,7 +134,8 @@
     },
     "mobile": {
       "description": "{optional, select, true {:} other {Mobile: }} only contain digit number and '+' ",
-      "invalid": "mobile number can only contain digit number and '+' "
+      "invalid": "mobile number can only contain digit number and '+' ",
+      "maxLength": "Display name must be at most 64 characters"
     },
     "password": {
       "description": ":8 to 32 characters, including letter, number and special character",
@@ -203,8 +203,53 @@
       "maxLength": "Display name must be at most 64 characters",
       "invalid": "Display name must contain only letters, numbers, space, hyphens and underscores"
     }
-  },
-
+    },
+    "updateExchangeKey": {
+      "succeed": "Exchange key updated successfully!",
+      "notfound": "Exchange key does not exist!",
+      "invalid": "Exchange key is invalid!",
+      "failed": "Exchange key update failed!"
+    },
+    "deleteExchangeKey": {
+      "succeed": "Exchange key deleted successfully.",
+      "failed": "Failed to delete exchange key.",
+      "notfound": "Exchange key not found.",
+      "invalid": "Invalid exchange key ID.",
+      "error": "An unexpected error occurred while deleting the exchange key."
+    },
+    "exchangeName": {
+      "required": "Exchange name is required"
+    },
+    "accessKey": {
+      "required": "Access key is required",
+      "maxLength": "The access key must be between 1 and 255 characters."
+    },
+    "secretKey": {
+      "required": "Secret key is required",
+      "maxLength": "The secret key must be between 1 and 255 characters."
+    },
+    "forgotPassword": {
+      "emailRequestSuccess": "If the email is associated with an account, a reset email will be sent shortly. Please check your mailbox.",
+      "tokenInvalid": "Reset password link is invalid or expired. Please back to Login page and click ' Forgot password? ' to receive a new reset link.",
+      "resetPasswordError": "An error occurred while processing your request. Please try again later."
+    },
+    "updateProfile": {
+      "succeed": "Profile updated successfully!",
+      "failed": "Profile update failed. Please try again.",
+      "unknownError": "An error occurred while updating the profile. Please try again later."
+    },
+    "error": {
+      "unknown": "An error occurred. Please try again later.",
+      "failed": "Profile update failed. Please try again."
+    },
+    "platform": {
+      "required": "Please select a platform"
+    },
+    "exchangeDisplayName": {
+      "minLength": "Display name must be at least 4 characters",
+      "maxLength": "Display name must be at most 64 characters",
+      "invalid": "Display name must contain only letters, numbers, space, hyphens and underscores"
+    },
   "SettingPage": {
     "title": "Settings",
     "subtitle": "Update your profile",
@@ -270,7 +315,11 @@
     "alertYes": "Confirm",
     "alertCancel": "Cancel"
   },
-
+    "successedPage": {
+      "title": "Cool !",
+      "succeed": "You have successfully reset your password!",
+      "button": "Ready to trade again"
+    },
   "crypto": {
     "exchanges": {
       "marketOverview": "Market Overview",
@@ -310,20 +359,12 @@
   },
 
   "bot": {},
-
   "Landing": {
     "home": "Home",
-    "company": "Company",
-    "aboutUs": "About Us",
-    "daysOnTheMarket": "Days on the market",
-    "members": "Members",
-    "supportTradingPairs": "Support trading pairs",
-    "totalEarned": "Total earned",
     "zh-cn": "Chinese",
     "en": "English",
     "aiForTrading": "for trading in the crypto industry",
     "register": "Register",
-    "aboutUs": "About us",
     "registrationOpen": "Registration Open For Limited Time",
     "signUpText": "Sign up and take part in our alpha test, get a chance to win",
     "limitedSpotsText": "The number of registration spots is limited.",
@@ -458,5 +499,36 @@
       "10034": "The request took longer than expected and has timed out. Please check your connection or try again.",
       "default": "An unknown error occurred, please try again."
     }
+  },
+  "CryptoDetail":{
+    "candlestick": "Candlestick",
+    "line": "Line",
+    "ONEDAY": "1 Day",
+    "ONEWEEK": "1 Week",
+    "ONEMONTH": "1 Month",
+    "SIXMONTHS": "6 Months",
+    "ONEYEAR": "1 Year",
+    "FIVEYEARS": "5 Years",
+    "title": "Coin Overview",
+    "price": "Price",
+    "volume24h": "Volume 24h",
+    "quoteVolume24h": "Quote Volume 24h",
+    "priceChange24h": "Price Change 24h",
+    "priceChangePercentage24h": "Price Change 24h\n(percentage)",
+    "low24h": "Low 24h",
+    "high24h": "High 24h",
+    "marketInfo": "Market Info",
+    "allTimeHigh": "All Time High(USD)",
+    "circulatingSupply": "Circulating Supply",
+    "totalSupply": "Total Supply",
+    "maxSupply": "Max Supply",
+    "technicalAnalysis": "Technical Analysis",
+    "strongSell": "Strong Sell",
+    "sell": "Sell",
+    "neutral": "Neutral",
+    "buy": "Buy",
+    "strongBuy": "Strong Buy",
+    "createBot": "Create Bot",
+    "createBotDescription": "Automate your trades and let the bot work for you around the clock!"
   }
 }

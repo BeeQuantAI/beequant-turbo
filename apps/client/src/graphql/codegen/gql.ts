@@ -29,6 +29,10 @@ const documents = {
     types.ChangePasswordDocument,
   "\n  mutation RevokeTokens {\n    revokeTokens\n  }\n":
     types.RevokeTokensDocument,
+  "\n  query GetUiKlines($input: GetUiKlineDto!) {\n    getUiKlines(input: $input) {\n      code\n      message\n      data {\n        openTime\n        openPrice\n        highPrice\n        lowPrice\n        closePrice\n        volume\n        closeTime\n        quoteAssetVolume\n        numberOfTrades\n        takerBuyBaseAssetVolume\n        takerBuyQuoteAssetVolume\n      }\n    }\n  }\n":
+    types.GetUiKlinesDocument,
+  "\n  query GetCoinDetails($symbol: String!) {\n    getCoinDetails(symbol: $symbol) {\n      code\n      message\n      data {\n        __typename\n        symbol\n        price\n        volume24h\n        priceChange24h\n        priceChangePercentage24h\n        low24h\n        high24h\n        ath\n        circulationSupply\n        totalSupply\n        maxSupply\n        name                \n        quoteVolume24h\n      }\n    }\n  }\n":
+    types.GetCoinDetailsDocument,
   "\n    query GetMarketOverview {\n    getMarketOverview {\n        code\n        message\n        data {\n            topMarketCap {\n                symbol\n                name\n                marketCap\n                price\n                volume24h\n                priceChange24h\n                priceChangePercentage24h\n                priceChangePercentage7d\n            }\n            topClimbers {\n                symbol\n                name\n                marketCap\n                price\n                volume24h\n                priceChange24h\n                priceChangePercentage24h\n                priceChangePercentage7d\n            }\n            topFallers {\n                symbol\n                name\n                marketCap\n                price\n                volume24h\n                priceChange24h\n                priceChangePercentage24h\n                priceChangePercentage7d\n            }\n            top20Cryptocurrencies {\n                symbol\n                name\n                marketCap\n                price\n                volume24h\n                priceChange24h\n                priceChangePercentage24h\n                priceChangePercentage7d\n            }\n        }\n    }\n}\n":
     types.GetMarketOverviewDocument,
   "\n  query GetExchangeKeyById($id: String!) {\n    getExchangeKeyById(id: $id) {\n      code\n      message\n      data {\n        displayName\n        accessKey\n        secretKey\n        exchangeName\n      }\n    }\n  }\n":
@@ -113,6 +117,18 @@ export function gql(
 export function gql(
   source: "\n  mutation RevokeTokens {\n    revokeTokens\n  }\n",
 ): (typeof documents)["\n  mutation RevokeTokens {\n    revokeTokens\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "\n  query GetUiKlines($input: GetUiKlineDto!) {\n    getUiKlines(input: $input) {\n      code\n      message\n      data {\n        openTime\n        openPrice\n        highPrice\n        lowPrice\n        closePrice\n        volume\n        closeTime\n        quoteAssetVolume\n        numberOfTrades\n        takerBuyBaseAssetVolume\n        takerBuyQuoteAssetVolume\n      }\n    }\n  }\n",
+): (typeof documents)["\n  query GetUiKlines($input: GetUiKlineDto!) {\n    getUiKlines(input: $input) {\n      code\n      message\n      data {\n        openTime\n        openPrice\n        highPrice\n        lowPrice\n        closePrice\n        volume\n        closeTime\n        quoteAssetVolume\n        numberOfTrades\n        takerBuyBaseAssetVolume\n        takerBuyQuoteAssetVolume\n      }\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "\n  query GetCoinDetails($symbol: String!) {\n    getCoinDetails(symbol: $symbol) {\n      code\n      message\n      data {\n        __typename\n        symbol\n        price\n        volume24h\n        priceChange24h\n        priceChangePercentage24h\n        low24h\n        high24h\n        ath\n        circulationSupply\n        totalSupply\n        maxSupply\n        name                \n        quoteVolume24h\n      }\n    }\n  }\n",
+): (typeof documents)["\n  query GetCoinDetails($symbol: String!) {\n    getCoinDetails(symbol: $symbol) {\n      code\n      message\n      data {\n        __typename\n        symbol\n        price\n        volume24h\n        priceChange24h\n        priceChangePercentage24h\n        low24h\n        high24h\n        ath\n        circulationSupply\n        totalSupply\n        maxSupply\n        name                \n        quoteVolume24h\n      }\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
