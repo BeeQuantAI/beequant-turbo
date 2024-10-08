@@ -1,4 +1,5 @@
 import { useRouter } from "@src/configs/navigation";
+import { symbol } from "zod";
 
 interface TableRowProps<T> {
   data: T[];
@@ -15,10 +16,11 @@ export function TableRow<T extends Record<string, any>>({
       className="cursor-pointer"
       onClick={(e) => {
         const target = e.target as HTMLElement;
-        const symbol = target
+        const name = target
           .closest("tr")
           ?.querySelector("#symbol")?.textContent;
-        router.push(`/crypto/details/${symbol}`);
+        const symbol = getSymbol(name!);
+        router.push(`/crypto/details/${symbol}USDT`);
       }}
     >
       {data.map((item, index) =>
@@ -60,4 +62,34 @@ export function TableRow<T extends Record<string, any>>({
       )}
     </tbody>
   );
+}
+
+const COIN_LIST = [
+  { symbol: "BTC", fullName: "Bitcoin" },
+  { symbol: "ETH", fullName: "Ethereum" },
+  { symbol: "BNB", fullName: "BNB" },
+  { symbol: "SOL", fullName: "Solana" },
+  { symbol: "USDC", fullName: "USD Coin" },
+  { symbol: "XRP", fullName: "XRP" },
+  { symbol: "DOGE", fullName: "Dogecoin" },
+  { symbol: "TON", fullName: "Toncoin" },
+  { symbol: "ADA", fullName: "Cardano" },
+  { symbol: "SHIB", fullName: "Shiba Inu" },
+  { symbol: "AVAX", fullName: "Avalanche" },
+  { symbol: "TRX", fullName: "Tron" },
+  { symbol: "DOT", fullName: "Polkadot" },
+  { symbol: "BCH", fullName: "Bitcoin cash" },
+  { symbol: "LINK", fullName: "Chainlink" },
+  { symbol: "NEAR", fullName: "NEAR Protocol" },
+  { symbol: "MATIC", fullName: "Polygon" },
+  {
+    symbol: "ICP",
+    fullName: "Internet Computer",
+  },
+  { symbol: "LTC", fullName: "Litecoin" },
+  { symbol: "DAI", fullName: "Dai" },
+];
+
+function getSymbol(fullName: string) {
+  return COIN_LIST.find((coin) => coin.fullName === fullName)?.symbol;
 }
