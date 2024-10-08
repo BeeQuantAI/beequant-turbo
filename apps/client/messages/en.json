@@ -12,14 +12,14 @@
     "displayName": "Display Name{optional, select, true {(optional)} other {}}",
     "logout": "Logout",
     "theme": "Theme",
-    "lightTheme": "Light Theme",
-    "darkTheme": "Dark Theme",
+    "lightTheme": "Light",
+    "darkTheme": "Dark",
     "system": "System",
     "easyUsing": "Or Easy Using",
     "submit": "Submit",
     "delete": "Delete",
     "cancel": "Cancel",
-    "accountManagement": "Account Management"
+    "accountManagement": "Security"
   },
 
   "LoginPage": {
@@ -83,24 +83,29 @@
   "Sidebar": {
     "dashboard": "Dashboard",
     "bots": {
-      "categoryName": "Bots",
+      "categoryName": "remain unchanged",
       "dashboard": "Bots Dashboard",
       "management": "Bots Management",
       "create": "Bot Create",
       "details": "Bot Details"
     },
     "cryptoEconomy": {
-      "categoryName": "Cryptoeconomy",
-      "prices": "Prices",
+      "categoryName": "Market",
+      "prices": "Market Overview (Page)",
       "pricesDetails": "Price Details",
       "exchange": "Exchanges",
       "exchangeDetails": "Exchange Details"
     },
     "theme": {},
+    "language": {
+      "categoryName": "Language",  
+      "english": "English",      
+      "chinese": "Chinese" 
+    },
     "account": {
       "categoryName": "Account",
       "profile": "Profile",
-      "exchangeManagement": "Exchange Management",
+      "exchangeManagement": "Connect Management",
       "appSetting": "App Setting"
     },
     "logOut": "Log Out"
@@ -108,9 +113,9 @@
 
   "AccountMenu": {
     "profile": "Profile",
-    "wallet": "Wallet",
-    "settings": "Settings",
-    "accountManagement": "Account Management"
+    "wallet": "Favourite",
+    "settings": "Profile Setting",
+    "accountManagement": "Security"
   },
 
   "Notifications": {

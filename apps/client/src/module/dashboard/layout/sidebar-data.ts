@@ -1,6 +1,6 @@
 "use client";
 import { useLogout } from "@src/module/auth";
-import { useTheme } from "@src/module/system";
+import { useTheme, useLanguage } from "@src/module/system";
 import { useRouter } from "@src/configs/navigation";
 import { AppSettingRoute, DashboardRoute } from "../route";
 import { SidebarMenuItem } from "./sidebar-menu";
@@ -16,6 +16,7 @@ export function useSidebar() {
   const cryptoeconomy = useCryptoEconomyMenu();
   const theme = useThemeMenu();
   const account = useAccount();
+  const language = useLanguageMenu();  
   const logoutMenu = useLogoutMenu();
 
   const menu: SidebarMenuItem[] = [
@@ -30,6 +31,7 @@ export function useSidebar() {
     cryptoeconomy,
     { type: "divider" },
     theme,
+    language,  
     account,
     { type: "divider" },
     logoutMenu,
@@ -43,10 +45,10 @@ export function useSidebar() {
       icon: "user",
       label: t("Sidebar.account.categoryName"),
       options: [
-        {
-          label: t("Sidebar.account.profile"),
-          onClick: () => router.push(DashboardRoute.Profile.Path),
-        },
+            // {
+            //   label: t("Sidebar.account.profile"),
+            //   onClick: () => router.push(DashboardRoute.Profile.Path),
+            // },
         {
           label: t("Sidebar.account.exchangeManagement"),
           onClick: () => router.push(exchangeRoutes.exchangePage.Path),
@@ -103,14 +105,14 @@ export function useSidebar() {
           label: t("Sidebar.cryptoEconomy.pricesDetails"),
           onClick: () => router.push(CryptoRoute.Details.Path),
         }, */
-        {
-          label: t("Sidebar.cryptoEconomy.exchange"),
-          onClick: () => router.push(CryptoRoutes.ExchangesPage.Path),
-        },
-        {
-          label: t("Sidebar.cryptoEconomy.exchangeDetails"),
-          onClick: () => console.log("Navigate to Exchange Details"),
-        },
+        // {
+        //   label: t("Sidebar.cryptoEconomy.exchange"),
+        //   onClick: () => router.push(CryptoRoutes.ExchangesPage.Path),
+        // },
+        // {
+        //   label: t("Sidebar.cryptoEconomy.exchangeDetails"),
+        //   onClick: () => console.log("Navigate to Exchange Details"),
+        // },
       ],
     };
   }
@@ -130,6 +132,32 @@ export function useSidebar() {
         {
           label: t("Shared.darkTheme"),
           onClick: () => setTheme("dark"),
+        },
+      ],
+    };
+  }
+
+  function useLanguageMenu(): SidebarMenuItem { 
+    const { currentLocale, setLanguage, languageSwitcher } = useLanguage();
+
+    return {
+      type: "accordion",
+      icon: "earth", 
+      label: t("Sidebar.language.categoryName"),  
+      options: [
+        {
+          label: t("Sidebar.language.english"),
+          onClick: () => {
+            setLanguage("en");
+            languageSwitcher({ locale: "en" });
+          },
+        },
+        {
+          label: t("Sidebar.language.chinese"), 
+          onClick: () => {
+            setLanguage("zh-cn");
+            languageSwitcher({ locale: "zh-cn" });
+          },
         },
       ],
     };
