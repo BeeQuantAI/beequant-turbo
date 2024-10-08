@@ -548,6 +548,62 @@ export type RevokeTokensMutation = {
   revokeTokens: boolean;
 };
 
+export type GetUiKlinesQueryVariables = Exact<{
+  input: GetUiKlineDto;
+}>;
+
+export type GetUiKlinesQuery = {
+  __typename?: "Query";
+  getUiKlines: {
+    __typename?: "ResultForUiKlineType";
+    code: number;
+    message: string;
+    data?: Array<{
+      __typename?: "uiKline";
+      openTime: any;
+      openPrice: string;
+      highPrice: string;
+      lowPrice: string;
+      closePrice: string;
+      volume: string;
+      closeTime: any;
+      quoteAssetVolume: string;
+      numberOfTrades: number;
+      takerBuyBaseAssetVolume: string;
+      takerBuyQuoteAssetVolume: string;
+    }> | null;
+  };
+};
+
+export type GetCoinDetailsQueryVariables = Exact<{
+  symbol: Scalars["String"]["input"];
+}>;
+
+export type GetCoinDetailsQuery = {
+  __typename?: "Query";
+  getCoinDetails: {
+    __typename?: "CoinDetailsResult";
+    code: number;
+    message: string;
+    data?: {
+      __typename: "CoinDetails";
+      symbol: string;
+      price: number;
+      volume24h: number;
+      priceChange24h: number;
+      priceChangePercentage24h: number;
+      low24h: number;
+      high24h: number;
+      ath: number;
+      circulationSupply: number;
+      totalSupply: number;
+      maxSupply?: number | null;
+      name: string;
+      quoteVolume24h: number;
+    } | null;
+  };
+};
+
 export type GetMarketOverviewQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetMarketOverviewQuery = {
@@ -1184,6 +1240,228 @@ export const RevokeTokensDocument = {
   RevokeTokensMutation,
   RevokeTokensMutationVariables
 >;
+export const GetUiKlinesDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetUiKlines" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "input" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "GetUiKlineDto" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getUiKlines" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "input" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "code" } },
+                { kind: "Field", name: { kind: "Name", value: "message" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "data" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "openTime" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "openPrice" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "highPrice" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "lowPrice" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "closePrice" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "volume" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "closeTime" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "quoteAssetVolume" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "numberOfTrades" },
+                      },
+                      {
+                        kind: "Field",
+                        name: {
+                          kind: "Name",
+                          value: "takerBuyBaseAssetVolume",
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: {
+                          kind: "Name",
+                          value: "takerBuyQuoteAssetVolume",
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetUiKlinesQuery, GetUiKlinesQueryVariables>;
+export const GetCoinDetailsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetCoinDetails" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "symbol" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getCoinDetails" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "symbol" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "symbol" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "code" } },
+                { kind: "Field", name: { kind: "Name", value: "message" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "data" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "symbol" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "price" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "volume24h" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "priceChange24h" },
+                      },
+                      {
+                        kind: "Field",
+                        name: {
+                          kind: "Name",
+                          value: "priceChangePercentage24h",
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "low24h" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "high24h" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "ath" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "circulationSupply" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "totalSupply" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "maxSupply" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "quoteVolume24h" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetCoinDetailsQuery, GetCoinDetailsQueryVariables>;
 export const GetMarketOverviewDocument = {
   kind: "Document",
   definitions: [

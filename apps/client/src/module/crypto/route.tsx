@@ -16,8 +16,21 @@ const ExchangesPage = {
     </Link>
   ),
 };
+const Details = {
+  Metadata: {
+    title: "Crypto Details | BeeQuant",
+  },
+  Path: "/crypto/details" as const,
+  Link: ({ children, className }: RouteLinkProps) => (
+    <Link href={Details.Path} className={className}>
+      {children}
+    </Link>
+  ),
+};
 
 export const CryptoRoutes = {
   ExchangesPage,
+  Details,
   // TODO: Add other routes
 };
+

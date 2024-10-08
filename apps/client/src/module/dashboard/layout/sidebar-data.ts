@@ -99,10 +99,10 @@ export function useSidebar() {
           label: t("Sidebar.cryptoEconomy.prices"),
           onClick: () => console.log("Navigate to Prices"),
         },
-        {
+        /* {
           label: t("Sidebar.cryptoEconomy.pricesDetails"),
-          onClick: () => console.log("Navigate to Price Details"),
-        },
+          onClick: () => router.push(CryptoRoute.Details.Path),
+        }, */
         {
           label: t("Sidebar.cryptoEconomy.exchange"),
           onClick: () => router.push(CryptoRoutes.ExchangesPage.Path),
