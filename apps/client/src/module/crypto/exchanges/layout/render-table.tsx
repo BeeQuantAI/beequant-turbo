@@ -45,7 +45,7 @@ export function RenderTableContent<T extends Record<string, any>>({
         const symbol = target
           .closest("tr")
           ?.querySelector("#symbol")?.textContent;
-        router.push(`/crypto/details/${symbol}`);
+        router.push(`/crypto/details/${symbol}USDT`);
       }}
     >
       {data.map((item, index) => (
