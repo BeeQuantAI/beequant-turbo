@@ -450,6 +450,13 @@
       "names": {
         "binance": "Binance"
       }
+    },
+    "errorCode": {
+      "10020": "We have a problem while fetching your exchanges, please try again later.",
+      "10021": "We have a problem while fetching your ticker data, please try again.",
+      "10022": "We have a problem while fetching your balances, please try again.",
+      "10034": "The request took longer than expected and has timed out. Please check your connection or try again.",
+      "default": "An unknown error occurred, please try again."
     }
   }
 }

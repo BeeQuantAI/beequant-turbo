@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../common";
 import ExchangeCard from "./components/exchange-card";
 import { exchangeRoutes } from "./route";
@@ -11,6 +11,8 @@ import {
   UserExchangeType,
 } from "@src/graphql";
 import { useQuery } from "@apollo/client";
+import { errorNotify } from "../common/toast";
+import { Toaster } from "react-hot-toast";
 
 export function ExchangePage() {
   const [isUnavaliable, setIsUnavaliable] = useState(false);
@@ -20,12 +22,40 @@ export function ExchangePage() {
   const router = useRouter();
   const t = useTranslations();
 
+  useEffect(() => {
+    const code = data?.getUserExchangesAndBalances?.code;
+    if (code !== undefined && code !== 200) {
+      switch (code) {
+        case 10020:
+          errorNotify(t("ExchangeManagement.errorCode.10020"));
+          setIsUnavaliable(true);
+          break;
+        case 10021:
+          errorNotify(t("ExchangeManagement.errorCode.10021"));
+          setIsUnavaliable(true);
+          break;
+        case 10022:
+          errorNotify(t("ExchangeManagement.errorCode.10022"));
+          setIsUnavaliable(true);
+          break;
+        case 10034:
+          errorNotify(t("ExchangeManagement.errorCode.10034"));
+          break;
+        default:
+          errorNotify(t("ExchangeManagement.errorCode.default"));
+          setIsUnavaliable(true);
+          break;
+      }
+    }
+  }, [error, data, t]);
+
   if (loading) return <Loading />;
-  if (error) setIsUnavaliable(true);
+
   const exchanges = data?.getUserExchangesAndBalances?.data || [];
 
   return (
     <>
+      <Toaster />
       <div className="mb-5 flex flex-1 justify-between">
         <h1 className="text-lg">{t("ExchangeManagement.heading")}</h1>
         <Button
