@@ -102,6 +102,11 @@
       "profile": "个人资料",
       "exchangeManagement": "交易管理",
       "appSetting": "系统设置"
+    },
+    "language": {
+      "categoryName": "语言",  
+      "english": "英文",       
+      "chinese": "中文"       
     }
   },
 
