@@ -43,10 +43,10 @@ export function useSidebar() {
       icon: "user",
       label: t("Sidebar.account.categoryName"),
       options: [
-        {
-          label: t("Sidebar.account.profile"),
-          onClick: () => router.push(DashboardRoute.Profile.Path),
-        },
+        // {
+        //   label: t("Sidebar.account.profile"),
+        //   onClick: () => router.push(DashboardRoute.Profile.Path),
+        // },
         {
           label: t("Sidebar.account.exchangeManagement"),
           onClick: () => router.push(exchangeRoutes.exchangePage.Path),
@@ -95,10 +95,10 @@ export function useSidebar() {
       icon: "earth",
       label: t("Sidebar.cryptoEconomy.categoryName"),
       options: [
-        {
-          label: t("Sidebar.cryptoEconomy.prices"),
-          onClick: () => console.log("Navigate to Prices"),
-        },
+        // {
+        //   label: t("Sidebar.cryptoEconomy.prices"),
+        //   onClick: () => console.log("Navigate to Prices"),
+        // },
         /* {
           label: t("Sidebar.cryptoEconomy.pricesDetails"),
           onClick: () => router.push(CryptoRoute.Details.Path),
@@ -107,10 +107,10 @@ export function useSidebar() {
           label: t("Sidebar.cryptoEconomy.exchange"),
           onClick: () => router.push(CryptoRoutes.ExchangesPage.Path),
         },
-        {
-          label: t("Sidebar.cryptoEconomy.exchangeDetails"),
-          onClick: () => console.log("Navigate to Exchange Details"),
-        },
+        // {
+        //   label: t("Sidebar.cryptoEconomy.exchangeDetails"),
+        //   onClick: () => console.log("Navigate to Exchange Details"),
+        // },
       ],
     };
   }
